@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2001/02/23 16:09:21 $
-%%              $Revision: 1.1 $
+%%              $Date: 2001/02/23 17:03:14 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -28,10 +28,10 @@ test() ->
   NBA = c_barity(),
   EBF = b_fun(),  
   NBF = b_fun(),  
-  {e_call_fun(EF),
-   n_call_fun(NF),
-   e_call_fun(NF),
-   n_call_fun(EF),
+  {e_call_fun(EF),   %% Call emu from emu
+   n_call_fun(NF),   %% Call native from native
+   e_call_fun(NF),   %% Call native from emu
+   n_call_fun(EF),   %% Call emu from native
    n_call_fun2(EF2),
    EBA,
    NBA,
