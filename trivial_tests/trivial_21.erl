@@ -10,7 +10,7 @@
 %%  History  :	* 30/7/2001 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/07/30 15:45:01 $
+%%    $Date: 2004/02/11 23:10:49 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -22,9 +22,19 @@
 -export([test/0,compile/1]).
 
 test() ->
-  matching_bigs([a,b,other]).
+  Other = other(),
+  [a,b,Other] = list_matching_bigs(),
+  {a,b,Other} = tuple_matching_bigs(),
+  ok.
 
-matching_bigs(Config) when list(Config) ->
+other() -> other.
+
+list_matching_bigs() ->
+  [matching1(3972907842873739),
+   matching1(-389789298378939783333333333333333333784),
+   matching1(42)].
+
+tuple_matching_bigs() ->
   {matching1(3972907842873739),
    matching1(-389789298378939783333333333333333333784),
    matching1(42)}.
