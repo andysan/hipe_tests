@@ -11,7 +11,7 @@ ERL_FLAGS=$3
 
 #============================================================================
 
-testfiles="bif01.erl simpl_*.erl tuple.erl small.erl length.erl catches.erl test??.erl"
+testfiles="bif01.erl fun??.erl simpl_*.erl tuple.erl small.erl length.erl catches.erl test??.erl"
 
 #============================================================================
 
