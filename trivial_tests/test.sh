@@ -9,7 +9,7 @@ HIPE=$1
 COMP_FLAGS=$2
 ERL_FLAGS=$3
 
-testfiles=trivial*.erl
+testfiles=trivial_??.erl
 
 ix_exec ()
 {
