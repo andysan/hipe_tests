@@ -587,8 +587,8 @@ alloc(I) ->
     _X12 = very_big(),
     _X13 = very_big(),
     _Z = [_X14 = very_big(),
-	 _X15 = very_big(),
-	 _X16 = very_big()],
+	  _X15 = very_big(),
+	  _X16 = very_big()],
     _X17 = very_big(),
     _X18 = very_big(),
     _X19 = very_big(),
@@ -715,7 +715,6 @@ handle_call(_From, State, [abc]) ->
     R = 1 + 3,
     {reply, R, [R | State]}.
 
-		    
 
 %% Binary handling, creating, manipulating and sending binaries
 binary_h(I) ->
