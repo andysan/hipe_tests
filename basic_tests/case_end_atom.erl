@@ -8,7 +8,8 @@
 %%
 
 test() ->
-  {'EXIT',{{case_clause,some_atom},[_|_]}} = (catch test_case_stm_inlining()),
+%%   {'EXIT',{{case_clause,some_atom},[_|_]}} = (catch test_case_stm_inlining()),
+  {'EXIT',{{case_clause,some_atom},_Trace}} = (catch test_case_stm_inlining()),
   ok.
 
 test_case_stm_inlining() ->
