@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.10 2001/12/12 18:44:15 kostis Exp $
+## $Id: testsuite.sh,v 1.11 2001/12/19 14:35:28 mikpe Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -178,7 +178,7 @@ if test -n "$coredumps" ; then
 fi
 
 erl_crashdumps=`find . -name erl_crash.dump -print`
-if test -n "$erlcrashdumps" ; then
+if test -n "$erl_crashdumps" ; then
   echo "The following erl_crash.dumps occurred during this test run:" >> $RES_FILE
   ls -1 $erl_crashdumps >> $RES_FILE
   echo "End of the erl_crash.dumps list" >> $RES_FILE
