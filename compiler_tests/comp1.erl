@@ -7,8 +7,8 @@
 %%  History  :	* 2000-10-31 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/03/20 14:06:36 $
-%%    $Revision: 1.4 $
+%%    $Date: 2002/07/03 14:19:14 $
+%%    $Revision: 1.5 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -61,7 +61,11 @@ simple_ones() ->
      hipe_coalescing_regalloc, hipe_converters,
      hipe_data_pp, hipe_dead_code, hipe_degree, hipe_dict_hash,
      hipe_gb_hash, hipe_gensym, hipe_graph_coloring_regalloc, hipe_hash,
-     hipe_icode_liveness, hipe_icode_primops, hipe_icode_prop,
+     hipe_icode2rtl,
+     hipe_icode, hipe_icode_cfg, hipe_icode_cleanup, hipe_icode_ebb,
+     hipe_icode_heap_test, hipe_icode_liveness, hipe_icode_primops,
+     hipe_icode_prop, hipe_icode_ssa, hipe_icode_ssa_phi,
+     hipe_icode_ssa_propagate, hipe_icode_ssa_rename, hipe_update_catches,
      hipe_ig, hipe_ig_moves,
      %% hipe_internal, % SHOULD NEVER BE COMPILED TO NATIVE CODE
      hipe_ls_regalloc,
@@ -78,7 +82,7 @@ simple_ones() ->
      hipe_sparc_frame, hipe_sparc_opt_frame, hipe_sparc_caller_saves,
      hipe_sparc_stack_descriptors,
      hipe_tagscheme, hipe_target_machine, hipe_timing,
-     hipe_ufind, hipe_ultra_mod2, hipe_ultra_prio, hipe_update_catches,
+     hipe_ufind, hipe_ultra_mod2, hipe_ultra_prio,
      hipe_vectors, hipe_vectors_wrapper
     ] ++
     [hipe_rtl_to_x86, hipe_x86, hipe_x86_assemble, hipe_x86_cfg,
@@ -92,9 +96,7 @@ mk_fun() ->
      hipe_beam_to_icode,
      hipe_consttab,
      hipe_finalize, hipe_hot_cold,
-     hipe_icode, hipe_icode2rtl, hipe_icode_cfg, hipe_icode_cleanup,
-     hipe_icode_ebb, hipe_icode_heap_test,
-     hipe_reg_worklists, hipe_rename,
+     hipe_reg_worklists,
      hipe_rtl, hipe_rtl_cfg, hipe_rtl_cse, hipe_rtl_ebb, hipe_rtl_liveness,
      hipe_schedule, hipe_sparc, hipe_sparc_cfg, hipe_sparc_liveness,
      hipe_sparc_saver  % WHY IS THIS ALWAYS COMPILED ??
