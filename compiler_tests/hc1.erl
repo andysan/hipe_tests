@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/03/20 14:06:36 $
-%%    $Revision: 1.2 $
+%%    $Date: 2002/05/29 14:00:11 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -37,7 +37,7 @@ excluded("stdlib") ->
     [sofs];  % TEMPORARILY
 excluded("kernel") ->
     [erl_prim_loader, erlang, error_handler, group,
-     init, otp_ring0, prim_file, prim_inet];
+     init, otp_ring0, prim_file, prim_inet, hipe_sparc_loader];
 excluded("megaco") ->
     [megaco_text_parser]; % times out
 excluded("cosNotification") ->
