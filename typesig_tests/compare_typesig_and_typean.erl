@@ -9,7 +9,7 @@
 
 -export([doit/1]).
 
-doit([Module]) ->
+doit([Module]) when is_list(Module) ->
   wait_init(),
   {ok, _, Code} = compile:file(Module,[to_core,binary,export_all]), 
   TypeAnSigs = get_typean_sigs(Code),
