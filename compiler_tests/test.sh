@@ -20,7 +20,9 @@ testfiles="hc.erl"
 
 ix_exec ()
 {
-    echo "ctest:start("$2","$3","$4"). halt()." | $1 $5 -pa . 
+  {
+    echo echo "ctest:start\("$2","$3","$4"\). halt\(\)." \| $1 $5 -pa . 
+  } | sh
 }
 
 rm -f ctest.beam
@@ -30,12 +32,12 @@ for file in $testfiles ; do
     test=`basename $file .erl`
     echo
     echo "Testing "$test".erl:"
-    if test -f ${test}_new ; then
-        rm -f ${test}_new
-    fi
     full_hostname=`hostname`
-    resfile=${test}_new@${full_hostname}
-    ix_exec $HIPE $test "$COMP_FLAGS" "$resfile" "$ERL_FLAGS"
+    resfile="${test}_new@${full_hostname}"
+    if test -f ${resfile} ; then
+	rm -f ${resfile}
+    fi
+    ix_exec $HIPE $test "$COMP_FLAGS" "\'$resfile\'" "$ERL_FLAGS"
     status=0
     diff -sN ${resfile} ${test}_old || status=1 2>&1
     if test "$status" = 0 ; then
