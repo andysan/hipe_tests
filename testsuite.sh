@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.49 2004/11/14 18:50:22 kostis Exp $
+## $Id: testsuite.sh,v 1.50 2004/11/15 17:34:12 kostis Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -273,7 +273,7 @@ if test -n "$erl_crashdumps" ; then
 fi
 
 # This must match the message generated for diffs in test_common.sh
-diffpat="differs!!"
+diffpat="differ!!"
 
 # PLEASE put exact examples of what we're grepping for here, as comments!
 # Also note that the search can trigger too easily on normal words,
