@@ -3,9 +3,7 @@
 %% File        : bs_native.erl
 %% Author      : Kostis Sagonas
 %% Description : Test sent by Bjorn Gustavsson to report a bug in the
-%%               handling of the 'native' endian specifier on Mac OS X.
-%%		 Actually, the 'native' specifier was probably treated
-%%		 incorrectly on all plarforms.
+%%               handling of the 'native' endian specifier.
 %% Created     : 28 Nov 2004
 %%-------------------------------------------------------------------
 
@@ -16,7 +14,7 @@ test() ->
   BeamRes = vs_to_bin({1.0,2.0,3.0}),
   hipe:c({?MODULE,vs_to_bin,1}, [inline_bs,o2]),
   HipeRes = vs_to_bin({1.0,2.0,3.0}),
-  io:format("Beam result = ~w\nHiPE result = ~w\n", [BeamRes,HipeRes]),
+  %% io:format("Beam result = ~w\nHiPE result = ~w\n", [BeamRes,HipeRes]),
   BeamRes = HipeRes,
   ok.
 
