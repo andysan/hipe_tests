@@ -3,9 +3,9 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.43 2004/10/04 21:32:32 kostis Exp $
+## $Id: testsuite.sh,v 1.44 2004/10/16 14:10:31 richardc Exp $
 ##
-## Run with no arguments for usage/help.
+## Run with no arguments or use option --help for usage/help.
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -18,6 +18,10 @@
 # Also, the Dialyzer is assumed to be in:
 #   $OTP/dialyzer
 #===========================================================================
+
+# Run from testsuite directory
+testdir=`dirname $0`
+cd $testdir
 
 if test -n "$USER"; then
    USER=`whoami`
@@ -96,6 +100,15 @@ do
 	    shift
 	    quiet=yes
 	    ;;
+     --list)
+	    ls -d *_tests
+	    exit
+	    ;;
+     --help)
+	    shift
+	    help=yes
+	    break
+	    ;;
      *)
 	    break
 	    ;;
@@ -106,13 +119,14 @@ done
 ##
 ## OTP dir argument missing: just enlighten the poor user...
 ##
-if test -z "$1" -o $# -gt 1; then
+if test -n "${help}" -o -z "$1" -o $# -gt 1; then
   cat <<EOF
 =============================================================================
  Usage: testsuite.sh [--rts_opts "rts_opts"] [--comp_opts "comp_opts"]
                      [--add "add_list"]  [--exclude "exclude_list"]
                      [--only "test_list"] [--shared] [--hybrid]
-                     [--system] [--core] [--no_native] [-q|--quiet] OTP_DIR
+                     [--system] [--core] [--no_native] [-q|--quiet]
+                     [--list] [--help] OTP_DIR
  where: rts_opts  -- options to pass to Erlang/OTP executable
         comp_opts -- options to pass to HiPE compiler
                      when no options are given, they default to [o2]
@@ -134,6 +148,8 @@ if test -z "$1" -o $# -gt 1; then
                        --comp_options "[no_native]"
                        --exclude "${no_native_excl_tests}"
   	quiet     -- do not send mail to user
+  	list      -- list all available test sets and exit
+  	help      -- show this message and exit
         OTP_DIR   -- full path name of the OTP installation directory
 =============================================================================
 EOF
@@ -178,25 +194,17 @@ if test ! -x "$HIPE_RTS"; then
     exit
 fi
 
-lockfile=lock.test.${HOSTNAME}
-testdir=`pwd`
-
-trap 'rm -f $testdir/$lockfile; exit 1' 1 2 15
-
-if test -f $testdir/$lockfile; then
-    cat <<EOF
-
-  The lock file ./$lockfile exists.
-  Probably testsuite is already running...
-  If not, remove
-        ./$lockfile
-  and continue
-========================================================================
-
-EOF
-  exit
+lockfile=/tmp/hipe_test_lock.$USER
+trap 'rm -f $lockfile; exit 1' 1 2 15
+if test -f $lockfile; then
+    echo "The lock file $lockfile exists."
+    echo "Probably testsuite is already running."
+    echo "If not, remove $lockfile"
+    echo "and try again."
+    echo "========================================================================"
+    exit
 else
-   echo $$ > $lockfile
+    echo $$ > $lockfile
 fi
 
 if test -f "$RES_FILE"; then
@@ -235,9 +243,10 @@ $HIPE_RTS -make   ## This makes test.beam
 
 rm -f core erl_crash.dump */core */erl_crash.dump
 
+echo Current dir is `pwd`
 ./alltests.sh --rts_opts "$rts_options" --comp_opts "$comp_options" \
-	      --only "$only_tests" --exclude "$excluded_tests" \
-	      --add "$added_tests" "$HIPE_RTS"  >> $LOG_FILE 2>&1
+	--only "$only_tests" --exclude "$excluded_tests" \
+	--add "$added_tests" "$HIPE_RTS"  >> $LOG_FILE 2>&1
 
 touch $RES_FILE
 
