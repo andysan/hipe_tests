@@ -1,21 +1,34 @@
 %% -*- erlang-indent-level: 2 -*-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
+%% Among testing other things, this module shows why performing LCM on
+%% SPARC is currently problematic. SPARC does not mark untagged values
+%% as dead when they are live over function calls which in turn causes
+%% them to be traced by the garbage collector leading to crashes.
+%%
+%% A simple way to get this behaviour is to compile just the function
+%%
+%%            {bsextract,tid_internal_storage,2}
+%%
+%% with the compiler option "rtl_lcm" on and without.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 -module(bsextract).
 -export([test/0,compile/1]).
+
 -include("extdec.hrl").
 
 compile(Opts) ->
   hipe:c(?MODULE,Opts).
 
 test() ->
-  Pdu = <<30,16,0,90,0,1,0,0,255,255,255,255,81,67,101,7,0,
-	 0,0,96,6,12,146,18,14,0,15,252,16,0,0,17,0,0,128,0,
-	 2,241,33,131,0,20,7,97,112,110,48,49,51,97,8,101,114,
-	 105,99,115,115,111,110,2,115,101,132,0,20,128,192,35,
-	 16,1,5,0,16,5,117,115,101,114,53,5,112,97,115,115,53,
-	 133,0,4,172,28,12,1,133,0,4,172,28,12,3,134,0,8,145,
-	 148,113,129,0,0,0,0>>,
+  Pdu = <<30,16,0,90,0,1,0,0,255,255,255,255,81,67,101,7,0,0,0,96,
+	 6,12,146,18,14,0,15,252,16,0,0,17,0,0,128,0,2,241,33,131,
+	 0,20,7,97,112,110,48,49,51,97,8,101,114,105,99,115,115,
+	 111,110,2,115,101,132,0,20,128,192,35,16,1,5,0,16,5,117,
+	 115,101,114,53,5,112,97,115,115,53,133,0,4,172,28,12,1,
+	 133,0,4,172,28,12,3,134,0,8,145,148,113,129,0,0,0,0>>,
   extract_v0_opt(1000,Pdu).
 
 extract_v0_opt(0,Pdu) ->
