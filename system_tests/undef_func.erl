@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.16 2004/08/12 16:40:42 richardc Exp $
+%%     $Id: undef_func.erl,v 1.17 2004/08/13 14:18:19 tobiasl Exp $
 %%
 
 -module(undef_func).
@@ -15,6 +15,8 @@ test() ->
     Path = [Root ++ D || D <- ["/lib/kernel/ebin",
 			       "/lib/stdlib/ebin",
 			       "/lib/compiler/ebin",
+			       %% syntax_tools is needed by cerl_typean
+			       "/lib/syntax_tools/ebin",
 			       %% gs is needed for the hipe_tool
 			       "/lib/gs/ebin"]],
     Server = hipe_testsuite,
