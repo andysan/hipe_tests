@@ -1,3 +1,3 @@
 {try1,t,2} : OK
- typesig: ((number() | atom(),number())->number())
+ typesig: ((integer() | atom(),number())->number())
   typean: ((any(),any())->any())

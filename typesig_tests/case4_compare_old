@@ -2,5 +2,5 @@
  typesig: none()
   typean: ((any())->number())
 {case4,t2,1} : OK
- typesig: (({'hello',1})->number())
+ typesig: (({'hello',1})->integer())
   typean: ((any())->number())
