@@ -3,7 +3,7 @@
 ## File:      alltests.sh
 ## Author(s): Kostis Sagonas
 ##
-## $Id: alltests.sh,v 1.14 2004/08/10 14:31:07 richardc Exp $
+## $Id: alltests.sh,v 1.15 2004/09/23 09:01:24 mikpe Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -95,7 +95,7 @@ construct_tests ()
 }
 # ---------------------------------------------------------------------
 
-default_testlist="trivial_tests basic_tests native_tests core_tests process_tests distr_tests bs_tests bench_tests system_tests"
+default_testlist="trivial_tests basic_tests native_tests core_tests process_tests distr_tests bs_tests bench_tests system_tests loader_tests"
 
 if test -z "$only_tests"; then
   testlist="$default_testlist $added_tests"
