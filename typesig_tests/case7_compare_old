@@ -1,0 +1,4 @@
+Ok: {case7,module_info,0} typesig: (()->any())	typean: (()->any())
+Ok: {case7,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
+Ok: {case7,t,0} typesig: (()->{'ok',1})	typean: (()->{'ok',1} | 'error')
+Ok: {case7,t,1} typesig: (('foo')->{1,'bar'})	typean: ((any())->{1,'bar'})

@@ -1,3 +1,3 @@
 Ok: {case4,module_info,0} typesig: (()->any())	typean: (()->any())
 Ok: {case4,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
-Ok: {case4,t,1} typesig: ((none())->number())	typean: ((any())->number())
+Ok: {case4,t,1} typesig: ((any())->none())	typean: ((any())->number())

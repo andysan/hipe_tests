@@ -1,4 +1,4 @@
 
-case4:t/1 :: ((none())->number())
+case4:t/1 :: ((any())->none())
 case4:module_info/0 :: (()->any())
 case4:module_info/1 :: ((any())->any())

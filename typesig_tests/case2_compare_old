@@ -1,0 +1,4 @@
+Ok: {case2,doit,0} typesig: (()->none())	typean: (()->'ok')
+Ok: {case2,module_info,0} typesig: (()->any())	typean: (()->any())
+Ok: {case2,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
+Ok: {case2,t,1} typesig: ((any())->none())	typean: ((any())->'ok')

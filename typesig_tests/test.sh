@@ -1,6 +1,7 @@
 #! /bin/sh
 
-testfiles="case1.erl  case3.erl case4.erl case5.erl cons.erl\
+testfiles="case1.erl  case2.erl case3.erl case4.erl case5.erl \
+	   case6.erl case7.erl case8.erl cons.erl\
 	   fib.erl func_head1.erl guard1.erl list1.erl sequence.erl\
 	   tak.erl tuple1.erl"
 
