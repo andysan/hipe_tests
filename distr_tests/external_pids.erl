@@ -10,8 +10,8 @@
 %%		  Modified to be run without a shell script.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2003/03/15 15:47:35 $
-%%              $Revision: 1.1 $
+%%              $Date: 2003/03/26 16:42:52 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -25,6 +25,7 @@ test() ->
   MODULE = atom_to_list(?MODULE),
   {ok,HOSTNAME} = inet:gethostname(),
   os:cmd(OTP_DIR ++ "/bin/erl -sname bar -noshell -s " ++ MODULE ++ " b foo@" ++ HOSTNAME ++ " &"),
+  receive after 1000 -> ok end,		% prevent race condition
   R = os:cmd(OTP_DIR ++ "/bin/erl -sname foo -noshell -s " ++ MODULE ++ " a"),
   list_to_atom(R).
 

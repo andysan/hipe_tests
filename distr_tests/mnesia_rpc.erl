@@ -9,8 +9,8 @@
 %%		  Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2003/03/26 14:58:23 $
-%%              $Revision: 1.3 $
+%%              $Date: 2003/03/26 16:42:53 $
+%%              $Revision: 1.4 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -28,6 +28,7 @@ test() ->
   MODULE = atom_to_list(?MODULE),
   {ok,HOSTNAME} = inet:gethostname(),
   os:cmd(OTP_DIR ++ "/bin/erl -sname a -noshell &"),
+  receive after 1000 -> ok end,		% prevent race condition
   S = os:cmd(OTP_DIR ++ "/bin/erl -sname b -noshell -noinput -s " ++ MODULE ++
              " start a@" ++ HOSTNAME),
   {match,Pos,Len} = regexp:match(S, "TestResult:"),
