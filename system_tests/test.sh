@@ -11,7 +11,7 @@ ERL_FLAGS=$3
 
 #============================================================================
 
-testfiles="undef_func.erl"
+testfiles="undef_func.erl dial_warns.erl"
 
 testdir="system_tests"
 

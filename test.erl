@@ -5,9 +5,9 @@
 %%  Notes    : 
 %%  History  : 1999-12-02 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: richardc $
-%%    $Date: 2004/08/20 12:38:41 $
-%%    $Revision: 1.10 $
+%%    $Author: kostis $
+%%    $Date: 2004/10/03 10:52:39 $
+%%    $Revision: 1.11 $
 %% ====================================================================
 %% Exported functions (short description):
 %%
@@ -16,9 +16,10 @@
 %%  Executes a test module in this way:
 %%   1. Compiles the module Module.erl to Module.beam. 
 %%   2. Then the function test/0 in Module is called.
-%%   3. Then Module is compiled to native code with the flags HiPECompOptions
-%%   4. Then the function test/0 in Module is called.
-%%   5. Finally the a tuple with the results from both Module:test() executions
+%%   3. If the no_native compiler option is not set then
+%%   3.1  Module is compiled to native code with the flags HiPECompOptions.
+%%   3.2  The function test/0 in Module is called.
+%%   4. Finally the tuple with the results from both Module:test() executions
 %%      are written to the file File.
 %%
 %% start(Module,File) 

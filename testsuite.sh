@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.36 2004/09/02 12:50:06 richardc Exp $
+## $Id: testsuite.sh,v 1.37 2004/10/03 10:52:39 kostis Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -15,8 +15,9 @@
 #   $OTP/bin/erl
 # and
 #   $OTP/lib/hipe/ebin
-
-echo "========================================================================"
+# Also, the Dialyzer is assumed to be in:
+#   $OTP/dialyzer
+#===========================================================================
 
 if test -n "$USER"; then
    USER=`whoami`
@@ -64,6 +65,11 @@ do
             comp_options="[core]"
 	    excluded_tests="trivial_tests"
             ;;
+     --system)
+	    shift
+	    only_tests="system_tests"
+	    comp_options="[no_native]"
+            ;;
      --no_nat*)
 	    shift
 	    comp_options="[no_native]"
@@ -98,38 +104,57 @@ done
 
 
 ##
-## OTP dir argument
+## OTP dir argument missing: just enlighten the poor user...
 ##
 if test -z "$1" -o $# -gt 1; then
-  echo " Usage: testsuite.sh [--rts_opts \"rts_opts\"] [--comp_opts \"comp_opts\"]"
-  echo "                     [--add \"add_list\"]  [--exclude \"exclude_list\"]"
-  echo "                     [--only \"test_list\"] [--shared] [--hybrid]"
-  echo "                     [--core] [--no_native] [-q|--quiet] OTP_DIR"
-  echo " where: rts_opts  -- options to pass to Erlang/OTP executable"
-  echo "        comp_opts -- options to pass to HiPE compiler"
-  echo "                     when no options are given, they default to [o2]"
-  echo "        add       -- the list of additional tests to run"
-  echo "        exclude   -- the list of tests NOT to run"
-  echo "        only      -- the list of tests to run; replaces default,"
-  echo "                     both --exclude and --only can be specified at once"
-  echo "	shared    -- a shorthand option, equivalent to:"
-  echo "                       --rts_options \"-shared\""
-  echo "	hybrid    -- equivalent to:"
-  echo "                       --rts_options \"-hybrid\""
-  echo "	hybrid-a  -- like the --hybrid option but with analysis enabled"
-  echo "	core      -- equivalent to:"
-  echo "                       --comp_options \"[core]\" --exclude \"trivial_tests\""
-  echo "	no_native -- equivalent to:"
-  echo "                       --comp_options \"[no_native]\""
-  echo "                       --exclude \"${no_native_excl_tests}\""
-  echo "	quiet     -- do not send mail to user"
-  echo "        OTP_DIR   -- full path name of the OTP installation directory"
-  echo "========================================================================"
+  cat <<EOF
+=============================================================================
+ Usage: testsuite.sh [--rts_opts "rts_opts"] [--comp_opts "comp_opts"]
+                     [--add "add_list"]  [--exclude "exclude_list"]
+                     [--only "test_list"] [--shared] [--hybrid]
+                     [--system] [--core] [--no_native] [-q|--quiet] OTP_DIR
+ where: rts_opts  -- options to pass to Erlang/OTP executable
+        comp_opts -- options to pass to HiPE compiler
+                     when no options are given, they default to [o2]
+        add       -- the list of additional tests to run
+        exclude   -- the list of tests NOT to run
+        only      -- the list of tests to run; replaces default,
+                     both --exclude and --only can be specified at once
+        shared    -- a shorthand option, equivalent to:
+                       --rts_options "-shared"
+        hybrid    -- equivalent to:
+                       --rts_options "-hybrid"
+        hybrid-a  -- like the --hybrid option but with analysis enabled
+	system    -- runs only system_tests which check consistency of HiPE;
+                     it is equivalent to:
+                       --comp_options "[no_native]" --only "system_tests"
+	core      -- equivalent to:
+                       --comp_options "[core]" --exclude "trivial_tests"
+ 	no_native -- equivalent to:
+                       --comp_options "[no_native]"
+                       --exclude "${no_native_excl_tests}"
+  	quiet     -- do not send mail to user
+        OTP_DIR   -- full path name of the OTP installation directory
+=============================================================================
+EOF
   exit
 fi
 
+echo "========================================================================"
+
+#============================================================================
+# Generic stuff
+#============================================================================
 OTP_DIR=$1
 export OTP_DIR ERL_COMPILER_OPTIONS
+#============================================================================
+# Some stuff necessary for running Dialyzer appear below
+#============================================================================
+DIALYZER_OTP=$OTP_DIR
+DIALYZER_DIR=$OTP_DIR/../dialyzer
+DIALYZER_TMP=/tmp/dialyzer_tmp_dir.$USER
+export DIALYZER_OTP DIALYZER_DIR DIALYZER_TMP
+#============================================================================
 
 HIPE_RTS=$OTP_DIR/bin/erl
 
