@@ -6,8 +6,8 @@
 %%  History  :  * 2001-09-17 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/09/18 16:39:59 $
-%%    $Revision: 1.1 $
+%%    $Date: 2001/09/20 13:39:59 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 
 -module(guard01).
@@ -107,22 +107,24 @@ guard_bifs(Config) when list(Config) ->
 try_gbif(Id, X, Y) ->
     case guard_bif(Id, X, Y) of
         {Id, X, Y} ->
-            io:format("guard_bif(~p, ~p, ~p) -- ok\n", [Id, X, Y]);
+            %% io:format("guard_bif(~p, ~p, ~p) -- ok\n", [Id, X, Y]);
+	    ok;
         Other ->
             ok = io:format("guard_bif(~p, ~p, ~p) -- bad result: ~p\n",
-                                 [Id, X, Y, Other]),
-            test_server:fail()
+			   [Id, X, Y, Other]),
+            exit({bad_result,try_gbif})
     end.
 
 try_fail_gbif(Id, X, Y) ->
     case catch guard_bif(Id, X, Y) of
 	%% {'EXIT', {function_clause,[{?MODULE,guard_bif,[Id,X,Y]}|_]}} ->
         {'EXIT', {function_clause,_}} ->  % in HiPE, a trace is not generated
-	    io:format("guard_bif(~p, ~p, ~p) -- ok\n", [Id,X,Y]);
+	    %% io:format("guard_bif(~p, ~p, ~p) -- ok\n", [Id,X,Y]);
+	    ok;
         Other ->
             ok = io:format("guard_bif(~p, ~p, ~p) -- bad result: ~p\n",
-                                 [Id, X, Y, Other]),
-            test_server:fail()
+			   [Id, X, Y, Other]),
+            exit({bad_result,try_fail_gbif})
     end.
 
 guard_bif('abs/1', X, Y) when abs(X) == Y ->
