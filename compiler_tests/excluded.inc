@@ -8,7 +8,7 @@ excluded("kernel") ->
 excluded("ic") ->
     [icparse];       % COMPILATION TAKES LONG TIME
 excluded("megaco") ->
-    [megaco_text_parser]; % COMPILATION TAKES LONG TIME
+    [megaco_text_parser_v1,megaco_text_parser_v2]; % COMPILATION TAKES LONG TIME
 excluded("cosNotification") ->
     [oe_CosEvent]; % no such file
 excluded("etk") ->
