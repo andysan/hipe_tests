@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/04/22 18:03:05 $
-%%    $Revision: 1.5 $
+%%    $Date: 2003/10/04 08:39:07 $
+%%    $Revision: 1.6 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -33,9 +33,9 @@ test() ->
      test("asn1"),
      test("cosEvent"),
      test("cosEventDomain"),
-     test("cosFileTransfer"),
+     %% test("cosFileTransfer"),
      test("cosNotification"),
-     test("cosProperty"),
+     %% test("cosProperty"),
      test("cosTime"),
      test("cosTransactions"),
      test("debugger"),
@@ -46,7 +46,7 @@ test() ->
      test("ic"),
      test("inets"),
      test("megaco"),
-     test("mesh"),
+     %% test("mesh"),	% Does not exist anymore ???
      test("mnemosyne"),
      test("mnesia"),
      test("mnesia_session"),
@@ -57,7 +57,7 @@ test() ->
      test("pman"),
      test("runtime_tools"),
      test("sasl"),
-     test("snmp"),    
+     test("snmp"),
      test("toolbar"),
      test("tv"),
      test("webtool")
