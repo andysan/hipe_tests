@@ -1,12 +1,13 @@
 % -*- erlang-indent-level: 2 -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  Filename : 	bs15.erl
-%%  Purpose  :  
+%%  Purpose  :  These tests are intended to test the construction and 
+%%              matching of binaries using variable sizes 
 %%  Notes    : 
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2003/11/05 15:00:37 $
-%%              $Revision: 1.2 $
+%%              $Author: pergu $
+%%              $Date: 2003/11/05 15:14:27 $
+%%              $Revision: 1.3 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(bs15).
