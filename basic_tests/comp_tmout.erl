@@ -12,4 +12,4 @@ test() ->
     Self == self().	%% make sure the parent process stays the same
 
 compile(_Flags) ->
-    ok.		%% no reason for native code compilation, really
+    {ok,?MODULE}.	%% no reason for native code compilation, really
