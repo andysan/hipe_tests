@@ -5,9 +5,9 @@
 %%  Notes    : 
 %%  History  : 1999-12-02 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: jesperw $
-%%    $Date: 2003/07/02 13:34:13 $
-%%    $Revision: 1.5 $
+%%    $Author: kostis $
+%%    $Date: 2003/07/04 09:30:14 $
+%%    $Revision: 1.6 $
 %% ====================================================================
 %% Exported functions (short description):
 %%
@@ -34,21 +34,21 @@ start(Module,File) ->
     start(Module,[o2],File).
 
 start(Module,CompilerOptions,File) ->
-    JC = (catch compile:file(Module)),
-    J1 = (catch Module:test()),
+    IC = (catch compile:file(Module)),
+    IR = (catch Module:test()),
 
-    %% io:format("Comp Opts = ~p~n", [CompilerOptions]),
-    Result = 
-	case proplists:is_defined(no_native,CompilerOptions) of
-	    false ->
-		HC = (catch Module:compile(CompilerOptions)),
-		H1 = (catch Module:test()),
-		{{{emu_result,J1},{native_result,H1}},
-		 {{emu_compile,JC},{native_compile,HC}}};
-	    true ->
-		{{{emu_result,J1},{native_result,J1}},
-		 {{emu_compile,JC},{native_compile,JC}}}
-	end,
+    case proplists:get_bool(no_native,CompilerOptions) of
+	false ->
+	    HC = (catch Module:compile(CompilerOptions)),
+	    HR = (catch Module:test());
+	true ->
+	    {ok,Bin} = file:read_file(atom_to_list(Module) ++ "_old"),
+	    {ok,Tokens,_} = erl_scan:string(binary_to_list(Bin) ++ "."),
+	    {ok,{{{_,_IR},{native_result,HR}},
+		{{_,_IC},{native_compile,HC}}}} = erl_parse:parse_term(Tokens)
+    end,
+    Result = {{{emu_result,IR},{native_result,HR}},
+              {{emu_compile,IC},{native_compile,HC}}},
     write(File,Result).
 
 write(File,Result) ->
