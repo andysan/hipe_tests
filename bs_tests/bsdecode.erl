@@ -45,8 +45,8 @@ decode_v0_opt(N,Pdu) ->
 %%% Create PDP Context Request
 %%% GTP97, SNN=0
 %%% (No SNDCP N-PDU number)
-decode_gtpc_msg(<<0:3,_:4,0:1,16:8,Length:16,SequenceNumber:16,
-		FlowLabel:16,SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
+decode_gtpc_msg(<<0:3,_:4,0:1,16:8,_Length:16,SequenceNumber:16,
+		_FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
 		TID:8/binary-unit:8,InformationElements/binary>>) ->
     Errors=#protocolErrors{},
     {ok,TID2}=tid_internal_storage(TID,[]),
@@ -58,15 +58,15 @@ decode_gtpc_msg(<<0:3,_:4,0:1,16:8,Length:16,SequenceNumber:16,
 	    {ok,CreateReq,SequenceNumber};
 	{fault,Cause,CreateReq} ->
 	    {fault,Cause,CreateReq,SequenceNumber};
-	{'EXIT',Reason} ->
+	{'EXIT',_Reason} ->
 	    {fault,193,EmptyCreateReq,SequenceNumber}
     end;
 
 %%% Update PDP Context Request
 %%% GTP97, SNN=0
 %%% (No SNDCP N-PDU number)
-decode_gtpc_msg(<<0:3,_:4,0:1,18:8,Length:16,SequenceNumber:16,
-		FlowLabel:16,SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
+decode_gtpc_msg(<<0:3,_:4,0:1,18:8,_Length:16,SequenceNumber:16,
+		_FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
 		TID:8/binary-unit:8,InformationElements/binary>>) ->
     Errors=#protocolErrors{},
     {ok,TID2}=tid_internal_storage(TID,[]),
@@ -78,16 +78,16 @@ decode_gtpc_msg(<<0:3,_:4,0:1,18:8,Length:16,SequenceNumber:16,
 	    {ok,UpdateReq,SequenceNumber};
 	{fault,Cause,UpdateReq} ->
 	    {fault,Cause,UpdateReq,SequenceNumber};
-	{'EXIT',Reason} ->
+	{'EXIT',_Reason} ->
 	    {fault,193,EmptyUpdateReq,SequenceNumber}
     end;
 
 %%% Delete PDP Context Request
 %%% GTP97, SNN=0
 %%% (No SNDCP N-PDU number)
-decode_gtpc_msg(<<0:3,_:4,0:1,20:8,Length:16,SequenceNumber:16,
-		FlowLabel:16,SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
-		TID:8/binary-unit:8,InformationElements/binary>>) ->
+decode_gtpc_msg(<<0:3,_:4,0:1,20:8,_Length:16,SequenceNumber:16,
+		_FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
+		TID:8/binary-unit:8,_InformationElements/binary>>) ->
     {ok,TID2}=tid_internal_storage(TID,[]),
     DeleteReq=#sesT_deleteReqV0{tid=TID2},
     {ok,DeleteReq,SequenceNumber};
@@ -95,8 +95,8 @@ decode_gtpc_msg(<<0:3,_:4,0:1,20:8,Length:16,SequenceNumber:16,
 %%% Delete PDP Context Response
 %%% GTP97, SNN=0
 %%% (No SNDCP N-PDU number)
-decode_gtpc_msg(<<0:3,_:4,0:1,21:8,Length:16,SequenceNumber:16,
-		FlowLabel:16,SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
+decode_gtpc_msg(<<0:3,_:4,0:1,21:8,_Length:16,SequenceNumber:16,
+		_FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
 		TID:8/binary-unit:8,InformationElements/binary>>) ->
     Errors=#protocolErrors{},
     {ok,TID2}=tid_internal_storage(TID,[]),
@@ -107,12 +107,12 @@ decode_gtpc_msg(<<0:3,_:4,0:1,21:8,Length:16,SequenceNumber:16,
 	    {ok,DeleteRes,SequenceNumber};
 	{fault,Cause,DeleteRes} ->
 	    {fault,Cause,DeleteRes,SequenceNumber};
-	{'EXIT',Reason} ->
+	{'EXIT',_Reason} ->
 	    {fault,193,EmptyDeleteRes,SequenceNumber}
     end;
 
 %%% Error handling
-decode_gtpc_msg(GTP_C_Message) ->
+decode_gtpc_msg(_GTP_C_Message) ->
     {fault}.
 
 %%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -753,7 +753,7 @@ check_ie(<<1:1,_:7,Length:16,More/binary>>) ->
             {handled_ie,Rest}
     end;
 %%% TV element, unknown size. Can not be handled.
-check_ie(UnhandledIE) ->
+check_ie(_UnhandledIE) ->
     {unhandled_ie}.
 
 %%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -790,7 +790,7 @@ tid_internal_storage(<<DigitNplus1:4,DigitN:4,Rest/binary>>,IMSI) when
    DigitNplus1 < 10,
    DigitN < 10 ->
      tid_internal_storage(Rest,[((DigitNplus1 bsl 4) bor DigitN)|IMSI]);
-tid_internal_storage(Rest,IMSI) ->
+tid_internal_storage(_Rest,_IMSI) ->
      {fault}. %% Mandatory IE incorrect
 
 %%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -822,7 +822,7 @@ pdp_addr_internal_storage(<<_:4,1:4,16#57:8,IP_A:16,IP_B:16,IP_C:16,IP_D:16,
     IP_E:16,IP_F:16,IP_G:16,IP_H:16>>) ->
     {ok,#mvsgT_pdpAddressType{pdpTypeNbr=ietf_ipv6,
         address=[IP_A,IP_B,IP_C,IP_D,IP_E,IP_F,IP_G,IP_H]}};
-pdp_addr_internal_storage(PDP_ADDR) ->
+pdp_addr_internal_storage(_PDP_ADDR) ->
     {fault}.
 
 %%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -858,25 +858,25 @@ pco_internal_storage(<<1:1,_:4,0:3,PPPConfigurationOptions/binary>>) ->
 	{fault} ->
 	    {fault}
     end;
-pco_internal_storage(<<1:1,_:4,1:3,OSP_IHOSSConfigurationOptions/binary>>) ->
+pco_internal_storage(<<1:1,_:4,1:3,_OSP_IHOSSConfigurationOptions/binary>>) ->
     {ok,osp_ihoss};
-pco_internal_storage(UnknownConfigurationOptions) ->
+pco_internal_storage(_UnknownConfigurationOptions) ->
     {fault}. %% Optional IE incorrect
 
 ppp_configuration_options(<<>>,PAP,CHAP,IPCP) ->
     {ok,PAP,CHAP,IPCP};
 ppp_configuration_options(<<16#C021:16,Length:8,More/binary>>,PAP,CHAP,IPCP) ->
     %% LCP - Not implemented
-    <<LCP:Length/binary-unit:8,Rest/binary>> = More,
+    <<_LCP:Length/binary-unit:8,Rest/binary>> = More,
     ppp_configuration_options(Rest,PAP,CHAP,IPCP);
-ppp_configuration_options(<<16#C023:16,Length:8,1:8,Identifier:8,DataLength:16,
-			  More/binary>>,PAP,CHAP,IPCP) ->
+ppp_configuration_options(<<16#C023:16,_Length:8,1:8,Identifier:8,DataLength:16,
+			  More/binary>>,_PAP,CHAP,IPCP) ->
     %% PAP - Authenticate request
     ActualDataLength=DataLength-4, %% DataLength includes Code, Identifier and itself
     <<Data:ActualDataLength/binary-unit:8,Rest/binary>> = More,
     <<PeerIDLength:8,PeerData/binary>> = Data,
     <<PeerID:PeerIDLength/binary-unit:8,PasswdLength:8,PasswordData/binary>> = PeerData,
-    <<Password:PasswdLength/binary,Padding/binary>> = PasswordData,
+    <<Password:PasswdLength/binary,_Padding/binary>> = PasswordData,
     ppp_configuration_options(Rest,#masT_pap{exists=true,code=1,id=Identifier,
 					     username=binary_to_list(PeerID),
 					     password=binary_to_list(Password)},CHAP,IPCP);
@@ -885,7 +885,7 @@ ppp_configuration_options(<<16#C023:16,Length:8,More/binary>>,PAP,CHAP,IPCP) ->
     %% PAP - Other, not implemented
     <<PAP:Length/binary-unit:8,Rest/binary>> = More,
     ppp_configuration_options(Rest,PAP,CHAP,IPCP);
-ppp_configuration_options(<<16#C223:16,Length:8,1:8,Identifier:8,DataLength:16,
+ppp_configuration_options(<<16#C223:16,_Length:8,1:8,Identifier:8,DataLength:16,
 			 More/binary>>,PAP,CHAP,IPCP) ->
     %% CHAP - Challenge
     ActualDataLength=DataLength-4, %% DataLength includes Code, Identifier and itself
@@ -896,7 +896,7 @@ ppp_configuration_options(<<16#C223:16,Length:8,1:8,Identifier:8,DataLength:16,
 						   value=binary_to_list(Value),
 						   name=binary_to_list(Name)}|CHAP],
 			      IPCP);
-ppp_configuration_options(<<16#C223:16,Length:8,2:8,Identifier:8,DataLength:16,
+ppp_configuration_options(<<16#C223:16,_Length:8,2:8,Identifier:8,DataLength:16,
 			 More/binary>>,PAP,CHAP,IPCP) ->
     %% CHAP - Response
     ActualDataLength=DataLength-4, %% DataLength includes Code, Identifier and itself
@@ -911,7 +911,7 @@ ppp_configuration_options(<<16#C223:16,Length:8,More/binary>>,PAP,CHAP,IPCP) ->
     %% CHAP - Other, not implemented
     <<CHAP:Length/binary-unit:8,Rest/binary>> = More,
     ppp_configuration_options(Rest,PAP,CHAP,IPCP);
-ppp_configuration_options(<<16#8021:16,Length:8,1:8,Identifier:8,OptionsLength:16,
+ppp_configuration_options(<<16#8021:16,_Length:8,1:8,Identifier:8,OptionsLength:16,
 			  More/binary>>,PAP,CHAP,IPCP) ->
     %% IPCP - Configure request
     ActualOptionsLength=OptionsLength-4, %% OptionsLength includes Code, Identifier and itself
@@ -953,11 +953,11 @@ ppp_configuration_options(<<16#8021:16,Length:8,1:8,Identifier:8,OptionsLength:1
 	_ ->
 	    ppp_configuration_options(Rest,PAP,CHAP,IPCP)
     end;
-ppp_configuration_options(<<UnknownProtocolID:16,Length:8,More/binary>>,
+ppp_configuration_options(<<_UnknownProtocolID:16,Length:8,More/binary>>,
 			  PAP,CHAP,IPCP) ->
-    <<Skipped:Length/binary-unit:8,Rest/binary>> = More,
+    <<_Skipped:Length/binary-unit:8,Rest/binary>> = More,
     ppp_configuration_options(Rest,PAP,CHAP,IPCP);
-ppp_configuration_options(Unhandled,PAP,CHAP,IPCP) ->
+ppp_configuration_options(_Unhandled,_PAP,_CHAP,_IPCP) ->
     {fault}.
 
 %%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -969,7 +969,7 @@ gsn_addr_internal_storage(<<IP_A:16,IP_B:16,IP_C:16,IP_D:16,
     IP_E:16,IP_F:16,IP_G:16,IP_H:16>>) ->
     {ok,#mvsgT_ipAddress{version=ipv6,a1=IP_A,a2=IP_B,a3=IP_C,a4=IP_D,
         a5=IP_E,a6=IP_F,a7=IP_G,a8=IP_H}};
-gsn_addr_internal_storage(GSN_ADDR) ->
+gsn_addr_internal_storage(_GSN_ADDR) ->
     {fault}.
 
 %%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -979,9 +979,9 @@ gsn_addr_internal_storage(GSN_ADDR) ->
 
 msisdn_internal_storage(<<>>,MSISDN) ->
     {ok,#mvsT_msisdn{value=lists:reverse(MSISDN)}};
-msisdn_internal_storage(<<2#11111111:8,Rest/binary>>,MSISDN) ->
+msisdn_internal_storage(<<2#11111111:8,_Rest/binary>>,MSISDN) ->
     {ok,#mvsT_msisdn{value=lists:reverse(MSISDN)}};
-msisdn_internal_storage(<<2#1111:4,DigitN:4,Rest/binary>>,MSISDN) when
+msisdn_internal_storage(<<2#1111:4,DigitN:4,_Rest/binary>>,MSISDN) when
     DigitN < 10 ->
     {ok,#mvsT_msisdn{value=lists:reverse([(DigitN bor 2#11110000)|MSISDN])}};
 msisdn_internal_storage(<<DigitNplus1:4,DigitN:4,Rest/binary>>,MSISDN) when
@@ -989,6 +989,6 @@ msisdn_internal_storage(<<DigitNplus1:4,DigitN:4,Rest/binary>>,MSISDN) when
     DigitN < 10 ->
     NewMSISDN=[((DigitNplus1 bsl 4) bor DigitN)|MSISDN],
     msisdn_internal_storage(Rest,NewMSISDN);
-msisdn_internal_storage(Rest,MSISDN) ->
+msisdn_internal_storage(_Rest,_MSISDN) ->
     {fault}. %% Mandatory IE incorrect
 

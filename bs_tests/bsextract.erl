@@ -24,17 +24,17 @@ extract_v0_opt(N,Pdu) ->
     get_external_id(Pdu),
     extract_v0_opt(N-1,Pdu).
 
-get_external_id(<<0:3,_:4,0:1,1:8,Length:16,SequenceNumber:16,
-		FlowLabel:16,SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
-		TID:8/binary-unit:8,InformationElements/binary>>) ->
+get_external_id(<<0:3,_:4,0:1,1:8,_Length:16,SequenceNumber:16,
+		_FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
+		_TID:8/binary-unit:8,_InformationElements/binary>>) ->
     
     {echo,#sesT_echoReqV0{},SequenceNumber};
 %% Create PDP Context Request
 %% GTP97, SNN=0
 %% (No SNDCP N-PDU number)
-get_external_id(<<0:3,_:4,0:1,16:8,Length:16,SequenceNumber:16,
-		FlowLabel:16,SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
-	TID:8/binary-unit:8,InformationElements/binary>>) ->
+get_external_id(<<0:3,_:4,0:1,16:8,_Length:16,SequenceNumber:16,
+		_FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
+	TID:8/binary-unit:8,_InformationElements/binary>>) ->
     
     case extract_imsi(TID) of
 	{ok,IMSI} ->
@@ -47,9 +47,9 @@ get_external_id(<<0:3,_:4,0:1,16:8,Length:16,SequenceNumber:16,
 %%% Update PDP Context Request
 %%% GTP97, SNN=0
 %%% (No SNDCP N-PDU number)
-get_external_id(<<0:3,_:4,0:1,18:8,Length:16,SequenceNumber:16,
-		FlowLabel:16,SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
-		TID:8/binary-unit:8,InformationElements/binary>>) ->
+get_external_id(<<0:3,_:4,0:1,18:8,_Length:16,SequenceNumber:16,
+		_FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
+		TID:8/binary-unit:8,_InformationElements/binary>>) ->
     
     case extract_imsi(TID) of
 	{ok,IMSI} ->
@@ -61,9 +61,9 @@ get_external_id(<<0:3,_:4,0:1,18:8,Length:16,SequenceNumber:16,
 %%% Delete PDP Context Request
 %%% GTP97, SNN=0
 %%% (No SNDCP N-PDU number)
-get_external_id(<<0:3,_:4,0:1,20:8,Length:16,SequenceNumber:16,
-		FlowLabel:16,SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
-		TID:8/binary-unit:8,InformationElements/binary>>) ->
+get_external_id(<<0:3,_:4,0:1,20:8,_Length:16,SequenceNumber:16,
+		_FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
+		TID:8/binary-unit:8,_InformationElements/binary>>) ->
     
     case extract_imsi(TID) of
 	{ok,IMSI} ->
@@ -75,7 +75,7 @@ get_external_id(<<0:3,_:4,0:1,20:8,Length:16,SequenceNumber:16,
 %%% Error handling: GTP Message Too Short
 %%% Error handling: Unknown GTP Signalling message.
 %%% Error handling: Unexpected GTP Signalling message.
-get_external_id(GTP_Message) ->
+get_external_id(_GTP_Message) ->
     {fault}.
 
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -123,5 +123,5 @@ tid_internal_storage(<<DigitNplus1:4,DigitN:4,Rest/binary>>,IMSI) when
    DigitNplus1 < 10,
    DigitN < 10 ->
      tid_internal_storage(Rest,[((DigitNplus1 bsl 4) bor DigitN)|IMSI]);
-tid_internal_storage(Rest,IMSI) ->
+tid_internal_storage(_Rest,_IMSI) ->
      {fault}. %% Mandatory IE incorrect
