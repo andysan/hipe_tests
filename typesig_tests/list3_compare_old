@@ -1,0 +1,6 @@
+{list3,mystery,1} : OK
+ typesig: (([any()]) -> [any()])
+  typean: ((_) -> [any()])
+{list3,mystery,2} : OK
+ typesig: ((integer(),[any()]) -> [any(),...])
+  typean: ((_,_) -> [any(),...])
