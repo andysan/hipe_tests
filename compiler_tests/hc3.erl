@@ -6,9 +6,9 @@
 %%  Purpose  :  Tests whether the HiPE compiler works by compiling and
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2002/03/15 17:19:06 $
-%%    $Revision: 1.2 $
+%%    $Author: mikpe $
+%%    $Date: 2002/03/20 02:06:26 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -68,10 +68,14 @@ hc_mod(Mod) ->
 
 files(App) ->
     AppFile = os:getenv("OTP_DIR") ++ "/lib/" ++ App ++ "/ebin/"++App++".app",
-    {ok,[Tuple]} = file:consult(AppFile),
-    {value,{modules,Files}} = lists:keysearch(modules,1,element(3,Tuple)),
-    Files.
-
+    case catch file:consult(AppFile) of
+	{ok,[Tuple]} ->
+	    {value,{modules,Files}} = lists:keysearch(modules,1,element(3,Tuple)),
+	    Files;
+	{error,enoent} ->
+	    %% this can happen for orber if no C++ compiler was found
+	    []
+    end.
 
 compile(Flags) ->
     hipe:c(?MODULE,Flags).
