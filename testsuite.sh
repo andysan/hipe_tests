@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.7 2001/08/03 14:35:38 kostis Exp $
+## $Id: testsuite.sh,v 1.8 2001/10/03 15:04:28 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -159,6 +159,7 @@ echo "The log will be left in $LOG_FILE"
 echo "Log for  : $HIPE_RTS $options" > $LOG_FILE
 echo "Date-Time: `date +"%y%m%d-%H%M"`" >> $LOG_FILE
 
+rm -f test.beam
 $HIPE_RTS -make   ## This makes test.beam
 
 rm -f core erl_crash.dump */core */erl_crash.dump
