@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.34 2004/08/21 15:06:33 kostis Exp $
+## $Id: testsuite.sh,v 1.35 2004/09/01 13:32:13 richardc Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -195,7 +195,7 @@ if test ! -z "$excluded_tests"; then
   echo "* Excluding: $excluded_tests"
 fi
 if test ! -z "$added_tests"; then
-  echo "* Excluding: $added_tests"
+  echo "* Adding: $added_tests"
 fi
 echo "The log will be left in $LOG_FILE"
 
