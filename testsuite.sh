@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.29 2004/08/10 15:09:14 richardc Exp $
+## $Id: testsuite.sh,v 1.30 2004/08/17 17:36:01 richardc Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -210,10 +210,14 @@ if test -n "$erl_crashdumps" ; then
   echo "End of the erl_crash.dumps list" >> $RES_FILE
 fi
 
-# (Note that we use case-insensitive grep.)
+# (Note that we use case-insensitive grep for now.)
 
 # This must match the message generated for diffs in test_common.sh
 diffpat="differs!!"
+
+# PLEASE put exact examples of what we're grepping for here, as comments!
+# Then remove case-sensitivity from grep, when we have better patterns!
+# The current search triggers too easily on normal words, filenames, etc.
 
 # check for output differences
 pat="$diffpat"
@@ -232,7 +236,8 @@ pat="${pat}\|not found"
 pat="${pat}\|abnorm"
 pat="${pat}\|denied"
 pat="${pat}\|no such file"
-pat="${pat}\|illegal"
+# The following line also matches "CosFileTransfer_IllegalOperation..."
+#pat="${pat}\|illegal"    FIXME: Illegal what? 
 # sometimes after overflow the diff fails and a message
 # with Missing is displayed
 pat="${pat}\|missing"
@@ -260,6 +265,7 @@ if test -s $RES_FILE; then
 	echo "***FAILED testsuite for:"
 	echo "   $HIPE_RTS"
 	echo "on $HOSTNAME"
+	echo "see $RES_FILE for more details."
 	if test -z "$quiet"; then
             echo "***FAILED testsuite for $HIPE_RTS on $HOSTNAME" > $MSG_FILE
 	    echo "Check the log file $NEW_LOG" >> $MSG_FILE
@@ -293,8 +299,8 @@ else
 	echo "PASSED HiPE testsuite for:"
 	echo "   $HIPE_RTS"
 	echo "on $HOSTNAME"
+        rm -f $RES_FILE
 fi
-rm -f $RES_FILE
 
 rm -f $lockfile
 
