@@ -1,5 +1,5 @@
 %%% -*- erlang-indent-level: 2 -*-
-%%% $Id: load_bug2.erl,v 1.2 2004/09/24 12:00:59 kostis Exp $
+%%% $Id: load_bug2.erl,v 1.3 2005/04/06 10:54:29 tobiasl Exp $
 %%%
 %%% Tests whether module loading invalidates all paths to obsolete code.
 
@@ -25,7 +25,7 @@ test() ->
 
 write_compile_run(FN, Prog) ->
   file:write_file(FN, Prog),
-  c:c(FN, [native,{outdir, "/tmp/"}]),
+  {ok, _} = c:c(FN, [native,{outdir, "/tmp/"}]),
   catch(tmp:tmp()).
 
 prog1() ->
