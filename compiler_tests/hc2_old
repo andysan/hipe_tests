@@ -1,9 +1,0 @@
-{{result,[{ok,"appmon"},
-          {ok,"asn1"},
-          {ok,"cosEvent"},
-          {ok,"cosEventDomain"},
-          {ok,"cosNotification"},
-          {ok,"cosTime"},
-          {ok,"cosTransactions"},
-          {ok,"debugger"}]},
- {ok,hc2}}

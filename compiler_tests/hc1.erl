@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/04/17 13:36:06 $
-%%    $Revision: 1.5 $
+%%    $Date: 2003/10/14 08:58:41 $
+%%    $Revision: 1.6 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -27,7 +27,18 @@ test() ->
      test("stdlib"),
      test("compiler"),
      test("kernel"),
-     test("tools")
+     test("tools"),
+
+     test("appmon"),
+     test("asn1"),
+     test("cosEvent"),
+     test("cosEventDomain"),
+     %% test("cosFileTransfer"),
+     test("cosNotification"),
+     %% test("cosProperty"),
+     test("cosTime"),
+     test("cosTransactions"),
+     test("debugger")
     ].
 
 test(Application) ->
