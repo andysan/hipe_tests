@@ -5,9 +5,9 @@
 %%  Notes    : 
 %%  History  : 1999-12-02 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2003/03/13 16:26:25 $
-%%    $Revision: 1.4 $
+%%    $Author: jesperw $
+%%    $Date: 2003/07/02 13:34:13 $
+%%    $Revision: 1.5 $
 %% ====================================================================
 %% Exported functions (short description):
 %%
@@ -37,6 +37,7 @@ start(Module,CompilerOptions,File) ->
     JC = (catch compile:file(Module)),
     J1 = (catch Module:test()),
 
+    %% io:format("Comp Opts = ~p~n", [CompilerOptions]),
     Result = 
 	case proplists:is_defined(no_native,CompilerOptions) of
 	    false ->
