@@ -2,7 +2,8 @@
 %% File    : fun2.erl
 %% Author  : Kostis Sagonas <kostis@it.uu.se>
 %% Description : Tests correct solving of recursive type constraints
-%%		 involving funs (taken from the code of 'dbg.erl').
+%%		 involving lazily constructed lists (lists whose tail
+%%		 is a fun).  This is taken from the code of 'dbg.erl'.
 %%
 %% Created : 14 Mar 2005 by Kostis Sagonas <kostis@it.uu.se>
 %%-------------------------------------------------------------------
