@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.48 2004/11/12 08:59:37 kostis Exp $
+## $Id: testsuite.sh,v 1.49 2004/11/14 18:50:22 kostis Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -302,9 +302,11 @@ pat="${pat}\|no such file"
 # sometimes after overflow the diff fails and a message
 # with Missing is displayed
 pat="${pat}\|missing"
-# for warnings that the BEAM and HiPE compiler and the Dialyzer generate
+# for warnings that the BEAM and HiPE compiler generate
 pat="${pat}\|Warning"
-# 
+# Dialyzer warnings:
+pat="${pat}\|\{*,*,*\}:"
+#
 pat="${pat}\|fatal"
 # some other problems that should highlight bugs in the test suite
 pat="${pat}\|syntax error"
