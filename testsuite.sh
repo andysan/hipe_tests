@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.54 2004/12/12 13:08:27 kostis Exp $
+## $Id: testsuite.sh,v 1.55 2005/02/07 15:17:17 kostis Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -76,6 +76,11 @@ do
 	    only_tests="system_tests"
 	    comp_options="[no_native]"
             ;;
+     --types)
+	    shift
+	    only_tests="typesig_tests"
+	    comp_options="[]"
+            ;;
      --no_nat*)
 	    shift
 	    comp_options="[no_native]"
@@ -136,7 +141,7 @@ if test -n "${help}" -o -z "${OTP_DIR}" -o $# -gt 1; then
  Usage: testsuite.sh [--rts_opts "rts_opts"] [--comp_opts "comp_opts"]
                      [--add "add_list"]  [--exclude "exclude_list"]
                      [--only "test_list"] [--shared] [--hybrid]
-                     [--system] [--core] [--no_native] [-q|--quiet]
+                     [--system] [--types] [--core] [--no_native] [-q|--quiet]
                      [--list] [--default] [--help] [OTP_DIR]
  where: OTP_DIR   -- directory of OTP/Erlang system; default is current dir.
         rts_opts  -- options to pass to Erlang/OTP executable
@@ -154,6 +159,7 @@ if test -n "${help}" -o -z "${OTP_DIR}" -o $# -gt 1; then
 	system    -- runs only system_tests which check consistency of HiPE;
                      it is equivalent to:
                        --comp_options "[no_native]" --only "system_tests"
+	types     -- runs only tests for the type inferencer
 	core      -- equivalent to:
                        --comp_options "[core]" --exclude "${core_excl_tests}"
  	no_native -- equivalent to:
@@ -194,7 +200,7 @@ RES_FILE=/tmp/hipe_test_res.$USER
 HOSTNAME=`hostname`
 
 if test ! -x "$HIPE_RTS"; then
-    echo "Can't execute $HIPE_RTS"
+    echo "Can't execute the $HIPE_RTS"
     echo "aborting..."
     echo "Can't execute $HIPE_RTS" >$MSG_FILE
     echo "Aborted testsuite on $HOSTNAME..." >> $MSG_FILE
@@ -229,7 +235,7 @@ if test -f "$LOG_FILE"; then
 fi
 
 #-----------------------------------------------------------------------------
-echo "Testing $HIPE_RTS $rts_options"
+echo "Testing $OTP_DIR $rts_options"
 if test ! -z "$comp_options"; then
   echo "Compiler options: $comp_options"
 fi
@@ -244,9 +250,9 @@ if test ! -z "$added_tests"; then
 fi
 echo "The log will be left in $LOG_FILE"
 
-echo "Log for  : $HIPE_RTS $rts_options" > $LOG_FILE
+echo "Log for  : $OTP_DIR $rts_options" > $LOG_FILE
 echo "Date-Time: `date +"%y%m%d-%H%M"`" >> $LOG_FILE
-echo "Testing $HIPE_RTS $rts_options" > $LOG_FILE
+echo "Testing $OTP_DIR $rts_options" > $LOG_FILE
 echo "ERL_COMPILER_OPTIONS=$ERL_COMPILER_OPTIONS"
 
 rm -f test.beam
@@ -256,7 +262,7 @@ rm -f core erl_crash.dump */core */erl_crash.dump
 
 ./alltests.sh --rts_opts "$rts_options" --comp_opts "$comp_options" \
 	--only "$only_tests" --exclude "$excluded_tests" \
-	--add "$added_tests" "$HIPE_RTS"  >> $LOG_FILE 2>&1
+	--add "$added_tests" "$OTP_DIR"  >> $LOG_FILE 2>&1
 
 touch $RES_FILE
 
@@ -329,11 +335,11 @@ if test -s $RES_FILE; then
 	cat $RES_FILE | $GREP "$diffpat"
 	echo "------------------------------------------------------------------------"
 	echo "***FAILED testsuite for:"
-	echo "   $HIPE_RTS"
+	echo "   $OTP_DIR"
 	echo "on $HOSTNAME"
 	echo "see $NEW_RES for more details."
 	if test -z "$quiet"; then
-            echo "***FAILED testsuite for $HIPE_RTS on $HOSTNAME" > $MSG_FILE
+            echo "***FAILED testsuite for $OTP_DIR on $HOSTNAME" > $MSG_FILE
 	    echo "Check the log file $NEW_LOG" >> $MSG_FILE
 	    echo >> $MSG_FILE
 	    echo "    Summary of the problems:" >> $MSG_FILE
@@ -363,7 +369,7 @@ if test -s $RES_FILE; then
         fi
 else
 	echo "PASSED HiPE testsuite for:"
-	echo "   $HIPE_RTS"
+	echo "   $OTP_DIR"
 	echo "on $HOSTNAME"
         rm -f $RES_FILE
 fi

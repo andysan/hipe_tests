@@ -5,7 +5,7 @@
 ## Author(s): Kostis Sagonas
 ## Purpose:   To stress-test the HiPE system.
 ##
-## $Id: stress.sh,v 1.3 2004/12/06 12:07:14 kostis Exp $
+## $Id: stress.sh,v 1.4 2005/02/07 15:17:17 kostis Exp $
 ##====================================================================
 
 # Run from testsuite directory
@@ -21,6 +21,8 @@ fi
 
 ## first test that there are no discrepancies in HiPE
 time ./testsuite.sh --system "$OTP_DIR"
+## test the inference of type signatures
+./testsuite.sh --types "$OTP_DIR"
 ## run the testsuite with all register allocators
 ./ra.sh "$OTP_DIR"
 ## run the testsuite starting compilation from Core

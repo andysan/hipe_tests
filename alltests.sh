@@ -3,7 +3,7 @@
 ## File:      alltests.sh
 ## Author(s): Kostis Sagonas
 ##
-## $Id: alltests.sh,v 1.18 2004/11/12 18:36:47 kostis Exp $
+## $Id: alltests.sh,v 1.19 2005/02/07 15:17:17 kostis Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -62,7 +62,8 @@ if test -z "$1" -o $# -gt 2; then
   exit
 fi
 
-HIPE_RTS=$1
+OTP_DIR=$1
+HIPE_RTS=$OTP_DIR/bin/erl
 
 # ---------------------------------------------------------------------
 # Tests if element is a member of a list of tests
@@ -125,7 +126,11 @@ for tstdir in $testlist ; do
     if test -f erl_crash.dump ; then
 	rm -f erl_crash.dump
     fi
-    ./test.sh "$HIPE_RTS" "$comp_options" "$rts_options"
+    if member "$tstdir" "typesig_tests" ; then
+      ./test.sh "$OTP_DIR"
+    else
+      ./test.sh "$HIPE_RTS" "$comp_options" "$rts_options"
+    fi
     cd ..
   fi
 done
