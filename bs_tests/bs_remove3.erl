@@ -74,7 +74,7 @@ build([_], _Bin, _N, Present) ->
   Present.
 
 rest(X) ->
-  case 8-X rem 8 of
+  case 8-(X rem 8) of
       8 -> 0;
       H -> H
   end.
