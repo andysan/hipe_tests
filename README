@@ -2,7 +2,7 @@
 ## File:      README
 ## Author(s): Kostis Sagonas
 ##
-## $Id: README,v 1.1 2000/11/22 14:57:54 kostis Exp $
+## $Id: README,v 1.2 2000/11/22 15:32:27 kostis Exp $
 ##----------------------------------------------------------------------------
 
 Test suite for the HiPE system versions 0.95 and later.
@@ -27,28 +27,26 @@ How to run the test suite
   option), excluding certain test sets (--exclude option), and passing
   certain arguments to the HiPE compiler (--comp_opts option).
 
-  The only assumption of "testsuite.sh" is that the HiPE runtime system
-  and the HiPE compiler are directly under the specified command-line
-  argument and appear in files:
+  The only assumption of "testsuite.sh" is that the HiPE system is
+  directly under the specified command-line argument and appears in:
 
 	$FULL_PATH_NAME_OF_HIPE_DIRECTORY/bin/erl
-	$FULL_PATH_NAME_OF_HIPE_DIRECTORY/ix/ebin
 
   The testsuite runs all tests which are specified (if none are specified
-  the default ones appear in file "alltests.sh"), records all outout in a
-  /tmp/ file (shown to the user) and checks this file for errors.  If all
-  goes well, a "PASSED" message is displayed.  If the testsuite fails, the
-  errors or differences are shown on the screen and a mail is sent to the
-  user that initiated the testsuite run.
+  the default ones appear in file "alltests.sh"), records all output in a
+  /tmp/ file (shown to the user).  When the tests are finished, the
+  testsuite checks this file for errors.  If all goes well, a "PASSED"
+  message is displayed.  If the testsuite fails, the errors or differences
+  are shown on the screen and a mail is sent to the user that initiated
+  the testsuite run.
 
   For debugging, there is a direct way to run specific test sets.  This
   can be done by changing to the appropriate directory (say "basic_tests")
   and running the file "test.sh" as:
 
-    ./test.sh HIPE_RTS HIPE_COMP COMP_OPTIONS RTS_OPTIONS
+    ./test.sh ERL_BIN COMP_OPTIONS RTS_OPTIONS
 
-	(e.g. ./test.sh ~/HiPE/ngorongoro/osh2/ose1/erts/bin/erl \
-			~/HiPE/ngorongoro/osh2/ix/ebin "[o2]" "")
+	(e.g. ./test.sh ~/HiPE/ngorongoro/osh2/bin/erl "[o2]" "")
 
   but one should not need to resort to this option under normal circumstances.
 
