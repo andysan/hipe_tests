@@ -8,9 +8,9 @@
 %%		the magic number that is printed appears below.
 %%  History  :  * 2003-10-31 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: mikpe $
-%%    $Date: 2004/10/28 13:30:07 $
-%%    $Revision: 1.7 $
+%%    $Author: richardc $
+%%    $Date: 2004/11/03 20:05:53 $
+%%    $Revision: 1.8 $
 %% ====================================================================
 
 -module(const_size_test).
@@ -43,20 +43,7 @@ test() ->
   compile([o2]),
   hipe_bifs:constants_size() bor 1.
 
-compile(Opts0) ->
-  case proplists:get_bool(core, Opts0) of
-    true ->
-      %% Disable core compilation for now, since we get different
-      %% constant pool size due to the presence of the two
-      %% [{const_size_test,module_info,?}] entries (9 words each).
-      %%
-      %% Note: The following is written with atoms and a call to
-      %%       lists:delete/1 so that no other constants are created
-      test:note(?MODULE, 'disabling compilation from core - constant pool differs'),
-      Opts = lists:delete(core, Opts0);
-    false ->
-      Opts = Opts0
-  end,
+compile(Opts) ->
   hipe:c(?MODULE, Opts).
 
 return_const_tuple() ->
