@@ -16,7 +16,9 @@ test() ->
   BeamRes = vs_to_bin({1.0,2.0,3.0}),
   hipe:c({?MODULE,vs_to_bin,1}, [inline_bs,o2]),
   HipeRes = vs_to_bin({1.0,2.0,3.0}),
-  {BeamRes, HipeRes}.
+  io:format("Beam result = ~w\nHiPE result = ~w\n", [BeamRes,HipeRes]),
+  BeamRes = HipeRes,
+  ok.
 
 vs_to_bin({X,Y,Z}) ->
   <<X:64/native-float,Y:64/native-float,Z:64/native-float>>.
