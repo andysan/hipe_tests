@@ -8,9 +8,9 @@
 %%  History  :	* 2003-03-24 Jesper Wilhelmsson (jesperw@csd.uu.se):
 %%		  Created.
 %%  CVS      :
-%%              $Author: jesperw $
-%%              $Date: 2003/03/26 14:26:25 $
-%%              $Revision: 1.2 $
+%%              $Author: kostis $
+%%              $Date: 2003/03/26 14:58:23 $
+%%              $Revision: 1.3 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -18,8 +18,7 @@
 
 -module(mnesia_rpc).
 -export([test/0,compile/1]).
--export([start/1,normal_normal/1, normal_sticky/1, sync_normal/1, 
- 	 sync_sticky/1]).
+-export([start/1,normal_normal/1,normal_sticky/1,sync_normal/1,sync_sticky/1]).
 
 -define(TABLE, replicated_table).
 -define(RECORD, {?TABLE, key, value}).
@@ -33,7 +32,7 @@ test() ->
              " start a@" ++ HOSTNAME),
   {match,Pos,Len} = regexp:match(S, "TestResult:"),
   R = string:sub_string(S, Pos+Len+1),
-  R.
+  list_to_atom(R).
 
 compile(Opts) ->
   hipe:c(?MODULE,Opts).
@@ -81,8 +80,6 @@ run_tests(Times) ->
 %%    io:fwrite("~nSticky write-lock in sync_transaction"),
     {_Time4, ok} = timer:tc(?MODULE, sync_sticky, [Times]).
 %%    report(Time4, Times).
-
-
 
 %%report(Time, Times) ->
 %%    io:fwrite("~n~p transactions in ~p seconds or " ++
