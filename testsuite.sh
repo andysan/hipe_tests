@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.45 2004/10/16 15:23:30 richardc Exp $
+## $Id: testsuite.sh,v 1.46 2004/10/29 14:10:51 richardc Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -102,8 +102,12 @@ do
 	    quiet=yes
 	    ;;
      --list)
-	    ls -d *_tests
-	    exit
+	    echo `ls -d *_tests`
+	    exit 0
+	    ;;
+     --default*)
+	    ./alltests.sh --list
+	    exit 0
 	    ;;
      --help)
 	    shift
@@ -132,7 +136,7 @@ if test -n "${help}" -o -z "${OTP_DIR}" -o $# -gt 1; then
                      [--add "add_list"]  [--exclude "exclude_list"]
                      [--only "test_list"] [--shared] [--hybrid]
                      [--system] [--core] [--no_native] [-q|--quiet]
-                     [--list] [--help] [OTP_DIR]
+                     [--list] [--default] [--help] [OTP_DIR]
  where: OTP_DIR   -- directory of OTP/Erlang system; default is current dir.
         rts_opts  -- options to pass to Erlang/OTP executable
         comp_opts -- options to pass to HiPE compiler
@@ -156,6 +160,7 @@ if test -n "${help}" -o -z "${OTP_DIR}" -o $# -gt 1; then
                        --exclude "${no_native_excl_tests}"
   	quiet     -- do not send mail to user
   	list      -- list all available test sets and exit
+  	default   -- list the default test sets and exit
   	help      -- show this message and exit
 =============================================================================
 EOF
