@@ -5,9 +5,9 @@
 %%  Notes    : 
 %%  History  : 1999-12-02 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: richardc $
-%%    $Date: 2001/04/19 17:47:04 $
-%%    $Revision: 1.2 $
+%%    $Author: kostis $
+%%    $Date: 2002/03/28 15:49:30 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%
@@ -38,7 +38,7 @@ start(Module,CompilerOptions,File) ->
     J1 = (catch Module:test()),
 
     Result = 
-	case property_lists:is_defined(no_native,CompilerOptions) of
+	case proplists:is_defined(no_native,CompilerOptions) of
 	    false ->
 		HC = (catch Module:compile(CompilerOptions)),
 		H1 = (catch Module:test()),
