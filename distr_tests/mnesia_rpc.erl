@@ -8,9 +8,9 @@
 %%  History  :	* 2003-03-24 Jesper Wilhelmsson (jesperw@csd.uu.se):
 %%		  Created.
 %%  CVS      :
-%%              $Author: pergu $
-%%              $Date: 2004/07/30 13:26:53 $
-%%              $Revision: 1.8 $
+%%              $Author: richardc $
+%%              $Date: 2004/08/18 15:33:14 $
+%%              $Revision: 1.9 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -25,14 +25,17 @@
 
 test() ->
   OTP_DIR = os:getenv("OTP_DIR"),
+  ERL_FLAGS = os:getenv("ERL_FLAGS"),
   USER = os:getenv("USER"),
   MODULE = atom_to_list(?MODULE),
-  os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ "_a@localhost -noshell &"),
+  ERL = OTP_DIR ++ "/bin/erl " ++ ERL_FLAGS,
+  NODE_A = USER ++ "_a@localhost",
+  NODE_B = USER ++ "_b@localhost",
+  os:cmd(ERL ++ " -sname " ++ NODE_A ++ " -noshell &"),
   receive after 1000 -> ok end,		% prevent race condition
-  S = os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ 
-	     "_b@localhost -noshell -noinput -s " ++ MODULE ++
-             " start " ++ USER ++ "_a@localhost"),
-  %% io:format("~w",[S]),
+  S = os:cmd(ERL ++ " -sname " ++ NODE_B ++ " -noshell -noinput -s "
+	     ++ MODULE ++ " start " ++ NODE_A),
+  %% io:format("Output from node B: ~s\n",[S]),
   {match,Pos,Len} = regexp:match(S, "TestResult:"),
   R = string:sub_string(S, Pos+Len+1),
   list_to_atom(R).
