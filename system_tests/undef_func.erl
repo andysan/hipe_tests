@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.23 2004/12/15 10:53:47 pergu Exp $
+%%     $Id: undef_func.erl,v 1.24 2004/12/22 17:16:48 kostis Exp $
 %%
 
 -module(undef_func).
@@ -99,11 +99,18 @@ application_interface() ->
      {hipe_ceach,c,3},
      {hipe_jit,start,0},
      {hipe_tool,start,0},
+
      {hipe_dot,translate_digraph,3}, %% eventually these will be used 
      {hipe_dot,translate_digraph,5}, %% inside hipe, but now they are 
      {hipe_dot,translate_list,3},    %% mostly used from the outside
      {hipe_dot,translate_list,5},    %% by Tobias
      {hipe_dot,translate_list,4},
+
+     %% Temporarily until the new type analysis is properly hooked in
+     {cerl_typesig,analyze,1},
+     {cerl_typesig,doit,1},
+     {cerl_typesig,get_export_signatures,1},
+
      {erl_bif_types,type,3},	     %% exported for testing purposes
      {cerl_closurean,annotate,1},    %% exported for testing purposes
      {cerl_typean,analyze,1},        %% exported for testing purposes
