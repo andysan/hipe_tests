@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.11 2004/04/08 13:34:55 kostis Exp $
+%%     $Id: undef_func.erl,v 1.12 2004/04/08 22:43:17 mikpe Exp $
 %%
 
 -module(undef_func).
@@ -250,6 +250,8 @@ exports_used_as_remote_apply_calls() ->
      {hipe_amd64_specific_sse2,breadthorder,1},
      {hipe_amd64_specific_sse2,postorder,1},
      {hipe_amd64_specific_sse2,reverse_postorder,1},
+
+     {hipe_amd64_registers,is_precoloured_x87,1},
 
      {hipe_amd64_specific_x87,analyze,1},
      {hipe_amd64_specific_x87,bb,2},
