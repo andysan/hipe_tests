@@ -1,9 +1,9 @@
-#! /usr/bin/sh
+#! /bin/sh
 
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.3 2001/02/13 16:49:25 kostis Exp $
+## $Id: testsuite.sh,v 1.4 2001/02/19 16:45:06 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the

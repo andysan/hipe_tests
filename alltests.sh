@@ -1,9 +1,9 @@
-#! /usr/bin/sh 
+#! /bin/sh 
 
 ## File:      alltests.sh
 ## Author(s): Kostis Sagonas
 ##
-## $Id: alltests.sh,v 1.1 2000/11/22 15:00:48 kostis Exp $
+## $Id: alltests.sh,v 1.2 2001/02/19 16:45:06 kostis Exp $
 ##
 
 echo "-------------------------------------------------------"
