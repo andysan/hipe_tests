@@ -4,8 +4,8 @@
 %%  Purpose  : To run a HiPE test module and write the result to a file
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/02/25 18:12:27 $
-%%    $Revision: 1.1 $
+%%    $Date: 2003/03/05 16:45:50 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 %% Exported functions (short description):
 %%
@@ -31,7 +31,8 @@
 start(Module,File) ->
     start(Module,[o2],File).
 
-start(Module,CompilerOptions,File) ->
+%% CompilerOptions are ignored
+start(Module,_CompilerOptions,File) ->
     C = (catch compile:file(Module)),
     Res = (catch Module:test()),
     Result = {{result,Res},C},
