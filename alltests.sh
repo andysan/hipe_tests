@@ -3,7 +3,7 @@
 ## File:      alltests.sh
 ## Author(s): Kostis Sagonas
 ##
-## $Id: alltests.sh,v 1.4 2001/06/18 12:41:05 kostis Exp $
+## $Id: alltests.sh,v 1.5 2001/07/16 15:47:04 kostis Exp $
 ##
 
 echo "-------------------------------------------------------"
@@ -95,6 +95,9 @@ for tstdir in $testlist ; do
     cd $tstdir
     if test -f core ; then
 	rm -f core
+    fi
+    if test -f erl_crash.dump ; then
+	rm -f erl_crash.dump
     fi
     ./test.sh "$HIPE_RTS" "$comp_options" "$rts_options"
     cd ..
