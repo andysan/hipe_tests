@@ -6,8 +6,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/10/30 20:14:49 $
-%%    $Revision: 1.8 $
+%%    $Date: 2003/11/02 13:21:26 $
+%%    $Revision: 1.9 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -77,11 +77,13 @@ test(Application) ->
     {ok,Application}.
 
 hc_mod(Mod,Opts) ->
+    S1 = hipe_bifs:constants_size(),
     io:format("Compiling ~w ...",[Mod]),
     T0 = time_now(),
     Res = hipe:c(Mod,Opts),
     T = time_since(T0) / 1000,
-    io:format(" done in ~.2f secs\n",[T]),
+    S2 = hipe_bifs:constants_size(),
+    io:format(" done in ~.2f secs (~w words)\n",[T,S2-S1]),
     {ok,Mod} = Res.
 
 get_comp_opts() ->
