@@ -6,9 +6,9 @@
 %%  Purpose  :  Tests whether the HiPE compiler works.
 %%  History  :	* 2000-10-31 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2002/07/07 16:01:29 $
-%%    $Revision: 1.6 $
+%%    $Author: happi $
+%%    $Date: 2002/09/19 13:50:18 $
+%%    $Revision: 1.7 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -78,7 +78,7 @@ simple_ones() ->
      hipe_schedule_prio, hipe_sparc_assemble, hipe_sparc_assert,
      hipe_sparc_linker, hipe_sparc_multimove, hipe_sparc_op,
      hipe_sparc_ra, hipe_sparc_ra_coalescing, hipe_sparc_ra_graph_color,
-     hipe_sparc_ra_ls, hipe_sparc_ra_memory, hipe_sparc_ra_post_cs,
+     hipe_sparc_ra_ls, hipe_sparc_ra_memory, 
      hipe_sparc_ra_post_ls, hipe_sparc_ra_post_ls_fp, hipe_sparc_ra_postconditions,
      hipe_sparc_registers, hipe_sparc_size, hipe_sparc_specific, hipe_spillcost,
      hipe_sparc_frame, hipe_sparc_opt_frame, hipe_sparc_caller_saves,
