@@ -7,7 +7,7 @@
 %%% Created : 14 Apr 2004 by Per Gustafsson <pergu@fan.it.uu.se>
 %%%-------------------------------------------------------------------
 -module(bsdes).
--export([encode/2, decode/2, test/0]).
+-export([encode/2, decode/2, test/0, compile/1]).
 
 -define(ITERATIONS, 100).	%% for benchmarking use a higher number
 
@@ -19,6 +19,9 @@ test() ->
   Jumbled = run_encode(?ITERATIONS, Bin, Key),
   Unjumbled = run_decode(?ITERATIONS, Jumbled, Key),
   <<Bin:Size/binary,_/binary>> = Unjumbled.
+
+compile(O) ->
+  hipe:c(?MODULE,O).
 
 run_encode(1, Bin, Key) ->
   encode(Bin, Key);
