@@ -93,7 +93,7 @@ extract_imsi(TID) ->
 %%% tid_internal_storage/3
 %%% Convert TID binary to internal datatype
 tid_internal_storage(Bin,_) ->
-    Size=size(Bin)-1,
+    Size = size(Bin)-1,
     <<Front:Size/binary,NSAPI:4,DigitN:4>> = Bin,
     Result = 
 	case DigitN of
@@ -106,22 +106,22 @@ tid_internal_storage(Bin,_) ->
 			   #mvsgT_imsi{value= <<Front/binary,2#1111:4,DigitN:4>>},
 			   nsapi=NSAPI}
 	end,
-    {ok,Result};
-tid_internal_storage(<<NSAPI:4,2#1111:4>>,IMSI) ->
-     {ok,#mvsgT_tid{imsi=#mvsgT_imsi{value=lists:reverse(IMSI)},
- 		  nsapi=NSAPI}};
-tid_internal_storage(<<NSAPI:4,DigitN:4>>,IMSI) when
-   DigitN < 10 ->
-     {ok,#mvsgT_tid{imsi=#mvsgT_imsi{value=lists:reverse([(DigitN bor 2#11110000)|IMSI])},
- 		  nsapi=NSAPI}};
-tid_internal_storage(<<2#11111111:8,Rest/binary>>,IMSI) ->
-     tid_internal_storage(Rest,IMSI);
-tid_internal_storage(<<2#1111:4,DigitN:4,Rest/binary>>,IMSI) when
-   DigitN < 10 ->
-     tid_internal_storage(Rest,[(DigitN bor 2#11110000)|IMSI]);
-tid_internal_storage(<<DigitNplus1:4,DigitN:4,Rest/binary>>,IMSI) when
-   DigitNplus1 < 10,
-   DigitN < 10 ->
-     tid_internal_storage(Rest,[((DigitNplus1 bsl 4) bor DigitN)|IMSI]);
-tid_internal_storage(_Rest,_IMSI) ->
-     {fault}. %% Mandatory IE incorrect
+    {ok,Result}.
+%% tid_internal_storage(<<NSAPI:4,2#1111:4>>,IMSI) ->
+%%      {ok,#mvsgT_tid{imsi=#mvsgT_imsi{value=lists:reverse(IMSI)},
+%%  		  nsapi=NSAPI}};
+%% tid_internal_storage(<<NSAPI:4,DigitN:4>>,IMSI) when
+%%    DigitN < 10 ->
+%%      {ok,#mvsgT_tid{imsi=#mvsgT_imsi{value=lists:reverse([(DigitN bor 2#11110000)|IMSI])},
+%%  		  nsapi=NSAPI}};
+%% tid_internal_storage(<<2#11111111:8,Rest/binary>>,IMSI) ->
+%%      tid_internal_storage(Rest,IMSI);
+%% tid_internal_storage(<<2#1111:4,DigitN:4,Rest/binary>>,IMSI) when
+%%    DigitN < 10 ->
+%%      tid_internal_storage(Rest,[(DigitN bor 2#11110000)|IMSI]);
+%% tid_internal_storage(<<DigitNplus1:4,DigitN:4,Rest/binary>>,IMSI) when
+%%    DigitNplus1 < 10,
+%%    DigitN < 10 ->
+%%      tid_internal_storage(Rest,[((DigitNplus1 bsl 4) bor DigitN)|IMSI]);
+%% tid_internal_storage(_Rest,_IMSI) ->
+%%      {fault}. %% Mandatory IE incorrect
