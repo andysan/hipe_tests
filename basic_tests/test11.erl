@@ -17,8 +17,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/12/19 21:39:58 $
-%%    $Revision: 1.4 $
+%%    $Date: 2004/01/19 10:17:40 $
+%%    $Revision: 1.5 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -65,19 +65,21 @@ t_size() ->
 t_element() ->
     a = element(1, {a}),
     a = element(1, {a, b}),
-    
+
     List = lists:seq(1, 4096),
     Tuple = list_to_tuple(lists:seq(1, 4096)),
     get_elements(List, Tuple, 1),
-    
-    {'EXIT', _} = (catch element(0, {a, b})),
-    {'EXIT', _} = (catch element(3, {a, b})),
-    {'EXIT', _} = (catch element(1, {})),
-    {'EXIT', _} = (catch element(1, [a, b])),
-    {'EXIT', _} = (catch element(1, 42)),
-    {'EXIT', _} = (catch element(1.5, {a, b})),
-
+ 
+    {'EXIT', _} = (catch my_element(0, {a, b})),
+    {'EXIT', _} = (catch my_element(3, {a, b})),
+    {'EXIT', _} = (catch my_element(1, {})),
+    {'EXIT', _} = (catch my_element(1, [a, b])),
+    {'EXIT', _} = (catch my_element(1, 42)),
+    {'EXIT', _} = (catch my_element(1.5, {a, b})),
     ok.
+
+my_element(Pos, Term) ->
+    element(Pos, Term).
 
 get_elements([Element|Rest], Tuple, Pos) ->
     Element = element(Pos, Tuple),
