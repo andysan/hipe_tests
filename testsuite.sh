@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.38 2004/10/03 11:14:10 kostis Exp $
+## $Id: testsuite.sh,v 1.39 2004/10/03 11:28:42 kostis Exp $
 ##
 ## Run with no arguments for usage/help.
 
@@ -151,7 +151,8 @@ export OTP_DIR ERL_COMPILER_OPTIONS
 # Some stuff necessary for running Dialyzer appear below
 #============================================================================
 DIALYZER_OTP=$OTP_DIR
-DIALYZER_DIR=$OTP_DIR/../dialyzer
+BASE_DIR=`dirname $OTP_DIR`
+DIALYZER_DIR=$BASE_DIR/dialyzer
 DIALYZER_TMP=/tmp/dialyzer_tmp_dir.$USER
 export DIALYZER_OTP DIALYZER_DIR DIALYZER_TMP
 #============================================================================
