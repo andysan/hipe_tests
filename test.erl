@@ -6,14 +6,14 @@
 %%  History  : 1999-12-02 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/03/28 15:49:30 $
-%%    $Revision: 1.3 $
+%%    $Date: 2003/03/13 16:26:25 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%
 %% start(Module,CompilerOptions,File) 
 %% 
-%%  Executes a test module in htis way:
+%%  Executes a test module in this way:
 %%   1. Compiles the module Module.erl to Module.beam. 
 %%   2. Then the function test/0 in Module is called.
 %%   3. Then Module is compiled to native code with the flags CompilerOptions
