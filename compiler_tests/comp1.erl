@@ -6,9 +6,9 @@
 %%  Purpose  :  Tests whether the HiPE compiler works.
 %%  History  :	* 2000-10-31 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: mikpe $
-%%    $Date: 2002/03/20 02:06:26 $
-%%    $Revision: 1.2 $
+%%    $Author: kostis $
+%%    $Date: 2002/03/20 10:44:08 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -16,24 +16,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(comp1).
--export([bug/0,test/0,fast_test/0,compile/1]).
+-export([test/0,fast_test/0,compile/1]).
 
-bug() ->
-    [ do_me(Mod) || Mod <- buggy_ones() ].
-
-buggy_ones() ->
-    [
-     hipe_rtl2sparc,
-     hipe_rtl_arch,
-     hipe_rtl_exceptions,
-     hipe_sparc_registers,
-     hipe_sparc_size,
-     hipe_sparc_specific,
-     hipe_tagscheme,
-     hipe_target_machine,
-     hipe_update_catches,
-     hipe_vectors
-    ].
 
 test() ->
     %% statistics(runtime),
@@ -48,8 +32,8 @@ t() ->
     [ do_me(Mod) || Mod <- simple_ones() ++ mk_fun() ].
 
 do_me(Mod) ->
-%%    Mod:module_info(), % temporarily
-    hipe:c(Mod,[verbose]).
+    %% CompFlags = os:getenv("HiPE_COMP_FLAGS"),
+    hipe:c(Mod,[verbose]). %% ++ CompFlags).
 
 fast_test() ->
 %%    file:set_cwd('../../otp/lib/hipe/ebin/'),
@@ -75,7 +59,7 @@ simple_ones() ->
      hipe_gb_hash, hipe_gensym, hipe_graph_coloring_regalloc, hipe_hash,
      hipe_icode_liveness, hipe_icode_primops, hipe_icode_prop,
      hipe_ig, hipe_ig_moves,
-     % hipe_internal, % SHOULD NEVER BE COMPILED TO NATIVE CODE
+     %% hipe_internal, % SHOULD NEVER BE COMPILED TO NATIVE CODE
      hipe_ls_regalloc,
      hipe_moves, hipe_node_sets,
      hipe_pure_hash, hipe_pure_ufind, hipe_pure_vectors,

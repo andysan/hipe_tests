@@ -9,6 +9,9 @@ HIPE=$1
 COMP_FLAGS=$2
 ERL_FLAGS=$3
 
+HiPE_COMP_FLAGS=$COMP_FLAGS
+export HiPE_COMP_FLAGS
+
 ## One fine day the following should be changed to be "hc.erl" only.
 ## Currently, the constant pool is overflowing when loading all files.
 testfiles="hc?.erl"
