@@ -1,7 +1,7 @@
 %% Copyright (c) 1999 by Erik Johansson.  All Rights Reserved 
 %% Time-stamp: <2001-03-22 18:40:40 richardc>
 %% ====================================================================
-%% Test module for the HiPE Ix test suite.
+%% Test module for the HiPE trivial test suite.
 %%
 %%  Filename : trivial_05.erl
 %%  Module   : trivial_05
@@ -9,8 +9,8 @@
 %%  Notes    : 
 %%  History  : 1999-12-16 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: richardc $
-%%    $Date: 2001/03/23 09:40:36 $
+%%    $Author: kostis $
+%%    $Date: 2002/05/07 13:06:34 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -24,7 +24,7 @@
 test() ->
   second(42,true).
 
-second(X,Y) ->
+second(_,Y) ->
   Y.
 
 compile(Flags) ->

@@ -9,8 +9,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2001/03/09 14:08:12 $
-%%              $Revision: 1.1 $
+%%              $Date: 2002/05/07 13:06:34 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -20,12 +20,13 @@
 -export([test/0, compile/1, all/1]).
 
 test() ->
-  Rep = [lists:sort(
-	       lists:map(fun(X) -> {hipe_bifs:term_to_word(X),X} end, l(17)))],
-  %% io:format("Rep: ~w\n", Rep),
+  _Rep = [lists:sort(lists:map(fun(X) ->
+				       {hipe_bifs:term_to_word(X),X}
+			       end, l(17)))],
+  %% io:format("Rep: ~w\n", _Rep),
 
-  {T,R} = timer:tc(?MODULE,all,[17]),
-  %% io:format("Time: ~w\n",[T]),
+  {_T,R} = timer:tc(?MODULE,all,[17]),
+  %% io:format("Time: ~w\n",[_T]),
   R.
 
 compile(Ops) ->

@@ -9,9 +9,9 @@
 %%  Notes    :  Original author: bjorn@erix.ericsson.se
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: richardc $
-%%    $Date: 2001/03/23 09:40:35 $
-%%    $Revision: 1.3 $
+%%    $Author: kostis $
+%%    $Date: 2002/05/07 13:06:34 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -63,8 +63,8 @@ case_in_after() ->
     end,
     ok.
 
-keysearch(Key, N, [H|T]) when element(N,H) == Key ->
+keysearch(Key, N, [H|_]) when element(N,H) == Key ->
     {value, H};
-keysearch(Key, N, [H|T]) ->
+keysearch(Key, N, [_|T]) ->
     keysearch(Key, N, T);
-keysearch(Key, N, []) -> false.
+keysearch(_Key, _N, []) -> false.

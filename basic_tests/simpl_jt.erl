@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2001/03/05 17:54:19 $
-%%              $Revision: 1.1 $
+%%              $Date: 2002/05/07 13:06:34 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -38,7 +38,7 @@ random_list(N) ->
   Op = random:uniform(93),
   [Op|random_list(N-1)].
 
-loop(0,L) ->
+loop(0,_) ->
   ok;
 loop(N,L) ->
   code_decode(L),
@@ -72,7 +72,7 @@ t(A) ->
       c;
     1 ->
       f;
-    D ->
+    _Digit ->
       e
   end.
 

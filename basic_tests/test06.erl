@@ -10,8 +10,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/07/12 17:59:05 $
-%%    $Revision: 1.3 $
+%%    $Date: 2002/05/07 13:06:34 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -109,9 +109,9 @@ going_center(_List, _Bin, _From, _To) ->
 
 compare([X|Rest1], [X|Rest2], Left) when Left > 0 ->
     compare(Rest1, Rest2, Left-1);
-compare([X|_], [Y|_], _Left) ->
+compare([_X|_], [_Y|_], _Left) ->
     exit(fail);
-compare(List, [], 0) ->
+compare(_List, [], 0) ->
     ok.
 
 bad_list_to_binary() ->
@@ -127,8 +127,6 @@ bad_list_to_binary() ->
 test_bad_bin(List) ->
   {'EXIT', _} = (catch list_to_binary(List)).
 
-
-
 %% Tries to split a binary at all possible positions.
 
 t_split_binary() ->
@@ -141,7 +139,7 @@ split(L, B, Pos) when Pos > 0 ->
     B1 = list_to_binary(lists:sublist(L, 1, Pos)),
     B2 = list_to_binary(lists:nthtail(Pos, L)),
     split(L, B, Pos-1);
-split(L, B, 0) ->
+split(_L, _B, 0) ->
     ok.
 
 %% Tests concat_binary/2 and size/1.

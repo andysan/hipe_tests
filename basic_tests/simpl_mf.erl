@@ -6,9 +6,9 @@
 %%  Purpose  :  Tests whether the translation of make_fun works.
 %%  History  :  * 2000-10-28 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: richardc $
-%%    $Date: 2001/03/23 09:40:35 $
-%%    $Revision: 1.3 $
+%%    $Author: kostis $
+%%    $Date: 2002/05/07 13:06:34 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -18,7 +18,7 @@
 -module(simpl_mf).
 -export([test/0,compile/1]).
 
-contains_fun(X,IGNORED_ARG,Y) ->
+contains_fun(X,_IGNORED_ARG,Y) ->
     calls_fun(fun(Term) -> {X,Term,Y} end).
 
 calls_fun(F) ->

@@ -9,9 +9,9 @@
 %%  History  : * 2001-01-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: richardc $
-%%              $Date: 2001/04/19 17:47:30 $
-%%              $Revision: 1.4 $
+%%              $Author: kostis $
+%%              $Date: 2002/05/07 13:06:34 $
+%%              $Revision: 1.5 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -53,13 +53,13 @@ compile(O) ->
 
 
 l() ->
-  {T,_} = erlang:statistics(runtime),
+  {_T,_} = erlang:statistics(runtime),
 
   F =
     fun (_, 0) ->
- ok;
- (F2, N) -> (F2)(F2,N-1)
-    end, 
+	    ok;
+	(F2, N) -> (F2)(F2,N-1)
+    end,
   %% fun(X,Y) -> [T] end,
   {T1,_} = erlang:statistics(runtime),
   l2(F,1000),

@@ -9,8 +9,8 @@
 %%  Notes    : 
 %%  History  :	* 1999-12-16 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: richardc $
-%%    $Date: 2001/03/23 09:40:36 $
+%%    $Author: kostis $
+%%    $Date: 2002/05/07 13:06:34 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -24,7 +24,7 @@
 test() ->
   const(42,true).
 
-const(X,Y) ->
+const(_X,_Y) ->
   z.
 
 compile(Flags) ->

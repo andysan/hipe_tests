@@ -6,8 +6,8 @@
 %%  History  :  * 2001-09-20 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/10/01 15:06:38 $
-%%    $Revision: 1.1 $
+%%    $Date: 2002/05/07 13:06:34 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 
 -module(exception02).
@@ -36,7 +36,7 @@ bad_call_fc(Fun) ->
     Args = [some,stupid,args],
     Res = (catch Fun(Fun(Args))),
     case Res of
-        {'EXIT',{{badfun,Fun},Where}} ->
+        {'EXIT',{{badfun,Fun},_Where}} ->
             ok = io:format("~p(~p) -> ~p\n", [Fun,Args,Res]);
         Other ->
             ok = io:format("~p(~p) -> ~p\n", [Fun,Args,Res]),

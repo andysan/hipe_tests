@@ -45,7 +45,7 @@ make(N,M) ->
 %% make random initial configuration
 %%
 
-make_lines(0,M,L) ->
+make_lines(0,_M,L) ->
 %  io:format("~w\n",[?LINE]),
     L;
 make_lines(N,M,L) ->
@@ -83,14 +83,14 @@ link_line([NW | RestN], [W | RestW], [SW | RestS]) ->
 %% start reproduction of all cells
 %%
 
-start_all([], N) ->
+start_all([], _) ->
 %  io:format("~w\n",[?LINE]),
     true;
 start_all([L|Ls], N) ->
     start_line(L, N),
     start_all(Ls, N).
 
-start_line([], N) ->
+start_line([], _) ->
 %  io:format("~w\n",[?LINE]),
     true;
 start_line([X|Xs], N) ->
@@ -130,7 +130,7 @@ cell() ->
     cell_iter(Xs, N, Num, Pid).
 
 
-cell_iter(Xs, N, 0, Pid) ->
+cell_iter(_, N, 0, Pid) ->
 %  io:format("~w\n",[?LINE]),
     Pid ! {self(), N};
 cell_iter(Xs, N, Num, Pid) ->
@@ -138,7 +138,7 @@ cell_iter(Xs, N, Num, Pid) ->
     send_nghs(Xs, N),
     cell_iter(Xs, repro(N, receive_nghs(Xs, 0)), Num-1, Pid).
 
-send_nghs([], N) ->
+send_nghs([], _) ->
 %  io:format("~w\n",[?LINE]),
     true;
 send_nghs([X|Xs], N) ->

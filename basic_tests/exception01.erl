@@ -6,8 +6,8 @@
 %%  History  :  * 2001-09-17 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/09/18 16:39:59 $
-%%    $Revision: 1.3 $
+%%    $Date: 2002/05/07 13:06:33 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 
 -module(exception01).
@@ -100,15 +100,15 @@ pending_exit_message(Args, Expected) ->
     process_flag(trap_exit, false).
 
 pending({badarg, [{erlang,Bif,BifArgs},{?MODULE,Func,Arity}|_]},
-	Func, Args, Code)
+	Func, Args, _Code)
   when atom(Bif), list(BifArgs), length(Args) == Arity ->
     ok;
 pending({undef,[{non_existing_module,foo,[]}|_]}, _, _, _) ->
     ok;
-pending({function_clause,[{?MODULE,Func,Args}|_]}, Func, Args, Code) ->
+pending({function_clause,[{?MODULE,Func,Args}|_]}, Func, Args, _Code) ->
     ok;
 pending({Code,[{?MODULE,Func,Arity}|_]}, Func, Args, Code)
   when length(Args) == Arity ->
     ok;
-pending(Reason, Function, Args, Code) ->
+pending(Reason, _Function, _Args, _Code) ->
     exit({bad_exit_reason,Reason}).

@@ -20,7 +20,7 @@ to_objects(Bin, {binary, _, set}, Ts) ->
   ok;
 to_objects(<<ObjSz0:32, T/binary>> ,_,_) ->
   ok;
-to_objects(Bin, _, Ts) ->
+to_objects(_Bin, _, _Ts) ->
   ok.
 
 %% Not Inlined.

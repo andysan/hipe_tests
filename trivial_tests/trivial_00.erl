@@ -4,10 +4,10 @@
 %%  Filename : trivial_00.erl
 %%  Module   : trivial_00
 %%  Purpose  : To test the native code loader whether a file can be
-%%		loaded a number of times without hanging the system.
+%%	       loaded a number of times without hanging the system.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/10/08 11:05:26 $
+%%    $Date: 2002/05/07 13:06:34 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -20,7 +20,7 @@
 
 test() ->
   Mod = trivial_00_input,
-  [ {ok,Mod} = c:c(Mod,[native]) || N <- lists:seq(1,10) ],
+  [ {ok,Mod} = c:c(Mod,[native]) || _N <- lists:seq(1,10) ],
   ok.
 
 compile(Flags) ->
