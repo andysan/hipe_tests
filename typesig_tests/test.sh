@@ -1,17 +1,21 @@
 #! /bin/sh
 
-testfiles="alias1.erl case*.erl catch1.erl cons.erl\
-	   func_head1.erl guard*.erl list1.erl \
-	   rec1.erl receive1.erl \
-	   tuple1.erl"
-## The following files are currently not giving right results
-#testfiles="fib.erl receive2.erl sequence.erl tak.erl try1.erl"
+if test $# -eq 2; then
+  testfiles="$2"	## test file is given as extra argument
+else
+  testfiles="alias1.erl case*.erl catch1.erl cons.erl\
+	     func_head1.erl guard*.erl list1.erl \
+	     rec1.erl receive1.erl \
+	     tuple1.erl"
+  ## The following files are currently not giving right results
+  #testfiles="fib.erl fib2.erl list2.erl receive2.erl sequence.erl tak.erl try1.erl"
+fi
 
 HIPE=$1/bin/erl
 ERLC=$1/bin/erlc
 
 if test ! -x "${HIPE}" ; then
-    echo "Usage: test OTP_DIR"
+    echo "Usage: test OTP_DIR [testfile.erl]"
     exit 0
 fi
 
