@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.19 2004/08/18 12:39:22 richardc Exp $
+%%     $Id: undef_func.erl,v 1.20 2004/08/25 13:27:43 richardc Exp $
 %%
 
 -module(undef_func).
@@ -84,6 +84,7 @@ application_interface() ->
      {hipe,compile,1},
      {hipe,compile,2},
      {hipe,compile,4},	%% used by compiler/src/compile.erl
+     {hipe,compile_core,4},  %% for the dialyzer
      {hipe,f,1},
      {hipe,f,2},
      {hipe,file,1},
