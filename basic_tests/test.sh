@@ -11,7 +11,7 @@ ERL_FLAGS=$3
 
 #============================================================================
 
-testfiles="bif01.erl exception01.erl fun??.erl guard01.erl simpl_*.erl tuple.erl small.erl length.erl catches.erl catch_empty.erl hash_test.erl random_test.erl test??.erl mode_errors.erl switch_mix.erl var_tuple.erl"
+testfiles="bif01.erl exception01.erl  exception02.erl fun??.erl guard01.erl simpl_*.erl tuple.erl small.erl length.erl catches.erl catch_empty.erl hash_test.erl random_test.erl test??.erl mode_errors.erl switch_mix.erl var_tuple.erl"
 
 #============================================================================
 
