@@ -4,11 +4,12 @@
 %%
 %%  Filename :  esmb.erl
 %%  Purpose  :  Tests whether the HiPE compiler works by compiling
-%%		some files from the "esmb" Jungerl application.
+%%		some files from the "esmb" Jungerl application with
+%%		the 'core' option on.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2004/11/15 17:40:45 $
-%%    $Revision: 1.1 $
+%%    $Date: 2004/11/15 18:45:11 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 
 -module(esmb).
@@ -17,7 +18,7 @@
 test() ->
   file:set_cwd(esmb_src),
   Opts = get_comp_opts(),
-  R = [ hc_mod(Mod,Opts) || Mod <- files() ],
+  R = [ hc_mod(Mod,[core|Opts]) || Mod <- files() ],
   file:set_cwd('..'),
   R.
 
