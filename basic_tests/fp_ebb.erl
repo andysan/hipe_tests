@@ -22,11 +22,14 @@ foo(X) ->
   X / (2 * math:pi()).
 
 bar(X) ->
-  F = 2.0,
+  F = float_two(),
   case F < 3.0 of
     true -> (X * F) / ((2 * F) * math:pi());
     false -> weird
   end.
+
+float_two() ->
+  2.0.
 
 compile(O) ->
   hipe:c(?MODULE,O).
