@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.8 2001/10/03 15:04:28 kostis Exp $
+## $Id: testsuite.sh,v 1.9 2001/10/04 14:02:55 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -180,7 +180,7 @@ fi
 erlcrashdumps=`find . -name erl_crash.dump -print`
 if test -n "$erlcrashdumps" ; then
   echo "The following erl_crash.dumps occurred during this test run:" >> $RES_FILE
-  ls -1 $erl_crash.dumps >> $RES_FILE
+  ls -1 $erl_crashdumps >> $RES_FILE
   echo "End of the erl_crash.dumps list" >> $RES_FILE
 fi
 
