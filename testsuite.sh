@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.21 2004/01/22 13:55:38 tobiasl Exp $
+## $Id: testsuite.sh,v 1.22 2004/01/23 14:03:23 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -112,14 +112,7 @@ MSG_FILE=/tmp/hipe_test_msg.$USER
 LOG_FILE=/tmp/hipe_test_log.$USER
 RES_FILE=/tmp/hipe_test_res.$USER
 
-case `hostname` in
-    *-*)
-	HOSTNAME=localhost
-	;;
-    *)
-	HOSTNAME=`hostname`
-	;;
-esac
+HOSTNAME=`hostname`
 
 if test ! -x "$HIPE_RTS"; then
     echo "Can't execute $HIPE_RTS"
