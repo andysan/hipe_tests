@@ -5,7 +5,7 @@
 %%  Module   :	test03
 %%  Purpose  :  Test compilation of boolean primitives.
 %% CVS:
-%%    $Id: test03.erl,v 1.1 2004/01/27 13:08:07 richardc Exp $
+%%    $Id: test03.erl,v 1.2 2004/01/27 15:11:44 kostis Exp $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -18,6 +18,9 @@
 test() ->
     F = false,
     T = true,
+    test(F,T).
+
+test(F,T) ->
     true  = T and T,
     false = T and F,
     false = F and T,
