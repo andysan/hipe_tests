@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.6 2001/05/02 17:24:16 kostis Exp $
+## $Id: testsuite.sh,v 1.7 2001/08/03 14:35:38 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -161,18 +161,28 @@ echo "Date-Time: `date +"%y%m%d-%H%M"`" >> $LOG_FILE
 
 $HIPE_RTS -make   ## This makes test.beam
 
+rm -f core erl_crash.dump */core */erl_crash.dump
+
 ./alltests.sh --rts_opts "$rts_options" --comp_opts "$comp_options" \
 	      --only "$only_tests" --exclude "$excluded_tests" \
 	      --add "$added_tests" "$HIPE_RTS"  >> $LOG_FILE 2>&1
 
 touch $RES_FILE
-coredumps=`find . -name core -print`
 
+coredumps=`find . -name core -print`
 if test -n "$coredumps" ; then
   echo "The following coredumps occurred during this test run:" >> $RES_FILE
   ls -1 $coredumps >> $RES_FILE
   echo "End of the core dumps list" >> $RES_FILE
 fi
+
+erlcrashdumps=`find . -name erl_crash.dump -print`
+if test -n "$erlcrashdumps" ; then
+  echo "The following erl_crash.dumps occurred during this test run:" >> $RES_FILE
+  ls -1 $erl_crash.dumps >> $RES_FILE
+  echo "End of the erl_crash.dumps list" >> $RES_FILE
+fi
+
 # check for differences
 $GREP "Differ!" $LOG_FILE >> $RES_FILE
 # check for seg fault
