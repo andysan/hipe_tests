@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.23 2004/04/21 21:23:08 kostis Exp $
+## $Id: testsuite.sh,v 1.24 2004/04/27 13:47:35 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -11,10 +11,12 @@
 #===========================================================================
 # Usage: testsuite.sh [--rts_opts "rts_opts"] [--comp_opts "comp_opts"]
 #    	     	      [--add add_list] [--exclude exclude_list]
-#    	     	      [--only test_list] [--no_native] OTP_DIR
+#    	     	      [--only test_list] [--core] [--no_native] OTP_DIR
 # where: rts_opts  -- options to pass to the HiPE runtime system
 #        comp_opts -- options to pass to HiPE compiler;
 #                     when no options are given, they default to "[o2]"
+#	 core      -- a shorthand option which is equivalent to
+#			--comp_options "[core]" --only "core_tests"
 #	 no_native -- a shorthand option which is equivalent to
 #			--comp_options "[no_native]" --exclude "native_tests core_tests"
 #        excl_list -- the list of tests (in quotes) to NOT run
@@ -54,6 +56,11 @@ do
 	    comp_options=$1
 	    shift
 	    ;;
+     *--core)
+	    shift
+            comp_options=[core]
+            only_tests="core_tests"
+            ;;
      *--no_nat*)
 	    shift
 	    comp_options=[no_native]
@@ -87,7 +94,7 @@ done
 if test -z "$1" -o $# -gt 1; then
   echo " Usage: testsuite.sh [--rts_opts \"rts_opts\"] [--comp_opts \"comp_opts\"]"
   echo "                     [--add \"add_list\"]  [--exclude \"excl_list\"]"
-  echo "                     [--only \"test_list\"] [--no_native]  OTP_DIR"
+  echo "                     [--only \"test_list\"] [--core] [--no_native]  OTP_DIR"
   echo " where: rts_opts  -- options to pass to HiPE executable"
   echo "        comp_opts -- options to pass to HiPE compiler;"
   echo "                     when no options are given, they default to [o2]"
@@ -95,6 +102,8 @@ if test -z "$1" -o $# -gt 1; then
   echo "        add_list  -- the list of additional tests to run"
   echo "        test_list -- the list of tests to run; replaces default,"
   echo "                     both --exclude and --only can be specified at once"
+  echo "	core      -- a shorthand option which is equivalent to"
+  echo "                      --comp_options \"[core]\" --only \"core_tests\""
   echo "	no_native -- a shorthand option which is equivalent to"
   echo "                      --comp_options \"[no_native]\" --exclude \"native_tests core_tests\""
   echo "        OTP_DIR   -- full path name of the HiPE installation directory"
