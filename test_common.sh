@@ -14,7 +14,14 @@ for file in $testfiles ; do
     test=`basename $file .erl`
     echo
     echo "Testing "$test".erl:"
-    full_hostname=`hostname`
+    case `hostname` in
+	*-*)
+	    full_hostname=localhost
+	    ;;
+	*)
+	    full_hostname=`hostname`
+	    ;;
+    esac
     resfile=${test}_new@${full_hostname}
     if test -f ${resfile} ; then
 	rm -f ${resfile}
