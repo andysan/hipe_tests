@@ -7,8 +7,8 @@
 %%  History  :	* 2000-10-31 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/07/03 14:19:14 $
-%%    $Revision: 1.5 $
+%%    $Date: 2002/07/07 16:01:29 $
+%%    $Revision: 1.6 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -59,7 +59,8 @@ simple_ones() ->
     [hipe_adj_list, hipe_adj_set,
      hipe_bb, hipe_bif, hipe_bwd_cprop,
      hipe_coalescing_regalloc, hipe_converters,
-     hipe_data_pp, hipe_dead_code, hipe_degree, hipe_dict_hash,
+     hipe_data_pp, hipe_dead_code, hipe_degree, hipe_df, hipe_dict_hash,
+%%     hipe_domtree,
      hipe_gb_hash, hipe_gensym, hipe_graph_coloring_regalloc, hipe_hash,
      hipe_icode2rtl,
      hipe_icode, hipe_icode_cfg, hipe_icode_cleanup, hipe_icode_ebb,
@@ -77,18 +78,21 @@ simple_ones() ->
      hipe_schedule_prio, hipe_sparc_assemble, hipe_sparc_assert,
      hipe_sparc_linker, hipe_sparc_multimove, hipe_sparc_op,
      hipe_sparc_ra, hipe_sparc_ra_coalescing, hipe_sparc_ra_graph_color,
-     hipe_sparc_ra_ls, hipe_sparc_ra_memory,
+     hipe_sparc_ra_ls, hipe_sparc_ra_memory, hipe_sparc_ra_post_cs,
+     hipe_sparc_ra_post_ls, hipe_sparc_ra_post_ls_fp, hipe_sparc_ra_postconditions,
      hipe_sparc_registers, hipe_sparc_size, hipe_sparc_specific, hipe_spillcost,
      hipe_sparc_frame, hipe_sparc_opt_frame, hipe_sparc_caller_saves,
      hipe_sparc_stack_descriptors,
-     hipe_tagscheme, hipe_target_machine, hipe_timing,
+     hipe_tagscheme, hipe_target_machine, hipe_temp_map, hipe_timing,
      hipe_ufind, hipe_ultra_mod2, hipe_ultra_prio,
      hipe_vectors, hipe_vectors_wrapper
     ] ++
     [hipe_rtl_to_x86, hipe_x86, hipe_x86_assemble, hipe_x86_cfg,
      hipe_x86_defuse, hipe_x86_encode, hipe_x86_finalise, hipe_x86_frame,
      hipe_x86_liveness, hipe_x86_pp, hipe_x86_ra_coalescing, hipe_x86_ra_dummy,
-     hipe_x86_ra_ls, hipe_x86_registers, hipe_x86_specific
+     hipe_x86_ra_graph_color, hipe_x86_ra_ls, hipe_x86_ra_ls_postconditions,
+     hipe_x86_ra_measure_live_regs, hipe_x86_ra_postconditions,
+     hipe_x86_registers, hipe_x86_specific
     ].
 
 mk_fun() ->
