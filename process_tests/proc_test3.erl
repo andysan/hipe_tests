@@ -5,9 +5,9 @@
 %%  Purpose  :  Checks correct exit of processes.
 %%  History  :  * 2001-08-13 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2001/09/18 14:30:25 $
-%%    $Revision: 1.3 $
+%%    $Author: pergu $
+%%    $Date: 2004/07/30 13:26:54 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 
 -module(proc_test3).
@@ -26,7 +26,7 @@ test() ->
     Res.
     
 compile(Flags) ->
-    hipe:c(?MODULE,Flags).
+    hipe:c(?MODULE,[{core,false}|Flags]).
 
 my_exit(Reason) ->
     exit(self(),Reason).

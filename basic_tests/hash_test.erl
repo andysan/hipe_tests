@@ -5,9 +5,9 @@
 %%  Purpose  :  Checks correct handling of exceptions.
 %%  History  :  * 2001-09-19 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2001/09/20 13:39:59 $
-%%    $Revision: 1.1 $
+%%    $Author: pergu $
+%%    $Date: 2004/07/30 13:26:53 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 
 -module(hash_test).
@@ -17,7 +17,7 @@ test() ->
     spread_test(5).
     
 compile(Flags) ->
-    hipe:c(?MODULE,Flags).
+    hipe:c(?MODULE,[{core,false}|Flags]).
 
 spread_test(N) ->
     test_fun(N,{erlang,phash},16#50000000000,fun(X) ->

@@ -8,9 +8,9 @@
 %%  History  : * 2001-03-08 Erik Johansson (happi@csd.uu.se):
 %%               Created.
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2002/05/07 13:06:34 $
-%%              $Revision: 1.2 $
+%%              $Author: pergu $
+%%              $Date: 2004/07/30 13:26:53 $
+%%              $Revision: 1.3 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -30,7 +30,7 @@ test() ->
   R.
 
 compile(Ops) ->
-  hipe:c(?MODULE, Ops).
+  hipe:c(?MODULE, [{core,false}|Ops]).
 
 
 all(0) ->

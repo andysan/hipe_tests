@@ -5,9 +5,9 @@
 %%  Purpose  :  Checks correct exit of processes.
 %%  History  :  * 2001-08-13 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2004/02/18 09:45:28 $
-%%    $Revision: 1.2 $
+%%    $Author: pergu $
+%%    $Date: 2004/07/30 13:26:54 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 
 -module(proc_test4).
@@ -19,7 +19,7 @@ test() ->
     {normal_suicide_exit(foo),abnormal_suicide_exit(bar)}.
     
 compile(Flags) ->
-    hipe:c(?MODULE,Flags).
+    hipe:c(?MODULE,[{core,false}|Flags]).
 
 %% Tests exit(self(), Term) is equivalent to exit(Term) for a process
 %% that doesn't trap exits.

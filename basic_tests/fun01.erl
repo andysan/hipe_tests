@@ -9,9 +9,9 @@
 %%  History  : * 2001-01-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2004/02/06 16:05:45 $
-%%              $Revision: 1.6 $
+%%              $Author: pergu $
+%%              $Date: 2004/07/30 13:26:53 $
+%%              $Revision: 1.7 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -44,15 +44,15 @@ test() ->
   l()}.
    
 compile(O) ->
-  hipe:c({?MODULE,test,0}, O),
-  hipe:c({?MODULE,n_mk_fun,3}, O),
-  hipe:c({?MODULE,n_call_fun,1}, O),
-  hipe:c({?MODULE,n_call_fun2,1}, O),  
-  hipe:c({?MODULE,b_arity,0}, O),
-  hipe:c({?MODULE,c_barity,0}, O),
-  hipe:c({?MODULE,b_fun,0}, O),
-  hipe:c({?MODULE,l,0}, O),
-  hipe:c({?MODULE,l2,2}, O),
+  hipe:c({?MODULE,test,0}, [{core,false}|O]),
+  hipe:c({?MODULE,n_mk_fun,3}, [{core,false}|O]),
+  hipe:c({?MODULE,n_call_fun,1}, [{core,false}|O]),
+  hipe:c({?MODULE,n_call_fun2,1}, [{core,false}|O]),  
+  hipe:c({?MODULE,b_arity,0}, [{core,false}|O]),
+  hipe:c({?MODULE,c_barity,0}, [{core,false}|O]),
+  hipe:c({?MODULE,b_fun,0}, [{core,false}|O]),
+  hipe:c({?MODULE,l,0}, [{core,false}|O]),
+  hipe:c({?MODULE,l2,2}, [{core,false}|O]),
   {ok, ?MODULE}.
 
 

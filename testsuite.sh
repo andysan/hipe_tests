@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.25 2004/05/02 20:42:19 kostis Exp $
+## $Id: testsuite.sh,v 1.26 2004/07/30 13:26:53 pergu Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -59,7 +59,7 @@ do
      *--core)
 	    shift
             comp_options=[core]
-            only_tests="core_tests system_tests"
+            only_tests="core_tests basic_tests bs_tests bench_tests distr_tests system_tests process_tests"
             ;;
      *--no_nat*)
 	    shift

@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: pergu $
-%%              $Date: 2004/02/26 10:27:50 $
-%%              $Revision: 1.4 $
+%%              $Date: 2004/07/30 13:26:53 $
+%%              $Revision: 1.5 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -22,7 +22,7 @@
 -import(lists, [seq/2]).
 
 compile(O) ->
-  hipe:c(?MODULE,O).
+  hipe:c(?MODULE,[{core,false}|O]).
 
 test() ->
   {integer(),

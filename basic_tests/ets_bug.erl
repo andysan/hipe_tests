@@ -102,4 +102,4 @@ do_n_times(Fun,N) ->
 
 
 compile(O) ->
-  hipe:c(?MODULE,O).
+  hipe:c(?MODULE,[{core,false}|O]).

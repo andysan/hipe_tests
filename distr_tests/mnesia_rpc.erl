@@ -8,9 +8,9 @@
 %%  History  :	* 2003-03-24 Jesper Wilhelmsson (jesperw@csd.uu.se):
 %%		  Created.
 %%  CVS      :
-%%              $Author: mikpe $
-%%              $Date: 2004/02/11 11:31:43 $
-%%              $Revision: 1.7 $
+%%              $Author: pergu $
+%%              $Date: 2004/07/30 13:26:53 $
+%%              $Revision: 1.8 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -38,7 +38,7 @@ test() ->
   list_to_atom(R).
 
 compile(Opts) ->
-  hipe:c(?MODULE,Opts).
+  hipe:c(?MODULE,[{core,false}|Opts]).
 
 %% -------------------------------------------------------------------
 

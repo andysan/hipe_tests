@@ -1,9 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  Filename : 	mode_errors.erl
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2004/02/18 09:45:28 $
-%%              $Revision: 1.2 $
+%%              $Author: pergu $
+%%              $Date: 2004/07/30 13:26:53 $
+%%              $Revision: 1.3 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(mode_errors).
@@ -36,18 +36,18 @@ test() ->
 	     aeee()]).
 
 compile(Opts) ->
-  hipe:c({?MODULE,t1n,0},Opts),
-  hipe:c({?MODULE,t2n,0},Opts),
-  hipe:c({?MODULE,t5n,0},Opts),
-  hipe:c({?MODULE,t6n,0},Opts),
-  hipe:c({?MODULE,annn,0},Opts),
-  hipe:c({?MODULE,anne,0},Opts),
-  hipe:c({?MODULE,anen,0},Opts),
-  hipe:c({?MODULE,anee,0},Opts),
-  hipe:c({?MODULE,bnn,0},Opts),
-  hipe:c({?MODULE,bne,0},Opts),
-  hipe:c({?MODULE,fn,1},Opts),
-  hipe:c({?MODULE,cn,1},Opts).
+  hipe:c({?MODULE,t1n,0},[{core,false}|Opts]),
+  hipe:c({?MODULE,t2n,0},[{core,false}|Opts]),
+  hipe:c({?MODULE,t5n,0},[{core,false}|Opts]),
+  hipe:c({?MODULE,t6n,0},[{core,false}|Opts]),
+  hipe:c({?MODULE,annn,0},[{core,false}|Opts]),
+  hipe:c({?MODULE,anne,0},[{core,false}|Opts]),
+  hipe:c({?MODULE,anen,0},[{core,false}|Opts]),
+  hipe:c({?MODULE,anee,0},[{core,false}|Opts]),
+  hipe:c({?MODULE,bnn,0},[{core,false}|Opts]),
+  hipe:c({?MODULE,bne,0},[{core,false}|Opts]),
+  hipe:c({?MODULE,fn,1},[{core,false}|Opts]),
+  hipe:c({?MODULE,cn,1},[{core,false}|Opts]).
 
 t1n() -> catch ?MODULE:fe([mud]).
 t2n() -> catch ?MODULE:fn([mud]).

@@ -10,7 +10,7 @@
 -export([test/0, compile/1]).
 
 compile(O) ->
-  hipe:c(?MODULE,O).
+  hipe:c(?MODULE,[{core,false}|O]).
 
 test() ->
   Bin1 =

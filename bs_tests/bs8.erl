@@ -9,9 +9,9 @@
 %%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: pegu2945 $
-%%              $Date: 2002/07/23 09:12:02 $
-%%              $Revision: 1.4 $
+%%              $Author: pergu $
+%%              $Date: 2004/07/30 13:26:53 $
+%%              $Revision: 1.5 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -23,7 +23,7 @@
 -define(FAIL(Expr), {'EXIT',{badarg,_}} = (catch Expr)).
 
 compile(O) ->
-  hipe:c(?MODULE,O).
+  hipe:c(?MODULE,[{core,false}|O]).
 
 test()->
   {byte_split_binary(),
