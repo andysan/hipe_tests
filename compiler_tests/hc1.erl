@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/10/14 12:09:00 $
-%%    $Revision: 1.7 $
+%%    $Date: 2003/10/30 19:05:59 $
+%%    $Revision: 1.8 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -21,9 +21,14 @@
 -include("excluded.inc").
 
 test() ->
+    H1 = test("hipe"), % generate native code for the HiPE compiler
+    CS = hipe_bifs:constants_size(),
+    H2 = test("hipe"), % use this native code to compile the HiPE compiler
+    %% test that there is no space leak in the constants pool area
+    CS = hipe_bifs:constants_size(),
     [
-     test("hipe"), % generate native code for the HiPE compiler
-     test("hipe"), % use this native code to compile the HiPE compiler
+     H1,
+     H2,
      test("stdlib"),
      test("compiler"),
      test("kernel"),
@@ -42,10 +47,14 @@ test() ->
     ].
 
 test(Application) ->
+    S1 = hipe_bifs:constants_size(),
     Delim = "========================",
     io:format("%%"++Delim++" Compiling "++Application++" "++Delim++"\n"),
     Opts = get_comp_opts(),
     [ hc_mod(Mod,Opts) || Mod <- files(Application) -- excluded(Application) ],
+    S2 = hipe_bifs:constants_size(),
+    io:format("%%=== Compiled "++Application++
+	      ": size of constant area grew by ~w words\n",[S2-S1]),
     {ok,Application}.
 
 hc_mod(Mod,Opts) ->
