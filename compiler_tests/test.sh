@@ -25,10 +25,10 @@ ix_exec ()
   } | sh
 }
 
-rm -f ctest.beam
+rm -f ctest.beam wings_src/*.beam
 $HIPE -make   ## This makes ctest.beam
 cd wings_src
-$HIPE -make   ## Create .beam files for the wings test
+$HIPE -make   ## Create fresh .beam files for the wings test
 cd ..
 
 for file in $testfiles ; do
