@@ -1,3 +1,4 @@
+%%% -*- erlang-indent-level: 2 -*-
 %%%-------------------------------------------------------------------
 %%% File    : load_bug3.erl
 %%% Author  : Kostis Sagonas <kostis@it.uu.se>
@@ -16,16 +17,18 @@ compile(Flags) ->
 test() ->
   ModNameString = form_unique_modname(),
   ModName = list_to_atom(ModNameString),
-  FN = write_file(ModNameString, <<"old">>),
-  old = compile_and_run(FN, ModName),
-  FN = write_file(ModNameString, <<"new">>),
-  new = compile_and_run(FN, ModName),
-  ok = file:delete(list_to_atom(FN)),
+  {FN_erl,FN_beam} = write_file(ModNameString, <<"old">>),
+  old = compile_and_run(FN_erl, ModName),
+  {FN_erl,FN_beam} = write_file(ModNameString, <<"new">>),
+  new = compile_and_run(FN_erl, ModName),
+  ok = file:delete(list_to_atom(FN_erl)),
+  ok = file:delete(list_to_atom(FN_beam)),
   ok.
 
 form_unique_modname() ->
   {N1,N2,N3} = erlang:now(),
-  "mod_" ++ integer_to_list(N1) ++ integer_to_list(N2) ++ integer_to_list(N3).
+  USER = os:getenv("USER"),
+  "lb3mod_" ++ USER ++ integer_to_list(N1) ++ integer_to_list(N2) ++ integer_to_list(N3).
 
 compile_and_run(FN, ModName) ->
   c:c(FN, [{outdir, "/tmp/"}]),
@@ -36,7 +39,8 @@ write_file(ModNameString, Ret) ->
   Prog = <<"-module(", ModBin/binary, ").\n",
 	   "-export([tmp/0]).\n",
 	   "tmp() ->\n", Ret/binary,".\n">>,
-  FN = "/tmp/" ++ ModNameString ++ ".erl",
-  file:write_file(FN, Prog),
-  FN.
-
+  Prefix = "/tmp/" ++ ModNameString,
+  FN_erl = Prefix ++ ".erl",
+  FN_beam = Prefix ++ ".beam",
+  file:write_file(FN_erl, Prog),
+  {FN_erl, FN_beam}.
