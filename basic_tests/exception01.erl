@@ -6,12 +6,12 @@
 %%  History  :  * 2001-09-17 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/09/17 17:18:24 $
-%%    $Revision: 1.1 $
+%%    $Date: 2001/09/18 14:58:31 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 
 -module(exception01).
--export([test/0,compile/1]).
+-export([test/0,compile/1,pending/2]).
 
 -export([bad_guy/2]).
 
@@ -26,9 +26,9 @@ pending_errors(doc) ->
      "suppressed in a guard."];
 pending_errors(suite) -> [];
 pending_errors(Config) when list(Config) ->
-    pending(e_badmatch, {badmatch, b}),
+    pending(e_badmatch, {badmatch,b}),
     pending(x, function_clause),
-    pending(e_case, {case_clause, xxx}),
+    pending(e_case, {case_clause,xxx}),
     pending(e_if, if_clause),
     %% pending(e_badarith, badarith),
     %% pending(e_undef, undef),
