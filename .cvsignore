@@ -1,3 +1,2 @@
 *.beam
-*.hipe.*
-lock.test
+lock.test.*

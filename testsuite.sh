@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.19 2003/12/16 15:54:13 kostis Exp $
+## $Id: testsuite.sh,v 1.20 2004/01/19 15:32:48 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -107,24 +107,24 @@ export OTP_DIR
 
 HIPE_RTS=$OTP_DIR/bin/erl
 
-
 GREP="grep -i"
 MSG_FILE=/tmp/hipe_test_msg.$USER
 LOG_FILE=/tmp/hipe_test_log.$USER
 RES_FILE=/tmp/hipe_test_res.$USER
 
+HOSTNAME=`hostname`
+
 if test ! -x "$HIPE_RTS"; then
     echo "Can't execute $HIPE_RTS"
     echo "aborting..."
     echo "Can't execute $HIPE_RTS" >$MSG_FILE
-    HOSTNAME=`hostname`
     echo "Aborted testsuite on $HOSTNAME..." >> $MSG_FILE
     Mail -s "Testsuite aborted" $USER < $MSG_FILE
     rm -f $MSG_FILE
     exit
 fi
 
-lockfile=lock.test
+lockfile=lock.test.${HOSTNAME}
 testdir=`pwd`
 
 trap 'rm -f $testdir/$lockfile; exit 1' 1 2 15
@@ -145,7 +145,6 @@ else
    echo $$ > $lockfile
 fi
 
-
 if test -f "$RES_FILE"; then
   echo "There was an old $RES_FILE... removing"
   rm -f $RES_FILE
@@ -155,7 +154,6 @@ if test -f "$LOG_FILE"; then
   echo "There was an old $LOG_FILE... removing"
   rm -f $LOG_FILE
 fi
-
 
 #-----------------------------------------------------------------------------
 echo "Testing $HIPE_RTS"
@@ -222,8 +220,6 @@ echo "------------------------------------------------------------------------"
 
 NEW_LOG=$LOG_FILE-`date +"%y.%m.%d-%H:%M:%S"`
 cp $LOG_FILE $NEW_LOG
-
-HOSTNAME=`hostname`
 
 # -s tests if size > 0
 if test -s $RES_FILE; then

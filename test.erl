@@ -6,8 +6,8 @@
 %%  History  : 1999-12-02 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/07/04 09:30:14 $
-%%    $Revision: 1.6 $
+%%    $Date: 2004/01/19 15:32:48 $
+%%    $Revision: 1.7 $
 %% ====================================================================
 %% Exported functions (short description):
 %%
@@ -42,7 +42,9 @@ start(Module,CompilerOptions,File) ->
 	    HC = (catch Module:compile(CompilerOptions)),
 	    HR = (catch Module:test());
 	true ->
-	    {ok,Bin} = file:read_file(atom_to_list(Module) ++ "_old"),
+	    {ok,HostName} = inet:gethostname(),
+	    FullHostName = HostName ++ "." ++ inet_db:res_option(domain),
+	    {ok,Bin} = file:read_file(atom_to_list(Module) ++ "_old@" ++ FullHostName),
 	    {ok,Tokens,_} = erl_scan:string(binary_to_list(Bin) ++ "."),
 	    {ok,{{{_,_IR},{native_result,HR}},
 		{{_,_IC},{native_compile,HC}}}} = erl_parse:parse_term(Tokens)

@@ -13,37 +13,10 @@ testfiles="fib.erl huff2.erl length.erl nrev.erl qsort.erl smith.erl tak.erl \
            decode1.erl barnes2.erl ring.erl stable.erl life.erl estone.erl \
            pseudoknot.erl float_bm.erl"
 
-# nrev.erl  : when run twice, it used to seg-fault.
-# estone.erl: in native code, goes into an infinite loop.
+testdir="bench_tests"
 
-ix_exec ()
-{
-  {
-    echo echo "test:start\("$2","$3","$4"\). halt\(\)." \| $1 $5 -pa . 
-  } | sh
-}
+#============================================================================
 
-cp ../test.erl ../test.beam .
+source ../test_common.sh
 
-for file in $testfiles ; do
-    test=`basename $file .erl`
-    echo
-    echo "Testing "$test".erl:"
-    if test -f ${test}_new ; then
-        rm -f ${test}_new
-    fi
-    ix_exec $HIPE $test "$COMP_FLAGS" ${test}_new "$ERL_FLAGS"
-    status=0
-    diff -sN ${test}_new ${test}_old || status=1 2>&1
-    if test "$status" = 0 ; then
-	rm -f ${test}_new
-    else
-        echo "bench_tests/$test differ!!!"
-        diff -sN ${test}_new ${test}_old
-    fi
-done
-
-rm -f ./test.erl ./test.beam
-
-echo
 #============================================================================

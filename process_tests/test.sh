@@ -13,36 +13,10 @@ ERL_FLAGS=$3
 
 testfiles="simpl_send_rec?.erl proc_test?.erl link_test?.erl live_var_bug.erl"
 
+testdir="process_tests"
+
 #============================================================================
 
-ix_exec ()
-{
-  {
-    echo echo "test:start\("$2","$3","$4"\). halt\(\)." \| $1 $5 -pa . 
-  } | sh
-}
+source ../test_common.sh
 
-cp ../test.erl ../test.beam .
-
-for file in $testfiles ; do
-    test=`basename $file .erl`
-    echo
-    echo "Testing "$test".erl:"
-    if test -f ${test}_new ; then
-        rm -f ${test}_new
-    fi
-    ix_exec $HIPE $test "$COMP_FLAGS" ${test}_new "$ERL_FLAGS"
-    status=0
-    diff -sN ${test}_new ${test}_old || status=1 2>&1
-    if test "$status" = 0 ; then
-	rm -f ${test}_new
-    else
-        echo "process_tests/$test differ!!!"
-        diff -sN ${test}_new ${test}_old
-    fi
-done
-
-rm -f ./test.erl ./test.beam
-
-echo
 #============================================================================
