@@ -14,7 +14,7 @@ export HiPE_COMP_OPTS
 
 ## One fine day the following should be changed to be "hc.erl" only.
 ## Currently, the constant pool is overflowing when loading all files.
-testfiles="hc?.erl"
+testfiles="hc.erl"
 
 ix_exec ()
 {

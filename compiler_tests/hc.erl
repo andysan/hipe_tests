@@ -2,13 +2,12 @@
 %% Test module for stress-testing the HiPE compiler.
 %%
 %%  Filename :  hc.erl
-%%  Module   :  hc
 %%  Purpose  :  Tests whether the HiPE compiler works by compiling and
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/10/14 12:09:17 $
-%%    $Revision: 1.7 $
+%%    $Date: 2003/10/30 20:14:49 $
+%%    $Revision: 1.8 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -21,9 +20,14 @@
 -include("excluded.inc").
 
 test() ->
+    H1 = test("hipe"), % generate native code for the HiPE compiler
+    CS = hipe_bifs:constants_size(),
+    H2 = test("hipe"), % use this native code to compile the HiPE compiler
+    %% test that there is no space leak in the constants pool area
+    CS = hipe_bifs:constants_size(),
     [
-     test("hipe"), % generate native code for the HiPE compiler
-     test("hipe"), % use this native code to compile the HiPE compiler
+     H1,
+     H2,
      test("stdlib"),
      test("compiler"),
      test("kernel"),
@@ -33,7 +37,7 @@ test() ->
      test("asn1"),
      test("cosEvent"),
      test("cosEventDomain"),
-     %% test("cosFileTransfer"),
+     test("cosFileTransfer"),
      test("cosNotification"),
      test("cosProperty"),
      test("cosTime"),
@@ -62,10 +66,14 @@ test() ->
     ].
 
 test(Application) ->
+    S1 = hipe_bifs:constants_size(),
     Delim = "========================",
     io:format("%%"++Delim++" Compiling "++Application++" "++Delim++"\n"),
     Opts = get_comp_opts(),
     [ hc_mod(Mod,Opts) || Mod <- files(Application) -- excluded(Application) ],
+    S2 = hipe_bifs:constants_size(),
+    io:format("%%=== Compiled "++Application++
+	      ": size of constants area grew by ~w words\n",[S2-S1]),
     {ok,Application}.
 
 hc_mod(Mod,Opts) ->
