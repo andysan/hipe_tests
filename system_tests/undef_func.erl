@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.6 2003/12/08 09:59:24 kostis Exp $
+%%     $Id: undef_func.erl,v 1.7 2003/12/15 18:29:13 kostis Exp $
 %%
 
 -module(undef_func).
@@ -96,10 +96,11 @@ application_interface() ->
      {hipe_ceach,c,3},
      {hipe_jit,start,0},
      {hipe_tool,start,0},
-     {erl_bif_types,type,3},	    %% exported for testing purposes
-     {cerl_closurean,annotate,1},   %% exported for testing purposes
-     {cerl_typean,analyze,1},       %% exported for testing purposes
-     {cerl_typean,core_transform,2} %% called from corec as metacall
+     {erl_bif_types,type,3},	     %% exported for testing purposes
+     {cerl_closurean,annotate,1},    %% exported for testing purposes
+     {cerl_typean,analyze,1},        %% exported for testing purposes
+     {cerl_typean,core_transform,2}, %% called from corec as metacall
+     {hhl_transform,core_transform,2}%% used by compiler/src/v3_core_opt.erl
     ].
 
 %%
