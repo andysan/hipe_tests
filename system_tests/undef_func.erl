@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.14 2004/05/07 08:45:26 mikpe Exp $
+%%     $Id: undef_func.erl,v 1.15 2004/05/17 21:20:35 mikpe Exp $
 %%
 
 -module(undef_func).
@@ -176,6 +176,9 @@ exports_used_as_remote_apply_calls() ->
      {hipe_ppc_specific,uses,1},
      {hipe_ppc_specific,var_range,1},
      {hipe_ppc_specific,is_fixed,1},
+     {hipe_ppc_specific,number_of_temporaries,1},
+     {hipe_ppc_specific,check_and_rewrite,2},
+     {hipe_ppc_specific,defun_to_cfg,1},
 
      {hipe_x86_specific,analyze,1},
      {hipe_x86_specific,bb,2},
@@ -202,6 +205,8 @@ exports_used_as_remote_apply_calls() ->
      {hipe_x86_specific,breadthorder,1},
      {hipe_x86_specific,postorder,1},
      {hipe_x86_specific,reverse_postorder,1},
+     {hipe_x86_specific,check_and_rewrite,2},
+     {hipe_x86_specific,defun_to_cfg,1},
 
      {hipe_x86_specific_fp,analyze,1},
      {hipe_x86_specific_fp,bb,2},
@@ -244,6 +249,8 @@ exports_used_as_remote_apply_calls() ->
      {hipe_amd64_specific,breadthorder,1},
      {hipe_amd64_specific,postorder,1},
      {hipe_amd64_specific,reverse_postorder,1},
+     {hipe_amd64_specific,check_and_rewrite,2},
+     {hipe_amd64_specific,defun_to_cfg,1},
 
      {hipe_amd64_specific_sse2,analyze,1},
      {hipe_amd64_specific_sse2,bb,2},
@@ -270,6 +277,9 @@ exports_used_as_remote_apply_calls() ->
      {hipe_amd64_specific_sse2,breadthorder,1},
      {hipe_amd64_specific_sse2,postorder,1},
      {hipe_amd64_specific_sse2,reverse_postorder,1},
+     {hipe_amd64_specific_sse2,number_of_temporaries,1},
+     {hipe_amd64_specific_sse2,check_and_rewrite,2},
+     {hipe_amd64_specific_sse2,defun_to_cfg,1},
 
      {hipe_amd64_registers,is_precoloured_x87,1},
 
