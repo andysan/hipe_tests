@@ -1,5 +1,5 @@
 %% Copyright (c) 1999 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <99/12/17 20:36:24 happi>
+%% Time-stamp: <01/03/28 10:12:23 happi>
 %% ====================================================================
 %% Test module for the HiPE test suite.
 %%
@@ -9,9 +9,9 @@
 %%  Notes    :  Adapted from after_SUITE by 'bjorn@erix.ericsson.se'.
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2001/02/13 16:49:26 $
-%%    $Revision: 1.2 $
+%%    $Author: happi $
+%%    $Date: 2001/03/28 08:51:53 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -38,7 +38,7 @@ compile(Flags) ->
 %%
 t_after() ->
      fun_spawn(fun frequent_process/0),
-     Period = minutes(1),
+     Period = minutes(0.25),
      Before = erlang:now(),
     receive
 	after Period ->
