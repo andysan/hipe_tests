@@ -5,19 +5,31 @@
 %%  Purpose  :  Checks correct exit of processes.
 %%  History  :  * 2001-08-13 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: mikpe $
-%%    $Date: 2001/09/17 15:35:55 $
-%%    $Revision: 1.2 $
+%%    $Author: kostis $
+%%    $Date: 2001/09/18 14:30:25 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 
 -module(proc_test3).
--export([test/0,compile/1]).
+-export([test/0,compile/1,my_exit/1]).
 
 test() ->
-    exit_2_catch().
+    Res = exit_2_catch(),
+    Res = exit_2_catch(),
+    %% case my_exit(correctly) of
+    %%   true ->
+    %%     Res;
+    %%   Other ->
+    %%     io:format("Something very weird has happened\n"),
+    %%     Other
+    %% end.
+    Res.
     
 compile(Flags) ->
     hipe:c(?MODULE,Flags).
+
+my_exit(Reason) ->
+    exit(self(),Reason).
 
 exit_2_catch() ->
     process_flag(trap_exit,true),

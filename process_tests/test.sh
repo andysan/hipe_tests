@@ -11,7 +11,7 @@ ERL_FLAGS=$3
 
 #============================================================================
 
-testfiles="simpl_send_rec?.erl proc_test1.erl proc_test2.erl proc_test3.erl link_test?.erl"
+testfiles="simpl_send_rec?.erl proc_test?.erl link_test?.erl"
 
 #============================================================================
 
