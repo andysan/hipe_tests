@@ -12,7 +12,7 @@ ERL_FLAGS=$3
 HiPE_COMP_OPTS=$COMP_FLAGS
 export HiPE_COMP_OPTS
 
-testfiles="wings.erl hc.erl"
+testfiles="esmb.erl wings.erl hc.erl"
 
 ##===========================================================================
 ## NOTE: this does not use the same test.erl file as the other test dirs.
@@ -25,8 +25,11 @@ ix_exec ()
   } | sh
 }
 
-rm -f ctest.beam wings_src/*.beam
+rm -f ctest.beam esmb_src/*.beam wings_src/*.beam
 $HIPE -make   ## This makes ctest.beam
+cd esmb_src
+$HIPE -make   ## Create fresh .beam files for the esmb test
+cd ..
 cd wings_src
 $HIPE -make   ## Create fresh .beam files for the wings test
 cd ..
