@@ -1,4 +1,4 @@
 
-guard1:t/1 :: ((integer()|atom()) -> 'atom'|'int')
+guard1:t/1 :: ((integer() | atom()) -> 'atom' | 'int')
 guard1:module_info/0 :: (() -> any())
 guard1:module_info/1 :: ((_) -> any())

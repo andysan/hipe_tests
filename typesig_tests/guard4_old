@@ -1,5 +1,5 @@
 
 guard4:test/0 :: (() -> integer())
-guard4:f/1 :: ((binary()|integer()) -> integer())
+guard4:f/1 :: ((binary() | integer()) -> integer())
 guard4:module_info/0 :: (() -> any())
 guard4:module_info/1 :: ((_) -> any())

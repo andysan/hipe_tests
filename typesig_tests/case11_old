@@ -1,0 +1,4 @@
+
+case11:t/1 :: ((1 | 2) -> 'a' | 'b' | 'ok')
+case11:module_info/0 :: (() -> any())
+case11:module_info/1 :: ((_) -> any())

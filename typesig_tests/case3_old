@@ -1,4 +1,4 @@
 
-case3:t/2 :: ((1|2,[any()]|number()) -> number()|atom())
+case3:t/2 :: ((1 | 2,[any()] | number()) -> number() | atom())
 case3:module_info/0 :: (() -> any())
 case3:module_info/1 :: ((_) -> any())

@@ -1,6 +1,6 @@
 
-tuple2:t1/1 :: (({'bar','baz'}|{'foo','baz'}) -> 'bar'|'foo')
-tuple2:t2/1 :: ((1|2) -> {'bar'|'foo',{'bar'|'foo','a'|'b'}})
-tuple2:gazonk/1 :: (({'bar',_}|{'foo',_}) -> 'bar'|'foo')
+tuple2:t1/1 :: (({'bar','baz'} | {'foo','baz'}) -> 'bar' | 'foo')
+tuple2:t2/1 :: ((1 | 2) -> {'bar' | 'foo',{'bar' | 'foo','a' | 'b'}})
+tuple2:gazonk/1 :: (({'bar',_} | {'foo',_}) -> 'bar' | 'foo')
 tuple2:module_info/0 :: (() -> any())
 tuple2:module_info/1 :: ((_) -> any())

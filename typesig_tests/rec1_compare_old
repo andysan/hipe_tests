@@ -1,3 +1,3 @@
 {rec1,traverse_linked_list,1} : OK
- typesig: (({_,{_,{_,{_,_}|'nil'}|'nil'}|'nil'}) -> [any(),...])
+ typesig: (({_,{_,{_,{_,_} | 'nil'} | 'nil'} | 'nil'}) -> [any(),...])
   typean: ((_) -> [any(),...])

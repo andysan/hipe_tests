@@ -1,4 +1,4 @@
 
-try1:t/2 :: ((integer()|atom(),number()) -> number())
+try1:t/2 :: ((integer() | atom(),number()) -> number())
 try1:module_info/0 :: (() -> any())
 try1:module_info/1 :: ((_) -> any())

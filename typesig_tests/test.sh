@@ -5,7 +5,7 @@ if test $# -eq 2; then
 else
   testfiles="alias1.erl arith1.erl bool1.erl \
 	     case*.erl catch1.erl cons.erl\
-	     fib*.erl fun1.erl
+	     fib*.erl fun1.erl fun3.erl
 	     func_head1.erl guard1.erl guard2.erl guard4.erl\
 	     inf_loop1.erl
 	     list1.erl list2.erl

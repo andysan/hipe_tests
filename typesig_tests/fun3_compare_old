@@ -1,0 +1,12 @@
+{fun3,l,1} : OK
+ typesig: (([any()]) -> integer())
+  typean: ((_) -> integer())
+{fun3,l,2} : OK
+ typesig: (([any()],integer()) -> integer())
+  typean: ((_,_) -> integer())
+{fun3,l_fun,1} : OK
+ typesig: (([any()]) -> integer())
+  typean: ((_) -> integer())
+{fun3,l_fun,2} : OK
+ typesig: (((() -> [any()]),integer()) -> integer())
+  typean: ((_,_) -> integer())

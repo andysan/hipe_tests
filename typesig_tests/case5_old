@@ -1,4 +1,4 @@
 
-case5:t/2 :: ((2,1|2) -> 'error'|'ok')
+case5:t/2 :: ((2,1 | 2) -> 'error' | 'ok')
 case5:module_info/0 :: (() -> any())
 case5:module_info/1 :: ((_) -> any())
