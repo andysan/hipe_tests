@@ -21,5 +21,5 @@ test() ->
 %%    garbage_collect().
 
 compile(Flags) ->
-    hipe:c(?MODULE,Flags).
+    hipe:c(?MODULE,[no_warn_expression_throws_exception|Flags]).
 

@@ -17,8 +17,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/12/17 13:20:21 $
-%%    $Revision: 1.3 $
+%%    $Date: 2003/12/19 21:39:58 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -37,7 +37,7 @@ test() ->
      true}.
 
 compile(Flags) ->
-    hipe:c(?MODULE,Flags).
+    hipe:c(?MODULE,[no_warn_expression_throws_exception|Flags]).
 
 build_and_match() ->
     {} = {},
