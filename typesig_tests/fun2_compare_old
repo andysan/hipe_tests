@@ -1,0 +1,9 @@
+{fun2,mk_reader,2} : OK
+ typesig: ((((_,_) -> binary() | [any()] | 'eof'),_) -> (() -> possibly_improper_list()))
+  typean: ((_,_) -> (() -> possibly_improper_list()))
+{fun2,read_term,2} : OK
+ typesig: ((((_,_) -> binary() | [any()] | 'eof'),_) -> {'ok',_} | 'eof')
+  typean: ((_,_) -> {'ok',_} | 'eof')
+{fun2,read_term,3} : OK
+ typesig: ((_,_,binary()) -> {'ok',_})
+  typean: ((_,_,_) -> {'ok',_})

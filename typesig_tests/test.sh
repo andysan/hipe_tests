@@ -4,11 +4,11 @@ if test $# -eq 2; then
   testfiles="$2"	## test file is given as unique extra argument
 else
   testfiles="alias1.erl arith1.erl bool1.erl \
-	     case*.erl catch1.erl cons.erl\
-	     fib*.erl fun1.erl fun3.erl
-	     func_head1.erl guard1.erl guard2.erl guard4.erl\
-	     inf_loop1.erl
-	     list*.erl
+	     case*.erl catch1.erl cons.erl \
+	     fib*.erl fun*.erl \
+	     func_head1.erl guard1.erl guard2.erl guard4.erl \
+	     inf_loop1.erl \
+	     list*.erl \
 	     rec1.erl receive*.erl sequence.erl try1.erl t_union1.erl\
 	     tak.erl tuple*.erl"
   ## The following files are currently not giving right results
