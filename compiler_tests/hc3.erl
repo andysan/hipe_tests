@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/02/25 18:12:27 $
-%%    $Revision: 1.1 $
+%%    $Date: 2002/03/15 17:19:06 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -25,7 +25,6 @@ test() ->
      test("ic"),
      test("inets"),
      test("megaco"),
-     test("mesh"),
      test("mnemosyne"),
      test("mnesia"),
      test("mnesia_session"),
@@ -48,7 +47,7 @@ test(Application) ->
     {ok,Application}.
 
 excluded("stdlib") ->
-    [dets_v9, sofs];  % TEMPORARILY
+    [sofs];  % TEMPORARILY
 excluded("kernel") ->
     [erl_prim_loader, erlang, error_handler, group,
      init, otp_ring0, prim_file, prim_inet];

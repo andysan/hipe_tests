@@ -3,7 +3,6 @@
           {ok,"ic"},
           {ok,"inets"},
           {ok,"megaco"},
-          {ok,"mesh"},
           {ok,"mnemosyne"},
           {ok,"mnesia"},
           {ok,"mnesia_session"},
