@@ -14,4 +14,3 @@ t({foo, Y} = X) ->
     Z = {_, bar} -> Z
   end.
 
-  
