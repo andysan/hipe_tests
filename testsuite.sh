@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.53 2004/12/12 13:05:49 kostis Exp $
+## $Id: testsuite.sh,v 1.54 2004/12/12 13:08:27 kostis Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -79,7 +79,7 @@ do
      --no_nat*)
 	    shift
 	    comp_options="[no_native]"
-	    excluded_tests="${no_native_exlc_tests}"
+	    excluded_tests="${no_native_excl_tests}"
 	    ;;
      --shared)
 	    shift
@@ -275,7 +275,7 @@ if test -n "$erl_crashdumps" ; then
 fi
 
 # This must match the message generated for diffs in test_common.sh
-diffpat="differ!!"
+diffpat="differ\!\!"
 
 # PLEASE put exact examples of what we're grepping for here, as comments!
 # Also note that the search can trigger too easily on normal words,
