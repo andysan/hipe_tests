@@ -1,24 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Copyright (c) 2001 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <01/04/10 11:12:50 happi>
-%% ====================================================================
 %%  Filename : 	mode_errors.erl
-%%  Module   :	mode_errors
-%%  Purpose  :  
-%%  Notes    : 
-%%  History  :	* 2001-04-07 Erik Johansson (happi@csd.uu.se): 
-%%               Created.
 %%  CVS      :
-%%              $Author: happi $
-%%              $Date: 2001/04/10 09:19:48 $
-%%              $Revision: 1.1 $
-%% ====================================================================
-%%  Exports  :
-%%
+%%              $Author: kostis $
+%%              $Date: 2004/02/18 09:45:28 $
+%%              $Revision: 1.2 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(mode_errors).
--compile(export_all).
+-export([test/0,compile/1]).
+%% The following are used as remote calls.
+-export([fe/1,fn/1]).
 
 test() ->
   lists:map(fun (T) -> 
@@ -26,7 +17,7 @@ test() ->
 		Trace = element(2,FV),
 		FReason = element(1,FV),
 		{FReason, [hd(Trace)]}
-		end,
+	    end,
 	    [t1n(),  
 	     t2n(),
 	     t3e(),
@@ -44,19 +35,19 @@ test() ->
 	     aeen(),
 	     aeee()]).
 
-compile(O) ->
-  hipe:c({?MODULE,t1n,0},O),
-  hipe:c({?MODULE,t2n,0},O),
-  hipe:c({?MODULE,t5n,0},O),  
-  hipe:c({?MODULE,t6n,0},O),  
-  hipe:c({?MODULE,annn,0},O),  
-  hipe:c({?MODULE,anne,0},O),  
-  hipe:c({?MODULE,anen,0},O),  
-  hipe:c({?MODULE,anee,0},O),  
-  hipe:c({?MODULE,bnn,0},O),  
-  hipe:c({?MODULE,bne,0},O),  
-  hipe:c({?MODULE,fn,1},O),  
-  hipe:c({?MODULE,cn,1},O).
+compile(Opts) ->
+  hipe:c({?MODULE,t1n,0},Opts),
+  hipe:c({?MODULE,t2n,0},Opts),
+  hipe:c({?MODULE,t5n,0},Opts),
+  hipe:c({?MODULE,t6n,0},Opts),
+  hipe:c({?MODULE,annn,0},Opts),
+  hipe:c({?MODULE,anne,0},Opts),
+  hipe:c({?MODULE,anen,0},Opts),
+  hipe:c({?MODULE,anee,0},Opts),
+  hipe:c({?MODULE,bnn,0},Opts),
+  hipe:c({?MODULE,bne,0},Opts),
+  hipe:c({?MODULE,fn,1},Opts),
+  hipe:c({?MODULE,cn,1},Opts).
 
 t1n() -> catch ?MODULE:fe([mud]).
 t2n() -> catch ?MODULE:fn([mud]).
@@ -82,7 +73,6 @@ bne() -> {ce([])}.
 ben() -> {cn([])}.
 bee() -> {ce([])}.
  
-  
 fe(dum) -> ok.
 fn(dum) -> ok.
 
@@ -91,6 +81,7 @@ ce(X) ->
     dum ->
       ok
   end.
+
 cn(X) ->
   case X of
     dum ->

@@ -9,9 +9,7 @@
 %%%-------------------------------------------------------------------
 
 -module(fp_ebb).
-
 -export([test/0,compile/1]).
--compile(export_all).
 
 test()->
   1.0 = foo(2*math:pi()),

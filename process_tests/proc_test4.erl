@@ -6,15 +6,14 @@
 %%  History  :  * 2001-08-13 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/09/17 15:30:31 $
-%%    $Revision: 1.1 $
+%%    $Date: 2004/02/18 09:45:28 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 
 -module(proc_test4).
 -export([test/0,compile/1]).
-
+%% the following is used in a remote call context
 -export([fun_init/1]).
--compile(export_all).
 
 test() ->
     {normal_suicide_exit(foo),abnormal_suicide_exit(bar)}.
