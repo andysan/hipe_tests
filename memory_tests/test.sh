@@ -11,7 +11,7 @@ ERL_FLAGS=$3
 
 #============================================================================
 
-testfiles="ring3.erl"
+testfiles="*.erl"
 
 testdir="memory_tests"
 
