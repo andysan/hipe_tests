@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.16 2003/11/19 16:17:59 kostis Exp $
+## $Id: testsuite.sh,v 1.17 2003/11/21 19:41:22 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -224,7 +224,7 @@ HOSTNAME=`hostname`
 # -s tests if size > 0
 if test -s $RES_FILE; then
 	cat $RES_FILE
-	echo "----------------------------------------------------------------"
+	echo "------------------------------------------------------------------------"
 	echo "***FAILED testsuite for:"
 	echo "   $HIPE_RTS"
 	echo "on $HOSTNAME"
