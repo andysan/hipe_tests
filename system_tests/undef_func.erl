@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.8 2004/01/22 11:03:38 dalu7049 Exp $
+%%     $Id: undef_func.erl,v 1.9 2004/01/23 20:58:36 kostis Exp $
 %%
 
 -module(undef_func).
@@ -123,12 +123,12 @@ exports_used_as_remote_apply_calls() ->
      {hipe_sparc_specific,is_move,1},
      {hipe_sparc_specific,is_fixed,1}, %% used by hipe_graph_coloring_regalloc
      {hipe_sparc_specific,is_global,1},
-     {hipe_sparc_specific,is_precolored,1},
+     {hipe_sparc_specific,is_precoloured,1},
      {hipe_sparc_specific,reg_nr,1},
      {hipe_sparc_specific,non_alloc,1},
      {hipe_sparc_specific,allocatable,0},
      {hipe_sparc_specific,physical_name,1},
-     {hipe_sparc_specific,all_precolored,0},
+     {hipe_sparc_specific,all_precoloured,0},
      {hipe_sparc_specific,new_spill_index,1},
      {hipe_sparc_specific,var_range,1},
      {hipe_sparc_specific,breadthorder,1},
@@ -171,12 +171,12 @@ exports_used_as_remote_apply_calls() ->
      {hipe_x86_specific,is_move,1},
      {hipe_x86_specific,is_fixed,1},  %% used by hipe_graph_coloring_regalloc
      {hipe_x86_specific,is_global,1},
-     {hipe_x86_specific,is_precolored,1},
+     {hipe_x86_specific,is_precoloured,1},
      {hipe_x86_specific,reg_nr,1},
      {hipe_x86_specific,non_alloc,1},
      {hipe_x86_specific,allocatable,0},
      {hipe_x86_specific,physical_name,1},
-     {hipe_x86_specific,all_precolored,0},
+     {hipe_x86_specific,all_precoloured,0},
      {hipe_x86_specific,new_spill_index,1},
      {hipe_x86_specific,var_range,1},
      {hipe_x86_specific,breadthorder,1},
@@ -213,12 +213,12 @@ exports_used_as_remote_apply_calls() ->
      {hipe_amd64_specific,is_move,1},
      {hipe_amd64_specific,is_fixed,1},  %% used by hipe_graph_coloring_regalloc
      {hipe_amd64_specific,is_global,1},
-     {hipe_amd64_specific,is_precolored,1},
+     {hipe_amd64_specific,is_precoloured,1},
      {hipe_amd64_specific,reg_nr,1},
      {hipe_amd64_specific,non_alloc,1},
      {hipe_amd64_specific,allocatable,0},
      {hipe_amd64_specific,physical_name,1},
-     {hipe_amd64_specific,all_precolored,0},
+     {hipe_amd64_specific,all_precoloured,0},
      {hipe_amd64_specific,new_spill_index,1},
      {hipe_amd64_specific,var_range,1},
      {hipe_amd64_specific,breadthorder,1},
