@@ -61,6 +61,8 @@ insert_tree_element({branch,M0,SubTree}, M, X, Y, OX, OY, D) ->
 insert_tree_element({body,M0,X0,Y0},M,X,Y,OX,OY,D) ->
   resolve_body_conflict(M,X,Y,M0,X0,Y0,OX,OY,D).
 
+resolve_body_conflict(_, _, _, _, _, _, _, _, D) when D < 0.000001 ->
+  empty;
 resolve_body_conflict(M0, X0, Y0, M1, X1, Y1, OX, OY, D) ->
   T = {empty,empty,empty,empty},
   Q0 = relpos_to_quadrant(X0-OX,Y0-OY),
