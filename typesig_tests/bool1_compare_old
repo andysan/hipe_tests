@@ -1,9 +1,9 @@
 {bool1,and1,2} : OK
- typesig: ((any(),any())->bool())
-  typean: ((any(),any())->bool())
+ typesig: ((_,_) -> bool())
+  typean: ((_,_) -> bool())
 {bool1,and2,2} : OK
- typesig: ((bool(),bool())->bool())
-  typean: ((any(),any())->bool())
+ typesig: ((bool(),bool()) -> bool())
+  typean: ((_,_) -> bool())
 {bool1,and3,2} : OK
- typesig: ((bool(),bool())->bool())
-  typean: ((any(),any())->any())
+ typesig: ((bool(),bool()) -> bool())
+  typean: ((_,_) -> any())

@@ -1,3 +1,3 @@
 {case5,t,2} : OK
- typesig: ((2,1 | 2)->'error' | 'ok')
-  typean: ((any(),any())->'error' | 'ok')
+ typesig: ((2,1|2) -> 'error'|'ok')
+  typean: ((_,_) -> 'error'|'ok')

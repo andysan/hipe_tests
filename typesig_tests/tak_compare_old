@@ -1,9 +1,9 @@
 {tak,loop,2} : OK
- typesig: ((integer(),any())->any())
-  typean: ((any(),any())->any())
+ typesig: ((integer(),_) -> any())
+  typean: ((_,_) -> any())
 {tak,tak,3} : OK
- typesig: ((any(),any(),any())->any())
-  typean: ((any(),any(),any())->any())
+ typesig: ((_,_,_) -> any())
+  typean: ((_,_,_) -> any())
 {tak,test,0} : OK
- typesig: (()->any())
-  typean: (()->any())
+ typesig: (() -> any())
+  typean: (() -> any())

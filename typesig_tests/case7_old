@@ -1,5 +1,5 @@
 
-case7:t/0 :: (()->{'ok',1})
-case7:t/1 :: (('foo')->{1,'bar'})
-case7:module_info/0 :: (()->any())
-case7:module_info/1 :: ((any())->any())
+case7:t/0 :: (() -> {'ok',1})
+case7:t/1 :: (('foo') -> {1,'bar'})
+case7:module_info/0 :: (() -> any())
+case7:module_info/1 :: ((_) -> any())

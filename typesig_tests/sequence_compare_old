@@ -1,6 +1,6 @@
 {sequence,add,3} : OK
- typesig: ((integer(),any(),any())->'ok')
-  typean: ((any(),any(),any())->'ok')
+ typesig: ((integer(),_,_) -> 'ok')
+  typean: ((_,_,_) -> 'ok')
 {sequence,t,0} : OK
- typesig: (()->'ok')
-  typean: (()->'ok')
+ typesig: (() -> 'ok')
+  typean: (() -> 'ok')

@@ -1,66 +1,66 @@
 {inf_loop1,adapt,3} : OK
- typesig: (([] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}},any(),any())->{[] | {'clause_tree',{'label',_},{'clause_tree',{_,_,_},[] | {_,_,_,_},[] | {_,_,_,_}},[]},_})
-  typean: ((any(),any(),any())->{[] | {'clause_tree',{_,_},{_,_,_,_},[]},_})
+ typesig: (([]|{'b_clause',[{_,_,_}],_,_,_,[]|{'b_clause',[any()],_,_,_,[]|{_,_,_,_,_,_}}},_,_) -> {[]|{'clause_tree',{'label',_},{'clause_tree',{_,_,_},[]|{_,_,_,_},[]|{_,_,_,_}},[]},_})
+  typean: ((_,_,_) -> {[]|{'clause_tree',{_,_},{_,_,_,_},[]},_})
 {inf_loop1,adapt0,3} : OK
- typesig: (({'b_clause',[{'match',_,_}],_,_,_,[] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}}},any(),any())->{{'clause_tree',{'match',_,_},[] | {'clause_tree',{_,_},{_,_,_,_},[]},[] | {'clause_tree',{_,_},{_,_,_,_},[]}},_})
-  typean: ((any(),any(),any())->{{'clause_tree',_,[] | {_,_,_,_},[] | {_,_,_,_}},_})
+ typesig: (({'b_clause',[{'match',_,_}],_,_,_,[]|{'b_clause',[{_,_,_}],_,_,_,[]|{'b_clause',[any()],_,_,_,[]|{_,_,_,_,_,_}}}},_,_) -> {{'clause_tree',{'match',_,_},[]|{'clause_tree',{_,_},{_,_,_,_},[]},[]|{'clause_tree',{_,_},{_,_,_,_},[]}},_})
+  typean: ((_,_,_) -> {{'clause_tree',_,[]|{_,_,_,_},[]|{_,_,_,_}},_})
 {inf_loop1,b_clause_segments,1} : OK
- typesig: (({'b_clause',_,_,_,_,_})->any())
-  typean: ((any())->any())
+ typesig: (({'b_clause',_,_,_,_,_}) -> any())
+  typean: ((_) -> any())
 {inf_loop1,choose_binseg,1} : OK
- typesig: (({'b_clause',[{'match',_,_}],_,_,_,[] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}}})->any())
-  typean: ((any())->any())
+ typesig: (({'b_clause',[{'match',_,_}],_,_,_,[]|{'b_clause',[{_,_,_}],_,_,_,[]|{'b_clause',[any()],_,_,_,[]|{_,_,_,_,_,_}}}}) -> any())
+  typean: ((_) -> any())
 {inf_loop1,get_all_similar_match,2} : OK
- typesig: ((any(),[] | {'b_clause',[any()],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}}})->any())
-  typean: ((any(),any())->any())
+ typesig: ((_,[]|{'b_clause',[any()],_,_,_,[]|{'b_clause',[any()],_,_,_,[]|{'b_clause',[any()],_,_,_,[]|{_,_,_,_,_,_}}}}) -> any())
+  typean: ((_,_) -> any())
 {inf_loop1,get_all_similar_match,3} : OK
- typesig: ((any(),[] | {'b_clause',[any()],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}}},any())->any())
-  typean: ((any(),any(),any())->any())
+ typesig: ((_,[]|{'b_clause',[any()],_,_,_,[]|{'b_clause',[any()],_,_,_,[]|{'b_clause',[any()],_,_,_,[]|{_,_,_,_,_,_}}}},_) -> any())
+  typean: ((_,_,_) -> any())
 {inf_loop1,get_largest_count,3} : OK
- typesig: (([{'match',_,_}],any(),{_,_})->any())
-  typean: ((any(),any(),any())->any())
+ typesig: (([{'match',_,_}],_,{_,_}) -> any())
+  typean: ((_,_,_) -> any())
 {inf_loop1,get_match,3} : OK
- typesig: ((any(),[any()],any())->any())
-  typean: ((any(),any(),any())->any())
+ typesig: ((_,[any()],_) -> any())
+  typean: ((_,_,_) -> any())
 {inf_loop1,have_same_match,2} : OK
- typesig: ((any(),possibly_improper_list())->bool())
-  typean: ((any(),any())->bool())
+ typesig: ((_,possibly_improper_list()) -> bool())
+  typean: ((_,_) -> bool())
 {inf_loop1,interference_conclusion_neg,5} : OK
- typesig: ((any(),any(),any(),any(),any())->'fails' | 'no_info')
-  typean: ((any(),any(),any(),any(),any())->'fails' | 'no_info')
+ typesig: ((_,_,_,_,_) -> 'fails'|'no_info')
+  typean: ((_,_,_,_,_) -> 'fails'|'no_info')
 {inf_loop1,interference_conclusion_pos,5} : OK
- typesig: ((any(),any(),any(),any(),any())->'fails' | 'no_info' | 'succeeds')
-  typean: ((any(),any(),any(),any(),any())->'fails' | 'no_info' | 'succeeds')
+ typesig: ((_,_,_,_,_) -> 'fails'|'no_info'|'succeeds')
+  typean: ((_,_,_,_,_) -> 'fails'|'no_info'|'succeeds')
 {inf_loop1,make_search_key,2} : OK
- typesig: ((any(),any())->{_,_})
-  typean: ((any(),any())->{_,_})
+ typesig: ((_,_) -> {_,_})
+  typean: ((_,_) -> {_,_})
 {inf_loop1,match,3} : OK
- typesig: ((any(),possibly_improper_list(),any())->bool())
-  typean: ((any(),any(),any())->bool())
+ typesig: ((_,possibly_improper_list(),_) -> bool())
+  typean: ((_,_,_) -> bool())
 {inf_loop1,match_tag,1} : OK
- typesig: (({'match',_,_})->any())
-  typean: ((any())->any())
+ typesig: (({'match',_,_}) -> any())
+  typean: ((_) -> any())
 {inf_loop1,match_val,1} : OK
- typesig: (({'match',_,_})->any())
-  typean: ((any())->any())
+ typesig: (({'match',_,_}) -> any())
+  typean: ((_) -> any())
 {inf_loop1,mismatch,3} : OK
- typesig: ((any(),possibly_improper_list(),any())->[any()] | 'true')
-  typean: ((any(),any(),any())->[any()] | 'true')
+ typesig: ((_,possibly_improper_list(),_) -> [any()]|'true')
+  typean: ((_,_,_) -> [any()]|'true')
 {inf_loop1,mismatch,4} : OK
- typesig: ((any(),possibly_improper_list(),any(),any())->[any()] | 'true')
-  typean: ((any(),any(),any(),any())->[any()] | 'true')
+ typesig: ((_,possibly_improper_list(),_,_) -> [any()]|'true')
+  typean: ((_,_,_,_) -> [any()]|'true')
 {inf_loop1,remove_fail_match,3} : OK
- typesig: ((any(),[] | {'b_clause',possibly_improper_list(),_,_,_,[] | {'b_clause',possibly_improper_list(),_,_,_,[] | {'b_clause',possibly_improper_list(),_,_,_,[] | {_,_,_,_,_,_}}}},any())->[] | {'b_clause',possibly_improper_list(),_,_,_,[] | {'b_clause',possibly_improper_list(),_,_,_,[] | {_,_,_,_,_,_}}})
-  typean: ((any(),any(),any())->[] | {'b_clause',_,_,_,_,[] | {'b_clause',_,_,_,_,[] | {_,_,_,_,_,_}}})
+ typesig: ((_,[]|{'b_clause',possibly_improper_list(),_,_,_,[]|{'b_clause',possibly_improper_list(),_,_,_,[]|{'b_clause',possibly_improper_list(),_,_,_,[]|{_,_,_,_,_,_}}}},_) -> []|{'b_clause',possibly_improper_list(),_,_,_,[]|{'b_clause',possibly_improper_list(),_,_,_,[]|{_,_,_,_,_,_}}})
+  typean: ((_,_,_) -> []|{'b_clause',_,_,_,_,[]|{'b_clause',_,_,_,_,[]|{_,_,_,_,_,_}}})
 {inf_loop1,remove_succ_match,3} : OK
- typesig: ((any(),[] | {'b_clause',possibly_improper_list(),_,_,_,[] | {'b_clause',possibly_improper_list(),_,_,_,[] | {'b_clause',possibly_improper_list(),_,_,_,[] | {_,_,_,_,_,_}}}},any())->[] | {'b_clause',[any()] | 'true',_,_,_,[] | {'b_clause',[any()] | 'true',_,_,_,[] | {_,_,_,_,_,_}}})
-  typean: ((any(),any(),any())->[] | {'b_clause',[any()] | 'true',_,_,_,[] | {'b_clause',[any()] | 'true',_,_,_,[] | {_,_,_,_,_,_}}})
+ typesig: ((_,[]|{'b_clause',possibly_improper_list(),_,_,_,[]|{'b_clause',possibly_improper_list(),_,_,_,[]|{'b_clause',possibly_improper_list(),_,_,_,[]|{_,_,_,_,_,_}}}},_) -> []|{'b_clause',[any()]|'true',_,_,_,[]|{'b_clause',[any()]|'true',_,_,_,[]|{_,_,_,_,_,_}}})
+  typean: ((_,_,_) -> []|{'b_clause',[any()]|'true',_,_,_,[]|{'b_clause',[any()]|'true',_,_,_,[]|{_,_,_,_,_,_}}})
 {inf_loop1,simpl_count,1} : OK
- typesig: (([] | {'b_clause',[{'match',_,_}],_,_,_,[] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}}})->any())
-  typean: ((any())->any())
+ typesig: (([]|{'b_clause',[{'match',_,_}],_,_,_,[]|{'b_clause',[{_,_,_}],_,_,_,[]|{'b_clause',[any()],_,_,_,[]|{_,_,_,_,_,_}}}}) -> any())
+  typean: ((_) -> any())
 {inf_loop1,simpl_count,2} : OK
- typesig: (([] | {'b_clause',[{'match',_,_}],_,_,_,[] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}}},any())->any())
-  typean: ((any(),any())->any())
+ typesig: (([]|{'b_clause',[{'match',_,_}],_,_,_,[]|{'b_clause',[{_,_,_}],_,_,_,[]|{'b_clause',[any()],_,_,_,[]|{_,_,_,_,_,_}}}},_) -> any())
+  typean: ((_,_) -> any())
 {inf_loop1,simpl_count_segs,2} : OK
- typesig: (([{'match',_,_}],any())->any())
-  typean: ((any(),any())->any())
+ typesig: (([{'match',_,_}],_) -> any())
+  typean: ((_,_) -> any())

@@ -1,24 +1,24 @@
 {guard2,t1,1} : OK
- typesig: (([any()] | atom())->'ok')
-  typean: ((any())->'ok')
+ typesig: (([any()]|atom()) -> 'ok')
+  typean: ((_) -> 'ok')
 {guard2,t2,1} : OK
  typesig: none()
-  typean: ((any())->'ok')
+  typean: ((_) -> 'ok')
 {guard2,t3,1} : OK
- typesig: (('foo')->'ok')
-  typean: ((any())->'ok')
+ typesig: (('foo') -> 'ok')
+  typean: ((_) -> 'ok')
 {guard2,t4,1} : OK
- typesig: (('bar' | 'foo')->'ok')
-  typean: ((any())->'ok')
+ typesig: (('bar'|'foo') -> 'ok')
+  typean: ((_) -> 'ok')
 {guard2,t5,2} : OK
- typesig: (([any()],[any()])->'ok')
-  typean: ((any(),any())->'ok')
+ typesig: (([any()],[any()]) -> 'ok')
+  typean: ((_,_) -> 'ok')
 {guard2,t6,1} : OK
- typesig: (('true')->'ok')
-  typean: ((any())->'ok')
+ typesig: (('true') -> 'ok')
+  typean: ((_) -> 'ok')
 {guard2,t7,1} : OK
- typesig: ((any())->'ok')
-  typean: ((any())->'ok')
+ typesig: ((_) -> 'ok')
+  typean: ((_) -> 'ok')
 {guard2,t8,1} : OK
- typesig: ((binary() | tuple())->'ok')
-  typean: ((any())->'ok')
+ typesig: ((binary()|tuple()) -> 'ok')
+  typean: ((_) -> 'ok')

@@ -1,12 +1,12 @@
 {list1,append,2} : OK
- typesig: (([any()],any())->any())
-  typean: ((any(),any())->any())
+ typesig: (([any()],_) -> any())
+  typean: ((_,_) -> any())
 {list1,doit,0} : OK
- typesig: (()->{integer()})
-  typean: (()->{integer()})
+ typesig: (() -> {integer()})
+  typean: (() -> {integer()})
 {list1,len,2} : OK
- typesig: (([any()],integer())->integer())
-  typean: ((any(),any())->integer())
+ typesig: (([any()],integer()) -> integer())
+  typean: ((_,_) -> integer())
 {list1,reverse,1} : OK
- typesig: (([any()])->[any()])
-  typean: ((any())->[any()])
+ typesig: (([any()]) -> [any()])
+  typean: ((_) -> [any()])

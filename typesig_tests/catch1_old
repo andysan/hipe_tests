@@ -1,4 +1,4 @@
 
-catch1:t/1 :: ((any())->any())
-catch1:module_info/0 :: (()->any())
-catch1:module_info/1 :: ((any())->any())
+catch1:t/1 :: ((_) -> any())
+catch1:module_info/0 :: (() -> any())
+catch1:module_info/1 :: ((_) -> any())

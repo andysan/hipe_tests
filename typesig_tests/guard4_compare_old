@@ -1,6 +1,6 @@
 {guard4,f,1} : OK
- typesig: ((binary() | integer())->integer())
-  typean: ((any())->number())
+ typesig: ((binary()|integer()) -> integer())
+  typean: ((_) -> number())
 {guard4,test,0} : OK
- typesig: (()->integer())
-  typean: (()->number())
+ typesig: (() -> integer())
+  typean: (() -> number())

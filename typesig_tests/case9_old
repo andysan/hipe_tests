@@ -1,7 +1,7 @@
 
-case9:t/1 :: ((any())->'ok')
-case9:t2/0 :: (()->'true')
-case9:t3/1 :: ((any())->'ok')
-case9:t4/1 :: ((bool())->'ok')
-case9:module_info/0 :: (()->any())
-case9:module_info/1 :: ((any())->any())
+case9:t/1 :: ((_) -> 'ok')
+case9:t2/0 :: (() -> 'true')
+case9:t3/1 :: ((_) -> 'ok')
+case9:t4/1 :: ((bool()) -> 'ok')
+case9:module_info/0 :: (() -> any())
+case9:module_info/1 :: ((_) -> any())

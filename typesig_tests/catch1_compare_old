@@ -1,3 +1,3 @@
 {catch1,t,1} : OK
- typesig: ((any())->any())
-  typean: ((any())->any())
+ typesig: ((_) -> any())
+  typean: ((_) -> any())

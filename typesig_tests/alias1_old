@@ -1,4 +1,4 @@
 
-alias1:t/1 :: (({'foo','bar'})->{'foo','bar'})
-alias1:module_info/0 :: (()->any())
-alias1:module_info/1 :: ((any())->any())
+alias1:t/1 :: (({'foo','bar'}) -> {'foo','bar'})
+alias1:module_info/0 :: (() -> any())
+alias1:module_info/1 :: ((_) -> any())

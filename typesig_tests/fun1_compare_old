@@ -1,9 +1,9 @@
 {fun1,m,2} : OK
- typesig: ((((any())->any()),[any()])->[any()])
-  typean: ((any(),any())->[any()])
+ typesig: ((((_) -> any()),[any()]) -> [any()])
+  typean: ((_,_) -> [any()])
 {fun1,map,2} : OK
- typesig: ((function(),[any()])->[any()])
-  typean: ((any(),any())->[any()])
+ typesig: ((function(),[any()]) -> [any()])
+  typean: ((_,_) -> [any()])
 {fun1,mmap,2} : OK
- typesig: ((function() | {_,_},[any()])->[any()])
-  typean: ((any(),any())->[any()])
+ typesig: ((function()|{_,_},[any()]) -> [any()])
+  typean: ((_,_) -> [any()])

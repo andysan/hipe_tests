@@ -1,6 +1,6 @@
 {case1,doit,0} : OK
- typesig: (()->{1,_} | 3 | 'ok')
-  typean: (()->any())
+ typesig: (() -> {1,_}|3|'ok')
+  typean: (() -> any())
 {case1,t,1} : OK
- typesig: ((any())->{1,_} | 3 | 'ok')
-  typean: ((any())->any())
+ typesig: ((_) -> {1,_}|3|'ok')
+  typean: ((_) -> any())

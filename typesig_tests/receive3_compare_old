@@ -1,0 +1,12 @@
+{receive3,loop,1} : OK
+ typesig: ((tuple()) -> 'ok')
+  typean: ((_) -> 'ok')
+{receive3,start,0} : OK
+ typesig: (() -> pid())
+  typean: (() -> pid())
+{receive3,start,1} : OK
+ typesig: (({'state',_,_}) -> 'ok')
+  typean: ((_) -> 'ok')
+{receive3,wait,1} : OK
+ typesig: (({'state',_,_}) -> 'ok')
+  typean: ((_) -> 'ok')

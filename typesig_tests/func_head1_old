@@ -1,5 +1,5 @@
 
-func_head1:doit/0 :: (()->'error1' | 'error2' | 'ok')
-func_head1:t/1 :: ((1 | 2 | 3)->'error1' | 'error2' | 'ok')
-func_head1:module_info/0 :: (()->any())
-func_head1:module_info/1 :: ((any())->any())
+func_head1:doit/0 :: (() -> 'error1'|'error2'|'ok')
+func_head1:t/1 :: ((1|2|3) -> 'error1'|'error2'|'ok')
+func_head1:module_info/0 :: (() -> any())
+func_head1:module_info/1 :: ((_) -> any())

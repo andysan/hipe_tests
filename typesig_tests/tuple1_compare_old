@@ -1,6 +1,6 @@
 {tuple1,doit,0} : OK
- typesig: (()->{number()})
-  typean: (()->{number()})
+ typesig: (() -> {number()})
+  typean: (() -> {number()})
 {tuple1,t,1} : OK
- typesig: ((number())->{number()})
-  typean: ((any())->{number()})
+ typesig: ((number()) -> {number()})
+  typean: ((_) -> {number()})

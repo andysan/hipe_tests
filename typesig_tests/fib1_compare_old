@@ -1,3 +1,3 @@
 {fib1,fib,1} : OK
- typesig: ((integer())->integer())
-  typean: ((any())->integer())
+ typesig: ((integer()) -> integer())
+  typean: ((_) -> integer())

@@ -1,12 +1,12 @@
 {case9,t,1} : OK
- typesig: ((any())->'ok')
-  typean: ((any())->'error' | 'ok')
+ typesig: ((_) -> 'ok')
+  typean: ((_) -> 'error'|'ok')
 {case9,t2,0} : OK
- typesig: (()->'true')
-  typean: (()->'true')
+ typesig: (() -> 'true')
+  typean: (() -> 'true')
 {case9,t3,1} : OK
- typesig: ((any())->'ok')
-  typean: ((any())->'error' | 'ok')
+ typesig: ((_) -> 'ok')
+  typean: ((_) -> 'error'|'ok')
 {case9,t4,1} : OK
- typesig: ((bool())->'ok')
-  typean: ((any())->'error' | 'ok')
+ typesig: ((bool()) -> 'ok')
+  typean: ((_) -> 'error'|'ok')

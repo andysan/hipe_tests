@@ -1,5 +1,5 @@
 
-cons:doit/0 :: (()->[any(),...])
-cons:t/1 :: ((any())->[any(),...])
-cons:module_info/0 :: (()->any())
-cons:module_info/1 :: ((any())->any())
+cons:doit/0 :: (() -> [any(),...])
+cons:t/1 :: ((_) -> [any(),...])
+cons:module_info/0 :: (() -> any())
+cons:module_info/1 :: ((_) -> any())

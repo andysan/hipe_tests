@@ -1,6 +1,6 @@
 
-fib2:test/0 :: (()->bool())
-fib2:fib_int/1 :: ((integer())->integer())
-fib2:fib_float/1 :: ((float())->integer())
-fib2:module_info/0 :: (()->any())
-fib2:module_info/1 :: ((any())->any())
+fib2:test/0 :: (() -> bool())
+fib2:fib_int/1 :: ((integer()) -> integer())
+fib2:fib_float/1 :: ((float()) -> integer())
+fib2:module_info/0 :: (() -> any())
+fib2:module_info/1 :: ((_) -> any())

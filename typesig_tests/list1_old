@@ -1,7 +1,7 @@
 
-list1:doit/0 :: (()->{integer()})
-list1:len/2 :: (([any()],integer())->integer())
-list1:reverse/1 :: (([any()])->[any()])
-list1:append/2 :: (([any()],any())->any())
-list1:module_info/0 :: (()->any())
-list1:module_info/1 :: ((any())->any())
+list1:doit/0 :: (() -> {integer()})
+list1:len/2 :: (([any()],integer()) -> integer())
+list1:reverse/1 :: (([any()]) -> [any()])
+list1:append/2 :: (([any()],_) -> any())
+list1:module_info/0 :: (() -> any())
+list1:module_info/1 :: ((_) -> any())

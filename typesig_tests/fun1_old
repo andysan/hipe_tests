@@ -1,6 +1,6 @@
 
-fun1:m/2 :: ((((any())->any()),[any()])->[any()])
-fun1:map/2 :: ((function(),[any()])->[any()])
-fun1:mmap/2 :: ((function() | {_,_},[any()])->[any()])
-fun1:module_info/0 :: (()->any())
-fun1:module_info/1 :: ((any())->any())
+fun1:m/2 :: ((((_) -> any()),[any()]) -> [any()])
+fun1:map/2 :: ((function(),[any()]) -> [any()])
+fun1:mmap/2 :: ((function()|{_,_},[any()]) -> [any()])
+fun1:module_info/0 :: (() -> any())
+fun1:module_info/1 :: ((_) -> any())
