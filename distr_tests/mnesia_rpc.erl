@@ -8,9 +8,9 @@
 %%  History  :	* 2003-03-24 Jesper Wilhelmsson (jesperw@csd.uu.se):
 %%		  Created.
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2003/03/24 15:21:08 $
-%%              $Revision: 1.1 $
+%%              $Author: jesperw $
+%%              $Date: 2003/03/26 14:26:25 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -27,9 +27,9 @@
 test() ->
   OTP_DIR = os:getenv("OTP_DIR"),
   MODULE = atom_to_list(?MODULE),
-  HOSTNAME = lists:delete(10,os:cmd("hostname")),
-  os:cmd(OTP_DIR ++ "/bin/erl -name a -noshell &"),
-  S = os:cmd(OTP_DIR ++ "/bin/erl -name b -noshell -noinput -s " ++ MODULE ++
+  {ok,HOSTNAME} = inet:gethostname(),
+  os:cmd(OTP_DIR ++ "/bin/erl -sname a -noshell &"),
+  S = os:cmd(OTP_DIR ++ "/bin/erl -sname b -noshell -noinput -s " ++ MODULE ++
              " start a@" ++ HOSTNAME),
   {match,Pos,Len} = regexp:match(S, "TestResult:"),
   R = string:sub_string(S, Pos+Len+1),
@@ -42,7 +42,7 @@ compile(Opts) ->
 
 start([TheOtherNode]) ->
     init_node_and_table(TheOtherNode),
-    run_tests(10000),
+    run_tests(2000),
     shutdown(TheOtherNode),
     io:format("TestResult: ~w",[net_adm:ping(TheOtherNode)]),
     rpc:call(TheOtherNode, erlang, halt, []),
