@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.35 2004/09/01 13:32:13 richardc Exp $
+## $Id: testsuite.sh,v 1.36 2004/09/02 12:50:06 richardc Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -275,6 +275,7 @@ $GREP "$pat" $LOG_FILE >> $RES_FILE
 # -s tests if size > 0
 if test -s $RES_FILE; then
 	NEW_LOG=$LOG_FILE-`date +"%y.%m.%d-%H:%M:%S"`
+	NEW_RES=$RES_FILE-`date +"%y.%m.%d-%H:%M:%S"`
 	cp $LOG_FILE $NEW_LOG
         # First list all differing tests as a quick summary
 	echo >> $RES_FILE
@@ -284,7 +285,7 @@ if test -s $RES_FILE; then
 	echo "***FAILED testsuite for:"
 	echo "   $HIPE_RTS"
 	echo "on $HOSTNAME"
-	echo "see $RES_FILE for more details."
+	echo "see $NEW_RES for more details."
 	if test -z "$quiet"; then
             echo "***FAILED testsuite for $HIPE_RTS on $HOSTNAME" > $MSG_FILE
 	    echo "Check the log file $NEW_LOG" >> $MSG_FILE
@@ -300,8 +301,8 @@ if test -s $RES_FILE; then
 	    cat $RES_FILE >> $MSG_FILE
 	    mail -s "Testsuite failed" $USER < $MSG_FILE
 	    rm -f $MSG_FILE
+	    cp $RES_FILE $NEW_RES
         else
-	    NEW_RES=$RES_FILE-`date +"%y.%m.%d-%H:%M:%S"`
 	    echo "(See also the log file $NEW_LOG)" >> $MSG_FILE
 	    echo "Failing tests:" > $NEW_RES
 	    echo >> $NEW_RES
