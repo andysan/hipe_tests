@@ -8,9 +8,9 @@
 %%		the magic number that is printed appears below.
 %%  History  :  * 2003-10-31 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: richardc $
-%%    $Date: 2004/10/28 04:07:29 $
-%%    $Revision: 1.6 $
+%%    $Author: mikpe $
+%%    $Date: 2004/10/28 13:30:07 $
+%%    $Revision: 1.7 $
 %% ====================================================================
 
 -module(const_size_test).
@@ -28,7 +28,7 @@
 %%       3.14000,
 %%       [501,502,503,504,505,506,507,508,509,510]},
 %%      [501,502,503,504,505,506,507,508,509,510]},
-%%     [501,502,503,504,505,506,507,508,509,510]}	 138
+%%     [501,502,503,504,505,506,507,508,509,510]}	 138 (137 on 64-bit)
 %% 2. [o2]						   5 (2 + 3)
 %% --------------------------------------------------------------------
 %%                                                       143
@@ -37,10 +37,11 @@
 %%		  3 header words (for the constant entry).
 %% 2. size = 138 is 120 for the lists (6*20), 3 for the float,
 %%		    12 (3*4) for the tuples, and 3 header words.
+%%		    On a 64-bit machine the flonum is 2 words.
 
 test() ->
   compile([o2]),
-  hipe_bifs:constants_size().
+  hipe_bifs:constants_size() bor 1.
 
 compile(Opts0) ->
   case proplists:get_bool(core, Opts0) of
