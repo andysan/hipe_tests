@@ -1,0 +1,1 @@
+{{{emu_result,[112,111,110,103]},{native_result,[112,111,110,103]}},{{emu_compile,{ok,mnesia_rpc}},{native_compile,{ok,mnesia_rpc}}}}
