@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.28 2004/08/10 14:46:11 richardc Exp $
+## $Id: testsuite.sh,v 1.29 2004/08/10 15:09:14 richardc Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -128,7 +128,9 @@ if test ! -x "$HIPE_RTS"; then
     echo "aborting..."
     echo "Can't execute $HIPE_RTS" >$MSG_FILE
     echo "Aborted testsuite on $HOSTNAME..." >> $MSG_FILE
-    Mail -s "Testsuite aborted" $USER < $MSG_FILE
+    if test -z "$quiet"; then
+	mail -s "Testsuite aborted" $USER < $MSG_FILE
+    fi
     rm -f $MSG_FILE
     exit
 fi
@@ -241,6 +243,8 @@ pat="${pat}\|fatal"
 # some other problems that should highlight bugs in the test suite
 pat="${pat}\|syntax error"
 pat="${pat}\|cannot find"
+# reports from system tests
+pat="${pat}\|\(undefined_functions\|unused_locals\|unused_exports\)_in_hipe"
 $GREP "$pat" $LOG_FILE >> $RES_FILE
 
 
@@ -269,7 +273,7 @@ if test -s $RES_FILE; then
 	    echo "Details:" >> $MSG_FILE
 	    echo >> $MSG_FILE
 	    cat $RES_FILE >> $MSG_FILE
-	    mail $USER < $MSG_FILE
+	    mail -s "Testsuite failed" $USER < $MSG_FILE
 	    rm -f $MSG_FILE
         else
 	    NEW_RES=$RES_FILE-`date +"%y.%m.%d-%H:%M:%S"`
