@@ -1,5 +1,9 @@
 % file: "pseudoknot.erl"
 
+%% Note that if this is compiled with inlining enabled, the
+%% Beam is likely to choke on the huge constant term that is
+%% formed. (Native code compilation has no such problems.)
+
 -ifdef(ETOS).
 -define(IS_FLOAT(X),is_float(X)).
 -else.
