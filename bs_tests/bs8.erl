@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Copyright (c) 2001 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <01/06/13 15:12:13 happi>
+%% Time-stamp: <2004-08-20 17:08:27 richardc>
 %% ====================================================================
 %%  Filename : 	bs.erl
 %%  Module   :	bs
@@ -9,9 +9,9 @@
 %%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: pergu $
-%%              $Date: 2004/07/30 13:26:53 $
-%%              $Revision: 1.5 $
+%%              $Author: richardc $
+%%              $Date: 2004/08/20 15:46:37 $
+%%              $Revision: 1.6 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -23,7 +23,7 @@
 -define(FAIL(Expr), {'EXIT',{badarg,_}} = (catch Expr)).
 
 compile(O) ->
-  hipe:c(?MODULE,[{core,false}|O]).
+  hipe:c(?MODULE,O).
 
 test()->
   {byte_split_binary(),
