@@ -16,8 +16,8 @@ doit()->
 
 len([_|T], Acc)->
   len(T, Acc+1);
-len([], Acc) ->
-  Acc+0.
+len([], Acc) when is_integer(Acc)->
+  Acc.
 
 reverse([H|T]) ->
   reverse(T) ++ [H];

@@ -2,11 +2,11 @@
  typesig: (([any()],any())->any())
   typean: ((any(),any())->any())
 {list1,doit,0} : OK
- typesig: (()->{number()})
-  typean: (()->{number()})
+ typesig: (()->{integer()})
+  typean: (()->{integer()})
 {list1,len,2} : OK
- typesig: (([any()],number())->number())
-  typean: ((any(),any())->number())
+ typesig: (([any()],integer())->integer())
+  typean: ((any(),any())->integer())
 {list1,reverse,1} : OK
  typesig: (([any()])->[any()])
   typean: ((any())->[any()])

@@ -5,10 +5,13 @@ if test $# -eq 2; then
 else
   testfiles="alias1.erl arith1.erl bool1.erl \
 	     case*.erl catch1.erl cons.erl\
+	     fib1.erl fun1.erl
 	     func_head1.erl guard1.erl guard2.erl guard4.erl\
-	     receive*.erl try1.erl t_union1.erl tuple1.erl"
+	     list1.erl list2.erl
+	     rec1.erl receive*.erl sequence.erl try1.erl t_union1.erl\
+	     tak.erl tuple1.erl"
   ## The following files are currently not giving right results
-  #testfiles="fib1.erl fib2.erl fun1.erl guard3.erl  list1.erl list2.erl rec1.erl sequence.erl tak.erl"
+  #testfiles="fib2.erl guard3.erl"
 fi
 
 HIPE=$1/bin/erl

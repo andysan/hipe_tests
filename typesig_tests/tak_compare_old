@@ -1,5 +1,5 @@
 {tak,loop,2} : OK
- typesig: ((number(),any())->any())
+ typesig: ((integer(),any())->any())
   typean: ((any(),any())->any())
 {tak,tak,3} : OK
  typesig: ((any(),any(),any())->any())
