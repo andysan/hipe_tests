@@ -1,9 +1,9 @@
--module(catch_crash).
+module(catch_crash).
 -export([test/0,compile/1]).
 
 -define(try_match(E),
-      catch ?MODULE:bar(),
-	{'EXIT', {{badmatch, nomatch}, _}} = (catch E = no_match())).
+	catch ?MODULE:bar(),
+		{'EXIT', {{badmatch, nomatch}, _}} = (catch E = no_match())).
 
 test() ->
     ?try_match(a),
@@ -23,6 +23,6 @@ no_match() ->
 %%    io:format("After\n",[]),
 %%    garbage_collect().
 
-compile(Flags) ->
-    hipe:c(?MODULE,[no_warn_expression_throws_exception|Flags]).
+compile(Opts) ->
+    hipe:c(?MODULE, Opts).
 

@@ -17,12 +17,12 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2004/01/19 10:17:40 $
-%%    $Revision: 1.5 $
+%%    $Date: 2004/12/09 16:47:37 $
+%%    $Revision: 1.6 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
-%%  compile(Flags) - Compile to native code with compiler flags Flags.
+%%  compile(Flags) - Compile to native code with compiler options Opts.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(test11).
@@ -36,8 +36,8 @@ test() ->
      tuple_with_case(), tuple_in_guard(),
      true}.
 
-compile(Flags) ->
-    hipe:c(?MODULE,[no_warn_expression_throws_exception|Flags]).
+compile(Opts) ->
+    hipe:c(?MODULE, Opts).
 
 build_and_match() ->
     {} = {},
