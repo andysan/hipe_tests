@@ -9,9 +9,9 @@
 %%  Notes    :  Adapted from after_SUITE by 'bjorn@erix.ericsson.se'.
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2001/08/13 15:52:41 $
-%%    $Revision: 1.4 $
+%%    $Author: mikpe $
+%%    $Date: 2001/09/04 12:46:45 $
+%%    $Revision: 1.5 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -54,8 +54,8 @@ report(Period, Before, After) ->
 	(element(1,Before)*1000000000
 	 + element(2,Before)*1000 + element(3,Before) div 1000),
      case Elapsed*100 / Period of
-	      Percent when Percent > 101.0 ->
-		   {too_inaccurate, Percent};
+	      Percent when Percent > 105.0 ->
+		   {too_late, Percent};
 	      Percent when Percent < 100.0 ->
 		   {too_early, Percent};
 	      Percent ->
