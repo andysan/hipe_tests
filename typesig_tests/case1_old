@@ -1,0 +1,5 @@
+
+case1:doit/0 :: (()->{1,_} | 3 | 'ok')
+case1:t/1 :: ((any())->{1,_} | 3 | 'ok')
+case1:module_info/0 :: (()->any())
+case1:module_info/1 :: ((any())->any())

@@ -1,0 +1,4 @@
+Ok: {cons,doit,0} typesig: (()->[any(),...])	typean: (()->[any(),...])
+Ok: {cons,module_info,0} typesig: (()->any())	typean: (()->any())
+Ok: {cons,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
+Ok: {cons,t,1} typesig: ((any())->[any(),...])	typean: ((any())->[any(),...])

@@ -1,0 +1,5 @@
+
+sequence:t/0 :: (()->'ok')
+sequence:add/3 :: ((number(),any(),any())->'ok')
+sequence:module_info/0 :: (()->any())
+sequence:module_info/1 :: ((any())->any())

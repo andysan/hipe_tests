@@ -1,0 +1,5 @@
+
+tuple1:doit/0 :: (()->{number()})
+tuple1:t/1 :: ((number())->{number()})
+tuple1:module_info/0 :: (()->any())
+tuple1:module_info/1 :: ((any())->any())

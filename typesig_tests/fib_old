@@ -1,0 +1,5 @@
+
+fib:doit/0 :: (()->integer())
+fib:fib/1 :: ((number())->integer())
+fib:module_info/0 :: (()->any())
+fib:module_info/1 :: ((any())->any())
