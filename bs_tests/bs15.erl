@@ -6,11 +6,14 @@
 %%  Notes    :  Added test that crashed beam compiler
 %%              Added some more test which crashed when segments of
 %%              size zero were used and one that did not convert integers 
-%%              to floats when constructing binaries
+%%              to floats when constructing binaries. 
+%%              2004/11/15: added a construction test which crashed from
+%%              core because of problems with the effect flag
+%%
 %%  CVS      :
 %%              $Author: pergu $
-%%              $Date: 2004/02/26 10:27:50 $
-%%              $Revision: 1.6 $
+%%              $Date: 2004/11/15 12:42:44 $
+%%              $Revision: 1.7 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(bs15).
@@ -38,11 +41,16 @@ test() ->
   <<73>> = gen1(8, 0, <<73>>),
   <<171>> = gen2(8, 7, 2#10101010101010101),
   <<0:64>> = construct(),
+  ok = construct2(),
   ok.
 
 construct() ->
   <<0:64/float>>.
-   
+
+construct2() -> 
+  <<X:32/little>>,
+  ok.
+  
 match1(N, Bin) ->
   <<1:12, 2:N, A:2>>=Bin,
   A.
