@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Copyright (c) 2000 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <00/12/13 13:50:31 happi>
+%% Time-stamp: <01/04/11 00:43:27 happi>
 %% ====================================================================
 %%  Filename : test_catches.erl
 %%  Module   : test_catches
@@ -9,9 +9,9 @@
 %%  History  : * 2000-11-29 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2001/02/13 16:49:25 $
-%%              $Revision: 1.2 $
+%%              $Author: happi $
+%%              $Date: 2001/04/10 22:49:15 $
+%%              $Revision: 1.3 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -25,7 +25,9 @@ compile(O) ->
   hipe:c(?MODULE,O).
 
 test() ->
-  catch [t1(),t2(),t3(),t4(),t5(a,b),t5(1,2),t6(),t7(),t8()].
+  catch [t1(),t2(),t3(),t4(),
+	 element(1,element(2,t5(a,b))),
+	 t5(1,2),t6(),t7(),t8()].
 
 t1() ->
   catch foo().
