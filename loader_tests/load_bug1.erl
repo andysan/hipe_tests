@@ -34,12 +34,14 @@ compile_and_run(FN) ->
 
 write_file(ModNameString, Ret) ->
   ModBin = list_to_binary(ModNameString),
-  Prog = <<"-module(", ModBin/binary, ").\n",
-	   "-export([tmp/0]).\n",
-	   "tmp() ->\n", Ret/binary,".\n">>,
+  Prog = construct_prog(ModBin, Ret),
   %% io:format("here 1.1\n"),
   FN = ModNameString ++ ".erl",
   file:write_file(FN, Prog),
   %% io:format("here 1.2\n"),
   FN.
 
+construct_prog(ModBin, Ret) ->
+  <<"-module(", ModBin/binary, ").\n",
+    "-export([tmp/0]).\n",
+    "tmp() ->\n", Ret/binary,".\n">>.

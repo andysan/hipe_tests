@@ -1,20 +1,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Copyright (c) 2001 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <01/06/13 11:16:37 happi>
-%% ====================================================================
-%%  Filename : 	bs.erl
-%%  Module   :	bs
-%%  Purpose  :  
+%%  Filename : 	bs6.erl
+%%  Purpose  :  Tests construction of "bad" binaries
 %%  Notes    : 
-%%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): 
-%%               Created.
+%%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2003/08/08 13:54:37 $
-%%              $Revision: 1.3 $
-%% ====================================================================
-%%  Exports  :
-%%
+%%              $Date: 2005/02/02 15:12:24 $
+%%              $Revision: 1.4 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(bs6).
@@ -25,15 +17,19 @@
 compile(O) ->
   hipe:c(?MODULE,O).
 
-test()->
-    ?FAIL(<<3.14>>),
-    ?FAIL(<<<<1,2>>>>),
+test() ->
+  PI = math:pi(),
+  ?FAIL(<<PI>>),
+  ?FAIL(<<<<1,2>>>>),
 
-    ?FAIL(<<2.71/binary>>),
-    ?FAIL(<<24334/binary>>),
-    ?FAIL(<<24334344294788947129487129487219847/binary>>),
+  E = 2.71,
+  ?FAIL(<<E/binary>>),
+  Int = 24334,
+  BigInt = 24334344294788947129487129487219847,
+  ?FAIL(<<Int/binary>>),
+  ?FAIL(<<BigInt/binary>>),
 
-    ?FAIL(<<<<1,2,3>>/float>>),
+  ?FAIL(<<<<1,2,3>>/float>>),
 
-    ok.
+  ok.
 
