@@ -2,9 +2,9 @@
 %%  History  :	* 2001-03-27 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2002/05/08 07:33:41 $
-%%              $Revision: 1.2 $
+%%              $Author: richardc $
+%%              $Date: 2004/08/20 14:35:15 $
+%%              $Revision: 1.3 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -21,9 +21,11 @@ test() ->
 
 go() ->
   process_flag(trap_exit, true),
+  flush(),
   {ok, Node} = start_node(ref_port_roundtrip),
   _Pid = spawn_link(Node, ?MODULE, roundtrip, [xxx]),
   receive after 1000 -> ok end,
+  process_flag(trap_exit, false),
   ok.
 
 compile(Opts) ->
@@ -40,3 +42,6 @@ hostname() ->
 from(H, [H | T]) -> T;
 from(H, [_ | T]) -> from(H, T);
 from(_, []) -> [].
+
+flush() ->
+    receive _ -> flush() after 0 -> ok end.

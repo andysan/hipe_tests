@@ -5,9 +5,9 @@
 %%  Purpose  :  Checks correct exit of processes.
 %%  History  :  * 2001-08-13 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: pergu $
-%%    $Date: 2004/07/30 13:26:54 $
-%%    $Revision: 1.3 $
+%%    $Author: richardc $
+%%    $Date: 2004/08/20 14:35:15 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 
 -module(proc_test4).
@@ -19,7 +19,7 @@ test() ->
     {normal_suicide_exit(foo),abnormal_suicide_exit(bar)}.
     
 compile(Flags) ->
-    hipe:c(?MODULE,[{core,false}|Flags]).
+    hipe:c(?MODULE,Flags).
 
 %% Tests exit(self(), Term) is equivalent to exit(Term) for a process
 %% that doesn't trap exits.
@@ -27,11 +27,15 @@ compile(Flags) ->
 normal_suicide_exit(suite) -> [];
 normal_suicide_exit(_) ->
     process_flag(trap_exit, true),
+    flush(),
     Pid = fun_spawn(fun() -> exit(self(), normal) end),
-    receive
-	{'EXIT', Pid, normal} -> ok;
-	Other -> exit({normal_suicide_exit,bad_message,Other})
-    end.
+    Res = receive
+	      {'EXIT', Pid, normal} -> ok;
+	      Other -> exit({normal_suicide_exit,bad_message,Pid,Other})
+	  end,
+    process_flag(trap_exit, false),
+    Res.
+    
 
 %% Tests exit(self(), Term) is equivalent to exit(Term) for a process
 %% that doesn't trap exits.
@@ -41,10 +45,12 @@ abnormal_suicide_exit(_) ->
     Garbage = eight_kb(),
     process_flag(trap_exit, true),
     Pid = fun_spawn(fun() -> exit(self(), Garbage) end),
-    receive
-	{'EXIT', Pid, Garbage} -> ok;
-	Other -> exit({abnormal_suicide_exit,bad_message,Other})
-    end.
+    Res = receive
+	      {'EXIT', Pid, Garbage} -> ok;
+	      Other -> exit({abnormal_suicide_exit,bad_message,Other})
+	  end,
+    process_flag(trap_exit, false),
+    Res.
 
 %% AUXILIARY FUNCTIONS USED BY THE TEST
 
@@ -52,6 +58,9 @@ fun_init(Fun) ->
     Fun().
 fun_spawn(Fun) ->
     spawn_link(?MODULE, fun_init, [Fun]).
+
+flush() ->
+    receive _ -> flush() after 0 -> ok end.
 
 eight_kb() ->
     B64 = lists:seq(1, 64),
