@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.12 2002/02/25 14:35:42 kostis Exp $
+## $Id: testsuite.sh,v 1.13 2003/04/02 14:29:20 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -11,7 +11,7 @@
 #===========================================================================
 # Usage: testsuite.sh [--rts_opts "rts_opts"] [--comp_opts "comp_opts"]
 #    	     	      [--add add_list] [--exclude exclude_list]
-#    	     	      [--only test_list] [--no_native] osh_dir
+#    	     	      [--only test_list] [--no_native] OTP_DIR
 # where: rts_opts  -- options to pass to the HiPE runtime system
 #        comp_opts -- options to pass to HiPE compiler;
 #                     when no options are given, they default to "[o2]"
@@ -21,7 +21,7 @@
 #    	     	      (which are normally not tested)
 #        test_list -- the list of tests to run; replaces default,
 #    	     	      both --exclude and --only can be specified at once
-#        osh_dir   -- full path name of the HiPE installation directory
+#        OTP_DIR   -- full path name of the HiPE installation directory
 #    The HiPE executable and compiler are assumed to be in:
 #    	 $OTP/bin/erl
 #    and
@@ -86,14 +86,14 @@ done
 if test -z "$1" -o $# -gt 1; then
   echo " Usage: testsuite.sh [--rts_opts \"rts_opts\"] [--comp_opts \"comp_opts\"]"
   echo "                     [--add \"add_list\"]  [--exclude \"excl_list\"]"
-  echo "                     [--only \"test_list\"]  osh_dir"
+  echo "                     [--only \"test_list\"]  OTP_DIR"
   echo " where: rts_opts  -- options to pass to HiPE executable"
   echo "        comp_opts -- options to pass to HiPE compiler;"
   echo "                     when no options are given, they default to [o2]"
   echo "        excl_list -- the list of tests to NOT run"
   echo "        add_list  -- the list of additional tests to run"
   echo "        test_list -- run only these tests"
-  echo "        osh_dir   -- full path name of the HiPE installation directory"
+  echo "        OTP_DIR   -- full path name of the HiPE installation directory"
   echo ========================================================================
   exit
 fi
