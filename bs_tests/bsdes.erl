@@ -1,21 +1,24 @@
 %%%-------------------------------------------------------------------
 %%% File    : bsdes.erl
 %%% Author  : Per Gustafsson <pergu@fan.it.uu.se>
-%%% Description : 
+%%% Description : An implementation of the DES Encryption/Descryption
+%%%		  algorithm using Erlang binaries.
 %%%
 %%% Created : 14 Apr 2004 by Per Gustafsson <pergu@fan.it.uu.se>
 %%%-------------------------------------------------------------------
 -module(bsdes).
 -export([encode/2, decode/2, test/0]).
 
+-define(ITERATIONS, 100).	%% for benchmarking use a higher number
+
 test() ->
-  Bin =  <<1:64>>,
-  Size=size(Bin),
+  Bin = <<1:64>>,
+  Size= size(Bin),
   Key = <<4704650607608769871263876:64>>,
   statistics(runtime),
-  Jumbled=run_encode(10000,Bin, Key),
-  Unjumbled=run_decode(10000,Jumbled, Key),
-  <<Bin:Size/binary,_/binary>>=Unjumbled.
+  Jumbled = run_encode(?ITERATIONS, Bin, Key),
+  Unjumbled = run_decode(?ITERATIONS, Jumbled, Key),
+  <<Bin:Size/binary,_/binary>> = Unjumbled.
 
 run_encode(1, Bin, Key) ->
   encode(Bin, Key);
@@ -34,7 +37,7 @@ encode(Data, Key) ->
   list_to_binary(encode_data(Data, Keys)).
 
 decode(Data, Key) ->
-  Keys=lists:reverse(schedule(Key)),
+  Keys = lists:reverse(schedule(Key)),
   list_to_binary(decode_data(Data, Keys)).
 
 encode_data(<<Data:8/binary, Rest/binary>>, Keys) ->
@@ -60,7 +63,7 @@ schedule(Key) ->
 subkeys(_Key, 17) ->
   [];
 subkeys(Key, N) ->
-  TmpKey=
+  TmpKey =
     case rotate(N) of
       1 ->
 	<<X1:1, L:27, X2:1, R:27>> = Key, 
