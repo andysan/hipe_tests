@@ -9,7 +9,7 @@ else
 	     func_head1.erl guard1.erl guard2.erl guard4.erl\
 	     list1.erl list2.erl
 	     rec1.erl receive*.erl sequence.erl try1.erl t_union1.erl\
-	     tak.erl tuple1.erl"
+	     tak.erl tuple*.erl"
   ## The following files are currently not giving right results
   #testfiles="fib2.erl guard3.erl"
 fi
