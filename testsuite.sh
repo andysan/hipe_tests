@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.51 2004/11/18 16:12:26 kostis Exp $
+## $Id: testsuite.sh,v 1.52 2004/12/12 12:27:14 kostis Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -35,6 +35,7 @@ fi
 comp_options=[o2]
 ERL_COMPILER_OPTIONS=[nowarn_shadow_vars]
 
+core_excl_tests="trivial_tests"	## no point
 no_native_excl_tests="native_tests core_tests"
 
 while test 1=1
@@ -68,6 +69,7 @@ do
      --core)
 	    shift
             comp_options="[core]"
+	    excluded_tests="${core_exlc_tests}"
             ;;
      --system)
 	    shift
@@ -153,7 +155,7 @@ if test -n "${help}" -o -z "${OTP_DIR}" -o $# -gt 1; then
                      it is equivalent to:
                        --comp_options "[no_native]" --only "system_tests"
 	core      -- equivalent to:
-                       --comp_options "[core]" --exclude "trivial_tests"
+                       --comp_options "[core]" --exclude "${core_excl_tests}"
  	no_native -- equivalent to:
                        --comp_options "[no_native]"
                        --exclude "${no_native_excl_tests}"
