@@ -17,7 +17,7 @@ loop(N,L,R) -> loop(N-1,L,len(L)).
 test() ->
     L = make_list(2000),
     statistics(runtime),
-    R = loop(100000,L,0),
+    R = loop(2,L,0),
     {_,Time} = statistics(runtime),
     io:format("\nruntime = ~p msecs\nresult = ~p\n",[Time,R]),
     R.

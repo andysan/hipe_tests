@@ -16,7 +16,7 @@ loop(N,R) -> loop(N-1,tak(18,12,6)).
 
 test() ->
     statistics(runtime),
-    R = loop(1000,0),
+    R = loop(2,0),
     {_,Time} = statistics(runtime),
     io:format("\nruntime = ~p msecs\nresult = ~p\n",[Time,R]),
     R.

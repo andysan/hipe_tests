@@ -3305,7 +3305,7 @@ loop(N,R) -> loop(N-1,most_distant_atom(pseudoknot())).
 
 test() ->
     statistics(runtime),
-    R = loop(3,0),
+    R = loop(1,0),
     {_,Time} = statistics(runtime),
     io:format("\nruntime = ~p msecs\nresult = ~p\n",[Time,R]),
     R.

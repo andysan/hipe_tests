@@ -12,7 +12,7 @@ loop(N,R) -> loop(N-1,fib(30)).
 
 test() ->
     statistics(runtime),
-    R = loop(50,0),
+    R = loop(2,0),
     {_,Time} = statistics(runtime),
     io:format("\nruntime = ~p msecs\nresult = ~p\n",[Time,R]),
     R.

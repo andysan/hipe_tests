@@ -19,7 +19,7 @@ loop(N,L,R) -> loop(N-1,L,nrev(L)).
 test() ->
     L = iota(100),
     statistics(runtime),
-    R = loop(10000,L,0),
+    R = loop(2,L,0),
     {_,Time} = statistics(runtime),
     io:format("\nruntime = ~p msecs\nresult = ~p\n",[Time,length(R)]),
     length(R).

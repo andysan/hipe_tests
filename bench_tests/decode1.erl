@@ -50,7 +50,7 @@ test() ->
 			 list_to_binary([52]),list_to_binary([95])]),
   
     statistics(runtime),
-    R = loop(500000,0,Frame),
+    R = loop(2,0,Frame),
     {_,Time} = statistics(runtime),
     io:format("\nruntime = ~p msecs\nresult = ~p\n",[Time,R]),
     R.

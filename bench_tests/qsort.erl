@@ -24,7 +24,7 @@ test() ->
 	 7,21,85,27,31,63,75, 4,95,99,
 	 11,28,61,74,18,92,40,53,59, 8],
     statistics(runtime),
-    R = loop(50000,L,0),
+    R = loop(2,L,0),
     {_,Time} = statistics(runtime),
     io:format("\nruntime = ~p msecs\nresult = ~p\n",[Time,length(R)]),
     length(R).

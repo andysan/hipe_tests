@@ -91,7 +91,7 @@ test() ->
     Tops = generate_sequences(100,32,1),
     Side = generate_sequence(32,0),
     statistics(runtime),
-    R = loop(30,Tops,Side,0),
+    R = loop(2,Tops,Side,0),
     {_,Time} = statistics(runtime),
     io:format("\nruntime = ~p msecs\nresult = ~p\n",[Time,R]),
     R.
