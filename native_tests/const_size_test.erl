@@ -8,8 +8,8 @@
 %%  History  :  * 2003-10-31 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2004/03/11 23:27:13 $
-%%    $Revision: 1.3 $
+%%    $Date: 2004/03/16 00:55:45 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 
 -module(const_size_test).
@@ -17,13 +17,12 @@
 
 test() ->
   compile([o2]),
-  %% division and round() calls below is just so that we return 42...
-  S = hipe_bifs:constants_size() / 4,
-  round(S).
+  %% integer division below is just so that we return 42...
+  hipe_bifs:constants_size() div 4.
 
 compile(Flags) ->
   hipe:c(?MODULE,Flags).
 
 return_const_tuple() ->
   Const = [501,502,503,504,505,506,507,508,509,510],
-  {Const,Const,Const,Const,Const,Const}.
+  {Const,{Const,{Const,3.14,Const},Const},Const}.
