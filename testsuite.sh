@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.32 2004/08/20 12:39:14 richardc Exp $
+## $Id: testsuite.sh,v 1.33 2004/08/20 15:47:26 richardc Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -29,8 +29,7 @@ fi
 comp_options=[o2]
 ERL_COMPILER_OPTIONS=[nowarn_shadow_vars]
 
-core_tests="core_tests basic_tests bs_tests bench_tests distr_tests system_tests process_tests"
-no_native_tests="native_tests core_tests"
+no_native_excl_tests="native_tests core_tests"
 
 while test 1=1
 do
@@ -63,12 +62,11 @@ do
      --core)
 	    shift
             comp_options="[core]"
-            only_tests="${core_tests}"
             ;;
      --no_nat*)
 	    shift
 	    comp_options="[no_native]"
-	    excluded_tests="${no_native_tests}"
+	    excluded_tests="${no_native_exlc_tests}"
 	    ;;
      --shared)
 	    shift
@@ -120,10 +118,9 @@ if test -z "$1" -o $# -gt 1; then
   echo "	hybrid-a  -- like the --hybrid option but with analysis enabled"
   echo "	core      -- equivalent to:"
   echo "                       --comp_options \"[core]\""
-  echo "                       --only \"${core_tests}\""
   echo "	no_native -- equivalent to:"
   echo "                       --comp_options \"[no_native]\""
-  echo "                       --exclude \"${no_native_tests}\""
+  echo "                       --exclude \"${no_native_excl_tests}\""
   echo "	quiet     -- do not send mail to user"
   echo "        OTP_DIR   -- full path name of the OTP installation directory"
   echo "========================================================================"
@@ -203,6 +200,8 @@ echo "The log will be left in $LOG_FILE"
 
 echo "Log for  : $HIPE_RTS $rts_options" > $LOG_FILE
 echo "Date-Time: `date +"%y%m%d-%H%M"`" >> $LOG_FILE
+echo "Testing $HIPE_RTS $rts_options" > $LOG_FILE
+echo "ERL_COMPILER_OPTIONS=$ERL_COMPILER_OPTIONS"
 
 rm -f test.beam
 $HIPE_RTS -make   ## This makes test.beam
