@@ -1,4 +1,4 @@
-module(catch_crash).
+-module(catch_crash).
 -export([test/0,compile/1]).
 
 -define(try_match(E),
