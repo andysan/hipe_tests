@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.30 2004/08/17 17:36:01 richardc Exp $
+## $Id: testsuite.sh,v 1.31 2004/08/18 16:11:08 richardc Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -27,6 +27,7 @@ fi
 ## Make default compiler options [o2]
 ##
 comp_options=[o2]
+ERL_COMPILER_OPTIONS=[nowarn_shadow_vars]
 
 core_tests="core_tests basic_tests bs_tests bench_tests distr_tests system_tests process_tests"
 no_native_tests="native_tests core_tests"
@@ -69,6 +70,19 @@ do
 	    comp_options="[no_native]"
 	    excluded_tests="${no_native_tests}"
 	    ;;
+     --shared)
+	    shift
+	    rts_options="-shared"
+            ;;
+     --hybrid)
+	    shift
+	    rts_options="-hybrid"
+            ;;
+     --hybrid-a)
+	    shift
+	    rts_options="-hybrid"
+            ERL_COMPILER_OPTIONS="[{core_transform,cerl_hybrid_transform},nowarn_shadow_vars]"
+            ;;
      -q)
 	    shift
 	    quiet=yes
@@ -90,8 +104,8 @@ done
 if test -z "$1" -o $# -gt 1; then
   echo " Usage: testsuite.sh [--rts_opts \"rts_opts\"] [--comp_opts \"comp_opts\"]"
   echo "                     [--add \"add_list\"]  [--exclude \"exclude_list\"]"
-  echo "                     [--only \"test_list\"] [--core] [--no_native]"
-  echo "                     [-q|--quiet] OTP_DIR"
+  echo "                     [--only \"test_list\"] [--shared] [--hybrid]"
+  echo "                     [--core] [--no_native] [-q|--quiet] OTP_DIR"
   echo " where: rts_opts  -- options to pass to Erlang/OTP executable"
   echo "        comp_opts -- options to pass to HiPE compiler"
   echo "                     when no options are given, they default to [o2]"
@@ -99,10 +113,15 @@ if test -z "$1" -o $# -gt 1; then
   echo "        exclude   -- the list of tests NOT to run"
   echo "        only      -- the list of tests to run; replaces default,"
   echo "                     both --exclude and --only can be specified at once"
-  echo "	core      -- a shorthand option which is equivalent to:"
+  echo "	shared    -- a shorthand option, equivalent to:"
+  echo "                       --rts_options \"-shared\""
+  echo "	hybrid    -- equivalent to:"
+  echo "                       --rts_options \"-hybrid\""
+  echo "	hybrid-a  -- like the --hybrid option but with analysis enabled"
+  echo "	core      -- equivalent to:"
   echo "                       --comp_options \"[core]\""
   echo "                       --only \"${core_tests}\""
-  echo "	no_native -- a shorthand option which is equivalent to:"
+  echo "	no_native -- equivalent to:"
   echo "                       --comp_options \"[no_native]\""
   echo "                       --exclude \"${no_native_tests}\""
   echo "	quiet     -- do not send mail to user"
@@ -112,7 +131,7 @@ if test -z "$1" -o $# -gt 1; then
 fi
 
 OTP_DIR=$1
-export OTP_DIR
+export OTP_DIR ERL_COMPILER_OPTIONS
 
 HIPE_RTS=$OTP_DIR/bin/erl
 
