@@ -9,10 +9,8 @@ HIPE=$1
 COMP_FLAGS=$2
 ERL_FLAGS=$3
 
-# testfiles="estone.erl"
-
 testfiles="fib.erl huff2.erl length.erl nrev.erl qsort.erl smith.erl tak.erl \
-           decode1.erl barnes2.erl ring.erl stable.erl life.erl \
+           decode1.erl barnes2.erl ring.erl stable.erl life.erl estone.erl \
            pseudoknot.erl"
 
 # nrev.erl  : when run twice, it used to seg-fault.
