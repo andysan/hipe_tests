@@ -1,5 +1,5 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% -*- erlang-indent-level: 2 -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ====================================================================
 %%  Filename : 	external_pids.erl
 %%  Module   :	external_pids
@@ -10,8 +10,8 @@
 %%		  Modified to be run without a shell script.
 %%  CVS      :
 %%              $Author: mikpe $
-%%              $Date: 2004/02/11 11:31:43 $
-%%              $Revision: 1.4 $
+%%              $Date: 2004/04/07 08:11:11 $
+%%              $Revision: 1.5 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -24,8 +24,6 @@ test() ->
   OTP_DIR = os:getenv("OTP_DIR"),
   USER = os:getenv("USER"),
   MODULE = atom_to_list(?MODULE),
-  os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ "_bar@localhost -noshell -s " ++ MODULE ++ " b " ++ USER ++ "_foo@localhost &"),
-  receive after 1000 -> ok end,		% prevent race condition
   R = os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ "_foo@localhost -noshell -s " ++ MODULE ++ " a"),
   list_to_atom(R).
 
@@ -36,7 +34,11 @@ compile(Opts) ->
 
 a() ->
   S = spawn(fun () -> server([]) end),
-  global:register_name(t_serv,S).
+  global:register_name(t_serv, S),
+  OTP_DIR = os:getenv("OTP_DIR"),
+  USER = os:getenv("USER"),
+  MODULE = atom_to_list(?MODULE),
+  os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ "_bar@localhost -noshell -s " ++ MODULE ++ " b " ++ USER ++ "_foo@localhost").
 
 b([Node]) ->
   spawn(fun() -> client(Node) end).
