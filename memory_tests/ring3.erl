@@ -1,14 +1,18 @@
 -module(ring3).
 
--export([test/0]).
+-export([test/0, compile/1]).
+
+compile(Opts) ->
+    hipe:c(?MODULE, Opts).
 
 test() ->
-    ramp("ring3-n1000-0-10000-1-hybrid.txt", 1000, 0, 10000, 1000),
+    ramp("ring3.txt", 1000, 0, 10000, 1000),
     ok.
 
 ramp(File, N, From, To, Step) ->
     process_flag(trap_exit, true),
     {ok, Fd} = file:open(File, [write]),
+    io:fwrite(Fd, "  N\t  Spawn\t  Send~n", []),
     lists:foreach(fun(Size) ->
 			  format(Fd, do_run(N, Size))
 		  end, lists:seq(From,To,Step)),
