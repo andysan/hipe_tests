@@ -8,9 +8,9 @@
 %%		the magic number that is printed appears below.
 %%  History  :  * 2003-10-31 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2004/08/21 15:05:44 $
-%%    $Revision: 1.5 $
+%%    $Author: richardc $
+%%    $Date: 2004/10/28 04:07:29 $
+%%    $Revision: 1.6 $
 %% ====================================================================
 
 -module(const_size_test).
@@ -22,19 +22,16 @@
 %%
 %%	Constant					Size (words)
 %% --------------------------------------------------------------------
-%% 1. [{const_size_test,return_const_tuple,0}]		   9 (6 + 3)
-%% 2. {[501,502,503,504,505,506,507,508,509,510],
+%% 1. {[501,502,503,504,505,506,507,508,509,510],
 %%     {[501,502,503,504,505,506,507,508,509,510],
 %%      {[501,502,503,504,505,506,507,508,509,510],
 %%       3.14000,
 %%       [501,502,503,504,505,506,507,508,509,510]},
 %%      [501,502,503,504,505,506,507,508,509,510]},
 %%     [501,502,503,504,505,506,507,508,509,510]}	 138
-%% 3. [{const_size_test,compile,1}]			   9
-%% 4. [{const_size_test,test,0}]			   9
-%% 5. [o2]						   5 (2 + 3)
+%% 2. [o2]						   5 (2 + 3)
 %% --------------------------------------------------------------------
-%%                                                       170
+%%                                                       143
 %% Explanation
 %% 1. size = 9 is 4 for the tuple, 2 for the list, and
 %%		  3 header words (for the constant entry).
@@ -43,9 +40,7 @@
 
 test() ->
   compile([o2]),
-  ConstPoolSize = hipe_bifs:constants_size(),
-  %% integer division below is just so that we return 42...
-  ConstPoolSize div 4.
+  hipe_bifs:constants_size().
 
 compile(Opts0) ->
   case proplists:get_bool(core, Opts0) of
