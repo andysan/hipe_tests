@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.4 2003/12/07 23:21:25 kostis Exp $
+%%     $Id: undef_func.erl,v 1.5 2003/12/08 01:03:47 kostis Exp $
 %%
 
 -module(undef_func).
@@ -51,8 +51,8 @@ test() ->
 		 lists:foreach(fun (MFA) ->
 				  io:format("exported but unused: ~s\n",
 					    [format_mfa(MFA)])
-			       end, UnusedLocals),
-		 {unused_locals_in_hipe,UnusedLocals}
+			       end, ReallyUnusedExports),
+		 {unused_exports_in_hipe,ReallyUnusedExports}
 	 end,
     {U1,U2,U3}.
 
