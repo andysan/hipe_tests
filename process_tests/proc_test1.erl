@@ -9,9 +9,9 @@
 %%  Notes    :  Adapted from after_SUITE by 'bjorn@erix.ericsson.se'.
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: happi $
-%%    $Date: 2001/03/28 08:51:53 $
-%%    $Revision: 1.3 $
+%%    $Author: kostis $
+%%    $Date: 2001/08/13 15:52:41 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -31,7 +31,7 @@ test() ->
   {R1,R2}.
 
 compile(Flags) ->
-  hipe:c(proc_test1,Flags).
+  hipe:c(?MODULE,Flags).
 
 %% t_after:
 %% Make sure that timeouts are accurate 'enough'. 
