@@ -9,9 +9,9 @@
 %%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: happi $
-%%              $Date: 2001/06/14 12:08:41 $
-%%              $Revision: 1.1 $
+%%              $Author: kostis $
+%%              $Date: 2001/07/19 18:56:09 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -91,10 +91,10 @@ dynamic(Bin, S1) when S1 >= 0 ->
 dynamic(Bin, _) -> ok.
 
 dynamic(Bin, S1, S2, A, B) ->
-						%    io:format("~p ~p ~p ~p\n", [S1,S2,A,B]),
+  %% io:format("~p ~p ~p ~p\n", [S1,S2,A,B]),
   case Bin of
     <<A:S1,B:S2>> ->
-      io:format("~p ~p ~p ~p\n", [S1,S2,A,B]),
+      %% io:format("~p ~p ~p ~p\n", [S1,S2,A,B]),
       ok;
     Other -> erlang:fault(badmatch, [Bin,S1,S2,A,B])
   end.
