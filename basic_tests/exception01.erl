@@ -6,8 +6,8 @@
 %%  History  :  * 2001-09-17 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2004/02/06 16:05:45 $
-%%    $Revision: 1.6 $
+%%    $Date: 2004/10/04 18:59:53 $
+%%    $Revision: 1.7 $
 %% ====================================================================
 
 -module(exception01).
@@ -90,7 +90,7 @@ pending_catched(First, Second, Expected) ->
     end.
 
 pending_exit_message(Args, Expected) ->
-    ok = io:format("Trapping EXITs from spawn_link(~p, ~p, ~p)\n",
+    ok = io:format("Trapping exits from spawn_link(~p, ~p, ~p)\n",
                    [?MODULE, bad_guy, Args]),
     process_flag(trap_exit, true),
     Pid = spawn_link(?MODULE, bad_guy, Args),
