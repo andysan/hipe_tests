@@ -10,8 +10,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/02/13 16:49:25 $
-%%    $Revision: 1.2 $
+%%    $Date: 2001/07/12 17:59:05 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -195,21 +195,21 @@ terms_float() ->
 %%
 %% XXX Don't expect this to work on 4.4.1 or earlier.
 
-bad_terms() ->
-    test_terms(fun corrupter/1).
+%% bad_terms() ->
+%%     test_terms(fun corrupter/1).
 			     
-corrupter(Term) ->
-    Bin = term_to_binary(Term),
-    corrupter(Bin, size(Bin)-1).
+%% corrupter(Term) ->
+%%     Bin = term_to_binary(Term),
+%%     corrupter(Bin, size(Bin)-1).
 
-corrupter(Bin, Pos) when Pos >= 0 ->
-    {Shorter_Bin, _} = split_binary(Bin, Pos),
-    catch binary_to_term(Shorter_Bin), %% emulator shouldn't crash
-    Moved_Bin = list_to_binary([Shorter_Bin]),
-    catch binary_to_term(Moved_Bin), %% emulator shouldn't crash
-    corrupter(Moved_Bin, Pos-1);
-corrupter(_Bin, _) ->
-    ok.
+%% corrupter(Bin, Pos) when Pos >= 0 ->
+%%     {Shorter_Bin, _} = split_binary(Bin, Pos),
+%%     catch binary_to_term(Shorter_Bin), %% emulator shouldn't crash
+%%     Moved_Bin = list_to_binary([Shorter_Bin]),
+%%     catch binary_to_term(Moved_Bin), %% emulator shouldn't crash
+%%     corrupter(Moved_Bin, Pos-1);
+%% corrupter(_Bin, _) ->
+%%     ok.
 
 test_terms(Test_Func) ->
     Test_Func(atom),
