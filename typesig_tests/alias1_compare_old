@@ -1,0 +1,3 @@
+Ok: {alias1,module_info,0} typesig: (()->any())	typean: (()->any())
+Ok: {alias1,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
+Ok: {alias1,t,1} typesig: (({'foo','bar'})->{'foo','bar'})	typean: ((any())->{'foo','bar'})

@@ -1,0 +1,6 @@
+Ok: {guard3,module_info,0} typesig: (()->any())	typean: (()->any())
+Ok: {guard3,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
+Ok: {guard3,t1,1} typesig: ((number())->'ok')	typean: ((any())->'ok')
+Ok: {guard3,t2,1} typesig: ((1)->'ok')	typean: ((any())->'ok')
+Ok: {guard3,t3,1} typesig: (('foo')->'ok')	typean: ((any())->'ok')
+Ok: {guard3,t4,1} typesig: (('foo')->'ok')	typean: ((any())->'ok')
