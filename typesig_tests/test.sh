@@ -8,7 +8,7 @@ else
 	     rec1.erl receive1.erl \
 	     tuple1.erl"
   ## The following files are currently not giving right results
-  #testfiles="fib.erl fib2.erl list2.erl receive2.erl sequence.erl tak.erl try1.erl"
+  #testfiles="fib1.erl fib2.erl list2.erl receive2.erl sequence.erl tak.erl try1.erl"
 fi
 
 HIPE=$1/bin/erl
