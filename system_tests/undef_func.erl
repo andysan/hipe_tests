@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.25 2005/01/31 14:54:58 tobiasl Exp $
+%%     $Id: undef_func.erl,v 1.26 2005/04/04 19:25:25 kostis Exp $
 %%
 
 -module(undef_func).
@@ -99,6 +99,8 @@ application_interface() ->
      {hipe_ceach,c,3},
      {hipe_jit,start,0},
      {hipe_tool,start,0},
+
+     {hipe_digraph,take_indep_scc,1},%% used by Dialyzer
 
      {hipe_dot,translate_digraph,3}, %% eventually these will be used 
      {hipe_dot,translate_digraph,5}, %% inside hipe, but now they are 
