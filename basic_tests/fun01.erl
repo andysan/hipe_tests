@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Copyright (c) 2001 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <2001-03-22 18:38:00 richardc>
+%% Time-stamp: <2001-04-19 19:44:12 richardc>
 %% ====================================================================
 %%  Filename : fun01.erl
 %%  Module   : fun01
@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: richardc $
-%%              $Date: 2001/03/23 09:40:35 $
-%%              $Revision: 1.3 $
+%%              $Date: 2001/04/19 17:47:30 $
+%%              $Revision: 1.4 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -48,7 +48,8 @@ compile(O) ->
   hipe:c({?MODULE,c_barity,0}, O),
   hipe:c({?MODULE,b_fun,0}, O),
   hipe:c({?MODULE,l,0}, O),
-  hipe:c({?MODULE,l2,2}, O).
+  hipe:c({?MODULE,l2,2}, O),
+  {ok, ?MODULE}.
 
 
 l() ->
