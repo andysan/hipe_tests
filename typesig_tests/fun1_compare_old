@@ -5,5 +5,5 @@
  typesig: ((function(),[any()]) -> [any()])
   typean: ((_,_) -> [any()])
 {fun1,mmap,2} : OK
- typesig: ((function()|{_,_},[any()]) -> [any()])
+ typesig: ((function()|{atom(),atom()},[any()]) -> [any()])
   typean: ((_,_) -> [any()])
