@@ -3,7 +3,7 @@
 ## File:      alltests.sh
 ## Author(s): Kostis Sagonas
 ##
-## $Id: alltests.sh,v 1.5 2001/07/16 15:47:04 kostis Exp $
+## $Id: alltests.sh,v 1.6 2001/08/02 16:57:09 kostis Exp $
 ##
 
 echo "-------------------------------------------------------"
@@ -76,7 +76,7 @@ member ()
 }
 # ---------------------------------------------------------------------
 
-default_testlist="basic_tests trivial_tests process_tests bs_tests bench_tests"
+default_testlist="trivial_tests basic_tests process_tests bs_tests bench_tests"
 
 if test -z "$only_tests"; then
   testlist="$default_testlist $added_tests"
