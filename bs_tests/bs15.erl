@@ -4,10 +4,13 @@
 %%  Purpose  :  These tests are intended to test the construction and 
 %%              matching of binaries using variable sizes 
 %%  Notes    :  Added test that crashed beam compiler
+%%              Added some more test which crashed when segments of
+%%              size zero were used and one that did not convert integers 
+%%              to floats when constructing binaries
 %%  CVS      :
 %%              $Author: pergu $
-%%              $Date: 2004/01/29 16:43:46 $
-%%              $Revision: 1.4 $
+%%              $Date: 2004/02/04 15:18:28 $
+%%              $Revision: 1.5 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(bs15).
@@ -31,7 +34,13 @@ test() ->
   {A4,B4} = match4(N4,<<1:N4, A4:4, B4/binary>>),
   Y = <<5>>,
   Y = match5(a, Y),
+  <<73>> = gen1(8, 0, <<73>>),
+  <<171>> = gen2(8, 7, 2#10101010101010101),
+  <<0:64>> = construct(),
   ok.
+
+construct() ->
+  <<0:64/float>>.
    
 match1(N, Bin) ->
   <<1:12, 2:N, A:2>>=Bin,
@@ -55,3 +64,9 @@ match5(X, Y) ->
             Y2 = 8
     end,
     <<5:Y2>> = Y.
+    
+gen1(N, S, A) ->
+  <<A:S/binary-unit:1, A:(N-S)/binary-unit:1>>.
+
+gen2(N, S, A) ->
+    <<A:S/little, A:(N-S)/little>>.
