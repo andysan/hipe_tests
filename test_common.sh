@@ -7,6 +7,7 @@ ix_exec ()
   } | sh
 }
 
+rm -f ./test.beam	## possibly left here from a previous run
 ln -s ../test.beam .
 
 for file in $testfiles ; do
@@ -28,8 +29,6 @@ for file in $testfiles ; do
 	diff -sN ${resfile} ${test}_old
     fi
 done
-
-rm -f ./test.beam
 
 echo
 #============================================================================
