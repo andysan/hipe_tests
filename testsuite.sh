@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.13 2003/04/02 14:29:20 kostis Exp $
+## $Id: testsuite.sh,v 1.14 2003/04/22 18:01:51 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -197,8 +197,6 @@ $GREP "no match" $LOG_FILE >> $RES_FILE
 $GREP "bus" $LOG_FILE >> $RES_FILE
 # for really bad outcomes
 $GREP "missing" $LOG_FILE >> $RES_FILE
-# for wrong compilation
-$GREP "undef" $LOG_FILE >> $RES_FILE
 # for overflows (check for Overflow & overflow)
 $GREP "verflow" $LOG_FILE >> $RES_FILE
 # for ... missing command...
