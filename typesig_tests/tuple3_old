@@ -1,6 +1,6 @@
 
 tuple3:test/0 :: (() -> {'tuple',0,[{_,_} | {_,_,_}]})
-tuple3:abstract/1 :: ((binary() | [] | tuple()) -> {'nil',0} | {'bin',0,[{'bin_element',0,{'integer',0,_},'default','default'}]} | {'tuple',0,[{'nil',0} | {'bin',0,[any()]} | {'tuple',0,[any()]}]})
+tuple3:abstract/1 :: ((binary() | [] | tuple()) -> {'nil',0} | {'bin',0,[{'bin_element',0,{_,_,_},'default','default'}]} | {'tuple',0,[{'nil',0} | {'bin',0,[any()]} | {'tuple',0,[any()]}]})
 tuple3:abstract_list/1 :: (([binary() | [] | tuple()]) -> [{'nil',0} | {'bin',0,[any()]} | {'tuple',0,[any()]}])
 tuple3:module_info/0 :: (() -> any())
 tuple3:module_info/1 :: ((_) -> any())

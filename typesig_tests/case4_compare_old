@@ -2,5 +2,5 @@
  typesig: none()
   typean: ((_) -> number())
 {case4,t2,1} : OK
- typesig: (({'hello',1}) -> integer())
+ typesig: (({'hello',1}) -> 2)
   typean: ((_) -> number())

@@ -43,8 +43,8 @@ loop(R) ->
         {From,heaven} ->
 	    reply(From, angelic:call(R)),
 	    loop(R);
-	%% {From,outer_space} ->
-	%%     extraterrestrial:call(R);
+       %% {From,outer_space} ->
+       %%     extraterrestrial:call(R);
 	{From,hell} ->
 	    reply(From, 'fan!'),
 	    exit(done);
