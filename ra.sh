@@ -5,12 +5,21 @@
 ## Author(s): Kostis Sagonas
 ## Purpose:   To test the HiPE system with all register allocators.
 ##
-## $Id: ra.sh,v 1.2 2001/10/04 14:02:56 kostis Exp $
+## $Id: ra.sh,v 1.3 2004/10/16 15:23:30 richardc Exp $
 ##====================================================================
 
-OSH_DIR=$1
+# Run from testsuite directory
+startdir=`pwd`
+testdir=`dirname $0`
+cd $testdir
 
-./testsuite.sh --comp_opts "[o2]" $OSH_DIR	## this tests the default RA
-./testsuite.sh --comp_opts "[o2,\{regalloc,linear_scan\}]" $OSH_DIR
-./testsuite.sh --comp_opts "[o2,\{regalloc,graph_color\}]" $OSH_DIR
-./testsuite.sh --comp_opts "[o2,\{regalloc,coalescing\}]"  $OSH_DIR
+if test $# -eq 0; then
+    OTP_DIR=$startdir
+else
+    OTP_DIR=$1
+fi
+
+./testsuite.sh --comp_opts "[o2]" "$OTP_DIR"	## this tests the default RA
+./testsuite.sh --comp_opts "[o2,\{regalloc,linear_scan\}]" "$OTP_DIR"
+./testsuite.sh --comp_opts "[o2,\{regalloc,graph_color\}]" "$OTP_DIR"
+./testsuite.sh --comp_opts "[o2,\{regalloc,coalescing\}]" "$OTP_DIR"

@@ -3,9 +3,9 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.44 2004/10/16 14:10:31 richardc Exp $
+## $Id: testsuite.sh,v 1.45 2004/10/16 15:23:30 richardc Exp $
 ##
-## Run with no arguments or use option --help for usage/help.
+## Run with option --help for usage information.
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -20,6 +20,7 @@
 #===========================================================================
 
 # Run from testsuite directory
+startdir=`pwd`
 testdir=`dirname $0`
 cd $testdir
 
@@ -115,19 +116,25 @@ do
     esac
 done
 
+if test $# -eq 0; then
+    OTP_DIR=$startdir
+else
+    OTP_DIR=$1
+fi
 
 ##
-## OTP dir argument missing: just enlighten the poor user...
+## If something's wrong, or --help was given, print help and exit
 ##
-if test -n "${help}" -o -z "$1" -o $# -gt 1; then
+if test -n "${help}" -o -z "${OTP_DIR}" -o $# -gt 1; then
   cat <<EOF
 =============================================================================
  Usage: testsuite.sh [--rts_opts "rts_opts"] [--comp_opts "comp_opts"]
                      [--add "add_list"]  [--exclude "exclude_list"]
                      [--only "test_list"] [--shared] [--hybrid]
                      [--system] [--core] [--no_native] [-q|--quiet]
-                     [--list] [--help] OTP_DIR
- where: rts_opts  -- options to pass to Erlang/OTP executable
+                     [--list] [--help] [OTP_DIR]
+ where: OTP_DIR   -- directory of OTP/Erlang system; default is current dir.
+        rts_opts  -- options to pass to Erlang/OTP executable
         comp_opts -- options to pass to HiPE compiler
                      when no options are given, they default to [o2]
         add       -- the list of additional tests to run
@@ -150,7 +157,6 @@ if test -n "${help}" -o -z "$1" -o $# -gt 1; then
   	quiet     -- do not send mail to user
   	list      -- list all available test sets and exit
   	help      -- show this message and exit
-        OTP_DIR   -- full path name of the OTP installation directory
 =============================================================================
 EOF
   exit
@@ -161,7 +167,6 @@ echo "========================================================================"
 #============================================================================
 # Generic stuff
 #============================================================================
-OTP_DIR=$1
 export OTP_DIR ERL_COMPILER_OPTIONS
 #============================================================================
 # Some stuff necessary for running Dialyzer appear below
@@ -243,7 +248,6 @@ $HIPE_RTS -make   ## This makes test.beam
 
 rm -f core erl_crash.dump */core */erl_crash.dump
 
-echo Current dir is `pwd`
 ./alltests.sh --rts_opts "$rts_options" --comp_opts "$comp_options" \
 	--only "$only_tests" --exclude "$excluded_tests" \
 	--add "$added_tests" "$HIPE_RTS"  >> $LOG_FILE 2>&1
