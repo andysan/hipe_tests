@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.10 2004/03/30 14:37:59 dalu7049 Exp $
+%%     $Id: undef_func.erl,v 1.11 2004/04/08 13:34:55 kostis Exp $
 %%
 
 -module(undef_func).
@@ -249,5 +249,31 @@ exports_used_as_remote_apply_calls() ->
      {hipe_amd64_specific_sse2,var_range,1},
      {hipe_amd64_specific_sse2,breadthorder,1},
      {hipe_amd64_specific_sse2,postorder,1},
-     {hipe_amd64_specific_sse2,reverse_postorder,1}
+     {hipe_amd64_specific_sse2,reverse_postorder,1},
+
+     {hipe_amd64_specific_x87,analyze,1},
+     {hipe_amd64_specific_x87,bb,2},
+     {hipe_amd64_specific_x87,args,1},
+     {hipe_amd64_specific_x87,labels,1},
+     {hipe_amd64_specific_x87,livein,2},
+     {hipe_amd64_specific_x87,liveout,2},
+     {hipe_amd64_specific_x87,succ_map,1},
+     {hipe_amd64_specific_x87,uses,1},
+     {hipe_amd64_specific_x87,defines,1},
+     % {hipe_amd64_specific_x87,def_use,1},
+     % {hipe_amd64_specific_x87,is_arg,1},
+     % {hipe_amd64_specific_x87,is_move,1},
+     % {hipe_amd64_specific_x87,is_fixed,1},
+     {hipe_amd64_specific_x87,is_global,1},
+     {hipe_amd64_specific_x87,is_precoloured,1},
+     {hipe_amd64_specific_x87,reg_nr,1},
+     % {hipe_amd64_specific_x87,non_alloc,1},
+     {hipe_amd64_specific_x87,allocatable,0},
+     {hipe_amd64_specific_x87,physical_name,1},
+     % {hipe_amd64_specific_x87,all_precoloured,0},
+     % {hipe_amd64_specific_x87,new_spill_index,1},
+     % {hipe_amd64_specific_x87,var_range,1},
+     {hipe_amd64_specific_x87,breadthorder,1},
+     {hipe_amd64_specific_x87,postorder,1},
+     {hipe_amd64_specific_x87,reverse_postorder,1}
     ].
