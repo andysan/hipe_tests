@@ -1,0 +1,12 @@
+{arith1,mystery,1} : OK
+ typesig: ((number())->integer())
+  typean: ((any())->integer())
+{arith1,next_random,1} : OK
+ typesig: ((integer())->integer())
+  typean: ((any())->integer())
+{arith1,next_random2,1} : OK
+ typesig: ((integer())->{integer(),integer()})
+  typean: ((any())->{integer(),number()})
+{arith1,num,1} : OK
+ typesig: ((number())->number())
+  typean: ((any())->number())

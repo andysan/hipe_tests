@@ -6,21 +6,22 @@
 %% Created : 31 Jan 2005 by Kostis Sagonas <kostis@it.uu.se>
 %%-------------------------------------------------------------------
 -module(arith1).
--compile(export_all).
+-export([next_random/1, next_random2/1, mystery/1]).
 
-next_random(N) -> (N * 1713) rem 1001.
+%% Types for the first two functions should be correctly inferred by
+%% having built-in knowledge about the arithmetic operations.
+next_random(N) ->
+  (N * 1713) rem 1001.
 
 next_random2(N) -> 
   R = N * 1713,
   {R rem 1001, R}.
 
-num(X) ->
-  X * 2.
-
-int() ->
-  42.
-
+%% Inferring precise types (integer() rather than number()) for these
+%% two functions is quite hard though.
 mystery(X)->
   Y = num(X),
-  4 = Y, 
-  Y.
+  Y div 2.
+
+num(X) ->
+  X * 2.
