@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.52 2004/12/12 12:27:14 kostis Exp $
+## $Id: testsuite.sh,v 1.53 2004/12/12 13:05:49 kostis Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -69,7 +69,7 @@ do
      --core)
 	    shift
             comp_options="[core]"
-	    excluded_tests="${core_exlc_tests}"
+	    excluded_tests="${core_excl_tests}"
             ;;
      --system)
 	    shift
