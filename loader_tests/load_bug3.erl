@@ -1,10 +1,10 @@
 %%%-------------------------------------------------------------------
 %%% File    : load_bug3.erl
-%%% Author  : Per Gustafsson <pergu@dhcp-12-245.it.uu.se>
+%%% Author  : Kostis Sagonas <kostis@it.uu.se>
 %%% Description : This test case uncovers a bug which makes native 
-%%%               compiled code call a generation too old beam code.
-%%%               When apply is used to make the call.     
-%%% Created : 15 Jun 2004 by Per Gustafsson <pergu@dhcp-12-245.it.uu.se>
+%%%               compiled apply calls call BEAM code which is a
+%%%               generation too old.
+%%% Created : 18 Jun 2004 by Kostis Sagonas <kostis@it.uu.se>
 %%%-------------------------------------------------------------------
 -module(load_bug3).
 
@@ -29,7 +29,7 @@ form_unique_modname() ->
 
 compile_and_run(FN, ModName) ->
   c:c(FN, [{outdir, "/tmp/"}]),
-  ModName:tmp().
+  ModName:tmp(). % NOTE: Modname is statically unknown: this is an apply call
 
 write_file(ModNameString, Ret) ->
   ModBin = list_to_binary(ModNameString),

@@ -1,9 +1,9 @@
 %%%-------------------------------------------------------------------
 %%% File    : load_bug1.erl
-%%% Author  : Per Gustafsson <pergu@dhcp-12-245.it.uu.se>
+%%% Author  : Per Gustafsson <pergu@it.uu.se>
 %%% Description : This test case uncovers a bug which makes native 
 %%%               compiled code call a generation too old beam code 
-%%% Created : 15 Jun 2004 by Per Gustafsson <pergu@dhcp-12-245.it.uu.se>
+%%% Created : 15 Jun 2004 by Per Gustafsson <pergu@it.uu.se>
 %%%-------------------------------------------------------------------
 -module(load_bug1).
 
@@ -30,7 +30,7 @@ test() ->
 
 compile_and_run(FN) ->
   c:c(FN, []),
-  ?ModName:tmp().
+  ?ModName:tmp(). %% NOTE: name is statically known -- this is a remote call
 
 write_file(ModNameString, Ret) ->
   ModBin = list_to_binary(ModNameString),
