@@ -6,8 +6,8 @@
 %%  History  :  * 2001-09-17 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/05/07 13:06:33 $
-%%    $Revision: 1.4 $
+%%    $Date: 2003/12/17 00:54:48 $
+%%    $Revision: 1.5 $
 %% ====================================================================
 
 -module(exception01).
@@ -16,16 +16,14 @@
 -export([bad_guy/2]).
 
 test() ->
-    pending_errors([foo]).
+    pending_errors().
     
 compile(Flags) ->
     hipe:c(?MODULE,Flags).
 
-pending_errors(doc) ->
-    ["Test various exceptions, in the presence of a previous error ",
-     "suppressed in a guard."];
-pending_errors(suite) -> [];
-pending_errors(Config) when list(Config) ->
+%% Test various exceptions, in the presence of a previous error
+%% suppressed in a guard.
+pending_errors() ->
     pending(e_badmatch, {badmatch,b}),
     pending(x, function_clause),
     pending(e_case, {case_clause,xxx}),
@@ -51,8 +49,8 @@ bad_guy(_, e_if) ->
     if
         a == b -> ok
     end;                                        % if_clause
-bad_guy(_, e_badarith) ->
-    1+b;                                        % badarith
+%% bad_guy(_, e_badarith) ->
+%%     1+b;                                        % badarith
 bad_guy(_, e_undef) ->
     non_existing_module:foo();                  % undef
 bad_guy(_, e_timeoutval) ->
