@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Copyright (c) 2001 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <01/06/14 13:12:20 happi>
+%% Time-stamp: <2004-08-20 17:14:46 richardc>
 %% ====================================================================
 %%  Filename : 	bs.erl
 %%  Module   :	bs
@@ -9,9 +9,9 @@
 %%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: pergu $
-%%              $Date: 2004/07/30 13:26:53 $
-%%              $Revision: 1.5 $
+%%              $Author: richardc $
+%%              $Date: 2004/08/20 15:46:55 $
+%%              $Revision: 1.6 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -21,8 +21,15 @@
 -export([test/0,compile/1]).
 -import(lists, [seq/2]).
 
-compile(O) ->
-  hipe:c(?MODULE,[{core,false}|O]).
+compile(Opts0) ->
+  case proplists:get_bool(core, Opts0) of
+    true ->
+	test:note(?MODULE, "disabling compilation from core - BUG"),
+	Opts = [{core,false}|Opts0];
+    false ->
+	Opts = Opts0
+  end,
+  hipe:c(?MODULE, Opts).
 
 test() ->
   {integer(),
