@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.40 2004/10/04 18:36:51 kostis Exp $
+## $Id: testsuite.sh,v 1.41 2004/10/04 18:42:08 kostis Exp $
 ##
 ## Run with no arguments for usage/help.
 
@@ -272,8 +272,6 @@ pat="${pat}\|segmentation fault"
 pat="${pat}\|core dump"
 # when no output file is generated
 pat="${pat}\|no match"
-# for serious errors
-pat="${pat}\|ERROR REPORT"
 # for bus error
 pat="${pat}\|bus err"
 # for overflows
