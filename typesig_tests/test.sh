@@ -1,7 +1,7 @@
 #! /bin/sh
 
 if test $# -eq 2; then
-  testfiles="$2"	## test file is given as extra argument
+  testfiles="$2"	## test file is given as unique extra argument
 else
   testfiles="alias1.erl case*.erl catch1.erl cons.erl\
 	     func_head1.erl guard*.erl list1.erl \
