@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.50 2004/11/15 17:34:12 kostis Exp $
+## $Id: testsuite.sh,v 1.51 2004/11/18 16:12:26 kostis Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -304,8 +304,8 @@ pat="${pat}\|no such file"
 pat="${pat}\|missing"
 # for warnings that the BEAM and HiPE compiler generate
 pat="${pat}\|Warning"
-# Dialyzer warnings:
-pat="${pat}\|\{*,*,*\}:"
+# Dialyzer warnings: -- apparently this line causes trouble on Solaris
+## pat="${pat}\|\{*,*,*\}:"
 #
 pat="${pat}\|fatal"
 # some other problems that should highlight bugs in the test suite
