@@ -14,10 +14,37 @@ export HiPE_COMP_OPTS
 
 testfiles="hc.erl"
 
-testdir="compiler_tests"
+##===========================================================================
+## NOTE: this does not use the same test.erl file as the other test dirs.
+##===========================================================================
 
-#============================================================================
+ix_exec ()
+{
+    echo "ctest:start("$2","$3","$4"). halt()." | $1 $5 -pa . 
+}
 
-. ../test_common.sh
+rm -f ctest.beam
+$HIPE -make   ## This makes ctest.beam
 
+for file in $testfiles ; do
+    test=`basename $file .erl`
+    echo
+    echo "Testing "$test".erl:"
+    if test -f ${test}_new ; then
+        rm -f ${test}_new
+    fi
+    full_hostname=`hostname`
+    resfile=${test}_new@${full_hostname}
+    ix_exec $HIPE $test "$COMP_FLAGS" "$resfile" "$ERL_FLAGS"
+    status=0
+    diff -sN ${resfile} ${test}_old || status=1 2>&1
+    if test "$status" = 0 ; then
+	rm -f ${resfile}
+    else
+	echo "compiler_tests/$test differ!!!"
+	diff -sN ${resfile} ${test}_old
+    fi
+done
+
+echo
 #============================================================================
