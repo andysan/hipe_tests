@@ -5,9 +5,9 @@
 %%  Purpose  :  Checks correct handling of exceptions.
 %%  History  :  * 2001-09-17 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2004/10/04 18:59:53 $
-%%    $Revision: 1.7 $
+%%    $Author: richardc $
+%%    $Date: 2004/10/27 21:51:27 $
+%%    $Revision: 1.8 $
 %% ====================================================================
 
 -module(exception01).
@@ -104,16 +104,24 @@ pending_exit_message(Args, Expected) ->
     end,
     process_flag(trap_exit, false).
 
-pending({badarg, [{erlang,Bif,BifArgs},{?MODULE,Func,Arity}|_]},
-	Func, Args, _Code)
-  when atom(Bif), list(BifArgs), length(Args) == Arity ->
+%% pending({badarg, [{erlang,Bif,BifArgs},{?MODULE,Func,Arity}|_]},
+%% 	Func, Args, _Code)
+%%   when atom(Bif), list(BifArgs), length(Args) == Arity ->
+%%     ok;
+pending({badarg,Trace}, _, _, _) when list(Trace) ->
     ok;
-pending({undef,[{non_existing_module,foo,[]}|_]}, _, _, _) ->
+%% pending({undef,[{non_existing_module,foo,[]}|_]}, _, _, _) ->
+%%     ok;
+pending({undef,Trace}, _, _, _)  when list(Trace) ->
     ok;
-pending({function_clause,[{?MODULE,Func,Args}|_]}, Func, Args, _Code) ->
+%% pending({function_clause,[{?MODULE,Func,Args}|_]}, Func, Args, _Code) ->
+%%     ok;
+pending({function_clause,Trace}, _, _, _) when list(Trace) ->
     ok;
-pending({Code,[{?MODULE,Func,Arity}|_]}, Func, Args, Code)
-  when length(Args) == Arity ->
+%% pending({Code,[{?MODULE,Func,Arity}|_]}, Func, Args, Code)
+%%   when length(Args) == Arity ->
+%%     ok;
+pending({Code,Trace}, _, _, Code) when list(Trace) ->
     ok;
 pending(Reason, _Function, _Args, _Code) ->
     exit({bad_exit_reason,Reason}).

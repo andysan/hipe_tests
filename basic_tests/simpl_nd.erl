@@ -6,9 +6,9 @@
 %%  Purpose  :  Tests whether the translation of some guards works.
 %%  History  :	* 2000-10-25 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2004/02/06 16:05:45 $
-%%    $Revision: 1.4 $
+%%    $Author: richardc $
+%%    $Date: 2004/10/27 21:51:27 $
+%%    $Revision: 1.5 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -19,10 +19,14 @@
 -export([test/0,compile/1]).
 
 test() ->
-    {IfExit,{If2,[If3|_IfRest]}} = (catch if_end_error()),
-    {CaseExit,{Case2,[Case3|_CaseRest]}} = (catch case_end_error()),
-    If = {IfExit,{If2,[If3]}},
-    Case = {CaseExit,{Case2,[Case3]}},
+%%     {IfExit,{If2,[If3|_IfRest]}} = (catch if_end_error()),
+    {IfExit,{If2,_Trace1}} = (catch if_end_error()),
+%%     {CaseExit,{Case2,[Case3|_CaseRest]}} = (catch case_end_error()),
+    {CaseExit,{Case2,_Trace2}} = (catch case_end_error()),
+%%     If = {IfExit,{If2,[If3]}},
+    If = {IfExit,If2},
+%%     Case = {CaseExit,{Case2,[Case3]}},
+    Case = {CaseExit,Case2},
     [If,Case].
 
 if_end_error() ->

@@ -2,8 +2,8 @@
 %%  Filename : 	mode_errors.erl
 %%  CVS      :
 %%              $Author: richardc $
-%%              $Date: 2004/08/20 14:59:34 $
-%%              $Revision: 1.7 $
+%%              $Date: 2004/10/27 21:51:27 $
+%%              $Revision: 1.8 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(mode_errors).
@@ -14,9 +14,10 @@
 test() ->
   lists:map(fun (T) -> 
 		FV = element(2,T),
-		Trace = element(2,FV),
+%% 		Trace = element(2,FV),
 		FReason = element(1,FV),
-		{FReason, [hd(Trace)]}
+%% 		{FReason, [hd(Trace)]}
+		FReason
 	    end,
 	    [t1n(),  
 	     t2n(),
