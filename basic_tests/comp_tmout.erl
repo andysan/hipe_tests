@@ -1,3 +1,8 @@
+%% Tests that when the native-code compilation times out or gets killed
+%% for some other reason, the parent process does not also get killed.
+%%
+%% Problem discovered by Bjorn G. on 1/12/2003 and fixed by Kostis S.
+
 -module(comp_tmout).
 -export([test/0,compile/1]).
 
