@@ -162,8 +162,17 @@ test() ->
   statistics(runtime),
   Result = hd(loop(10,1000.0,Stars,0)),
   {_,Time} = statistics(runtime),
+  {A, B, B, C, C} = Result,
+  Res1 = 
+    if (B > -19228.5134) and (B < -19226.8661) -> true;
+       true -> false
+    end,
+  Res2 =
+    if (C > 0.028278140) and (C < 0.028645911) -> true;
+       true -> false
+    end,
   io:format("\nruntime = ~p msecs\n", [Time]),
-  Result.
+  {A, Res1, Res2}.
 
 compile(Flags) ->
   hipe:c(?MODULE,Flags).
