@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/09/11 16:35:23 $
-%%    $Revision: 1.3 $
+%%    $Date: 2003/04/17 13:36:05 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -21,7 +21,9 @@
 -include("excluded.inc").
 
 test() ->
-    [%comp1:test(), % test("hipe"),
+    [
+     test("hipe"), % generate native code for the HiPE compiler
+     test("hipe"), % use this native code to compile the HiPE compiler
      test("stdlib"),
      test("compiler"),
      test("kernel"),
@@ -66,8 +68,12 @@ test(Application) ->
     {ok,Application}.
 
 hc_mod(Mod) ->
-    io:format("Compiling ~w\n",[Mod]),
-    {ok,Mod} = hipe:c(Mod,get_comp_opts()).
+    io:format("Compiling ~w ...",[Mod]),
+    T0 = time_now(),
+    Res = hipe:c(Mod,get_comp_opts()),
+    T = time_since(T0) / 1000,
+    io:format(" done in ~.2f secs\n",[T]),
+    {ok,Mod} = Res.
 
 get_comp_opts() ->
     {ok,Tokens,_} = erl_scan:string(os:getenv("HiPE_COMP_OPTS") ++ "."),
@@ -80,6 +86,14 @@ files(App) ->
     {value,{modules,Files}} = lists:keysearch(modules,1,element(3,Tuple)),
     Files.
 
+time_now() ->
+    T1 = hipe_bifs:get_hrvtime(),
+    {time_now,T1}.
 
-compile(Flags) ->
-    hipe:c(?MODULE,Flags).
+time_since({time_now,T1}) ->
+    T2 = hipe_bifs:get_hrvtime(),
+    T = T2-T1,
+    trunc(T).
+
+compile(Options) ->
+    hipe:c(?MODULE,Options).

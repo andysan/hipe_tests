@@ -1,10 +1,14 @@
+% This is an -*- erlang -*- file.
+
+excluded("hipe") ->
+    [hipe_internal]; % SHOULD NEVER BE COMPILED TO NATIVE CODE
 excluded("stdlib") ->
-    [erl_parse];  % COMPILATION TAKES LONG TIME
+    [erl_parse];     % COMPILATION TAKES LONG TIME
 excluded("kernel") ->
     [erl_prim_loader, erlang, error_handler, group,
      init, otp_ring0, prim_file, prim_inet, hipe_sparc_loader];
 excluded("ic") ->
-    [icparse];  % COMPILATION TAKES LONG TIME
+    [icparse];       % COMPILATION TAKES LONG TIME
 excluded("megaco") ->
     [megaco_text_parser]; % COMPILATION TAKES LONG TIME
 excluded("cosNotification") ->
