@@ -32,6 +32,9 @@ split(<<N:16,B:N/binary,T/binary>>) ->
 split(N, <<N:16,B:N/binary,T/binary>>) ->
     {B,T}.
 
+%split(<<N:16,B:N/binary,T/binary>>, N) ->
+%    {B,T}.
+
 split_2(<<N0:8,N:N0,B:N/binary,T/binary>>) ->
     {B,T}.
 
