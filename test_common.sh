@@ -18,7 +18,7 @@ for file in $testfiles ; do
     if test -f ${resfile} ; then
 	rm -f ${resfile}
     fi
-    ix_exec $HIPE $test "$COMP_FLAGS" ${resfile} "$ERL_FLAGS"
+    ix_exec $HIPE $test "$COMP_FLAGS" "$resfile" "$ERL_FLAGS"
     status=0
     diff -sN ${resfile} ${test}_old || status=1 2>&1
     if test "$status" = 0 ; then

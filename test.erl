@@ -6,8 +6,8 @@
 %%  History  : 1999-12-02 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2004/01/19 15:32:48 $
-%%    $Revision: 1.7 $
+%%    $Date: 2004/01/19 17:16:30 $
+%%    $Revision: 1.8 $
 %% ====================================================================
 %% Exported functions (short description):
 %%
@@ -36,15 +36,12 @@ start(Module,File) ->
 start(Module,CompilerOptions,File) ->
     IC = (catch compile:file(Module)),
     IR = (catch Module:test()),
-
     case proplists:get_bool(no_native,CompilerOptions) of
 	false ->
 	    HC = (catch Module:compile(CompilerOptions)),
 	    HR = (catch Module:test());
 	true ->
-	    {ok,HostName} = inet:gethostname(),
-	    FullHostName = HostName ++ "." ++ inet_db:res_option(domain),
-	    {ok,Bin} = file:read_file(atom_to_list(Module) ++ "_old@" ++ FullHostName),
+	    {ok,Bin} = file:read_file(atom_to_list(Module) ++ "_old"),
 	    {ok,Tokens,_} = erl_scan:string(binary_to_list(Bin) ++ "."),
 	    {ok,{{{_,_IR},{native_result,HR}},
 		{{_,_IC},{native_compile,HC}}}} = erl_parse:parse_term(Tokens)
