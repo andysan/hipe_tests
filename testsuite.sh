@@ -3,9 +3,9 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.37 2004/10/03 10:52:39 kostis Exp $
+## $Id: testsuite.sh,v 1.38 2004/10/03 11:14:10 kostis Exp $
 ##
-## Run with no options for usage/help.
+## Run with no arguments for usage/help.
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
