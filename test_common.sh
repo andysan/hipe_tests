@@ -10,6 +10,8 @@ ix_exec ()
 rm -f ./test.beam	## possibly left here from a previous run
 ln -s ../test.beam .
 
+export ERL_FLAGS
+
 for file in $testfiles ; do
     test=`basename $file .erl`
     echo
