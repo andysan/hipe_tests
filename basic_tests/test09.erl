@@ -10,8 +10,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/05/07 13:06:34 $
-%%    $Revision: 1.4 $
+%%    $Date: 2004/05/04 22:22:13 $
+%%    $Revision: 1.5 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -24,12 +24,8 @@
 test() ->
     {case_in_case(),case_in_after()}.
 
-compile(Flags) ->
-    {hipe:c({?MODULE,case_in_case,0},Flags),
-     hipe:c({?MODULE,search_any,2},Flags),
-     hipe:c({?MODULE,case_in_after,0},Flags), % used to cause strange error
-     hipe:c({?MODULE,keysearch,3},Flags)
-    }.
+compile(Opts) ->
+    hipe:c(?MODULE,Opts).
 
 case_in_case() ->
     done = search_any([a], [{a,1}]),

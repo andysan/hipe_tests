@@ -9,8 +9,8 @@
 %%  Notes    : 
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: richardc $
-%%    $Date: 2001/03/23 09:40:35 $
+%%    $Author: kostis $
+%%    $Date: 2004/05/04 22:22:13 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -26,12 +26,13 @@ native(N) when N>0 ->
 native(_) ->
   0.
 
-
 emu(N) ->
   N + native(N).
 
 test() ->
   emu(10).
 
-compile(Flags) ->
-  hipe:c({test04,native,1},Flags).
+compile(Opts) ->
+  %% compiling from Core does not make sense for this test
+  NewOpts = lists:delete(core, Opts),
+  hipe:c({test04,native,1}, NewOpts).

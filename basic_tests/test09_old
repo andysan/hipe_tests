@@ -1,1 +1,1 @@
-{{{emu_result,{ok,ok}},{native_result,{ok,ok}}},{{emu_compile,{ok,test09}},{native_compile,{{ok,{test09,case_in_case,0}},{ok,{test09,search_any,2}},{ok,{test09,case_in_after,0}},{ok,{test09,keysearch,3}}}}}}
+{{{emu_result,{ok,ok}},{native_result,{ok,ok}}},{{emu_compile,{ok,test09}},{native_compile,{ok,test09}}}}
