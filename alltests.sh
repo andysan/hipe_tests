@@ -3,7 +3,7 @@
 ## File:      alltests.sh
 ## Author(s): Kostis Sagonas
 ##
-## $Id: alltests.sh,v 1.8 2003/03/15 15:43:03 kostis Exp $
+## $Id: alltests.sh,v 1.9 2003/07/01 13:28:45 richardc Exp $
 ##
 
 echo "-------------------------------------------------------"
@@ -94,7 +94,7 @@ construct_tests ()
 }
 # ---------------------------------------------------------------------
 
-default_testlist="trivial_tests basic_tests process_tests distr_tests bs_tests bench_tests"
+default_testlist="trivial_tests basic_tests process_tests distr_tests bs_tests bench_tests system_tests"
 
 if test -z "$only_tests"; then
   testlist="$default_testlist $added_tests"
