@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.4 2001/02/19 16:45:06 kostis Exp $
+## $Id: testsuite.sh,v 1.5 2001/03/07 14:43:53 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -22,9 +22,9 @@
 #    	     	      both --exclude and --only can be specified at once
 #        osh_dir   -- full path name of the HiPE installation directory
 #    The HiPE executable and compiler are assumed to be in:
-#    	 $osh_dir/bin/erl
+#    	 $OSH/bin/erl
 #    and
-#    	 $osh_dir/lib/hipe/ix/ebin
+#    	 $OSH/lib/hipe/ebin
 
 echo ========================================================================
 
