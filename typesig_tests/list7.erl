@@ -1,10 +1,13 @@
--module(list7).
--export([read_entity_body/6]).
+%%============================================================================
+%% This is supposed to test two things: 
+%%   1. That type inference is able to infer that BodyPart is a proper list.
+%%   2. That the Len argument is an integer.
+%% Currently, #1 is achieved, but #2 requires correct handling of ==/2.
+%%============================================================================
 
-read_entity_body(_SocketType, _Socket, _Timeout, _Max, 0, _BodyPart) ->
-    {ok, []};
-read_entity_body(_,_,_,_, Len, BodyPart) when Len == length(BodyPart) ->
+-module(list7).
+-export([read_entity_body/2]).
+
+read_entity_body(Len, BodyPart) when Len == length(BodyPart) ->
     {ok, BodyPart}.
-%read_entity_body(_, _, _, _, Len, BodyPart) when Len < length(BodyPart) ->
-%    {ok, lists:sublist(BodyPart,Len)}.
 

@@ -1,0 +1,3 @@
+{list7,read_entity_body,2} : OK
+ typesig: ((_,[any()]) -> {'ok',[any()]})
+  typean: ((_,_) -> {'ok',_})

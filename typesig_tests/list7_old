@@ -1,0 +1,4 @@
+
+list7:read_entity_body/2 :: ((_,[any()]) -> {'ok',[any()]})
+list7:module_info/0 :: (() -> any())
+list7:module_info/1 :: ((_) -> any())
