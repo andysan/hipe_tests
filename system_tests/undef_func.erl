@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.18 2004/08/13 14:26:09 richardc Exp $
+%%     $Id: undef_func.erl,v 1.19 2004/08/18 12:39:22 richardc Exp $
 %%
 
 -module(undef_func).
@@ -106,7 +106,7 @@ application_interface() ->
      {cerl_prettypr,format,2},       %% exported for testing purposes
      {cerl_prettypr,annotate,3},     %% exported for testing purposes
      {cerl_typean,pp_hook,0},        %% exported for testing purposes
-     {hhl_transform,core_transform,2}%% used by compiler/src/v3_core_opt.erl
+     {cerl_hybrid_transform,core_transform,2}%% used by compiler/src/v3_core_opt.erl
     ].
 
 %%
