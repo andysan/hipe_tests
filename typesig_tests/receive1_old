@@ -1,0 +1,4 @@
+
+receive1:t/0 :: (()->{'float',float()} | {'int',integer()} | 'ok')
+receive1:module_info/0 :: (()->any())
+receive1:module_info/1 :: ((any())->any())

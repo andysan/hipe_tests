@@ -1,10 +1,10 @@
 #! /bin/sh
 
 testfiles="alias1.erl case1.erl  case2.erl case3.erl case4.erl case5.erl \
-	   case6.erl case7.erl case8.erl cons.erl\
+	   case6.erl case7.erl case8.erl catch1.erl cons.erl\
 	   fib.erl func_head1.erl guard1.erl guard2.erl guard3.erl list1.erl \
-	   sequence.erl\
-	   tak.erl tuple1.erl"
+	   rec1.erl receive1.erl sequence.erl\
+	   tak.erl try1.erl tuple1.erl"
 
 HIPE=$1/bin/erl
 ERLC=$1/bin/erlc

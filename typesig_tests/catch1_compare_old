@@ -1,0 +1,3 @@
+Ok: {catch1,module_info,0} typesig: (()->any())	typean: (()->any())
+Ok: {catch1,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
+Ok: {catch1,t,1} typesig: ((any())->any())	typean: ((any())->any())
