@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.22 2004/12/06 03:07:32 mikpe Exp $
+%%     $Id: undef_func.erl,v 1.23 2004/12/15 10:53:47 pergu Exp $
 %%
 
 -module(undef_func).
@@ -103,6 +103,7 @@ application_interface() ->
      {hipe_dot,translate_digraph,5}, %% inside hipe, but now they are 
      {hipe_dot,translate_list,3},    %% mostly used from the outside
      {hipe_dot,translate_list,5},    %% by Tobias
+     {hipe_dot,translate_list,4},
      {erl_bif_types,type,3},	     %% exported for testing purposes
      {cerl_closurean,annotate,1},    %% exported for testing purposes
      {cerl_typean,analyze,1},        %% exported for testing purposes
