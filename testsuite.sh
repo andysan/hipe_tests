@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.47 2004/10/31 20:14:06 richardc Exp $
+## $Id: testsuite.sh,v 1.48 2004/11/12 08:59:37 kostis Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -281,8 +281,8 @@ diffpat="differs!!"
 
 # check for output differences
 pat="$diffpat"
-# check for seg fault
-pat="${pat}\|segmentation fault"
+# check for segmenation fault: usually appears as "Segmentation fault"
+pat="${pat}\|egmentation fault"
 # core dumped
 pat="${pat}\|core dump"
 # when no output file is generated
