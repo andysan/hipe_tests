@@ -4,7 +4,7 @@
 %% Purpose: To run Dialyzer on the HiPE application and test that
 %%          there are no discrepancies that it identifies.
 %%
-%% $Id: dial_warns.erl,v 1.6 2004/10/27 22:11:25 richardc Exp $
+%% $Id: dial_warns.erl,v 1.7 2004/11/27 19:41:13 kostis Exp $
 %%
 
 -module(dial_warns).
@@ -28,8 +28,7 @@ test() ->
     HiPE_Dir = filename:join([OTP_Dir, "lib", "hipe", "ebin"]),
     %% the call to dialyzer changes the current working directory to
     %% the ebin dir of the application which is analyzed
-    dialyzer_cl:start([{from,byte_code},{files,[HiPE_Dir]}]),
-
+    0 = dialyzer:run([{from,byte_code},{files,[HiPE_Dir]}]),
     %% so change the current working dir back to what we started from
     file:set_cwd(CWD),
     ok.
