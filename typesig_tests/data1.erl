@@ -1,7 +1,9 @@
 %%-------------------------------------------------------------------
 %% File    : data1.erl
 %% Author  : Kostis Sagonas <kostis@it.uu.se>
-%% Description : Tests that the shape of nested data structures is inferred.
+%% Description : Tests that the shape of nested data structures is
+%%		 properly inferred.  Also, it compares precision of
+%%		 cut-off depths of the two type analyses.
 %%
 %% Created : 31 Jan 2005 by Kostis Sagonas <kostis@it.uu.se>
 %%-------------------------------------------------------------------
