@@ -8,9 +8,9 @@
 %%  History  :	* 2003-03-24 Jesper Wilhelmsson (jesperw@csd.uu.se):
 %%		  Created.
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2003/03/26 16:42:53 $
-%%              $Revision: 1.4 $
+%%              $Author: pergu $
+%%              $Date: 2003/04/08 08:07:24 $
+%%              $Revision: 1.5 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -25,12 +25,15 @@
 
 test() ->
   OTP_DIR = os:getenv("OTP_DIR"),
+  USER = os:getenv("USER"),
   MODULE = atom_to_list(?MODULE),
   {ok,HOSTNAME} = inet:gethostname(),
-  os:cmd(OTP_DIR ++ "/bin/erl -sname a -noshell &"),
+  os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ "_a -noshell &"),
   receive after 1000 -> ok end,		% prevent race condition
-  S = os:cmd(OTP_DIR ++ "/bin/erl -sname b -noshell -noinput -s " ++ MODULE ++
-             " start a@" ++ HOSTNAME),
+  S = os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ 
+	     "_b -noshell -noinput -s " ++ MODULE ++
+             " start " ++ USER ++ "_a@" ++ HOSTNAME),
+  io:format("~w",[S]),
   {match,Pos,Len} = regexp:match(S, "TestResult:"),
   R = string:sub_string(S, Pos+Len+1),
   list_to_atom(R).
@@ -40,12 +43,14 @@ compile(Opts) ->
 
 %% -------------------------------------------------------------------
 
+
+
 start([TheOtherNode]) ->
     init_node_and_table(TheOtherNode),
     run_tests(2000),
     shutdown(TheOtherNode),
     io:format("TestResult: ~w",[net_adm:ping(TheOtherNode)]),
-    rpc:call(TheOtherNode, erlang, halt, []),
+    rpc:call(TheOtherNode,erlang,halt,[]),
     halt().
 
 init_node_and_table(TheOtherNode) ->
