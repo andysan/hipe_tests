@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.21 2004/12/03 10:08:38 pergu Exp $
+%%     $Id: undef_func.erl,v 1.22 2004/12/06 03:07:32 mikpe Exp $
 %%
 
 -module(undef_func).
@@ -190,6 +190,34 @@ exports_used_as_remote_apply_calls() ->
      {hipe_ppc_specific,number_of_temporaries,1},
      {hipe_ppc_specific,check_and_rewrite,2},
      {hipe_ppc_specific,defun_to_cfg,1},
+
+     {hipe_ppc_specific_fp,all_precoloured,0},
+     {hipe_ppc_specific_fp,allocatable,0},
+     {hipe_ppc_specific_fp,analyze,1},
+     {hipe_ppc_specific_fp,bb,2},
+     {hipe_ppc_specific_fp,check_and_rewrite,2},
+     {hipe_ppc_specific_fp,def_use,1},
+     {hipe_ppc_specific_fp,defines,1},
+     {hipe_ppc_specific_fp,defun_to_cfg,1},
+     {hipe_ppc_specific_fp,is_fixed,1},
+     {hipe_ppc_specific_fp,is_move,1},
+     {hipe_ppc_specific_fp,is_precoloured,1},
+     {hipe_ppc_specific_fp,labels,1},
+     {hipe_ppc_specific_fp,livein,2},
+     {hipe_ppc_specific_fp,liveout,2},
+     {hipe_ppc_specific_fp,non_alloc,1},
+     {hipe_ppc_specific_fp,number_of_temporaries,1},
+     {hipe_ppc_specific_fp,physical_name,1},
+     {hipe_ppc_specific_fp,reg_nr,1},
+     {hipe_ppc_specific_fp,reverse_postorder,1},
+     {hipe_ppc_specific_fp,succ_map,1},
+     {hipe_ppc_specific_fp,uses,1},
+     {hipe_ppc_specific_fp,var_range,1},
+
+     {hipe_ppc_liveness_all,livein,2},	% liveness.inc breakage
+     {hipe_ppc_liveness_all,analyze,1},	% liveness.inc breakage
+     {hipe_ppc_liveness_fpr,analyze,1},	% liveness.inc breakage
+     {hipe_ppc_liveness_gpr,analyze,1},	% liveness.inc breakage
 
      {hipe_x86_specific,analyze,1},
      {hipe_x86_specific,bb,2},
