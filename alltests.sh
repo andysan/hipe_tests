@@ -3,7 +3,7 @@
 ## File:      alltests.sh
 ## Author(s): Kostis Sagonas
 ##
-## $Id: alltests.sh,v 1.6 2001/08/02 16:57:09 kostis Exp $
+## $Id: alltests.sh,v 1.7 2002/02/25 14:32:27 kostis Exp $
 ##
 
 echo "-------------------------------------------------------"
@@ -62,9 +62,10 @@ fi
 HIPE_RTS=$1
 
 # ---------------------------------------------------------------------
-# Test if element is a member of exclude list
+# Tests if element is a member of a list of tests
 # $1 - element
 # $2 - exclude list
+#
 member ()
 {
     for elt in $2 ; do
@@ -73,6 +74,23 @@ member ()
 	fi
     done
     return 1
+}
+#
+# Constructs the test list by removing elements of the excluded list
+# $1 - preliminary test list
+# $2 - exclude list
+#
+construct_tests ()
+{
+    tests=""
+    for elt in $1 ; do
+      if member "$elt" "$2" ; then
+	continue
+      else
+	tests="$elt $tests"
+      fi
+    done
+    return "$tests"
 }
 # ---------------------------------------------------------------------
 
@@ -83,7 +101,8 @@ if test -z "$only_tests"; then
 else
   testlist=$only_tests
 fi
-  echo "Will be testing:" $testlist
+echo "Will be testing:" $testlist
+echo "however skipping:" $excluded_tests
 
 ##
 ## Run each test in $testlist except for the tests in $excluded_tests
