@@ -1,7 +1,8 @@
 #! /bin/sh
 
-testfiles="case1.erl  case3.erl cons.erl\
-	   fib.erl func_head1.erl list1.erl sequence.erl tak.erl tuple1.erl"
+testfiles="case1.erl  case3.erl case4.erl case5.erl cons.erl\
+	   fib.erl func_head1.erl guard1.erl list1.erl sequence.erl\
+	   tak.erl tuple1.erl"
 
 HIPE=$1/bin/erl
 ERLC=$1/bin/erlc
