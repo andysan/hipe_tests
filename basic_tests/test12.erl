@@ -6,13 +6,12 @@
 %%  Module   :	test12
 %%  Purpose  :  To test reference counts for binaries
 %%              and to test user invoked GC calls.
-%%  Notes    :  Based on binary_SUITE from he emulator test suite.
-%%  History  :	* 2001-06-28 Erik Johansson (happi@csd.uu.se): 
-%%               Created.
+%%  Notes    :  Based on binary_SUITE from the emulator test suite.
+%%  History  :	* 2001-06-28 Erik Johansson (happi@csd.uu.se): Created.
 %%  CVS      :
-%%              $Author: jesperw $
-%%              $Date: 2003/04/03 12:33:03 $
-%%              $Revision: 1.3 $
+%%              $Author: kostis $
+%%              $Date: 2003/12/12 16:50:56 $
+%%              $Revision: 1.4 $
 %% ====================================================================
 %%  Exports  :  test/0
 %%              compile/1  
@@ -27,7 +26,7 @@ compile(O)->
   hipe:c(?MODULE,O).
 
 test()->
-  case hipe_bifs:heap_architecture() of
+  case erlang:system_info(heap_type) of
     private ->
       B = list_to_binary(lists:seq(0, ?heap_binary_size)),
       Self = self(),
