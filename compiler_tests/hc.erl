@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2004/11/16 09:38:31 $
-%%    $Revision: 1.14 $
+%%    $Date: 2004/12/01 08:25:42 $
+%%    $Revision: 1.15 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -21,6 +21,7 @@
 -include("excluded.inc").
 
 test() ->
+  STDLIB = test("stdlib"), % test 'stdlib' first to speed up next phases
   H1 = test("hipe"), % generate native code for the HiPE compiler
   CS = hipe_bifs:constants_size(),
   H2 = test("hipe"), % use this native code to compile the HiPE compiler
@@ -28,7 +29,7 @@ test() ->
   CS = hipe_bifs:constants_size(),
   R = [H1,
        H2,
-       test("stdlib"),
+       STDLIB,
        test("compiler"),
        test("kernel"),
        test("tools"),
@@ -83,13 +84,15 @@ test(Application) ->
   {ok,Application}.
 
 hc_mod(Mod,Opts) ->
-  S1 = hipe_bifs:constants_size(),
+  CS1 = hipe_bifs:constants_size(),
   io:format("Compiling ~w ...",[Mod]),
   T0 = time_now(),
   Res = hipe:c(Mod,Opts),
   T = time_since(T0) / 1000,
-  S2 = hipe_bifs:constants_size(),
-  io:format(" done in ~.2f secs (++ ~w words)\n",[T,S2-S1]),
+  CS2 = hipe_bifs:constants_size(),
+  NatCodeSize = hipe_bifs:code_size(Mod),
+  CS = CS2 - CS1,
+  io:format(" done in ~.2f secs (~w bytes ++ ~w words)\n",[T,NatCodeSize,CS]),
   {ok,Mod} = Res.
 
 get_comp_opts() ->

@@ -9,8 +9,8 @@
 %%		in the HiPE version of mid Feb 2004.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2004/11/29 14:36:00 $
-%%    $Revision: 1.2 $
+%%    $Date: 2004/12/01 08:26:53 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 
 -module(wings).
@@ -24,13 +24,15 @@ test() ->
   R.
 
 hc_mod(Mod,Opts) ->
-  S1 = hipe_bifs:constants_size(),
+  CS1 = hipe_bifs:constants_size(),
   io:format("Compiling ~w ...",[Mod]),
   T0 = time_now(),
   Res = hipe:c(Mod,Opts),
   T = time_since(T0) / 1000,
-  S2 = hipe_bifs:constants_size(),
-  io:format(" done in ~.2f secs (++ ~w words)\n",[T,S2-S1]),
+  CS2 = hipe_bifs:constants_size(),
+  NatCodeSize = hipe_bifs:code_size(Mod),
+  CS = CS2 - CS1,
+  io:format(" done in ~.2f secs (~w bytes ++ ~w words)\n",[T,NatCodeSize,CS]),
   {ok,Mod} = Res.
 
 get_comp_opts() ->
