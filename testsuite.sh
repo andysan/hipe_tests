@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.27 2004/08/10 14:31:07 richardc Exp $
+## $Id: testsuite.sh,v 1.28 2004/08/10 14:46:11 richardc Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -27,6 +27,9 @@ fi
 ## Make default compiler options [o2]
 ##
 comp_options=[o2]
+
+core_tests="core_tests basic_tests bs_tests bench_tests distr_tests system_tests process_tests"
+no_native_tests="native_tests core_tests"
 
 while test 1=1
 do
@@ -59,12 +62,12 @@ do
      --core)
 	    shift
             comp_options="[core]"
-            only_tests="core_tests basic_tests bs_tests bench_tests distr_tests system_tests process_tests"
+            only_tests="${core_tests}"
             ;;
      --no_nat*)
 	    shift
 	    comp_options="[no_native]"
-	    excluded_tests="native_tests core_tests"
+	    excluded_tests="${no_native_tests}"
 	    ;;
      -q)
 	    shift
@@ -98,10 +101,10 @@ if test -z "$1" -o $# -gt 1; then
   echo "                     both --exclude and --only can be specified at once"
   echo "	core      -- a shorthand option which is equivalent to:"
   echo "                       --comp_options \"[core]\""
-  echo "                       --only \"core_tests system_tests\""
+  echo "                       --only \"${core_tests}\""
   echo "	no_native -- a shorthand option which is equivalent to:"
   echo "                       --comp_options \"[no_native]\""
-  echo "                       --exclude \"native_tests core_tests\""
+  echo "                       --exclude \"${no_native_tests}\""
   echo "	quiet     -- do not send mail to user"
   echo "        OTP_DIR   -- full path name of the OTP installation directory"
   echo "========================================================================"
