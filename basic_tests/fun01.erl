@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2002/05/07 13:06:34 $
-%%              $Revision: 1.5 $
+%%              $Date: 2004/02/06 16:05:45 $
+%%              $Revision: 1.6 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -19,6 +19,10 @@
 
 -module(fun01).
 -export([test/0, compile/1]).
+%% The following exports are so that inlining does not eliminate
+%% these functions (which are used as hipe:c arguments).
+-export([n_mk_fun/3, n_call_fun/1, n_call_fun2/1,
+	 b_arity/0, c_barity/0, b_fun/0, l/0, l2/2]).
 
 test() ->
   EF = e_mk_fun(1,2,3),

@@ -6,8 +6,8 @@
 %%  History  :  * 2001-09-17 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/12/17 00:54:48 $
-%%    $Revision: 1.5 $
+%%    $Date: 2004/02/06 16:05:45 $
+%%    $Revision: 1.6 $
 %% ====================================================================
 
 -module(exception01).
@@ -42,12 +42,13 @@ bad_guy(pe_badarith, Other) when Other+1 == 0 -> % badarith (suppressed)
 bad_guy(pe_badarg, Other) when length(Other) > 0 -> % badarg (suppressed)
     ok;
 bad_guy(_, e_case) ->
-    case xxx of
+    case xxx() of
         ok -> ok
     end;                                        % case_clause
 bad_guy(_, e_if) ->
+    B = b(),
     if
-        a == b -> ok
+        a == B -> ok
     end;                                        % if_clause
 %% bad_guy(_, e_badarith) ->
 %%     1+b;                                        % badarith
@@ -63,7 +64,13 @@ bad_guy(_, e_badarg) ->
 bad_guy(_, e_badarg_spawn) ->
     spawn({}, {}, {});                          % badarg
 bad_guy(_, e_badmatch) ->
-    a = b.                                      % badmatch
+    a = b().                                    % badmatch
+
+xxx() ->
+    xxx.
+
+b() ->
+    b.
 
 pending(Arg, Expected) ->
     pending(pe_badarith, Arg, Expected),

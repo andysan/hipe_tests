@@ -7,8 +7,8 @@
 %%  History  :	* 2000-10-25 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/12/16 16:47:25 $
-%%    $Revision: 1.3 $
+%%    $Date: 2004/02/06 16:05:45 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -35,9 +35,12 @@ zero() ->
     0.
 
 case_end_error() ->
-    case 42 of
+    case the_answer() of
 	17 -> weird
     end.
+
+the_answer() ->
+    42.
 
 compile(Flags) ->
     hipe:c(?MODULE,Flags).

@@ -10,7 +10,7 @@
 %%  History  :	* 30/7/2001 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/07/30 15:45:01 $
+%%    $Date: 2004/02/06 16:01:37 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -28,10 +28,13 @@ test() ->
   ok.
 
 badmatch() ->
-  a = b.
+  a = b().
 
 inline_catch_badmatch() ->
-  catch a = b.
+  catch a = b().
+
+b() ->
+  b.
 
 compile(Flags) ->
   hipe:c(?MODULE,Flags).

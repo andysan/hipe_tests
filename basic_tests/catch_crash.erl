@@ -3,7 +3,7 @@
 
 -define(try_match(E),
       catch ?MODULE:bar(),
-	{'EXIT', {{badmatch, nomatch}, _}} = (catch E = nomatch)).
+	{'EXIT', {{badmatch, nomatch}, _}} = (catch E = no_match())).
 
 test() ->
     ?try_match(a),
@@ -12,6 +12,9 @@ test() ->
     ?try_match([]),
     ?try_match(1.0),
     ok.
+
+no_match() ->
+    nomatch.
 
 %% small_test() ->
 %%    catch crash:bar(),

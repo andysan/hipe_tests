@@ -12,9 +12,12 @@ test() ->
   ok.
 
 test_case_stm_inlining() ->
-  case some_atom of
+  case some_atom() of
     another_atom -> strange_result
   end.
+
+some_atom() ->
+  some_atom.
 
 compile(O) ->
   hipe:c(?MODULE,O).

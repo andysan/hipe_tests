@@ -5,8 +5,8 @@
 %%		a way that does not result in an infinite loop.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2001/03/23 18:53:24 $
-%%              $Revision: 1.1 $
+%%              $Date: 2004/02/06 16:05:45 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 
 -module(catch_empty).
@@ -21,8 +21,8 @@ test() ->
 -define(line, io:format("~p:~p\n", [?MODULE,?LINE]),).
 
 badmatch() ->
-    Big = 32984798729847892498297824872982972978239874,
-    Float = 3.1415927,
+    Big = ret_big(),
+    Float = ret_float(),
     catch a = Big,
     catch b = Float,
     case Big of
@@ -33,3 +33,8 @@ badmatch() ->
     end,
     ok.
 
+ret_big() ->
+    32984798729847892498297824872982972978239874.
+
+ret_float() ->
+    3.1415927.
