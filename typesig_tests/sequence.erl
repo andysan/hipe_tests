@@ -6,13 +6,11 @@
 %%% Created : 15 Dec 2004 by Tobias Lindahl <tobiasl@it.uu.se>
 %%%-------------------------------------------------------------------
 -module(sequence).
-
--compile(export_all).
+-export([t/0]).
 
 t() ->
   add(100, 5, 5),
   add(200, 10, 10).
-
 
 add(0, _, _) -> ok;
 add(Iter, A, B) ->
