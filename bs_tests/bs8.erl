@@ -9,9 +9,9 @@
 %%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2002/05/08 07:33:41 $
-%%              $Revision: 1.3 $
+%%              $Author: pegu2945 $
+%%              $Date: 2002/07/23 09:12:02 $
+%%              $Revision: 1.4 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -51,7 +51,6 @@ bs2(L, B, Pos, B1, B2)->
 bs3(L, B, Pos, B2) ->
   B2 = list_to_binary(lists:nthtail(Pos, L)),
   byte_split(L, B, Pos-1).
-
 
 bit_split_binary() ->
   Fun = fun(Bin, List, SkipBef, N) ->
