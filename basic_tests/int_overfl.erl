@@ -1,4 +1,4 @@
--module(int_overflow).
+-module(int_overfl).
 -export([test/0,compile/1]).
 
 test() ->
