@@ -17,15 +17,15 @@ compile(Flags) ->
   hipe:c(?MODULE,Flags).
 
 test() ->
-  io:format("here 1\n"),
+  %% io:format("here 1\n"),
   ModNameString = atom_to_list(?ModName),
   FN = write_file(ModNameString, <<"old">>),
   old = compile_and_run(FN),
-  io:format("here ~s\n", [FN]),
+  %% io:format("here ~s\n", [FN]),
   FN = write_file(ModNameString, <<"new">>),
   new = compile_and_run(FN),
   ok = file:delete(list_to_atom(FN)),
-  io:format("here 3\n"),
+  %% io:format("here 3\n"),
   ok.
 
 compile_and_run(FN) ->
@@ -37,9 +37,9 @@ write_file(ModNameString, Ret) ->
   Prog = <<"-module(", ModBin/binary, ").\n",
 	   "-export([tmp/0]).\n",
 	   "tmp() ->\n", Ret/binary,".\n">>,
-  io:format("here 1.1\n"),
+  %% io:format("here 1.1\n"),
   FN = ModNameString ++ ".erl",
   file:write_file(FN, Prog),
-  io:format("here 1.2\n"),
+  %% io:format("here 1.2\n"),
   FN.
 

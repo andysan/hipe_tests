@@ -1,7 +1,7 @@
 %%% -*- erlang-indent-level: 2 -*-
-%%% $Id: load_bug2.erl,v 1.1 2004/06/16 15:49:40 mikpe Exp $
-%%% Module loading fails to invalidate all paths
-%%% to obsolete code.
+%%% $Id: load_bug2.erl,v 1.2 2004/09/24 12:00:59 kostis Exp $
+%%%
+%%% Tests whether module loading invalidates all paths to obsolete code.
 
 -module(load_bug2).
 -export([test/0, compile/1]).
@@ -12,14 +12,18 @@ compile(Flags) ->
   hipe:c(?MODULE,Flags).
 
 test() ->
-  true = write_compile_run(prog1()),
-  case write_compile_run(prog2()) of
-    {'EXIT',{undef,[{tmp,tmp,[]}|_]}} -> ok;
+  FN_erl = "/tmp/tmp.erl",
+  FN_beam = "/tmp/tmp.beam",
+  true = write_compile_run(FN_erl, prog1()),
+  case write_compile_run(FN_erl, prog2()) of
+    {'EXIT',{undef,[{tmp,tmp,[]}|_]}} ->
+      file:delete(FN_erl),
+      file:delete(FN_beam),
+      ok;
     true -> error % we get true from the stale code
   end.
 
-write_compile_run(Prog) ->
-  FN = "/tmp/tmp.erl",
+write_compile_run(FN, Prog) ->
   file:write_file(FN, Prog),
   c:c(FN, [native,{outdir, "/tmp/"}]),
   catch(tmp:tmp()).
