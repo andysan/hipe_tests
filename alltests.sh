@@ -3,11 +3,11 @@
 ## File:      alltests.sh
 ## Author(s): Kostis Sagonas
 ##
-## $Id: alltests.sh,v 1.17 2004/10/29 14:11:03 richardc Exp $
+## $Id: alltests.sh,v 1.18 2004/11/12 18:36:47 kostis Exp $
 ##
 ## Run with no options for usage/help.
 
-default_testlist="trivial_tests basic_tests native_tests core_tests process_tests distr_tests bs_tests bench_tests loader_tests"
+default_testlist="trivial_tests basic_tests native_tests core_tests process_tests distr_tests bs_tests bench_tests loader_tests memory_tests"
 
 while test 1=1
 do
