@@ -12,7 +12,7 @@ ERL_FLAGS=$3
 HiPE_COMP_OPTS=$COMP_FLAGS
 export HiPE_COMP_OPTS
 
-testfiles="hc.erl"
+testfiles="wings.erl hc.erl"
 
 ##===========================================================================
 ## NOTE: this does not use the same test.erl file as the other test dirs.
@@ -27,6 +27,9 @@ ix_exec ()
 
 rm -f ctest.beam
 $HIPE -make   ## This makes ctest.beam
+cd wings_src
+$HIPE -make   ## Create .beam files for the wings test
+cd ..
 
 for file in $testfiles ; do
     test=`basename $file .erl`
