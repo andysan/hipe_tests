@@ -1,4 +1,5 @@
-{{result,[{ok,wings_auv_matrix},
+{{result,[{ok,wings_ask},
+          {ok,wings_auv_matrix},
           {ok,wings_e3d__tga},
           {ok,wings_e3d__tif},
           {ok,wings_e3d_image},

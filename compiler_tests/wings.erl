@@ -9,8 +9,8 @@
 %%		in the HiPE version of mid Feb 2004.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2004/02/18 17:10:12 $
-%%    $Revision: 1.1 $
+%%    $Date: 2004/11/29 14:36:00 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 
 -module(wings).
@@ -40,6 +40,9 @@ get_comp_opts() ->
 
 files() ->
   [
+   wings_ask,		%% was crashing in two places:
+			%%  1. in Icode SSA pass (with default compiler options)
+			%%  2. in handling binaries in RTL (hipe_rtl_inline_bs_ops)
    wings_auv_matrix,	%% was crashing in un-convert pass of RTL SSA
    wings_e3d__tga,	%% was going into an infinite loop in to_8bitpp/9
    wings_e3d__tif,	%% RTL prop pass took long time in save_image/3
