@@ -80,9 +80,9 @@ receive_loop(Parent, Next) ->
 
 time_diff(After, Before) ->
     %% snipped from timer:tc/3
-    Elapsed = (element(1,After)*1000000000000 +
-               element(2,After)*1000000 + 
-               element(3,After)) -
+    _Elapsed = (element(1,After)*1000000000000 +
+                element(2,After)*1000000 + 
+                element(3,After)) -
         (element(1,Before)*1000000000000 +
          element(2,Before)*1000000 + element(3,Before)).
 
