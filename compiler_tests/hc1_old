@@ -1,0 +1,6 @@
+{{result,[{ok,"hipe"},
+          {ok,"stdlib"},
+          {ok,"compiler"},
+          {ok,"kernel"},
+          {ok,"tools"}]},
+ {ok,hc1}}
