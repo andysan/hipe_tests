@@ -9,8 +9,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: richardc $
-%%              $Date: 2004/08/20 12:41:26 $
-%%              $Revision: 1.4 $
+%%              $Date: 2004/08/20 14:59:34 $
+%%              $Revision: 1.5 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -29,9 +29,15 @@ test() ->
   %% io:format("Time: ~w\n",[_T]),
   R.
 
-compile(Ops) ->
-  test:note(?MODULE, "disabling compilation from core - BUG"),
-  hipe:c(?MODULE, [{core,false}|Ops]).
+compile(Opts0) ->
+  case proplists:get_bool(core, Opts0) of
+    true ->
+	test:note(?MODULE, "disabling compilation from core - BUG"),
+	Opts = [{core,false}|Opts0];
+    false ->
+	Opts = Opts0
+  end,
+  hipe:c(?MODULE, Opts).
 
 
 all(0) ->

@@ -2,8 +2,8 @@
 %%  Filename : 	mode_errors.erl
 %%  CVS      :
 %%              $Author: richardc $
-%%              $Date: 2004/08/20 12:41:26 $
-%%              $Revision: 1.6 $
+%%              $Date: 2004/08/20 14:59:34 $
+%%              $Revision: 1.7 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(mode_errors).
@@ -36,11 +36,15 @@ test() ->
 	     aeee()]).
 
 compile(Opts0) ->
-    %% Disable core compilation for now, since we get different stack
-    %% traces when compiling from Core.
-    test:note(?MODULE, "disabling compilation from core - stack trace differs"),
-    Opts = [{core,false}| Opts0],
-
+    case proplists:get_bool(core, Opts0) of
+	true ->
+	    %% Disable core compilation for now, since we get different
+	    %% stack traces when compiling from Core.
+	    test:note(?MODULE, "disabling compilation from core - stack trace differs"),
+	    Opts = [{core,false}|Opts0];
+	false ->
+	    Opts = Opts0
+    end,
     hipe:c({?MODULE,t1n,0},Opts),
     hipe:c({?MODULE,t2n,0},Opts),
     hipe:c({?MODULE,t5n,0},Opts),
