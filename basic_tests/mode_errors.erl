@@ -1,9 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  Filename : 	mode_errors.erl
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2004/07/30 18:36:28 $
-%%              $Revision: 1.4 $
+%%              $Author: richardc $
+%%              $Date: 2004/08/20 11:47:35 $
+%%              $Revision: 1.5 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(mode_errors).
@@ -35,28 +35,25 @@ test() ->
 	     aeen(),
 	     aeee()]).
 
-compile(Opts) ->
-  case lists:member(core, Opts) of
-    false ->
-      hipe:c({?MODULE,t1n,0},Opts),
-      hipe:c({?MODULE,t2n,0},Opts),
-      hipe:c({?MODULE,t5n,0},Opts),
-      hipe:c({?MODULE,t6n,0},Opts),
-      hipe:c({?MODULE,annn,0},Opts),
-      hipe:c({?MODULE,anne,0},Opts),
-      hipe:c({?MODULE,anen,0},Opts),
-      hipe:c({?MODULE,anee,0},Opts),
-      hipe:c({?MODULE,bnn,0},Opts),
-      hipe:c({?MODULE,bne,0},Opts),
-      hipe:c({?MODULE,fn,1},Opts),
-      hipe:c({?MODULE,cn,1},Opts),
-      {ok, ?MODULE};
-    true ->
-      %% This somehow defeats the purpose of the test since it does
-      %% not test how mode-errors are handled, but probably this is
-      %% the best that can be done when compiling from Core.
-      hipe:c(?MODULE, Opts)
-  end.
+compile(Opts0) ->
+    %% This somehow defeats the purpose of the test since it does not
+    %% test how mode-errors are handled, but right now, we get different
+    %% stack traces when compiling from Core.
+    Opts = lists:delete(core, Opts0),
+
+    hipe:c({?MODULE,t1n,0},Opts),
+    hipe:c({?MODULE,t2n,0},Opts),
+    hipe:c({?MODULE,t5n,0},Opts),
+    hipe:c({?MODULE,t6n,0},Opts),
+    hipe:c({?MODULE,annn,0},Opts),
+    hipe:c({?MODULE,anne,0},Opts),
+    hipe:c({?MODULE,anen,0},Opts),
+    hipe:c({?MODULE,anee,0},Opts),
+    hipe:c({?MODULE,bnn,0},Opts),
+    hipe:c({?MODULE,bne,0},Opts),
+    hipe:c({?MODULE,fn,1},Opts),
+    hipe:c({?MODULE,cn,1},Opts),
+    {ok, ?MODULE}.
 
 t1n() -> catch ?MODULE:fe([mud]).
 t2n() -> catch ?MODULE:fn([mud]).
