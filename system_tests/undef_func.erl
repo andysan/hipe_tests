@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.24 2004/12/22 17:16:48 kostis Exp $
+%%     $Id: undef_func.erl,v 1.25 2005/01/31 14:54:58 tobiasl Exp $
 %%
 
 -module(undef_func).
@@ -106,15 +106,13 @@ application_interface() ->
      {hipe_dot,translate_list,5},    %% by Tobias
      {hipe_dot,translate_list,4},
 
-     %% Temporarily until the new type analysis is properly hooked in
-     {cerl_typesig,analyze,1},
-     {cerl_typesig,doit,1},
-     {cerl_typesig,get_export_signatures,1},
-
      {erl_bif_types,type,3},	     %% exported for testing purposes
      {cerl_closurean,annotate,1},    %% exported for testing purposes
      {cerl_typean,analyze,1},        %% exported for testing purposes
      {cerl_typean,core_transform,2}, %% called from corec as metacall
+     {cerl_typesig,get_export_signatures,1}, %% Used in typesig_test
+     {cerl_typesig,doit,1},          %% exported for testing purposes
+     {cerl_typesig,core_transform,2},%% called from corec as metacall
      {cerl_prettypr,format,1},       %% exported for testing purposes
      {cerl_prettypr,format,2},       %% exported for testing purposes
      {cerl_prettypr,annotate,3},     %% exported for testing purposes
