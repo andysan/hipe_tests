@@ -1,16 +1,12 @@
 %%%-------------------------------------------------------------------
-%%% File    : fib.erl
-%%% Author  : Tobias Lindahl <toli6207@fan.it.uu.se>
+%%% File    : fib1.erl
+%%% Author  : Tobias Lindahl <tobiasl@it.uu.se>
 %%% Description : Fibonacci numbers
 %%%
-%%% Created : 17 Feb 2003 by Tobias Lindahl <toli6207@fan.it.uu.se>
+%%% Created : 17 Feb 2003 by Tobias Lindahl <tobiasl@it.uu.se>
 %%%-------------------------------------------------------------------
--module(fib).
-
--compile(export_all).
-
-doit()->
-  fib(10).
+-module(fib1).
+-export([fib/1]).
 
 fib(0)->
   1;

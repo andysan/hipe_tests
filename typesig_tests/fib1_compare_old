@@ -1,6 +1,3 @@
-{fib,doit,0} : OK
- typesig: (()->integer())
-  typean: (()->integer())
 {fib,fib,1} : OK
  typesig: ((number())->integer())
   typean: ((any())->integer())
