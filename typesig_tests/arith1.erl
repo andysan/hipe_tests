@@ -9,3 +9,18 @@
 -compile(export_all).
 
 next_random(N) -> (N * 1713) rem 1001.
+
+next_random2(N) -> 
+  R = N * 1713,
+  {R rem 1001, R}.
+
+num(X) ->
+  X * 2.
+
+int() ->
+  42.
+
+mystery(X)->
+  Y = num(X),
+  4 = Y, 
+  Y.

@@ -1,3 +1,6 @@
-{case4,t,1} : OK
- typesig: ((any())->none())
+{case4,t1,1} : OK
+ typesig: none()
+  typean: ((any())->number())
+{case4,t2,1} : OK
+ typesig: (({'hello',1})->number())
   typean: ((any())->number())

@@ -2,8 +2,8 @@
  typesig: ((2,[any()])->atom())
   typean: ((any(),any())->atom())
 {case6,t2,1} : OK
- typesig: ((any())->none())
+ typesig: none()
   typean: ((any())->none())
 {case6,t3,1} : OK
- typesig: ((any())->none())
+ typesig: none()
   typean: ((any())->'ok')

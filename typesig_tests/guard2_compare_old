@@ -2,7 +2,7 @@
  typesig: (([any()] | atom())->'ok')
   typean: ((any())->'ok')
 {guard2,t2,1} : OK
- typesig: ((any())->none())
+ typesig: none()
   typean: ((any())->'ok')
 {guard2,t3,1} : OK
  typesig: (('foo')->'ok')
@@ -20,5 +20,5 @@
  typesig: ((any())->'ok')
   typean: ((any())->'ok')
 {guard2,t8,1} : OK
- typesig: ((any())->none())
+ typesig: ((binary() | tuple())->'ok')
   typean: ((any())->'ok')

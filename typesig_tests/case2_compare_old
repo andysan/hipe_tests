@@ -1,6 +1,6 @@
 {case2,doit,0} : OK
- typesig: (()->none())
+ typesig: none()
   typean: (()->'ok')
 {case2,t,1} : OK
- typesig: ((any())->none())
+ typesig: none()
   typean: ((any())->'ok')

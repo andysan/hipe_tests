@@ -1,6 +1,6 @@
 
 case6:t1/2 :: ((2,[any()])->atom())
-case6:t2/1 :: ((any())->none())
-case6:t3/1 :: ((any())->none())
+case6:t2/1 :: none()
+case6:t3/1 :: none()
 case6:module_info/0 :: (()->any())
 case6:module_info/1 :: ((any())->any())

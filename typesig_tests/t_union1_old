@@ -1,0 +1,7 @@
+
+t_union1:a_or_b/1 :: ((binary() | atom())->'a' | 'b')
+t_union1:mystery1/1 :: ((binary() | atom())->'a')
+t_union1:mystery2/1 :: ((binary() | atom())->'true')
+t_union1:atom_or_binary/1 :: ((binary() | atom())->binary() | 'an_atom')
+t_union1:module_info/0 :: (()->any())
+t_union1:module_info/1 :: ((any())->any())

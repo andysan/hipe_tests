@@ -1,0 +1,12 @@
+{t_union1,a_or_b,1} : OK
+ typesig: ((binary() | atom())->'a' | 'b')
+  typean: ((any())->'a' | 'b')
+{t_union1,atom_or_binary,1} : OK
+ typesig: ((binary() | atom())->binary() | 'an_atom')
+  typean: ((any())->binary() | 'an_atom')
+{t_union1,mystery1,1} : OK
+ typesig: ((binary() | atom())->'a')
+  typean: ((any())->'a' | 'b')
+{t_union1,mystery2,1} : OK
+ typesig: ((binary() | atom())->'true')
+  typean: ((any())->'true')

@@ -23,5 +23,5 @@ t6(X) when X -> ok.
 
 t7(X) when not X -> ok.
 
-t8(X) when size(X) -> ok.
+t8(X) when size(X) > 1 -> ok.
   
