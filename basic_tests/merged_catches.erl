@@ -31,5 +31,5 @@ fail2(X)->
 fail3(X)->
   1/X.
 
-compile(Flags) ->
-  hipe:c(?MODULE, [Flags]).
+compile(Opts) ->
+  hipe:c(?MODULE, Opts).
