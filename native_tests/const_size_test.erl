@@ -8,8 +8,8 @@
 %%  History  :  * 2003-10-31 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2004/02/12 09:53:28 $
-%%    $Revision: 1.2 $
+%%    $Date: 2004/03/11 23:27:13 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 
 -module(const_size_test).
@@ -17,7 +17,7 @@
 
 test() ->
   compile([o2]),
-  %% division and round() calls below is just to that we return 42...
+  %% division and round() calls below is just so that we return 42...
   S = hipe_bifs:constants_size() / 4,
   round(S).
 
