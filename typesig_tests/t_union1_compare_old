@@ -9,4 +9,4 @@
   typean: ((_) -> 'a' | 'b')
 {t_union1,mystery2,1} : OK
  typesig: ((binary() | atom()) -> 'true')
-  typean: ((_) -> 'true')
+  typean: ((_) -> bool())
