@@ -18,9 +18,7 @@ testfiles="hc?.erl"
 
 ix_exec ()
 {
-  {
-    echo echo "ctest:start\("$2","$3","$4"\). halt\(\)." \| $1 $5 -pa . 
-  } | sh
+    echo "ctest:start("$2","$3","$4"). halt()." \| $1 $5 -pa . 
 }
 
 ## NOTE: this does not use the same test.erl file as the other test dirs.
