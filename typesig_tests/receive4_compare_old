@@ -1,0 +1,3 @@
+{receive4,t,0} : OK
+ typesig: (() -> 'ok')
+  typean: (() -> 'ok')

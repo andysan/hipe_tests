@@ -1,0 +1,4 @@
+
+receive4:t/0 :: (() -> 'ok')
+receive4:module_info/0 :: (() -> any())
+receive4:module_info/1 :: ((_) -> any())
