@@ -24,7 +24,7 @@ test() ->
     ok.
 
 compile(O) ->
-  hipe:c(?MODULE,[{core,false}|O]).
+  hipe:c(?MODULE,O).
 
 split(<<N:16,B:N/binary,T/binary>>) ->
     {B,T}.

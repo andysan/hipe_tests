@@ -32,4 +32,4 @@ pp(Bin) ->
     end.
 
 compile(Opts) ->
-    hipe:c(?MODULE, [{core,false}|Opts]).
+    hipe:c(?MODULE, Opts).
