@@ -5,9 +5,9 @@
 %%  Notes    : 
 %%  History  : 1999-12-02 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:48 $
-%%    $Revision: 1.1 $
+%%    $Author: richardc $
+%%    $Date: 2001/04/19 17:47:04 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 %% Exported functions (short description):
 %%
@@ -45,8 +45,8 @@ start(Module,CompilerOptions,File) ->
 		{{{emu_result,J1},{native_result,H1}},
 		 {{emu_compile,JC},{native_compile,HC}}};
 	    true ->
-		{{{emu_result,J1},{native_result,no_native}},
-		 {{emu_compile,JC},{native_compile,no_native}}}
+		{{{emu_result,J1},{native_result,J1}},
+		 {{emu_compile,JC},{native_compile,JC}}}
 	end,
     write(File,Result).
 
