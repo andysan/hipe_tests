@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.31 2004/08/18 16:11:08 richardc Exp $
+## $Id: testsuite.sh,v 1.32 2004/08/20 12:39:14 richardc Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -320,6 +320,8 @@ else
 	echo "on $HOSTNAME"
         rm -f $RES_FILE
 fi
+
+$GREP TESTSUITE-NOTE $LOG_FILE
 
 rm -f $lockfile
 
