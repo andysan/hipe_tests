@@ -18,9 +18,9 @@ compile(O) ->
 
 msisdn_internal_storage(<<>>,MSISDN) ->
     {ok,lists:reverse(MSISDN)};
-msisdn_internal_storage(<<2#11111111:8,Rest/binary>>,MSISDN) ->
+msisdn_internal_storage(<<2#11111111:8,_Rest/binary>>,MSISDN) ->
     {ok,lists:reverse(MSISDN)};
-msisdn_internal_storage(<<2#1111:4,DigitN:4,Rest/binary>>,MSISDN) when
+msisdn_internal_storage(<<2#1111:4,DigitN:4,_Rest/binary>>,MSISDN) when
     DigitN < 10 ->
     {ok,lists:reverse([(DigitN bor 2#11110000)|MSISDN])};
 msisdn_internal_storage(<<DigitNplus1:4,DigitN:4,Rest/binary>>,MSISDN) when
@@ -28,6 +28,6 @@ msisdn_internal_storage(<<DigitNplus1:4,DigitN:4,Rest/binary>>,MSISDN) when
     DigitN < 10 ->
     NewMSISDN=[((DigitNplus1 bsl 4) bor DigitN)|MSISDN],
     msisdn_internal_storage(Rest,NewMSISDN);
-msisdn_internal_storage(Rest,MSISDN) ->
+msisdn_internal_storage(_Rest,_MSISDN) ->
     {fault}. %% Mandatory IE incorrect
 

@@ -1,7 +1,7 @@
-%%% File    : estone.erl
-%%% Author  : RHS Linux User <klacke@erix.ericsson.se>
-%%% Purpose : Meassure erlang implementations on a certain machine
-%%% Created : 29 Oct 1996 by RHS Linux User <klacke@jb.du.etx.ericsson.se>
+%% File    : estone.erl
+%% Author  : RHS Linux User <klacke@erix.ericsson.se>
+%% Purpose : Measure Erlang implementations on a certain machine
+%% Created : 29 Oct 1996 by RHS Linux User <klacke@jb.du.etx.ericsson.se>
 
 -module(estone).
 -author('klacke@erix.ericsson.se').
@@ -49,7 +49,7 @@ compile(Flags) ->
     hipe:c(?MODULE,Flags).
 
 run(Compiler, Version, Flags, Os, CPu, MHz) ->
-    L = estone:macro(estone:micros()),
+    L = ?MODULE:macro(?MODULE:micros()),
     run(Compiler, Version, Flags, Os, CPu, MHz, L).
 
 run(Compiler, Version, Flags, Os, CPu, MHz, L) ->
@@ -204,7 +204,7 @@ run_micros([H|T]) ->
     [R| run_micros(T)].
 
 run_micro(M) ->
-    Pid = spawn(estone, run_micro, [self(),M]),
+    Pid = spawn(?MODULE, run_micro, [self(),M]),
     Res = receive {Pid, Reply} -> Reply end,
     %% timer:sleep(2000), %% give system some time 
     Res.
@@ -275,8 +275,8 @@ gci(Micros, Words, Gcs) ->
     ((256 * Gcs) / Micros) + (Words / Micros).
 
 apply_micro(Name, Loops) ->
-    io:format("~w(~w) ", [Name, Loops]),
-    apply(estone, Name, [Loops]).
+    %io:format("~w(~w) ", [Name, Loops]),
+    apply(?MODULE, Name, [Loops]).
 
 %%%%%%%%%%%% micro bench manipulating lists. %%%%%%%%%%%%%%%%%%%%%%%%%
 lists(0) ->
@@ -317,10 +317,10 @@ msgp(I) ->
 msgp(0, _) -> 
     0;
 msgp(I, Msg) ->
-    P1 = spawn(estone , p1, [self()]),
-    P2 = spawn(estone, p1, [P1]),
-    P3 = spawn(estone, p1, [P2]),
-    P4 = spawn(estone, p1, [P3]),
+    P1 = spawn(?MODULE, p1, [self()]),
+    P2 = spawn(?MODULE, p1, [P1]),
+    P3 = spawn(?MODULE, p1, [P2]),
+    P4 = spawn(?MODULE, p1, [P3]),
     msgp_loop(100, P4, Msg),
     msgp(I-1, Msg).
 
@@ -353,10 +353,10 @@ msgp_medium(I) ->
 msgp_medium(0, _) -> 
     0;
 msgp_medium(I, Msg) ->
-    P1 = spawn(estone , p1, [self()]),
-    P2 = spawn(estone, p1, [P1]),
-    P3 = spawn(estone, p1, [P2]),
-    P4 = spawn(estone, p1, [P3]),
+    P1 = spawn(?MODULE, p1, [self()]),
+    P2 = spawn(?MODULE, p1, [P1]),
+    P3 = spawn(?MODULE, p1, [P2]),
+    P4 = spawn(?MODULE, p1, [P3]),
     msgp_loop(100, P4, Msg),
     msgp_medium(I-1, Msg).
 
@@ -369,8 +369,8 @@ msgp_huge(I) ->
 msgp_huge(0, _) -> 
     0;
 msgp_huge(I, Msg) ->
-    P1 = spawn(estone , p1, [self()]),
-    P4 = spawn(estone, p1, [P1]),
+    P1 = spawn(?MODULE, p1, [self()]),
+    P4 = spawn(?MODULE, p1, [P1]),
     msgp_loop(100, P4, Msg),
     msgp_huge(I-1, Msg).
 
@@ -511,7 +511,7 @@ port_io(I) ->
 make_port_pids(0, _) -> 
     [];
 make_port_pids(I, J) ->
-    [spawn(estone, ppp, [self(),J]) | make_port_pids(I-1, J)].
+    [spawn(?MODULE, ppp, [self(),J]) | make_port_pids(I-1, J)].
 ppp(Top, I) ->
     P = open_port({spawn, cat}, []),%% cat sits at the other end
     Str = lists:duplicate(200, 88), %% 200 X'es
@@ -538,7 +538,7 @@ ppp_loop(P, I, Cmd) ->
 %% Working with a very large non-working data set
 %% where the passive data resides in remote processes
 large_dataset_work(I) ->
-    {Minus, Ps} = timer:tc(estone, mk_big_procs, [?BIGPROCS]),
+    {Minus, Ps} = timer:tc(?MODULE, mk_big_procs, [?BIGPROCS]),
     trav(I),
     lists(I),
     send_procs(Ps, stop),
@@ -549,7 +549,7 @@ mk_big_procs(I) ->
     [ mk_big_proc()| mk_big_procs(I-1)].
 
 mk_big_proc() ->
-    P = spawn(estone, big_proc, []),
+    P = spawn(?MODULE, big_proc, []),
     P ! {self(), running},
     receive
 	{P, yes} -> P
@@ -573,7 +573,7 @@ big_proc() ->
 %% Working with a large non-working data set
 %% where the data resides in the local process.
 large_local_dataset_work(I) ->
-    {Minus,_Data} = timer:tc(estone, very_big, [?BIGPROC_SIZE]),
+    {Minus,_Data} = timer:tc(?MODULE, very_big, [?BIGPROC_SIZE]),
     trav(I),
     lists(I),
     Minus.
@@ -652,35 +652,35 @@ disp() ->
     
 %% Generic server like behaviour
 generic(I) ->
-    register(funky, spawn(estone, gserv, [funky, estone, [], []])),
+    register(funky, spawn(?MODULE, gserv, [funky, ?MODULE, [], []])),
     g_loop(I).
 
 g_loop(0) ->
     exit(whereis(funky), kill),
     0;
 g_loop(I) ->
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [xyz]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [xyz]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
-    estone:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [xyz]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [xyz]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
+    ?MODULE:req(funky, {call, [abc]}),
     g_loop(I-1).
 
 req(Name, Req) ->
@@ -720,7 +720,7 @@ handle_call(_From, State, [abc]) ->
 %% Binary handling, creating, manipulating and sending binaries
 binary_h(I) ->
     T1 = erlang:now(),
-    P = spawn(estone, echo, [self()]),
+    P = spawn(?MODULE, echo, [self()]),
     B = list_to_binary(lists:duplicate(2000, 5)),
     T2 = erlang:now(),
     Compensate = subtr(T2, T1),
@@ -890,19 +890,19 @@ local1(N) ->
 
 remote0(0) -> 0;
 remote0(N) ->
-    estone:remote0(N-1).
+    ?MODULE:remote0(N-1).
 
 remote1(0) -> 0;
 remote1(N) ->
-    1+estone:remote1(N-1).
+    1+?MODULE:remote1(N-1).
 
 app0(0) -> 0;
 app0(N) ->
-    apply(estone, app0, [N-1]).
+    apply(?MODULE, app0, [N-1]).
 
 app1(0) -> 0;
 app1(N) ->
-    1 + apply(estone, app1, [N-1]).
+    1 + apply(?MODULE, app1, [N-1]).
 
 %%%%%% jog the time queue implementation
 timer(I) ->
@@ -945,7 +945,7 @@ links(I) ->
 mk_link_procs(0) -> 
     [];
 mk_link_procs(I) ->
-    [spawn_link(estone, lproc, [self()]) | mk_link_procs(I-1)].
+    [spawn_link(?MODULE, lproc, [self()]) | mk_link_procs(I-1)].
 
 
 lproc(Top) ->
@@ -1047,7 +1047,7 @@ ppld([M| Tail], Mss) ->
     ppld(Tail, Mss).
 
 mean(L0) ->
-    L1 = lists:sort(L0),  %% romove the 2 extremes
+    L1 = lists:sort(L0),  %% remove the 2 extremes
     L = lists:delete(lists:last(L1), tl(L1)),
     round(sum(L) / length(L)).
 
