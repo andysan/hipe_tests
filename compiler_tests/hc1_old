@@ -1,5 +1,5 @@
 {{result,[{ok,"hipe"},
-	  {ok,"hipe"},
+          {ok,"hipe"},
           {ok,"stdlib"},
           {ok,"compiler"},
           {ok,"kernel"},
