@@ -6,17 +6,17 @@
 %%  History  : 1999-12-02 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2004/01/19 17:16:30 $
-%%    $Revision: 1.8 $
+%%    $Date: 2004/02/03 23:12:12 $
+%%    $Revision: 1.9 $
 %% ====================================================================
 %% Exported functions (short description):
 %%
-%% start(Module,CompilerOptions,File) 
+%% start(Module,HiPECompOptions,File) 
 %% 
 %%  Executes a test module in this way:
 %%   1. Compiles the module Module.erl to Module.beam. 
 %%   2. Then the function test/0 in Module is called.
-%%   3. Then Module is compiled to native code with the flags CompilerOptions
+%%   3. Then Module is compiled to native code with the flags HiPECompOptions
 %%   4. Then the function test/0 in Module is called.
 %%   5. Finally the a tuple with the results from both Module:test() executions
 %%      are written to the file File.
@@ -33,12 +33,12 @@
 start(Module,File) ->
     start(Module,[o2],File).
 
-start(Module,CompilerOptions,File) ->
+start(Module,HiPECompOptions,File) ->
     IC = (catch compile:file(Module)),
     IR = (catch Module:test()),
-    case proplists:get_bool(no_native,CompilerOptions) of
+    case proplists:get_bool(no_native,HiPECompOptions) of
 	false ->
-	    HC = (catch Module:compile(CompilerOptions)),
+	    HC = (catch Module:compile(HiPECompOptions)),
 	    HR = (catch Module:test());
 	true ->
 	    {ok,Bin} = file:read_file(atom_to_list(Module) ++ "_old"),
