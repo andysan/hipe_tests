@@ -13,10 +13,9 @@ ERL_FLAGS=$3
 
 testfiles="bif01.erl exception01.erl exception02.erl fun??.erl guard01.erl \
 	   simpl_*.erl tuple.erl small.erl length.erl catch*.erl \
-	   hash_test.erl random_test.erl test??.erl mode_errors.erl \
+	   *_test.erl test??.erl mode_errors.erl \
 	   switch_mix.erl var_tuple.erl int_overfl.erl inline_match.erl \
-	   case_end_atom.erl ets_bug.erl ext_ref_test.erl ssa_bug_1.erl\
-	   fp_ebb.erl"
+	   case_end_atom.erl ets_bug.erl *_bug_?.erl fp_ebb.erl"
 #testfiles="$testfiles try_expr.erl"
 
 #============================================================================
