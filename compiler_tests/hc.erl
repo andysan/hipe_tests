@@ -1,3 +1,4 @@
+% -*- erlang-indent-level: 2 -*-
 %% ====================================================================
 %% Test module for stress-testing the HiPE compiler.
 %%
@@ -6,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/11/03 20:33:04 $
-%%    $Revision: 1.10 $
+%%    $Date: 2003/11/05 15:00:24 $
+%%    $Revision: 1.11 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -85,7 +86,7 @@ hc_mod(Mod,Opts) ->
     Res = hipe:c(Mod,Opts),
     T = time_since(T0) / 1000,
     S2 = hipe_bifs:constants_size(),
-    io:format(" done in ~.2f secs (~w words)\n",[T,S2-S1]),
+    io:format(" done in ~.2f secs (++ ~w words)\n",[T,S2-S1]),
     {ok,Mod} = Res.
 
 get_comp_opts() ->
@@ -94,10 +95,15 @@ get_comp_opts() ->
     CompFlags.
 
 files(App) ->
-    AppFile = os:getenv("OTP_DIR") ++ "/lib/" ++ App ++ "/ebin/"++App++".app",
-    {ok,[Tuple]} = file:consult(AppFile),
-    {value,{modules,Files}} = lists:keysearch(modules,1,element(3,Tuple)),
-    Files.
+  AppFile = os:getenv("OTP_DIR") ++ "/lib/" ++ App ++ "/ebin/"++App++".app",
+  case catch file:consult(AppFile) of
+    {ok,[Tuple]} ->
+      {value,{modules,Files}} = lists:keysearch(modules,1,element(3,Tuple)),
+      Files;
+    {error,enoent} ->
+      %% this can happen for orber if no C++ compiler was found
+      []
+  end.
 
 time_now() ->
     T1 = hipe_bifs:get_hrvtime(),
