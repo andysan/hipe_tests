@@ -9,8 +9,8 @@ HIPE=$1
 COMP_FLAGS=$2
 ERL_FLAGS=$3
 
-HiPE_COMP_FLAGS=$COMP_FLAGS
-export HiPE_COMP_FLAGS
+HiPE_COMP_OPTS=$COMP_FLAGS
+export HiPE_COMP_OPTS
 
 ## One fine day the following should be changed to be "hc.erl" only.
 ## Currently, the constant pool is overflowing when loading all files.

@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/02/25 18:12:27 $
-%%    $Revision: 1.1 $
+%%    $Date: 2002/03/20 14:06:36 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -56,7 +56,12 @@ excluded(_) ->
 
 hc_mod(Mod) ->
     io:format("Compiling ~w\n",[Mod]),
-    {ok,Mod} = hipe:c(Mod).
+    {ok,Mod} = hipe:c(Mod,get_comp_opts()).
+
+get_comp_opts() ->
+    {ok,Tokens,_} = erl_scan:string(os:getenv("HiPE_COMP_OPTS") ++ "."),
+    {ok,CompFlags} = erl_parse:parse_term(Tokens),
+    CompFlags.
 
 files(App) ->
     AppFile = os:getenv("OTP_DIR") ++ "/lib/" ++ App ++ "/ebin/"++App++".app",

@@ -7,8 +7,8 @@
 %%  History  :	* 2000-10-31 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/03/20 10:44:08 $
-%%    $Revision: 1.3 $
+%%    $Date: 2002/03/20 14:06:36 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -32,8 +32,12 @@ t() ->
     [ do_me(Mod) || Mod <- simple_ones() ++ mk_fun() ].
 
 do_me(Mod) ->
-    %% CompFlags = os:getenv("HiPE_COMP_FLAGS"),
-    hipe:c(Mod,[verbose]). %% ++ CompFlags).
+    hipe:c(Mod,[verbose] ++ get_comp_opts()).
+
+get_comp_opts() ->
+    {ok,Tokens,_} = erl_scan:string(os:getenv("HiPE_COMP_OPTS") ++ "."),
+    {ok,CompFlags} = erl_parse:parse_term(Tokens),
+    CompFlags. 
 
 fast_test() ->
 %%    file:set_cwd('../../otp/lib/hipe/ebin/'),

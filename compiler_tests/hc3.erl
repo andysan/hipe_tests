@@ -6,9 +6,9 @@
 %%  Purpose  :  Tests whether the HiPE compiler works by compiling and
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
-%%    $Author: mikpe $
-%%    $Date: 2002/03/20 02:06:26 $
-%%    $Revision: 1.3 $
+%%    $Author: kostis $
+%%    $Date: 2002/03/20 14:06:37 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -64,7 +64,12 @@ excluded(_) ->
 
 hc_mod(Mod) ->
     io:format("Compiling ~w\n",[Mod]),
-    {ok,Mod} = hipe:c(Mod).
+    {ok,Mod} = hipe:c(Mod,get_comp_opts()).
+
+get_comp_opts() ->
+    {ok,Tokens,_} = erl_scan:string(os:getenv("HiPE_COMP_OPTS") ++ "."),
+    {ok,CompFlags} = erl_parse:parse_term(Tokens),
+    CompFlags.
 
 files(App) ->
     AppFile = os:getenv("OTP_DIR") ++ "/lib/" ++ App ++ "/ebin/"++App++".app",
