@@ -8,7 +8,7 @@
 %%  See the file "license.terms" for information on usage and redistribution
 %%  of this file, and for a DISCLAIMER OF ALL WARRANTIES.
 %%
-%%     $Id: wings_pick.erl,v 1.1 2004/02/18 17:11:13 kostis Exp $
+%%     $Id: wings_pick.erl,v 1.2 2004/02/19 13:15:09 richardc Exp $
 %%
 
 -module(wings_pick).
@@ -19,8 +19,8 @@
 -define(NEED_ESDL, 1).
 -include("wings.hrl").
 
--import(lists, [foreach/2,last/1,reverse/1,reverse/2,
-		sort/1,foldl/3,map/2,min/1,
+-import(lists, [foreach/2,reverse/2,
+		sort/1,map/2,min/1,
 		keysearch/3,member/2,delete/2]).
 
 %% For ordinary picking.
