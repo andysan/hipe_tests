@@ -5,9 +5,9 @@
 %%  Notes    : 
 %%  History  : 1999-12-02 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2004/02/03 23:12:12 $
-%%    $Revision: 1.9 $
+%%    $Author: richardc $
+%%    $Date: 2004/08/20 12:38:41 $
+%%    $Revision: 1.10 $
 %% ====================================================================
 %% Exported functions (short description):
 %%
@@ -28,7 +28,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(test).
--export([start/3,start/2]).
+-export([start/3,start/2,note/2,note/3]).
 
 start(Module,File) ->
     start(Module,[o2],File).
@@ -59,3 +59,9 @@ write(File,Result) ->
 	    true
     end.
 
+note(M, S) ->
+    note(M, S, []).
+
+note(M, S, As) ->
+    S1 = io_lib:format(S, As),
+    io:fwrite("\nTESTSUITE-NOTE: ~w: ~s\n", [M, S1]).
