@@ -1,4 +1,6 @@
-Ok: {case1,doit,0} typesig: (()->{1,_} | 3 | 'ok')	typean: (()->any())
-Ok: {case1,module_info,0} typesig: (()->any())	typean: (()->any())
-Ok: {case1,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
-Ok: {case1,t,1} typesig: ((any())->{1,_} | 3 | 'ok')	typean: ((any())->any())
+{case1,doit,0} : OK
+ typesig: (()->{1,_} | 3 | 'ok')
+  typean: (()->any())
+{case1,t,1} : OK
+ typesig: ((any())->{1,_} | 3 | 'ok')
+  typean: ((any())->any())

@@ -1,7 +1,7 @@
 % file: "tak.erl"
 
 -module(tak).
--export([test/0,compile/1]).
+-export([test/0]).
 
 tak(X,Y,Z) ->
   if
@@ -18,8 +18,6 @@ tak(X,Y,Z) ->
 %       tak(Z-1,X,Y) );
 %tak(_X, _Y, Z) -> Z.
 
-
-
 loop(0,R) -> R;
 loop(N,_) -> loop(N-1,tak(18,12,6)).
 
@@ -29,6 +27,3 @@ test() ->
     {_,Time} = statistics(runtime),
     io:format("\nruntime = ~p msecs\nresult = ~p\n",[Time,R]),
     R.
-
-compile(Flags) ->
-    hipe:c(?MODULE,Flags).

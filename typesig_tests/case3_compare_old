@@ -1,3 +1,3 @@
-Ok: {case3,module_info,0} typesig: (()->any())	typean: (()->any())
-Ok: {case3,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
-Ok: {case3,t,2} typesig: ((1 | 2,[any()] | number())->number() | atom())	typean: ((any(),any())->number() | atom())
+{case3,t,2} : OK
+ typesig: ((1 | 2,[any()] | number())->number() | atom())
+  typean: ((any(),any())->number() | atom())

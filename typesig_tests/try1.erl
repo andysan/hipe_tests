@@ -15,6 +15,4 @@ t(X, Y) ->
   catch 
     _:_ when is_atom(X) -> Y+1
   end.
-      
-    
-      
+ 

@@ -1,6 +1,9 @@
-Ok: {tak,compile,1} typesig: ((any())->any())	typean: ((any())->any())
-Ok: {tak,loop,2} typesig: ((number(),any())->any())	typean: ((any(),any())->any())
-Ok: {tak,module_info,0} typesig: (()->any())	typean: (()->any())
-Ok: {tak,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
-Ok: {tak,tak,3} typesig: ((any(),any(),any())->any())	typean: ((any(),any(),any())->any())
-Ok: {tak,test,0} typesig: (()->any())	typean: (()->any())
+{tak,loop,2} : OK
+ typesig: ((number(),any())->any())
+  typean: ((any(),any())->any())
+{tak,tak,3} : OK
+ typesig: ((any(),any(),any())->any())
+  typean: ((any(),any(),any())->any())
+{tak,test,0} : OK
+ typesig: (()->any())
+  typean: (()->any())

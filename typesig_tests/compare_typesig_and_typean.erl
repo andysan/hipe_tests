@@ -28,19 +28,22 @@ compare_sigs(Module, TypeSigSigs, TypeAnSigs) ->
 		 lists:keysort(1, TypeSigSigs),
 		 lists:keysort(1, TypeAnSigs)).
 
-
 compare_sigs_1(M, [{{F, A}, Type1}|Left1], [{{F, A}, Type2}|Left2]) ->
-  case erl_types:t_is_subtype(Type1, Type2) of
-    true ->
-      io:format("Ok: ~w typesig: ~s\ttypean: ~s\n", 
-		[{M, F, A}, 
-		 erl_types:t_to_string(Type1),
-		 erl_types:t_to_string(Type2)]);
+  case (F == module_info andalso A =< 1) of
+    true -> ok;	%% no need to show the module_info/[0,1] type signatures
     false ->
-      io:format("Failed: ~w typesig: ~s\ttypean: ~s\n", 
-		[{M, F, A}, 
-		 erl_types:t_to_string(Type1),
-		 erl_types:t_to_string(Type2)])
+      case erl_types:t_is_subtype(Type1, Type2) of
+        true ->
+          io:format("~w : OK\n typesig: ~s\n  typean: ~s\n", 
+		    [{M, F, A}, 
+		     erl_types:t_to_string(Type1),
+		     erl_types:t_to_string(Type2)]);
+        false ->
+          io:format("~w : differ!!!\n typesig: ~s\n  typean: ~s\n", 
+		    [{M, F, A}, 
+		     erl_types:t_to_string(Type1),
+		     erl_types:t_to_string(Type2)])
+      end
   end,
   compare_sigs_1(M, Left1, Left2);
 compare_sigs_1(_M, [], []) ->

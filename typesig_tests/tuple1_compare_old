@@ -1,4 +1,6 @@
-Ok: {tuple1,doit,0} typesig: (()->{number()})	typean: (()->{number()})
-Ok: {tuple1,module_info,0} typesig: (()->any())	typean: (()->any())
-Ok: {tuple1,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
-Ok: {tuple1,t,1} typesig: ((number())->{number()})	typean: ((any())->{number()})
+{tuple1,doit,0} : OK
+ typesig: (()->{number()})
+  typean: (()->{number()})
+{tuple1,t,1} : OK
+ typesig: ((number())->{number()})
+  typean: ((any())->{number()})

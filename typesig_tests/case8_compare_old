@@ -1,4 +1,6 @@
-Ok: {case8,module_info,0} typesig: (()->any())	typean: (()->any())
-Ok: {case8,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
-Ok: {case8,t,1} typesig: ((integer())->'ok')	typean: ((any())->'error' | 'ok')
-Ok: {case8,t2,0} typesig: (()->float())	typean: (()->float())
+{case8,t,1} : OK
+ typesig: ((integer())->'ok')
+  typean: ((any())->'error' | 'ok')
+{case8,t2,0} : OK
+ typesig: (()->float())
+  typean: (()->float())

@@ -6,7 +6,6 @@
 %%% Created : 27 Jan 2005 by Kostis Sagonas <kostis@it.uu.se>
 %%%-------------------------------------------------------------------
 -module(receive2).
-
 -compile(export_all).
 
 t(Arg) ->

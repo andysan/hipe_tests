@@ -1,6 +1,12 @@
-Ok: {list1,append,2} typesig: (([any()],any())->any())	typean: ((any(),any())->any())
-Ok: {list1,doit,0} typesig: (()->{number()})	typean: (()->{number()})
-Ok: {list1,len,2} typesig: (([any()],number())->number())	typean: ((any(),any())->number())
-Ok: {list1,module_info,0} typesig: (()->any())	typean: (()->any())
-Ok: {list1,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
-Ok: {list1,reverse,1} typesig: (([any()])->[any()])	typean: ((any())->[any()])
+{list1,append,2} : OK
+ typesig: (([any()],any())->any())
+  typean: ((any(),any())->any())
+{list1,doit,0} : OK
+ typesig: (()->{number()})
+  typean: (()->{number()})
+{list1,len,2} : OK
+ typesig: (([any()],number())->number())
+  typean: ((any(),any())->number())
+{list1,reverse,1} : OK
+ typesig: (([any()])->[any()])
+  typean: ((any())->[any()])

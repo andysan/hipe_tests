@@ -1,3 +1,3 @@
-Ok: {rec1,module_info,0} typesig: (()->any())	typean: (()->any())
-Ok: {rec1,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
-Ok: {rec1,traverse_linked_list,1} typesig: (({_,{_,{_,{_,_} | 'nil'} | 'nil'} | 'nil'})->[any(),...])	typean: ((any())->[any(),...])
+{rec1,traverse_linked_list,1} : OK
+ typesig: (({_,{_,{_,{_,_} | 'nil'} | 'nil'} | 'nil'})->[any(),...])
+  typean: ((any())->[any(),...])

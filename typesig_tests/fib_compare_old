@@ -1,4 +1,6 @@
-Ok: {fib,doit,0} typesig: (()->integer())	typean: (()->integer())
-Ok: {fib,fib,1} typesig: ((number())->integer())	typean: ((any())->integer())
-Ok: {fib,module_info,0} typesig: (()->any())	typean: (()->any())
-Ok: {fib,module_info,1} typesig: ((any())->any())	typean: ((any())->any())
+{fib,doit,0} : OK
+ typesig: (()->integer())
+  typean: (()->integer())
+{fib,fib,1} : OK
+ typesig: ((number())->integer())
+  typean: ((any())->integer())
