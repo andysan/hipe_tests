@@ -26,7 +26,7 @@ for file in $testfiles ; do
 	rm -f ${resfile}
     else
         # this time we send the output to the log
-	printf "\n*** $resfile and $testdir/$test differ!!!\n"
+	printf "\n*** In $testdir: $resfile and ${test}_old differ!!!\n"
 	diff -sN ${resfile} ${test}_old
     fi
     echo
