@@ -9,9 +9,9 @@
 %%  Notes    :  Adapted from after_SUITE by 'bjorn@erix.ericsson.se'.
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: mikpe $
-%%    $Date: 2001/09/04 12:46:45 $
-%%    $Revision: 1.5 $
+%%    $Author: kostis $
+%%    $Date: 2002/05/08 07:33:41 $
+%%    $Revision: 1.6 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -58,7 +58,7 @@ report(Period, Before, After) ->
 		   {too_late, Percent};
 	      Percent when Percent < 100.0 ->
 		   {too_early, Percent};
-	      Percent ->
+	      _ ->
 	           'Elapsed/expected'
 	  end.
 

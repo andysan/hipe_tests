@@ -26,9 +26,9 @@
 
 
 test() ->
-  FrameList = [89,128,0,8,132,0,26,133,133,0,38,148,94,
-	       128,0,2,129,128,92,128,0,2,0,0,112,128,0,
-	       10,194,69,0,0,0,0,0,18,52,95],
+  %% FrameList = [89,128,0,8,132,0,26,133,133,0,38,148,94,
+  %% 	       128,0,2,129,128,92,128,0,2,0,0,112,128,0,
+  %% 	       10,194,69,0,0,0,0,0,18,52,95],
   Frame = concat_binary([list_to_binary([89]),list_to_binary([128]),
 			 list_to_binary([0]),list_to_binary([8]),
 			 list_to_binary([132]),list_to_binary([0]),
@@ -59,17 +59,17 @@ compile(Flags) ->
     hipe:c(?MODULE,Flags).
 
 loop(0,R,_) -> R;
-loop(N,R,Frame) -> loop(N-1, decode1:decode_ie_heads_setup(Frame),Frame).
+loop(N,_,Frame) -> loop(N-1, decode1:decode_ie_heads_setup(Frame),Frame).
 
-run_dummy(0,Frame) ->
+run_dummy(0,_Frame) ->
    done;
 run_dummy(N,Frame) ->
    parse_dummy(Frame),
    run_dummy(N-1,Frame).
 
-parse_dummy(Frame) -> true.
+parse_dummy(_Frame) -> true.
 
-run_orig(0,Frame) -> 
+run_orig(0,_Frame) -> 
    done;
 run_orig(N,Frame) ->
    decode1:decode_ie_heads_setup(Frame),
@@ -385,13 +385,13 @@ dec_bearer_capability_6(BbcRec, [Octet6]) ->
 	    ?SCCT_P_TO_MP
       end,
 
-   NewBbcRec = BbcRec#scct_bbc{scct_susceptibility_to_clipping = STC,
-			       scct_user_plane_connection_configuration = UPCC}.
+   BbcRec#scct_bbc{scct_susceptibility_to_clipping = STC,
+		   scct_user_plane_connection_configuration = UPCC}.
 
 
 reverse(L) ->
   reverse(L,[]).
 
 reverse([E|Rest],Acc) ->
-  reverse(Rest,[E|acc]);
+  reverse(Rest,[E|Acc]);
 reverse([],Acc) -> Acc.

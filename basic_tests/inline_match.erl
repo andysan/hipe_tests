@@ -14,23 +14,23 @@ test() ->
    test3(a,{binary, foo, set},c)}.
 
 %% Inlined.
-to_objects(Bin, {binary, _, set}, Ts) ->
-  <<ObjSz0:32, T/binary>> = Bin,
+to_objects(Bin, {binary, _, set}, _Ts) ->
+  <<_ObjSz0:32, _T/binary>> = Bin,
   %% {A,B} = Bin,
   ok;
-to_objects(<<ObjSz0:32, T/binary>> ,_,_) ->
+to_objects(<<_ObjSz0:32, _T/binary>> ,_,_) ->
   ok;
 to_objects(_Bin, _, _Ts) ->
   ok.
 
 %% Not Inlined.
-fto_objects(Bin, {binary, _, set}, Ts) ->
-  <<ObjSz0:32, T/binary>> = Bin,
+fto_objects(Bin, {binary, _, set}, _Ts) ->
+  <<_ObjSz0:32, _T/binary>> = Bin,
   %% {A,B} = Bin,
   ok;
-fto_objects(<<ObjSz0:32, T/binary>> ,_,_) ->
+fto_objects(<<_ObjSz0:32, _T/binary>> ,_,_) ->
   ok;
-fto_objects(Bin, _, Ts) ->
+fto_objects(_Bin, _, _Ts) ->
   ok.
 
 
@@ -44,10 +44,10 @@ test1(KeysObjs, C, Ts) ->
   end.
 
 %% "Inlined" by hand
-test2(KeysObjs, C, Ts) ->
+test2(KeysObjs, C, _Ts) ->
   case catch (case C of
   {binary, _, set} ->
-    <<ObjSz0:32, T/binary>> = KeysObjs;
+    <<_ObjSz0:32, _T/binary>> = KeysObjs;
   _ -> ok
        end) of
      {'EXIT', _} ->

@@ -13,8 +13,8 @@ iota(N) -> iota(N,[]).
 iota(0,L) -> L;
 iota(N,L) -> iota(N-1,[N|L]).
 
-loop(0,L,R) -> R;
-loop(N,L,R) -> loop(N-1,L,nrev(L)).
+loop(0,_,R) -> R;
+loop(N,L,_) -> loop(N-1,L,nrev(L)).
 
 test() ->
     L = iota(100),

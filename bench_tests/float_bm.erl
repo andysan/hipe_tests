@@ -1,4 +1,4 @@
-%%% $Id: float_bm.erl,v 1.2 2002/03/15 10:08:51 kostis Exp $
+%%% $Id: float_bm.erl,v 1.3 2002/05/08 07:33:38 kostis Exp $
 %%% from bjorn@erix.ericsson.se
 
 -module(float_bm).
@@ -26,7 +26,7 @@ run_benchmarks() ->
 float_add(Iter) ->
     float_add(Iter, 1.1, 3.1416).
 
-float_add(0, A, B) -> ok;
+float_add(0, _, _) -> ok;
 float_add(Iter, A, B) when float(A), float(B) ->
     A+B,
     A+B,
@@ -45,7 +45,7 @@ float_add(Iter, A, B) when float(A), float(B) ->
 float_sub(Iter) ->
     float_sub(Iter, 1.1, 3.1416).
 
-float_sub(0, A, B) -> ok;
+float_sub(0, _, _) -> ok;
 float_sub(Iter, A, B) when float(A), float(B) ->
     A-B,
     A-B,
@@ -64,7 +64,7 @@ float_sub(Iter, A, B) when float(A), float(B) ->
 float_mul(Iter) ->
     float_mul(Iter, 1.1, 3.1416).
 
-float_mul(0, A, B) -> ok;
+float_mul(0, _, _) -> ok;
 float_mul(Iter, A, B) when float(A), float(B) ->
     A*B,
     A*B,
@@ -83,7 +83,7 @@ float_mul(Iter, A, B) when float(A), float(B) ->
 float_div(Iter) ->
     float_div(Iter, 1.1, 3.1416).
 
-float_div(0, A, B) -> ok;
+float_div(0, _, _) -> ok;
 float_div(Iter, A, B) when float(A), float(B) ->
     A/B,
     A/B,

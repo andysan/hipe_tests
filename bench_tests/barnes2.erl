@@ -6,7 +6,7 @@
 create_scenario(N, M) ->
   create_scenario0(0, 0, trunc(math:sqrt(N)), M).
 
-create_scenario0(X, SN, SN, M) -> 
+create_scenario0(_, SN, SN, _) -> 
   [];
 create_scenario0(SN, Y, SN, M) -> 
   create_scenario0(0, Y+1, SN, M);
@@ -48,7 +48,7 @@ create_tree0([],Tree) ->
 create_tree0([{M,X,Y,_,_} | Stars], Tree) ->
   create_tree0(Stars, insert_tree_element(Tree, M, X, Y, 0.0, 0.0, 20000.0)).
 
-insert_tree_element(empty, M, X, Y, OX, OY, D) ->
+insert_tree_element(empty, M, X, Y, _OX, _OY, _D) ->
   {body,M,X,Y};
 insert_tree_element({branch,M0,SubTree}, M, X, Y, OX, OY, D) ->
   Q = relpos_to_quadrant(X-OX,Y-OY),
@@ -81,7 +81,7 @@ resolve_body_conflict(M0, X0, Y0, M1, X1, Y1, OX, OY, D) ->
 
 compute_acceleration(empty, _, _, _, _, _,L) -> 
   {{0.0, 0.0},L+1};
-compute_acceleration({body,BM,BX,BY}, D, OX, OY, X, Y,L) ->
+compute_acceleration({body,BM,BX,BY}, _D, _OX, _OY, X, Y,L) ->
   DX = BX - X,
   DY = BY - Y,
   R2 = (DX * DX) + (DY * DY),
@@ -128,7 +128,7 @@ compute_acceleration({branch,M,SubTree}, D, OX, OY, X, Y,L) ->
       {{AX0+AX1+AX2+AX3, AY0+AY1+AY2+AY3},L4+1}
   end.
 
-compute_star_accelerations(Tree,[],L) -> 
+compute_star_accelerations(_Tree,[],L) -> 
   {[],L};
 compute_star_accelerations(Tree,[{_,X, Y,_,_}|Stars],L) ->
   {A,AL} = compute_acceleration(Tree, 20000.0, 0.0, 0.0, X, Y,L),
@@ -147,7 +147,7 @@ advance_time(Time,Stars,L) ->
   {Acc,NL} = compute_star_accelerations(Tree, Stars, L),
   {compute_next_state(Stars,Acc,Time),NL}.
 
-loop(0,Time,Stars,L) ->
+loop(0,_Time,Stars,L) ->
   io:format("\nNumber of iterations: ~w\n", [L]),
   Stars;
 loop(N,Time,Stars,L) -> 

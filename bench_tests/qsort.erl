@@ -14,8 +14,8 @@ partition(Pivot,[H|T],A,B,L) ->
 partition(Pivot,[],A,B,L) ->
   qsort(A,[Pivot|qsort(B,L)]).
 
-loop(0,L,R) -> R;
-loop(N,L,R) -> loop(N-1,L,qsort(L)).
+loop(0,_,R) -> R;
+loop(N,L,_) -> loop(N-1,L,qsort(L)).
 
 test() ->
     L = [27,74,17,33,94,18,46,83,65, 2,

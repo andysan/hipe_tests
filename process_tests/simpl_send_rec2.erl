@@ -2,7 +2,7 @@
 -export([test/0,compile/1]).
 
 return_42() ->
-    receive A -> 42 end.
+    receive _ -> 42 end.
 
 test() ->
     self() ! foo,

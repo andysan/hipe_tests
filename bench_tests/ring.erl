@@ -18,7 +18,7 @@ process(Main,Dest) ->
     X         -> Dest ! (X-1), process(Main,Dest)
   end.
 
-create(Main,0) -> [];
+create(_,0) -> [];
 create(Main,N) -> [spawn(ring,process,[Main])|create(Main,N-1)].
 
 connect(Ps) -> connect(hd(Ps),Ps).
@@ -33,8 +33,8 @@ ring(Nbprocs,Hops) ->
     done -> ok
   end.
 
-loop(0,R,Procs, Msgs) -> R;
-loop(N,R,Procs, Msgs) -> loop(N-1,ring(Procs, Msgs), Procs, Msgs).
+loop(0,R,_Procs,_Msgs) -> R;
+loop(N,_, Procs, Msgs) -> loop(N-1,ring(Procs, Msgs), Procs, Msgs).
 
 test() ->
   time(100,100000).

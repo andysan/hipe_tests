@@ -35,7 +35,7 @@ make(N,M) ->
 %% make random initial configuration
 %%
 
-make_lines(0,M,L) ->
+make_lines(0,_,L) ->
     L;
 make_lines(N,M,L) ->
     make_lines(N-1,M,[make_col(M) | L]).
@@ -69,13 +69,13 @@ link_line([NW | RestN], [W | RestW], [SW | RestS]) ->
 %% start reproduction of all cells
 %%
 
-start_all([], N) ->
+start_all([], _) ->
     true;
 start_all([L|Ls], N) ->
     start_line(L, N),
     start_all(Ls, N).
 
-start_line([], N) ->
+start_line([], _) ->
     true;
 start_line([X|Xs], N) ->
     X ! {go, self(), 1, N},
@@ -112,13 +112,13 @@ cell() ->
     cell_iter(Xs, N, Num, Pid).
 
 
-cell_iter(Xs, N, 0, Pid) ->
+cell_iter(_Xs, N, 0, Pid) ->
     Pid ! {self(), N};
 cell_iter(Xs, N, Num, Pid) ->
     send_nghs(Xs, N),
     cell_iter(Xs, repro(N, receive_nghs(Xs, 0)), Num-1, Pid).
 
-send_nghs([], N) ->
+send_nghs([], _) ->
     true;
 send_nghs([X|Xs], N) ->
     X ! {self(), state, N},

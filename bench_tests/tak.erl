@@ -12,7 +12,7 @@ tak(X,Y,Z) ->
   end.
 
 loop(0,R) -> R;
-loop(N,R) -> loop(N-1,tak(18,12,6)).
+loop(N,_) -> loop(N-1,tak(18,12,6)).
 
 test() ->
     statistics(runtime),

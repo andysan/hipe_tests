@@ -8,7 +8,7 @@ fib(1) -> 1;
 fib(X) -> fib(X-1) + fib(X-2).
 
 loop(0,R) -> R;
-loop(N,R) -> loop(N-1,fib(30)).
+loop(N,_) -> loop(N-1,fib(30)).
 
 test() ->
     statistics(runtime),

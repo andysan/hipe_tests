@@ -66,7 +66,7 @@ pack_unpack(Data) ->
    unpack(OrgSize, CodeTree, bytes_to_bits(Bytes)).
 
 
-unpack(0, CodeTree, Bits) ->
+unpack(0, _CodeTree, _Bits) ->
    [];
 unpack(Size, CodeTree, Bits) ->
    {Byte, RestBits} = find_byte(CodeTree, Bits),
@@ -75,9 +75,9 @@ unpack(Size, CodeTree, Bits) ->
 
 find_byte({_, leaf, Byte}, Bits) ->
    {Byte, Bits};
-find_byte({_, L, R}, [1|Bits]) ->
+find_byte({_, L, _R}, [1|Bits]) ->
    find_byte(L, Bits);
-find_byte({_, L, R}, [0|Bits]) ->
+find_byte({_, _L, R}, [0|Bits]) ->
    find_byte(R, Bits).
 
 
@@ -115,15 +115,13 @@ bits_to_bytes([]) ->
     [].
 
 
-
-pack_data(Codes, []) ->
+pack_data(_Codes, []) ->
    [];
 pack_data(Codes, [Byte|Rest]) ->
    append(get_code(Byte, Codes),pack_data(Codes, Rest)).
 
 
-
-get_code(Index, []) ->
+get_code(_Index, []) ->
    io:format("error\n",[]),error;
 get_code(Index, [{I, Bits}|_]) when Index == I ->
    Bits;
@@ -139,9 +137,9 @@ make_codes({_, leaf, Byte}, Bits, Acc) ->
 make_codes({_, R, L}, Bits,Acc) ->
     make_codes(R, [1|Bits], make_codes(L, [0|Bits], Acc)).
 
-%
-% Make one huffman tree out of a list of trees.
-%
+%%
+%% Make one huffman tree out of a list of trees.
+%%
 
 build_code_tree([Tree]) ->
    Tree;
@@ -150,10 +148,10 @@ build_code_tree([{Val1, R1, L1}, {Val2, R2, L2} | Rest]) ->
 			       Rest)).
 
 
-%
-% Sort a list of leaves so that those with least frequence is first.
-% Nodes with frequence 0 are removed.
-%
+%%
+%% Sort a list of leaves so that those with least frequence is first.
+%% Nodes with frequence 0 are removed.
+%%
 
 sort_trees([], Sorted) ->
    Sorted;
@@ -161,9 +159,9 @@ sort_trees([T|Trees], Sorted) ->
    sort_trees(Trees, insert_tree(T, Sorted)).
 
 
-%
-% Insert a tree in a sorted list (least frequencey first)
-%
+%%
+%% Insert a tree in a sorted list (least frequencey first)
+%%
 
 insert_tree({0, _, _}, []) ->
    [];
@@ -177,10 +175,9 @@ insert_tree(T1, [T2|Rest]) ->
    [T2|insert_tree(T1, Rest)].
 
 
-
-%
-% Makes a list of 256 leaves each containing the frequency of a bytecode.
-%
+%%
+%% Makes a list of 256 leaves each containing the frequency of a bytecode.
+%%
 
 build_freq_trees(Data) ->
    build_freq_table(Data, 0).
@@ -191,7 +188,7 @@ build_freq_table(Data, X) ->
    [{occurs(X, Data, 0), leaf, X} | build_freq_table(Data, X+1)].
 
 
-occurs(X, [], Ack) ->
+occurs(_, [], Ack) ->
    Ack;
 occurs(X, [Y|Rest], Ack) when X == Y ->
    occurs(X, Rest, Ack+1);
@@ -199,11 +196,10 @@ occurs(X, [_|Rest],Ack) ->
    occurs(X, Rest, Ack).
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%
-% Some utilities
-%
+%%
+%% Some utilities
+%%
 
 reverse(X) ->
    reverse(X, []).
@@ -216,6 +212,4 @@ append([H|T], Z) ->
    [H|append(T, Z)];
 append([], X) ->
    X.
-
-
 

@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2001/07/19 18:56:09 $
-%%              $Revision: 1.2 $
+%%              $Date: 2002/05/08 07:33:40 $
+%%              $Revision: 1.3 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -55,7 +55,7 @@ get_int(<<I:24>>) -> I;
 get_int(<<I:32>>) -> I.
 
 cmp128(<<I:128>>, I) -> equal;
-cmp128(B, I) -> not_equal.
+cmp128(_Bin, _I) -> not_equal.
 
 signed_integer() ->
   {no_match,_} = sint(mkbin([])),
@@ -88,7 +88,7 @@ dynamic(Bin, S1) when S1 >= 0 ->
   S2 = size(Bin) * 8 - S1,
   dynamic(Bin, S1, S2, (1 bsl S1) - 1, (1 bsl S2) - 1),
   dynamic(Bin, S1-1);
-dynamic(Bin, _) -> ok.
+dynamic(_Bin, _) -> ok.
 
 dynamic(Bin, S1, S2, A, B) ->
   %% io:format("~p ~p ~p ~p\n", [S1,S2,A,B]),
@@ -96,16 +96,15 @@ dynamic(Bin, S1, S2, A, B) ->
     <<A:S1,B:S2>> ->
       %% io:format("~p ~p ~p ~p\n", [S1,S2,A,B]),
       ok;
-    Other -> erlang:fault(badmatch, [Bin,S1,S2,A,B])
+    _ -> erlang:fault(badmatch, [Bin,S1,S2,A,B])
   end.
 
 
 more_dynamic() ->
-
 						% Unsigned big-endian numbers.
   Unsigned  = fun(Bin, List, SkipBef, N) ->
 		  SkipAft = 8*size(Bin) - N - SkipBef,
-		  <<I1:SkipBef,Int:N,I2:SkipAft>> = Bin,
+		  <<_I1:SkipBef,Int:N,_I2:SkipAft>> = Bin,
 		  Int = make_int(List, N, 0)
 	      end,
   more_dynamic1(Unsigned, funny_binary(42)),
@@ -113,7 +112,7 @@ more_dynamic() ->
 						% Signed big-endian numbers.
   Signed  = fun(Bin, List, SkipBef, N) ->
 		SkipAft = 8*size(Bin) - N - SkipBef,
-		<<I1:SkipBef,Int:N/signed,I2:SkipAft>> = Bin,
+		<<_I1:SkipBef,Int:N/signed,_I2:SkipAft>> = Bin,
 		case make_signed_int(List, N) of
 		  Int -> ok;
 		  Other ->
@@ -128,7 +127,7 @@ more_dynamic() ->
 						% Unsigned little-endian numbers.
   UnsLittle  = fun(Bin, List, SkipBef, N) ->
 		   SkipAft = 8*size(Bin) - N - SkipBef,
-		   <<I1:SkipBef,Int:N/little,I2:SkipAft>> = Bin,
+		   <<_I1:SkipBef,Int:N/little,_I2:SkipAft>> = Bin,
 		   Int = make_int(big_to_little(List, N), N, 0)
 	       end,
   more_dynamic1(UnsLittle, funny_binary(44)),
@@ -136,7 +135,7 @@ more_dynamic() ->
 						% Signed little-endian numbers.
   SignLittle  = fun(Bin, List, SkipBef, N) ->
 		    SkipAft = 8*size(Bin) - N - SkipBef,
-		    <<I1:SkipBef,Int:N/signed-little,I2:SkipAft>> = Bin,
+		    <<_I1:SkipBef,Int:N/signed-little,_I2:SkipAft>> = Bin,
 		    Little = big_to_little(List, N),
 		    Int = make_signed_int(Little, N)
 		end,
@@ -146,7 +145,7 @@ more_dynamic() ->
 
 funny_binary(N) ->
   B0 = erlang:md5([N]),
-  {B1,B2} = split_binary(B0, size(B0) div 2),
+  {B1,_B2} = split_binary(B0, size(B0) div 2),
   B1.
 
 more_dynamic1(Action, Bin) ->
@@ -156,7 +155,7 @@ more_dynamic1(Action, Bin) ->
 more_dynamic2(Action, Bin, [_|T]=List, Bef) ->
   more_dynamic3(Action, Bin, List, Bef, size(Bin)*8),
   more_dynamic2(Action, Bin, T, Bef+1);
-more_dynamic2(Action, Bin, [], Bef) -> ok.
+more_dynamic2(_Action, _Bin, [], _Bef) -> ok.
 
 more_dynamic3(Action, Bin, List, Bef, Aft) when Bef =< Aft ->
   %%    io:format("~p, ~p", [Bef,Aft-Bef]),
@@ -170,14 +169,14 @@ big_to_little([B0,B1,B2,B3,B4,B5,B6,B7|T], N, Acc) when N >= 8 ->
   big_to_little(T, N-8, [B0,B1,B2,B3,B4,B5,B6,B7|Acc]);
 big_to_little(List, N, Acc) -> lists:sublist(List, 1, N) ++ Acc.
 
-make_signed_int(List, 0) -> 0;
-make_signed_int([0|T]=List, N) -> make_int(List, N, 0);
-make_signed_int([1|T]=List0, N) ->
+make_signed_int(_List, 0) -> 0;
+make_signed_int([0|_]=List, N) -> make_int(List, N, 0);
+make_signed_int([1|_]=List0, N) ->
   List1 = reversed_sublist(List0, N, []),
   List2 = two_complement_and_reverse(List1, 1, []),
   -make_int(List2, length(List2), 0).
 
-reversed_sublist(List, 0, Acc) -> Acc;
+reversed_sublist(_List, 0, Acc) -> Acc;
 reversed_sublist([H|T], N, Acc) -> reversed_sublist(T, N-1, [H|Acc]).
 
 two_complement_and_reverse([H|T], Carry, Acc) ->
@@ -185,10 +184,10 @@ two_complement_and_reverse([H|T], Carry, Acc) ->
   two_complement_and_reverse(T, Sum div 2, [Sum rem 2|Acc]);
 two_complement_and_reverse([], Carry, Acc) -> [Carry|Acc].
 
-make_int(List, 0, Acc) -> Acc;
+make_int(_List, 0, Acc) -> Acc;
 make_int([H|T], N, Acc) -> make_int(T, N-1, Acc bsl 1 bor H).
 
-bits_to_list([H|T], 0) -> bits_to_list(T, 16#80);
+bits_to_list([_|T], 0) -> bits_to_list(T, 16#80);
 bits_to_list([H|_]=List, Mask) ->
   [case H band Mask of
      0 -> 0;
@@ -203,6 +202,6 @@ mml() ->
   single_byte_binary = mml_choose(<<42>>),
   multi_byte_binary = mml_choose(<<42,43>>).
 
-mml_choose(<<A:8>>) -> single_byte_binary;
-mml_choose(<<A:8, T/binary>>) -> multi_byte_binary.
+mml_choose(<<_:8>>) -> single_byte_binary;
+mml_choose(<<_:8, _T/binary>>) -> multi_byte_binary.
 

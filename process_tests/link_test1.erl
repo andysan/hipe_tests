@@ -2,9 +2,9 @@
 %%  History  :	* 2001-03-27 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: happi $
-%%              $Date: 2001/03/28 08:51:53 $
-%%              $Revision: 1.1 $
+%%              $Author: kostis $
+%%              $Date: 2002/05/08 07:33:41 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -22,7 +22,7 @@ test() ->
 go() ->
   process_flag(trap_exit, true),
   {ok, Node} = start_node(ref_port_roundtrip),
-  Pid = spawn_link(Node, ?MODULE, roundtrip, [xxx]),
+  _Pid = spawn_link(Node, ?MODULE, roundtrip, [xxx]),
   receive after 1000 -> ok end,
   ok.
 
@@ -39,4 +39,4 @@ hostname() ->
 
 from(H, [H | T]) -> T;
 from(H, [_ | T]) -> from(H, T);
-from(H, []) -> [].
+from(_, []) -> [].

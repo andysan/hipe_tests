@@ -2741,7 +2741,7 @@ rU_() ->
 
 %var ::= {Int, Tfo, Nuc}
 
-absolute_pos({I,T,N}, P) -> tfo_apply(T,P).
+absolute_pos({_I,T,_N}, P) -> tfo_apply(T,P).
 
 atom_pos(Atom, {I,T,N}) ->
     absolute_pos({I,T,N}, p_apply(Atom, N)).
@@ -2994,7 +2994,7 @@ try_assignments([V|Vs], Constraint, Partial_inst,T) ->
 % places the nucleotide "nuc" in the given relationship to "ref".
 
 dgf_base(Tfo, V, Nuc) ->
-    {I,T,N} = V,
+    {_I,_T,N} = V,
     tfo_combine(nuc_dgf_base_tfo(Nuc),
                 tfo_combine(Tfo,tfo_inv_ortho(process_type(type(N),V)))).
 
@@ -3260,11 +3260,11 @@ max([_|T],M) ->
     max(T,M);
 max([],M) -> M.
 
-map(Func,[]) -> [];
+map(_,[]) -> [];
 map(Func,[H|T]) -> 
     [p_apply(Func,H) | map(Func, T)].
 
-map(Func,Arg,[]) -> [];
+map(_,_,[]) -> [];
 map(Func,Arg,[H|T]) -> 
     [p_apply(Func,Arg,H) | map(Func,Arg,T)].
 
@@ -3301,7 +3301,7 @@ p_apply(helix3_, A1, A2, A3, A4) -> helix3_(A1, A2, A3, A4);
 p_apply(stacked5_, A1, A2, A3, A4) -> stacked5_(A1, A2, A3, A4).
 
 loop(0,R) -> R;
-loop(N,R) -> loop(N-1,most_distant_atom(pseudoknot())).
+loop(N,_) -> loop(N-1,most_distant_atom(pseudoknot())).
 
 test() ->
     statistics(runtime),

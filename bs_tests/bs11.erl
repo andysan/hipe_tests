@@ -9,9 +9,9 @@
 %%  History  :	* 2001-06-13 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: happi $
-%%              $Date: 2001/06/14 12:08:41 $
-%%              $Revision: 1.1 $
+%%              $Author: kostis $
+%%              $Date: 2002/05/08 07:33:40 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -130,6 +130,5 @@ sean()->
   ok.
 
 sean1(<<B/binary>>) when size(B) < 4 ->	small;
-sean1(<<1, B/binary>>) -> large.
-
+sean1(<<1, _/binary>>) -> large.
 

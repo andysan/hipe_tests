@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2001/07/17 15:42:42 $
-%%              $Revision: 1.2 $
+%%              $Date: 2002/05/08 07:33:41 $
+%%              $Revision: 1.3 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -38,7 +38,7 @@ byte_split(L, B, Pos) when Pos >= 0 ->
   Sz1 = Pos,
   Sz2 = size(B) - Pos,
   bs1(L, B, Pos, Sz1, Sz2);
-byte_split(L, B, _) -> ok.
+byte_split(_, _, _) -> ok.
 
 bs1(L, B, Pos, Sz1, Sz2) ->
   <<B1:Sz1/binary,B2:Sz2/binary>> = B,
@@ -57,7 +57,7 @@ bit_split_binary() ->
   Fun = fun(Bin, List, SkipBef, N) ->
 	    SkipAft = 8*size(Bin) - N - SkipBef,
 	    %% io:format("~p, ~p, ~p", [SkipBef,N,SkipAft]),
-	    <<I1:SkipBef,OutBin:N/binary-unit:1,I2:SkipAft>> = Bin,
+	    <<_I1:SkipBef,OutBin:N/binary-unit:1,_I2:SkipAft>> = Bin,
 	    OutBin = make_bin_from_list(List, N)
 	end,
   bit_split_binary1(Fun, erlang:md5(<<1,2,3>>)),
@@ -70,24 +70,24 @@ bit_split_binary1(Action, Bin) ->
 bit_split_binary2(Action, Bin, [_|T]=List, Bef) ->
   bit_split_binary3(Action, Bin, List, Bef, size(Bin)*8),
   bit_split_binary2(Action, Bin, T, Bef+1);
-bit_split_binary2(Action, Bin, [], Bef) -> ok.
+bit_split_binary2(_Action, _Bin, [], _Bef) -> ok.
 
 bit_split_binary3(Action, Bin, List, Bef, Aft) when Bef =< Aft ->
   Action(Bin, List, Bef, (Aft-Bef) div 8 * 8),
   bit_split_binary3(Action, Bin, List, Bef, Aft-8);
 bit_split_binary3(_, _, _, _, _) -> ok.
 
-make_bin_from_list(List, 0) ->
+make_bin_from_list(_List, 0) ->
   mkbin([]);
 make_bin_from_list(List, N) ->
   list_to_binary([make_int(List, 8, 0),
 		  make_bin_from_list(lists:nthtail(8, List), N-8)]).
 
 
-make_int(List, 0, Acc) -> Acc;
+make_int(_List, 0, Acc) -> Acc;
 make_int([H|T], N, Acc) -> make_int(T, N-1, Acc bsl 1 bor H).
     
-bits_to_list([H|T], 0) -> bits_to_list(T, 16#80);
+bits_to_list([_|T], 0) -> bits_to_list(T, 16#80);
 bits_to_list([H|_]=List, Mask) ->
   [case H band Mask of
      0 -> 0;

@@ -9,9 +9,9 @@
 %%  History  :	* 2001-06-14 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: happi $
-%%              $Date: 2001/06/14 12:08:41 $
-%%              $Revision: 1.1 $
+%%              $Author: kostis $
+%%              $Date: 2002/05/08 07:33:40 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -48,7 +48,7 @@ aligned() ->
     ok.
 
 al_get_tail_used(<<A:16,T/binary>>) -> {A,T}.
-al_get_tail_unused(<<A:16,T/binary>>) -> A.
+al_get_tail_unused(<<A:16,_/binary>>) -> A.
 
 unaligned()->
      {'EXIT',{function_clause,_}} = (catch get_tail_used(mkbin([42]))),
@@ -66,7 +66,7 @@ get_dyn_tail_used(Bin, Sz) ->
     {A,T}.
 
 get_dyn_tail_unused(Bin, Sz) ->
-    <<A:Sz,T/binary>> = Bin,
+    <<A:Sz,_T/binary>> = Bin,
     A.
 
 zero_tail()->
@@ -77,6 +77,6 @@ zero_tail()->
 
 test_zero_tail(<<A:8>>) -> A.
 
-test_zero_tail2(<<A:4,B:4>>) -> ok.
+test_zero_tail2(<<_:4,_:4>>) -> ok.
 
 mkbin(L) when list(L) -> list_to_binary(L).

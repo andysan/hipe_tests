@@ -77,11 +77,11 @@ tty(MicroName) ->
 	Other -> Other
     end.
 
-find_micro(N, [M|T]) when M#micro.function == N ->
+find_micro(N, [M|_]) when M#micro.function == N ->
     {ok, M};
 find_micro(N, [_|T]) ->
     find_micro(N, T);
-find_micro(N, []) ->
+find_micro(_, []) ->
     notfound.
 
 % SEEMS NOT USED SO I AM COMMENTING IT OUT - KOSTIS.
@@ -194,7 +194,7 @@ micros() ->
     ].
 
 macro(Ms) ->
-    Results = run_micros(Ms).
+    run_micros(Ms).
 
 run_micros([]) -> 
     io:nl(),
@@ -304,7 +304,7 @@ append([H|T], L) ->
 append([], L) ->
     L.
 
-appt(0, L1, L2) -> ok;
+appt(0,_L1,_L2) -> ok;
 appt(I, L1, L2) ->
     append(L1, L2),
     appt(I-1, L1, L2).
@@ -326,7 +326,7 @@ msgp(I, Msg) ->
 
 p1(To) ->
     receive
-	{From, {message, X}} ->
+	{_From, {message, X}} ->
 	    To ! {self(), {message, X}},
 	    p1(To);
 	stop ->
@@ -342,7 +342,7 @@ msgp_loop(0, P, _) ->
 msgp_loop(I, P, Msg) ->
     P ! {self(), {message, Msg}},
     receive
-	{From, {message, _}} ->
+	{_From, {message, _}} ->
 	    msgp_loop(I-1, P, Msg)
     end.
 
@@ -390,93 +390,92 @@ pattern(I) ->
 
 pat_loop1(0, _) -> 
     ok;
-pat_loop1(I, [_,X, Y , 0 |T])  ->
+pat_loop1(_, [_,_X,_Y, 0 | _])  ->
     ok;
-pat_loop1(I, [_, X, Y, 1| T]) ->
+pat_loop1(_, [_,_X,_Y, 1 | _]) ->
     ok;
-pat_loop1(I, [_, X, Y, 2 | T]) -> 
+pat_loop1(_, [_,_X,_Y, 2 | _]) -> 
     ok;
 pat_loop1(I, [_, X, Y, 3 | T]) ->
     pat_loop1(I-1, [0, X,Y,3|T]).
 
 pat_loop2(0, _) ->
     ok;
-pat_loop2(I, [X, Y |Tail]) when Y bsl 1 == 0 ->
+pat_loop2(_, [_, Y |_Tail]) when Y bsl 1 == 0 ->
     ok;
-pat_loop2(I, [X, Y | Tail]) when Y bsl 2 == 0 ->
+pat_loop2(_, [_, Y |_Tail]) when Y bsl 2 == 0 ->
     ok;
 pat_loop2(I, [X, Y | Tail]) when Y bsl 2 == 4 ->
     pat_loop2(I-1, [X, Y |Tail]).
 
-
 pat_loop3(0, _) ->
     ok;
-pat_loop3(I, [{c, h} | Tail]) -> 
+pat_loop3(_, [{c,h}| _]) -> 
     ok;
-pat_loop3(I, [1, 0 |T]) ->
+pat_loop3(_, [1, 0 | _]) ->
     ok;
-pat_loop3(I, [X, Y |Tail]) when binary(X), size(X) == 1 ->
+pat_loop3(_, [X, _ | _]) when binary(X), size(X) == 1 ->
     ok;
-pat_loop3(I, [no, Y|Tail]) -> 
+pat_loop3(_, [no,_ | _]) -> 
     ok;
-pat_loop3(I, []) ->
+pat_loop3(_, []) ->
     ok;
-pat_loop3(I, [X,Y|T]) when X /= 0 ->
+pat_loop3(_, [X, _ | _]) when X /= 0 ->
     ok;
-pat_loop3(I, [2,3|T]) ->
+pat_loop3(_, [2, 3 | _]) ->
     ok;
-pat_loop3(I, [1, 2]) ->
+pat_loop3(_, [1, 2]) ->
     ok;
 pat_loop3(I, [0, 1 |T]) ->
     pat_loop3(I-1, [0,1|T]).
 
 
 pat_loop4(0, _) ->  ok;
-pat_loop4(I, [20|T]) -> ok;
-pat_loop4(I, [219|T]) -> ok;
-pat_loop4(I, [18|T]) -> ok;
-pat_loop4(I, [17|T]) -> ok;
-pat_loop4(I, [16|T]) -> ok;
-pat_loop4(I, [15|T]) -> ok;
-pat_loop4(I, [14|T]) -> ok;
-pat_loop4(I, [13|T]) -> ok;
-pat_loop4(I, [12|T]) -> ok;
-pat_loop4(I, [11|T]) -> ok;
-pat_loop4(I, [10|T]) -> ok;
-pat_loop4(I, [9|T]) -> ok;
-pat_loop4(I, [8|T]) -> ok;
-pat_loop4(I, [7|T]) -> ok;
-pat_loop4(I, [6|T]) -> ok;
-pat_loop4(I, [5|T]) -> ok;
-pat_loop4(I, [4|T]) -> ok;
-pat_loop4(I, [3|T]) -> ok;
-pat_loop4(I, [1|T]) -> ok;
-pat_loop4(I, [21|T]) -> ok;
-pat_loop4(I, [22|T]) -> ok;
-pat_loop4(I, [23|T]) -> ok;
-pat_loop4(I, [24|T]) -> ok;
-pat_loop4(I, [25|T]) -> ok;
-pat_loop4(I, [26|T]) -> ok;
-pat_loop4(I, [27|T]) -> ok;
+pat_loop4(_, [20|_]) -> ok;
+pat_loop4(_, [219|_]) -> ok;
+pat_loop4(_, [18|_]) -> ok;
+pat_loop4(_, [17|_]) -> ok;
+pat_loop4(_, [16|_]) -> ok;
+pat_loop4(_, [15|_]) -> ok;
+pat_loop4(_, [14|_]) -> ok;
+pat_loop4(_, [13|_]) -> ok;
+pat_loop4(_, [12|_]) -> ok;
+pat_loop4(_, [11|_]) -> ok;
+pat_loop4(_, [10|_]) -> ok;
+pat_loop4(_, [9|_]) -> ok;
+pat_loop4(_, [8|_]) -> ok;
+pat_loop4(_, [7|_]) -> ok;
+pat_loop4(_, [6|_]) -> ok;
+pat_loop4(_, [5|_]) -> ok;
+pat_loop4(_, [4|_]) -> ok;
+pat_loop4(_, [3|_]) -> ok;
+pat_loop4(_, [1|_]) -> ok;
+pat_loop4(_, [21|_]) -> ok;
+pat_loop4(_, [22|_]) -> ok;
+pat_loop4(_, [23|_]) -> ok;
+pat_loop4(_, [24|_]) -> ok;
+pat_loop4(_, [25|_]) -> ok;
+pat_loop4(_, [26|_]) -> ok;
+pat_loop4(_, [27|_]) -> ok;
 pat_loop4(I, [0|T]) -> 
     pat_loop4(I-1, [0|T]).
 
 pat_loop5(0, _) -> ok;
-pat_loop5(I, [0, 20|T]) -> ok;
-pat_loop5(I, [0, 19|T]) -> ok;
-pat_loop5(I, [0, 18|T]) -> ok;
-pat_loop5(I, [0, 17|T]) -> ok;
-pat_loop5(I, [0, 16|T]) -> ok;
-pat_loop5(I, [0, 15|T]) -> ok;
-pat_loop5(I, [0, 14|T]) -> ok;
-pat_loop5(I, [0, 13|T]) -> ok;
-pat_loop5(I, [0, 12|T]) -> ok;
-pat_loop5(I, [0, 11|T]) -> ok;
-pat_loop5(I, [0, 10|T]) -> ok;
-pat_loop5(I, [0, 9|T]) -> ok;
-pat_loop5(I, [0, 8|T]) -> ok;
-pat_loop5(I, [0, 7|T]) -> ok;
-pat_loop5(I, [0, 6|T]) -> ok;
+pat_loop5(_, [0, 20|_]) -> ok;
+pat_loop5(_, [0, 19|_]) -> ok;
+pat_loop5(_, [0, 18|_]) -> ok;
+pat_loop5(_, [0, 17|_]) -> ok;
+pat_loop5(_, [0, 16|_]) -> ok;
+pat_loop5(_, [0, 15|_]) -> ok;
+pat_loop5(_, [0, 14|_]) -> ok;
+pat_loop5(_, [0, 13|_]) -> ok;
+pat_loop5(_, [0, 12|_]) -> ok;
+pat_loop5(_, [0, 11|_]) -> ok;
+pat_loop5(_, [0, 10|_]) -> ok;
+pat_loop5(_, [0, 9|_]) -> ok;
+pat_loop5(_, [0, 8|_]) -> ok;
+pat_loop5(_, [0, 7|_]) -> ok;
+pat_loop5(_, [0, 6|_]) -> ok;
 pat_loop5(I, [0, 1|T]) -> 
     pat_loop5(I-1, [0,1|T]).
 
@@ -496,8 +495,9 @@ do_trav(T) when tuple(T) ->
 do_trav([H|T]) ->
     do_trav(H) + do_trav(T);
 do_trav(X) when integer(X) -> 1;
-do_trav(X) -> 0.
-tup_trav(T, P, P) -> 0;
+do_trav(_) -> 0.
+
+tup_trav(_, P, P) -> 0;
 tup_trav(T, P, End) ->
     do_trav(element(P, T)) + tup_trav(T, P+1, End).
 
@@ -526,7 +526,7 @@ ppp(Top, I) ->
     end,
     Top ! {self(), Res}.
     
-ppp_loop(P, 0, _) ->
+ppp_loop(_, 0, _) ->
     ok;
 ppp_loop(P, I, Cmd) ->
     P ! Cmd,
@@ -573,7 +573,7 @@ big_proc() ->
 %% Working with a large non-working data set
 %% where the data resides in the local process.
 large_local_dataset_work(I) ->
-    {Minus, Data} = timer:tc(estone, very_big, [?BIGPROC_SIZE]),
+    {Minus,_Data} = timer:tc(estone, very_big, [?BIGPROC_SIZE]),
     trav(I),
     lists(I),
     Minus.
@@ -583,20 +583,20 @@ large_local_dataset_work(I) ->
 %% Important to not let variable linger on the stack un-necessarily
 alloc(0) -> 0;
 alloc(I) ->
-    X11 = very_big(),
-    X12 = very_big(),
-    X13 = very_big(),
-    Z = [X14 = very_big(),
-	 X15 = very_big(),
-	 X16 = very_big()],
-    X17 = very_big(),
-    X18 = very_big(),
-    X19 = very_big(),
-    X20 = very_big(),
-    X21 = very_big(),
-    X22 = very_big(),
-    X23 = very_big(),
-    X24 = very_big(),
+    _X11 = very_big(),
+    _X12 = very_big(),
+    _X13 = very_big(),
+    _Z = [_X14 = very_big(),
+	 _X15 = very_big(),
+	 _X16 = very_big()],
+    _X17 = very_big(),
+    _X18 = very_big(),
+    _X19 = very_big(),
+    _X20 = very_big(),
+    _X21 = very_big(),
+    _X22 = very_big(),
+    _X23 = very_big(),
+    _X24 = very_big(),
     alloc(I-1).
 
 %% Time to call bif's
@@ -615,12 +615,12 @@ disp() ->
     self(),self(),self(),self(),self(),self(),self(),self(),self(),
     make_ref(),
     atom_to_list(''),
-    X = list_to_atom([]),
+    list_to_atom([]),
     tuple_to_list({}),
-    X2 = list_to_tuple([]),
+    list_to_tuple([]),
     element(1, Tup),
     element(1, Tup),
-    Elem = element(1, Tup),element(1, Tup),element(1, Tup),element(1, Tup),
+    element(1, Tup),element(1, Tup),element(1, Tup),element(1, Tup),
     element(1, Tup),element(1, Tup),element(1, Tup),element(1, Tup),
     element(1, Tup),element(1, Tup),element(1, Tup),element(1, Tup),
     element(1, Tup),element(1, Tup),element(1, Tup),element(1, Tup),
@@ -632,22 +632,22 @@ disp() ->
     setelement(1, Tup,k),
     setelement(1, Tup,k),
     setelement(1, Tup,k),
-    Y = setelement(1, Tup,k),
-    Date = date(), time(),
+    setelement(1, Tup,k),
+    date(), time(),
     put(a, 1),
     get(a),
     erase(a),
     hd(L),
     tl(L),
-    Len = length(L),length(L),length(L),length(L),
+    length(L),length(L),length(L),length(L),
     node(),node(),node(),node(),node(),node(),node(),node(),
     S=self(),
     node(S),node(S),node(S),
     size(Tup),
-    W = whereis(code_server),whereis(code_server),
     whereis(code_server),whereis(code_server),
     whereis(code_server),whereis(code_server),
-    W2 = whereis(code_server).
+    whereis(code_server),whereis(code_server),
+    whereis(code_server).
     
     
 %% Generic server like behaviour
@@ -704,14 +704,14 @@ gserv(Name, Mod, State, Debug) ->
 		{'EXIT', Reason} ->
 		    exit(Reason)
 	    end;
-	{From, Ref, Req} when Debug /= [] ->
+	{_From, _Ref, _Req} when Debug /= [] ->
 	    exit(nodebug)
     end.
 
-handle_call(From, State, [xyz]) ->
+handle_call(_From, _State, [xyz]) ->
     R = atom_to_list(xyz),
     {reply, R, []};
-handle_call(From, State, [abc]) ->
+handle_call(_From, State, [abc]) ->
     R = 1 + 3,
     {reply, R, [R | State]}.
 
@@ -727,14 +727,14 @@ binary_h(I) ->
     binary_h_2(I, P, B),
     Compensate.
     
-binary_h_2(0, P, B) ->
+binary_h_2(0, P, _) ->
     exit(P, kill);
 binary_h_2(I, P, B) ->
     echo_loop(P, 20, B),
     split_loop(B, {abc,1,2222,self(),"ancnd"}, 100),
     binary_h_2(I-1, P, B).
 
-split_loop(B, _, 0) -> 
+split_loop(_, _, 0) -> 
     ok;
 split_loop(B, Term, I) ->
     {X, Y} = split_binary(B, I),
@@ -744,7 +744,7 @@ split_loop(B, Term, I) ->
     split_loop(B, Term, I-1).
     
 
-echo_loop(P, 0, B) -> 
+echo_loop(_, 0, _) -> 
     k;
 echo_loop(P, I, B) ->
     P ! B,
@@ -791,7 +791,7 @@ run_tabs([Tab|Tail], L, I) ->
     run_tab(Tab, Begin, End, I),
     run_tabs(Tail, L, I).
 
-run_tab(Tab, X, X, _) ->
+run_tab(_Tab, X, X, _) ->
     ok;
 run_tab(Tab, Beg, End, J) ->
     ets:insert(Tab, {Beg, J}),
@@ -804,7 +804,7 @@ run_tab(Tab, Beg, End, J) ->
     ets:match(Tab, {'$1', J}),
     ets:delete(Tab, Beg),
     K = ets:first(Tab),
-    K2 = ets:next(Tab, K),
+    _K2 = ets:next(Tab, K),
     run_tab(Tab, Beg+1, End, J).
     
     
@@ -836,7 +836,7 @@ do_arith(I) ->
 
 do_arith2(I) ->
     X = 23,
-    Y = 789 + I,
+    _Y = 789 + I,
     Z = I + 1,
     U = (X bsl 1 bsr I) * X div 2 bsr 4,
     U1 = Z + Z + Z + Z + X bsl 4 * 2 bsl 2,
@@ -861,7 +861,7 @@ float_arith(I) ->
 
 f_do_arith(I) ->    
     X = 23.4,
-    Y = 789.99 + I,
+    _Y = 789.99 + I,
     Z = I + 1.88,
     U = (X * 1 / I) * X / 2 * 4,
     U1 = Z + Z + Z + Z + X * 4 * 2 / 2,
@@ -995,7 +995,7 @@ wait_for_pids([]) ->
     ok;
 wait_for_pids([P|Tail]) ->
     receive 
-	{P, Res} -> wait_for_pids(Tail)
+	{P,_Res} -> wait_for_pids(Tail)
     end.
 
 send_procs([P|Tail], Msg) -> P ! Msg, send_procs(Tail, Msg);
@@ -1021,7 +1021,7 @@ determine_loop_data() ->
     determine_loop_data(1).
 determine_loop_data(I) ->
     ppld(determine_loop_data(I, micros())).
-determine_loop_data(0, Ms) ->
+determine_loop_data(0, _) ->
     [];
 determine_loop_data(I, Ms) ->
     io:format("Determining loop counts \n",[]),
