@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.11 2001/12/19 14:35:28 mikpe Exp $
+## $Id: testsuite.sh,v 1.12 2002/02/25 14:35:42 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -23,9 +23,9 @@
 #    	     	      both --exclude and --only can be specified at once
 #        osh_dir   -- full path name of the HiPE installation directory
 #    The HiPE executable and compiler are assumed to be in:
-#    	 $OSH/bin/erl
+#    	 $OTP/bin/erl
 #    and
-#    	 $OSH/lib/hipe/ebin
+#    	 $OTP/lib/hipe/ebin
 
 echo ========================================================================
 
@@ -81,7 +81,7 @@ done
 
 
 ##
-## OSH dir argument
+## OTP dir argument
 ##
 if test -z "$1" -o $# -gt 1; then
   echo " Usage: testsuite.sh [--rts_opts \"rts_opts\"] [--comp_opts \"comp_opts\"]"
@@ -98,9 +98,10 @@ if test -z "$1" -o $# -gt 1; then
   exit
 fi
 
-OSH_DIR=$1
+OTP_DIR=$1
+export OTP_DIR
 
-HIPE_RTS=$OSH_DIR/bin/erl
+HIPE_RTS=$OTP_DIR/bin/erl
 
 
 GREP="grep -i"
@@ -187,7 +188,7 @@ fi
 # check for differences
 $GREP "Differ!" $LOG_FILE >> $RES_FILE
 # check for seg fault
-$GREP "fault" $LOG_FILE >> $RES_FILE
+$GREP "Segmentation fault" $LOG_FILE >> $RES_FILE
 # core dumped
 $GREP "dumped" $LOG_FILE >> $RES_FILE
 # when no output file is generated
@@ -205,7 +206,7 @@ $GREP "not found" $LOG_FILE >> $RES_FILE
 $GREP "abnorm" $LOG_FILE >> $RES_FILE
 $GREP "denied" $LOG_FILE >> $RES_FILE
 $GREP "no such file" $LOG_FILE >> $RES_FILE
-$GREP "illegal" $LOG_FILE >> $RES_FILE
+$GREP " illegal " $LOG_FILE >> $RES_FILE
 # sometimes after overflow the diff fails and a message with Missing
 # is displayed
 $GREP "missing" $LOG_FILE >> $RES_FILE
