@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.14 2003/04/22 18:01:51 kostis Exp $
+## $Id: testsuite.sh,v 1.15 2003/10/01 12:41:37 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -194,9 +194,7 @@ $GREP "dumped" $LOG_FILE >> $RES_FILE
 # when no output file is generated
 $GREP "no match" $LOG_FILE >> $RES_FILE
 # for bus error
-$GREP "bus" $LOG_FILE >> $RES_FILE
-# for really bad outcomes
-$GREP "missing" $LOG_FILE >> $RES_FILE
+$GREP "bus " $LOG_FILE >> $RES_FILE
 # for overflows (check for Overflow & overflow)
 $GREP "verflow" $LOG_FILE >> $RES_FILE
 # for ... missing command...
@@ -205,9 +203,9 @@ $GREP "abnorm" $LOG_FILE >> $RES_FILE
 $GREP "denied" $LOG_FILE >> $RES_FILE
 $GREP "no such file" $LOG_FILE >> $RES_FILE
 $GREP " illegal " $LOG_FILE >> $RES_FILE
-# sometimes after overflow the diff fails and a message with Missing
-# is displayed
-$GREP "missing" $LOG_FILE >> $RES_FILE
+# sometimes after overflow the diff fails and a message
+# with Missing is displayed
+$GREP "missing " $LOG_FILE >> $RES_FILE
 # 
 $GREP "fatal" $LOG_FILE >> $RES_FILE
 # some other problems that should highlight bugs in the test suite
