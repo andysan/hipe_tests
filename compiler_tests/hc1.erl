@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/05/29 14:00:11 $
-%%    $Revision: 1.3 $
+%%    $Date: 2002/09/11 16:35:23 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -17,6 +17,8 @@
 
 -module(hc1).
 -export([test/0,test/1,compile/1]).
+
+-include("excluded.inc").
 
 test() ->
     [
@@ -32,22 +34,6 @@ test(Application) ->
     io:format("%%"++Delim++" Compiling "++Application++" "++Delim++"\n"),
     [ hc_mod(Mod) || Mod <- files(Application) -- excluded(Application) ],
     {ok,Application}.
-
-excluded("stdlib") ->
-    [sofs];  % TEMPORARILY
-excluded("kernel") ->
-    [erl_prim_loader, erlang, error_handler, group,
-     init, otp_ring0, prim_file, prim_inet, hipe_sparc_loader];
-excluded("megaco") ->
-    [megaco_text_parser]; % times out
-excluded("cosNotification") ->
-    [oe_CosEvent]; % no such file
-excluded("etk") ->
-    [tk, etk_menu, tkbutton, tkentry, tklistbox, tkmenu, tkscale, tkscrlbar,
-     tktext, tkconsole, tkdialog, tkfocus, tkoptmenu, tktearoff
-    ]; % bump in beam_disasm for some reason
-excluded(_) ->
-    [].
 
 hc_mod(Mod) ->
     io:format("Compiling ~w\n",[Mod]),
