@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.15 2003/10/01 12:41:37 kostis Exp $
+## $Id: testsuite.sh,v 1.16 2003/11/19 16:17:59 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -206,6 +206,8 @@ $GREP " illegal " $LOG_FILE >> $RES_FILE
 # sometimes after overflow the diff fails and a message
 # with Missing is displayed
 $GREP "missing " $LOG_FILE >> $RES_FILE
+#
+$GREP "Warning" $LOG_FILE >> $RES_FILE
 # 
 $GREP "fatal" $LOG_FILE >> $RES_FILE
 # some other problems that should highlight bugs in the test suite
