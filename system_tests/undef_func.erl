@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.12 2004/04/08 22:43:17 mikpe Exp $
+%%     $Id: undef_func.erl,v 1.13 2004/05/06 21:43:36 mikpe Exp $
 %%
 
 -module(undef_func).
@@ -156,6 +156,25 @@ exports_used_as_remote_apply_calls() ->
      {hipe_sparc_specific_fp,breadthorder,1},
      {hipe_sparc_specific_fp,postorder,1},
      {hipe_sparc_specific_fp,reverse_postorder,1},
+
+     {hipe_ppc_specific,all_precoloured,0},
+     {hipe_ppc_specific,allocatable,0},
+     {hipe_ppc_specific,analyze,1},
+     {hipe_ppc_specific,bb,2},
+     {hipe_ppc_specific,def_use,1},
+     {hipe_ppc_specific,defines,1},
+     {hipe_ppc_specific,is_move,1},
+     {hipe_ppc_specific,is_precoloured,1},
+     {hipe_ppc_specific,labels,1},
+     {hipe_ppc_specific,livein,2},
+     {hipe_ppc_specific,liveout,2},
+     {hipe_ppc_specific,non_alloc,1},
+     {hipe_ppc_specific,physical_name,1},
+     {hipe_ppc_specific,reg_nr,1},
+     {hipe_ppc_specific,reverse_postorder,1},
+     {hipe_ppc_specific,succ_map,1},
+     {hipe_ppc_specific,uses,1},
+     {hipe_ppc_specific,var_range,1},
 
      {hipe_x86_specific,analyze,1},
      {hipe_x86_specific,bb,2},
