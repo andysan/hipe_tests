@@ -8,9 +8,9 @@
 %%  History  :	* 2003-03-24 Jesper Wilhelmsson (jesperw@csd.uu.se):
 %%		  Created.
 %%  CVS      :
-%%              $Author: pergu $
-%%              $Date: 2003/04/08 08:07:24 $
-%%              $Revision: 1.5 $
+%%              $Author: kostis $
+%%              $Date: 2003/04/09 14:01:14 $
+%%              $Revision: 1.6 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -33,7 +33,7 @@ test() ->
   S = os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ 
 	     "_b -noshell -noinput -s " ++ MODULE ++
              " start " ++ USER ++ "_a@" ++ HOSTNAME),
-  io:format("~w",[S]),
+  %% io:format("~w",[S]),
   {match,Pos,Len} = regexp:match(S, "TestResult:"),
   R = string:sub_string(S, Pos+Len+1),
   list_to_atom(R).
@@ -42,8 +42,6 @@ compile(Opts) ->
   hipe:c(?MODULE,Opts).
 
 %% -------------------------------------------------------------------
-
-
 
 start([TheOtherNode]) ->
     init_node_and_table(TheOtherNode),
