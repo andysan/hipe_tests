@@ -7,8 +7,8 @@
 %%  History  :	* 2000-10-25 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/02/13 16:49:25 $
-%%    $Revision: 1.2 $
+%%    $Date: 2001/12/16 16:47:25 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -19,8 +19,10 @@
 -export([test/0,compile/1]).
 
 test() ->
-    If = (catch if_end_error()),
-    Case = (catch case_end_error()),
+    {IfExit,{If2,[If3|_IfRest]}} = (catch if_end_error()),
+    {CaseExit,{Case2,[Case3|_CaseRest]}} = (catch case_end_error()),
+    If = {IfExit,{If2,[If3]}},
+    Case = {CaseExit,{Case2,[Case3]}},
     [If,Case].
 
 if_end_error() ->

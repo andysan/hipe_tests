@@ -144,14 +144,11 @@ compute_next_state([{M,X,Y,VX,VY}|Stars],[{AX,AY}|Accs],Time) ->
 
 advance_time(Time,Stars,L) ->
   Tree = create_tree(Stars),
-  {Acc,NL} = compute_star_accelerations(Tree, Stars,L),
-  {compute_next_state(Stars, Acc, Time),NL}.
+  {Acc,NL} = compute_star_accelerations(Tree, Stars, L),
+  {compute_next_state(Stars,Acc,Time),NL}.
 
-loop(0,Time,Stars,L) -> 
-  io:nl(),
-  io:format("Number of iterations: "),
-  io:write(L),
-  io:nl(),
+loop(0,Time,Stars,L) ->
+  io:format("\nNumber of iterations: ~w\n", [L]),
   Stars;
 loop(N,Time,Stars,L) -> 
   {NS,NL} = advance_time(Time,Stars,L),
@@ -159,12 +156,12 @@ loop(N,Time,Stars,L) ->
   
 
 test() ->
-    Stars = create_scenario(1000, 1.0),
-    statistics(runtime),
-    R = hd(loop(10,1000.0,Stars,0)),
-    {_,Time} = statistics(runtime),
-    io:format("\nruntime = ~p msecs\nresult = ~p\n",[Time,R]),
-    R.
+  Stars = create_scenario(1000, 1.0),
+  statistics(runtime),
+  Result = hd(loop(10,1000.0,Stars,0)),
+  {_,Time} = statistics(runtime),
+  io:format("\nruntime = ~p msecs\n", [Time]),
+  Result.
 
 compile(Flags) ->
-    hipe:c(?MODULE,Flags).
+  hipe:c(?MODULE,Flags).
