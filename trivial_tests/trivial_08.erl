@@ -10,7 +10,7 @@
 %%  History  : 1999-12-16 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:51 $
+%%    $Date: 2001/02/13 16:49:27 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -31,4 +31,4 @@ ii() ->
   0.
 
 compile(Flags) ->
-  ix:compile({?MODULE,i,0},Flags).
+  hipe:compile({?MODULE,i,0},Flags).

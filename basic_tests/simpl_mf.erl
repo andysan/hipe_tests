@@ -1,5 +1,5 @@
 %% ====================================================================
-%% Test module for the HiPE Ix test suite.
+%% Test module for the HiPE test suite.
 %%
 %%  Filename :  simpl_mf.erl
 %%  Module   :  simpl_mf
@@ -7,8 +7,8 @@
 %%  History  :  * 2000-10-28 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:48 $
-%%    $Revision: 1.1 $
+%%    $Date: 2001/02/13 16:49:25 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -33,7 +33,7 @@ test() ->
     {contains_fun({free_var1,ok},ignored,{free_var2,{is,also,ok}}), [F(),G(ok)]}.
 
 compile(Flags) ->
-    [ix:compile({?MODULE,contains_fun,3},Flags),
-     ix:compile({?MODULE,calls_fun,1},Flags),
-     ix:compile({?MODULE,double_the_fun,0},Flags)].
+    [hipe:compile({?MODULE,contains_fun,3},Flags),
+     hipe:compile({?MODULE,calls_fun,1},Flags),
+     hipe:compile({?MODULE,double_the_fun,0},Flags)].
 

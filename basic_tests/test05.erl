@@ -1,7 +1,7 @@
 %% Copyright (c) 1999 by Erik Johansson.  All Rights Reserved 
 %% Time-stamp: <99/12/06 12:21:49 happi>
 %% ====================================================================
-%% Test module for the HiPE Ix test suite.
+%% Test module for the HiPE test suite.
 %%
 %%  Filename : 	test05.erl
 %%  Module   :	test05
@@ -10,7 +10,7 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:49 $
+%%    $Date: 2001/02/13 16:49:25 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -33,4 +33,4 @@ test() ->
      }.
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).

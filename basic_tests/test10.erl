@@ -1,5 +1,5 @@
 %% ====================================================================
-%% Test module for the HiPE Ix test suite.
+%% Test module for the HiPE test suite.
 %%
 %%  Filename : 	test10.erl
 %%  Module   :	test10
@@ -16,8 +16,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:49 $
-%%    $Revision: 1.1 $
+%%    $Date: 2001/02/13 16:49:26 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -41,7 +41,7 @@ test() ->
     ].
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).
 
 %------------------------------------------------------------------------
 

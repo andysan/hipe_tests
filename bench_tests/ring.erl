@@ -47,7 +47,7 @@ time(Procs, Msgs) ->
     R.
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).
 
 test(Start,Stop,Msg) when Start < Stop ->
   time(Start,Msg),

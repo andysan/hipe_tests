@@ -30,7 +30,7 @@ test() ->
     {OrgLength,Length}.
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).
 
 native_compile() ->
    Opts = [o3],

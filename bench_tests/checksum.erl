@@ -26,7 +26,7 @@ test() ->
   end.
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).
 
 run() ->
     case file:read_file('checksum.data') of

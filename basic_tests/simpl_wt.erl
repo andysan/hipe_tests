@@ -1,5 +1,5 @@
 %% ====================================================================
-%% Test module for the HiPE Ix test suite.
+%% Test module for the HiPE test suite.
 %%
 %%  Filename : 	simpl_wt.erl
 %%  Module   :	simpl_wt
@@ -7,8 +7,8 @@
 %%  History  :	* 2000-10-30 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:49 $
-%%    $Revision: 1.1 $
+%%    $Date: 2001/02/13 16:49:25 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -25,4 +25,4 @@ test() ->
     simpl_wait_timeout().
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).

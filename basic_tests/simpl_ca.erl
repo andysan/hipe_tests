@@ -5,4 +5,4 @@ test() ->
     catch exit(42).
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).

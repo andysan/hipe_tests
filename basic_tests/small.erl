@@ -8,7 +8,7 @@
 %%  History  :	* 1999-12-02 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:49 $
+%%    $Date: 2001/02/13 16:49:25 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -29,4 +29,4 @@ test() ->
     {test_catch(),not_eq(2,two())}.
 
 compile(Flags) ->
-    ix:c(small,Flags).
+    hipe:c(small,Flags).

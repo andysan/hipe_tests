@@ -1,7 +1,7 @@
 %% Copyright (c) 1999 by Erik Johansson.  All Rights Reserved 
 %% Time-stamp: <99/12/09 12:40:18 happi>
 %% ====================================================================
-%% Test module for the HiPE Ix test suite.
+%% Test module for the HiPE test suite.
 %%
 %%  Filename : 	test09.erl
 %%  Module   :	test09
@@ -10,8 +10,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:49 $
-%%    $Revision: 1.1 $
+%%    $Date: 2001/02/13 16:49:26 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -25,10 +25,10 @@ test() ->
     {case_in_case(),case_in_after()}.
 
 compile(Flags) ->
-    {ix:compile({?MODULE,case_in_case,0},Flags),
-     ix:compile({?MODULE,search_any,2},Flags),
-     ix:compile({?MODULE,case_in_after,0},Flags), % used to cause strange error
-     ix:compile({?MODULE,keysearch,3},Flags)
+    {hipe:compile({?MODULE,case_in_case,0},Flags),
+     hipe:compile({?MODULE,search_any,2},Flags),
+     hipe:compile({?MODULE,case_in_after,0},Flags), % used to cause strange error
+     hipe:compile({?MODULE,keysearch,3},Flags)
     }.
 
 case_in_case() ->

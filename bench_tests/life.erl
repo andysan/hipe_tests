@@ -9,7 +9,7 @@ test() ->
     ok.
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).
 
 %%
 %% start 

@@ -1,7 +1,7 @@
 %% Copyright (c) 1999 by Erik Johansson.  All Rights Reserved 
 %% Time-stamp: <99/12/17 14:35:15 happi>
 %% ====================================================================
-%% Test module for the HiPE Ix test suite.
+%% Test module for the HiPE test suite.
 %%
 %%  Filename : 	test06.erl
 %%  Module   :	test06
@@ -10,8 +10,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:49 $
-%%    $Revision: 1.1 $
+%%    $Date: 2001/02/13 16:49:25 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -36,7 +36,7 @@ test() ->
 
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).
 
 
 %% Tests list_to_binary/1, binary_to_list/1 and size/1,

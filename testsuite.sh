@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.2 2000/11/22 15:32:04 kostis Exp $
+## $Id: testsuite.sh,v 1.3 2001/02/13 16:49:25 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -24,7 +24,7 @@
 #    The HiPE executable and compiler are assumed to be in:
 #    	 $osh_dir/bin/erl
 #    and
-#    	 $osh_dir/ix/ebin
+#    	 $osh_dir/lib/hipe/ix/ebin
 
 echo ========================================================================
 

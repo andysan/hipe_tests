@@ -1,13 +1,13 @@
 %% ====================================================================
-%% Test module for the HiPE Ix test suite.
+%% Test module for the HiPE test suite.
 %%
 %%  Filename : 	simpl_sv.erl
 %%  Purpose  :  Tests switch_val instruction.
 %%  History  :	* Oct 25, 2000 (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:49 $
-%%    $Revision: 1.1 $
+%%    $Date: 2001/02/13 16:49:25 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -21,7 +21,7 @@ test() ->
     {sv(a),sv(b),sv(c),sv(d)}.
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).
 
 sv(a) -> 'A';
 sv(b) -> 'B';

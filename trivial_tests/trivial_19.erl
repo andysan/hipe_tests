@@ -1,7 +1,7 @@
 %% Copyright (c) 1999 by Erik Johansson.  All Rights Reserved 
 %% Time-stamp: <99/12/16 11:46:58 happi>
 %% ====================================================================
-%% Test module for the HiPE Ix test suite.
+%% Test module for the HiPE test suite.
 %%
 %%  Filename : 	trivial_19.erl
 %%  Module   :	trivial_19
@@ -10,7 +10,7 @@
 %%  History  :	* 1999-12-16 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:52 $
+%%    $Date: 2001/02/13 16:49:27 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -28,4 +28,4 @@ t(A,B,C,D,E,G,H,I,J,K) ->
   G.
 
 compile(Flags) ->
-  ix:compile({?MODULE,test,0},Flags).
+  hipe:compile({?MODULE,test,0},Flags).

@@ -1,7 +1,7 @@
 %% Copyright (c) 1999 by Erik Johansson.  All Rights Reserved 
 %% Time-stamp: <99/12/17 20:36:24 happi>
 %% ====================================================================
-%% Test module for the HiPE Ix test suite.
+%% Test module for the HiPE test suite.
 %%
 %%  Filename : 	testN.erl
 %%  Module   :	testN
@@ -10,8 +10,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:50 $
-%%    $Revision: 1.1 $
+%%    $Date: 2001/02/13 16:49:26 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -31,7 +31,7 @@ test() ->
   {R1,R2}.
 
 compile(Flags) ->
-  ix:c(proc_test1,Flags).
+  hipe:c(proc_test1,Flags).
 
 %% t_after:
 %% Make sure that timeouts are accurate 'enough'. 

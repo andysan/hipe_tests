@@ -7,7 +7,7 @@
 %%                         Rewritten for testing.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:48 $
+%%    $Date: 2001/02/13 16:49:25 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -23,7 +23,7 @@ test() ->
    {length, R}.
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).
   
   
 iterate(0, L) ->    len(L, 0);

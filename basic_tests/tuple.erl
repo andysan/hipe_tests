@@ -8,7 +8,7 @@
 %%  History  :	* 1999-12-03 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2000/11/22 15:00:49 $
+%%    $Date: 2001/02/13 16:49:26 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -21,4 +21,4 @@ test() ->
     element(1,catch element([],{1,2,3,4,5,6,7,8,9,10,11})).
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).

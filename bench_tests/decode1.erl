@@ -56,7 +56,7 @@ test() ->
     R.
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).
 
 loop(0,R,_) -> R;
 loop(N,R,Frame) -> loop(N-1, decode1:decode_ie_heads_setup(Frame),Frame).

@@ -30,4 +30,4 @@ test() ->
     length(R).
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).

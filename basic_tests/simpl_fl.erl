@@ -14,4 +14,4 @@ mult(X) ->
     3.1415 * X.
 
 compile(Flags) ->
-    ix:c(?MODULE,Flags).
+    hipe:c(?MODULE,Flags).

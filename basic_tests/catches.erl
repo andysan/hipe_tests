@@ -2,7 +2,7 @@
 %% Copyright (c) 2000 by Erik Johansson.  All Rights Reserved 
 %% Time-stamp: <00/12/13 13:50:31 happi>
 %% ====================================================================
-%%  Filename :  test_catches.erl
+%%  Filename : test_catches.erl
 %%  Module   : test_catches
 %%  Purpose  :  
 %%  Notes    : 
@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2000/12/19 14:55:31 $
-%%              $Revision: 1.1 $
+%%              $Date: 2001/02/13 16:49:25 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -22,7 +22,7 @@
 -export([test/0,compile/1]).
 
 compile(O) ->
-  ix:c(?MODULE,O).
+  hipe:c(?MODULE,O).
 
 test() ->
   catch [t1(),t2(),t3(),t4(),t5(a,b),t5(1,2),t6(),t7(),t8()].
