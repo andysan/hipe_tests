@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2004/06/15 12:18:13 $
-%%    $Revision: 1.13 $
+%%    $Date: 2004/11/16 09:38:31 $
+%%    $Revision: 1.14 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -43,8 +43,8 @@ test() ->
        test("cosTime"),
        test("cosTransactions"),
        test("debugger"),
+       test("edoc"),
        test("et"),
-       test("eva"),
        test("gs"),
        test("ic"),
        test("inets"),
@@ -59,12 +59,13 @@ test() ->
        test("pman"),
        test("runtime_tools"),
        test("sasl"),
-       test("ssl"),
        test("snmp"),
+       test("ssl"),
        test("syntax_tools"),
        test("toolbar"),
        test("tv"),
-       test("webtool")
+       test("webtool"),
+       test("xmerl")
       ],
   S = hipe_bifs:constants_size(),
   io:format("%%======================== Size of constants area: ~w\n", [S]),
