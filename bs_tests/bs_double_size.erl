@@ -21,4 +21,4 @@ t(T) ->
    _/binary>> = T.
 
 compile(Opts) ->
-  hipe:c(?MODULE, [core|Opts]).
+  hipe:c(?MODULE, Opts).
