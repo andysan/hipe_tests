@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.1 2000/11/22 15:00:48 kostis Exp $
+## $Id: testsuite.sh,v 1.2 2000/11/22 15:32:04 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -153,6 +153,8 @@ echo "The log will be left in $LOG_FILE"
 
 echo "Log for  : $HIPE_RTS $options" > $LOG_FILE
 echo "Date-Time: `date +"%y%m%d-%H%M"`" >> $LOG_FILE
+
+$HIPE_RTS -make   ## This makes test.beam
 
 ./alltests.sh --rts_opts "$rts_options" --comp_opts "$comp_options" \
 	      --only "$only_tests" --exclude "$excluded_tests" \
