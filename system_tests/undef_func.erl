@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.17 2004/08/13 14:18:19 tobiasl Exp $
+%%     $Id: undef_func.erl,v 1.18 2004/08/13 14:26:09 richardc Exp $
 %%
 
 -module(undef_func).
@@ -102,6 +102,9 @@ application_interface() ->
      {cerl_closurean,annotate,1},    %% exported for testing purposes
      {cerl_typean,analyze,1},        %% exported for testing purposes
      {cerl_typean,core_transform,2}, %% called from corec as metacall
+     {cerl_prettypr,format,1},       %% exported for testing purposes
+     {cerl_prettypr,format,2},       %% exported for testing purposes
+     {cerl_prettypr,annotate,3},     %% exported for testing purposes
      {cerl_typean,pp_hook,0},        %% exported for testing purposes
      {hhl_transform,core_transform,2}%% used by compiler/src/v3_core_opt.erl
     ].
