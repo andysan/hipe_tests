@@ -7,7 +7,7 @@ ix_exec ()
   } | sh
 }
 
-cp ../test.erl ../test.beam .
+ln -s ../test.beam .
 
 for file in $testfiles ; do
     test=`basename $file .erl`
@@ -29,7 +29,7 @@ for file in $testfiles ; do
     fi
 done
 
-rm -f ./test.erl ./test.beam
+rm -f ./test.beam
 
 echo
 #============================================================================
