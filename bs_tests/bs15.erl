@@ -9,12 +9,13 @@
 %%              to floats when constructing binaries
 %%  CVS      :
 %%              $Author: pergu $
-%%              $Date: 2004/02/04 15:18:28 $
-%%              $Revision: 1.5 $
+%%              $Date: 2004/02/26 10:27:50 $
+%%              $Revision: 1.6 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(bs15).
--export([test/0,compile/1]).
+-export([test/0,compile/1,c/0,t/0]).
+-compile(export_all).
 
 compile(Opts) ->
   hipe:c(?MODULE,Opts).
@@ -70,3 +71,13 @@ gen1(N, S, A) ->
 
 gen2(N, S, A) ->
     <<A:S/little, A:(N-S)/little>>.
+
+t() ->
+  ok = in_guard(<<16#BCD:14,3:2>>, 16#BCD).
+
+in_guard(Bin, A) when <<A:14,3:2>> == Bin -> ok;
+in_guard(_, _) -> nope.
+
+c() ->
+  hipe:c({bs15,t,0}, [o2,rtl_ssa,pp_rtl_ssa,{regalloc,linear_scan}]).
+

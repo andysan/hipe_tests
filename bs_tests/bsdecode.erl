@@ -14,7 +14,7 @@ test() ->
     16,1,5,0,16,5,117,115,101,114,53,5,112,97,115,115,53,
     133,0,4,172,28,12,1,133,0,4,172,28,12,3,134,0,8,145,
     148,113,129,0,0,0,0>>,
-    decode_v0_opt(1000,Pdu).
+    decode_v0_opt(10,Pdu).
 
 decode_v0_opt(0,Pdu) ->
     decode_gtpc_msg(Pdu);
@@ -68,7 +68,8 @@ decode_gtpc_msg(<<0:3,_:4,0:1,16:8,_Length:16,SequenceNumber:16,
 decode_gtpc_msg(<<0:3,_:4,0:1,18:8,_Length:16,SequenceNumber:16,
 		_FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
 		TID:8/binary-unit:8,InformationElements/binary>>) ->
-    Errors=#protocolErrors{},
+  io:format("hej", []),
+  Errors=#protocolErrors{},
     {ok,TID2}=tid_internal_storage(TID,[]),
     EmptyUpdateReq=#sesT_updateReqV0{tid=TID2,
 				     tidRaw=binary_to_list(TID)},
@@ -78,8 +79,9 @@ decode_gtpc_msg(<<0:3,_:4,0:1,18:8,_Length:16,SequenceNumber:16,
 	    {ok,UpdateReq,SequenceNumber};
 	{fault,Cause,UpdateReq} ->
 	    {fault,Cause,UpdateReq,SequenceNumber};
-	{'EXIT',_Reason} ->
-	    {fault,193,EmptyUpdateReq,SequenceNumber}
+	{'EXIT',Reason} ->
+	io:format("hej", []),
+	    {fault,193,EmptyUpdateReq,SequenceNumber, Reason}
     end;
 
 %%% Delete PDP Context Request

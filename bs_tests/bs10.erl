@@ -9,9 +9,9 @@
 %%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2002/05/08 07:33:40 $
-%%              $Revision: 1.3 $
+%%              $Author: pergu $
+%%              $Date: 2004/02/26 10:27:50 $
+%%              $Revision: 1.4 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -96,7 +96,7 @@ dynamic(Bin, S1, S2, A, B) ->
     <<A:S1,B:S2>> ->
       %% io:format("~p ~p ~p ~p\n", [S1,S2,A,B]),
       ok;
-    _ -> erlang:fault(badmatch, [Bin,S1,S2,A,B])
+    <<A1:S1,B2:S2>>  -> erlang:fault(badmatch, [Bin,S1,S2,A,B,A1,B2])
   end.
 
 
