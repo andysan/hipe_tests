@@ -6,8 +6,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/11/02 13:21:26 $
-%%    $Revision: 1.9 $
+%%    $Date: 2003/11/03 20:33:04 $
+%%    $Revision: 1.10 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -25,45 +25,47 @@ test() ->
     H2 = test("hipe"), % use this native code to compile the HiPE compiler
     %% test that there is no space leak in the constants pool area
     CS = hipe_bifs:constants_size(),
-    [
-     H1,
-     H2,
-     test("stdlib"),
-     test("compiler"),
-     test("kernel"),
-     test("tools"),
+    R = [H1,
+	 H2,
+	 test("stdlib"),
+	 test("compiler"),
+	 test("kernel"),
+	 test("tools"),
 
-     test("appmon"),
-     test("asn1"),
-     test("cosEvent"),
-     test("cosEventDomain"),
-     test("cosFileTransfer"),
-     test("cosNotification"),
-     test("cosProperty"),
-     test("cosTime"),
-     test("cosTransactions"),
-     test("debugger"),
-     test("et"),
-     test("eva"),
-     test("gs"),
-     test("ic"),
-     test("inets"),
-     test("megaco"),
-     test("mnemosyne"),
-     test("mnesia"),
-     test("mnesia_session"),
-     test("observer"),
-     test("orber"),
-     test("os_mon"),
-     test("parsetools"),
-     test("pman"),
-     test("runtime_tools"),
-     test("sasl"),
-     test("snmp"),
-     test("toolbar"),
-     test("tv"),
-     test("webtool")
-    ].
+	 test("appmon"),
+	 test("asn1"),
+	 test("cosEvent"),
+	 test("cosEventDomain"),
+	 test("cosFileTransfer"),
+	 test("cosNotification"),
+	 test("cosProperty"),
+	 test("cosTime"),
+	 test("cosTransactions"),
+	 test("debugger"),
+	 test("et"),
+	 test("eva"),
+	 test("gs"),
+	 test("ic"),
+	 test("inets"),
+	 test("megaco"),
+	 test("mnemosyne"),
+	 test("mnesia"),
+	 test("mnesia_session"),
+	 test("observer"),
+	 test("orber"),
+	 test("os_mon"),
+	 test("parsetools"),
+	 test("pman"),
+	 test("runtime_tools"),
+	 test("sasl"),
+	 test("snmp"),
+ 	 test("toolbar"),
+	 test("tv"),
+	 test("webtool")
+	],
+    S = hipe_bifs:constants_size(),
+    io:format("%%======================== Size of constants area: ~w\n", [S]),
+    R.
 
 test(Application) ->
     S1 = hipe_bifs:constants_size(),
