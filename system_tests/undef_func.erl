@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.2 2003/11/30 23:40:20 kostis Exp $
+%%     $Id: undef_func.erl,v 1.3 2003/12/01 16:49:47 kostis Exp $
 %%
 
 -module(undef_func).
@@ -24,6 +24,13 @@ test() ->
     {ok,_App} = xref:add_application(Server, HiPE),
     {ok,Undef} = xref:analyze(Server, undefined_function_calls),
     {ok,UnusedLocals} = xref:analyze(Server, locals_not_used),
+    {ok,UnusedExports} = xref:analyze(Server, exports_not_used),
+    % _ReallyUnusedExports = lists:subtract(UnusedExports, used_exports()),
+    _ReallyUnusedExports = lists:subtract(exclude_exports(UnusedExports,[]),
+					  used_exports()),
+    % _H = _ReallyUnusedExports,
+    _H = process_exports(_ReallyUnusedExports,[]),
+    % io:format("~w\nTotal = ~w\n", [_H,length(_H)]),
     catch xref:stop(Server),
     U1 = case Undef of
 	     [] -> no_undefined_functions;
@@ -51,3 +58,48 @@ test() ->
 
 format_mfa({M,F,A}) ->
     io_lib:format("~s:~s/~p", [M,F,A]).
+
+process_exports([{hipe_x86,F,A}|Ex],FA) ->
+    process_exports(Ex,[{F,A}|FA]);
+process_exports([_|Ex],FA) ->
+    process_exports(Ex,FA);
+process_exports([],FA) ->
+    FA.
+
+exclude_exports([{hipe_icode,_,_}|Ex],FA) ->
+    exclude_exports(Ex,FA);
+exclude_exports([{hipe_icode_cfg,_,_}|Ex],FA) ->
+    exclude_exports(Ex,FA);
+exclude_exports([{hipe_rtl,_,_}|Ex],FA) ->
+    exclude_exports(Ex,FA);
+exclude_exports([{hipe_rtl_cfg,_,_}|Ex],FA) ->
+    exclude_exports(Ex,FA);
+exclude_exports([{hipe_sparc,_,_}|Ex],FA) ->
+    exclude_exports(Ex,FA);
+exclude_exports([{hipe_sparc_cfg,_,_}|Ex],FA) ->
+    exclude_exports(Ex,FA);
+exclude_exports([{hipe_sparc_op,_,_}|Ex],FA) ->
+    exclude_exports(Ex,FA);
+exclude_exports([{hipe_sparc_ra_cs,_,_}|Ex],FA) ->
+    exclude_exports(Ex,FA);
+exclude_exports([{hipe_x86,_,_}|Ex],FA) ->
+    exclude_exports(Ex,FA);
+exclude_exports([{hipe_x86_cfg,_,_}|Ex],FA) ->
+    exclude_exports(Ex,FA);
+exclude_exports([{hipe_gen_cfg,_,_}|Ex],FA) ->
+    exclude_exports(Ex,FA);
+exclude_exports([{erl_types,_,_}|Ex],FA) ->
+    exclude_exports(Ex,FA);
+exclude_exports([E|Ex],FA) ->
+    exclude_exports(Ex,[E|FA]);
+exclude_exports([],FA) ->
+    FA.
+
+used_exports() ->
+    [
+     {hipe,help,0},
+     {hipe,help_option,1},
+     {hipe,help_options,0},
+     {hipe,compile,4},	%% used by compiler/src/compile.erl
+     {hipe_tool,start,0}
+    ].
