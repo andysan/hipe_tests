@@ -1,5 +1,4 @@
 %% Copyright (c) 1999 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <01/03/28 10:12:23 happi>
 %% ====================================================================
 %% Test module for the HiPE test suite.
 %%
@@ -9,9 +8,9 @@
 %%  Notes    :  Adapted from after_SUITE by 'bjorn@erix.ericsson.se'.
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: pergu $
-%%    $Date: 2004/07/30 13:26:53 $
-%%    $Revision: 1.7 $
+%%    $Author: richardc $
+%%    $Date: 2004/08/20 14:11:02 $
+%%    $Revision: 1.8 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -31,7 +30,7 @@ test() ->
   {R1,R2}.
 
 compile(Flags) ->
-  hipe:c(?MODULE,[{core,false}|Flags]).
+  hipe:c(?MODULE,Flags).
 
 %% t_after:
 %% Make sure that timeouts are accurate 'enough'. 
