@@ -9,9 +9,9 @@
 %%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: happi $
-%%              $Date: 2001/06/14 12:08:41 $
-%%              $Revision: 1.1 $
+%%              $Author: kostis $
+%%              $Date: 2001/07/17 15:42:42 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -56,7 +56,7 @@ bs3(L, B, Pos, B2) ->
 bit_split_binary() ->
   Fun = fun(Bin, List, SkipBef, N) ->
 	    SkipAft = 8*size(Bin) - N - SkipBef,
-	    io:format("~p, ~p, ~p", [SkipBef,N,SkipAft]),
+	    %% io:format("~p, ~p, ~p", [SkipBef,N,SkipAft]),
 	    <<I1:SkipBef,OutBin:N/binary-unit:1,I2:SkipAft>> = Bin,
 	    OutBin = make_bin_from_list(List, N)
 	end,

@@ -9,9 +9,9 @@
 %%  History  :	* 2001-06-13 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: happi $
-%%              $Date: 2001/06/14 12:08:41 $
-%%              $Revision: 1.1 $
+%%              $Author: kostis $
+%%              $Date: 2001/07/17 15:39:14 $
+%%              $Revision: 1.2 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -25,7 +25,6 @@
 compile(O) ->
   hipe:c(?MODULE,O).
 
-i(X) -> X.
 r(L) ->
     lists:reverse(L).
 
