@@ -9,9 +9,9 @@
 %%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: mikpe $
-%%              $Date: 2001/07/25 11:41:00 $
-%%              $Revision: 1.2 $
+%%              $Author: kostis $
+%%              $Date: 2003/08/08 13:54:37 $
+%%              $Revision: 1.3 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -26,7 +26,7 @@ compile(O) ->
   hipe:c(?MODULE,O).
 
 test()->
-     ?FAIL(<<3.14>>),
+    ?FAIL(<<3.14>>),
     ?FAIL(<<<<1,2>>>>),
 
     ?FAIL(<<2.71/binary>>),
