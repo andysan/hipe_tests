@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Copyright (c) 2001 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <2001-04-19 19:44:12 richardc>
+%% Time-stamp: <2004-08-20 14:25:56 richardc>
 %% ====================================================================
 %%  Filename : fun01.erl
 %%  Module   : fun01
@@ -9,9 +9,9 @@
 %%  History  : * 2001-01-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2004/07/30 18:36:28 $
-%%              $Revision: 1.8 $
+%%              $Author: richardc $
+%%              $Date: 2004/08/20 12:41:26 $
+%%              $Revision: 1.9 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -57,10 +57,11 @@ compile(Opts) ->
       hipe:c({?MODULE,l2,2}, Opts),
       {ok, ?MODULE};
     true ->
-      %% This somehow defeats the purpose of the test since it does
-      %% not test calling BEAM funs from native code and vice versa
-      %% but I do not see any way of having such calls since remote
-      %% calls to funs are currently not allowed.
+      %% This defeats the real purpose of the test since it does not
+      %% test calling BEAM funs from native code and vice versa, but
+      %% that will never be possible since only whole modules can be
+      %% compiled from core.
+      test:note(?MODULE, "native-compiling whole module"),
       hipe:c(?MODULE, Opts)
   end.
 

@@ -1,5 +1,5 @@
 %% Copyright (c) 1999 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <2001-03-22 18:37:23 richardc>
+%% Time-stamp: <2004-08-20 14:33:29 richardc>
 %% ====================================================================
 %% Test module for the HiPE test suite.
 %%
@@ -9,8 +9,8 @@
 %%  Notes    : 
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2004/05/04 22:22:13 $
+%%    $Author: richardc $
+%%    $Date: 2004/08/20 12:41:26 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -34,5 +34,5 @@ test() ->
 
 compile(Opts) ->
   %% compiling from Core does not make sense for this test
-  NewOpts = lists:delete(core, Opts),
-  hipe:c({test04,native,1}, NewOpts).
+  test:note(?MODULE, "disabling compilation from core - no point"),
+  hipe:c({test04,native,1}, [{core,false}|Opts]).

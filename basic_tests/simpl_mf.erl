@@ -6,9 +6,9 @@
 %%  Purpose  :  Tests whether the translation of make_fun works.
 %%  History  :  * 2000-10-28 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2004/07/30 18:36:28 $
-%%    $Revision: 1.6 $
+%%    $Author: richardc $
+%%    $Date: 2004/08/20 12:41:26 $
+%%    $Revision: 1.7 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -40,5 +40,6 @@ compile(Opts) ->
       hipe:c({?MODULE,double_the_fun,0},Opts),
       {ok,?MODULE};
     true ->
+      test:note(?MODULE, "native-compiling whole module"),
       hipe:c(?MODULE,Opts)
   end.

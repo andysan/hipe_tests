@@ -8,9 +8,9 @@
 %%  History  : * 2001-03-08 Erik Johansson (happi@csd.uu.se):
 %%               Created.
 %%  CVS      :
-%%              $Author: pergu $
-%%              $Date: 2004/07/30 13:26:53 $
-%%              $Revision: 1.3 $
+%%              $Author: richardc $
+%%              $Date: 2004/08/20 12:41:26 $
+%%              $Revision: 1.4 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -30,6 +30,7 @@ test() ->
   R.
 
 compile(Ops) ->
+  test:note(?MODULE, "disabling compilation from core - BUG"),
   hipe:c(?MODULE, [{core,false}|Ops]).
 
 

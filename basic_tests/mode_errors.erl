@@ -2,8 +2,8 @@
 %%  Filename : 	mode_errors.erl
 %%  CVS      :
 %%              $Author: richardc $
-%%              $Date: 2004/08/20 11:47:35 $
-%%              $Revision: 1.5 $
+%%              $Date: 2004/08/20 12:41:26 $
+%%              $Revision: 1.6 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(mode_errors).
@@ -36,10 +36,10 @@ test() ->
 	     aeee()]).
 
 compile(Opts0) ->
-    %% This somehow defeats the purpose of the test since it does not
-    %% test how mode-errors are handled, but right now, we get different
-    %% stack traces when compiling from Core.
-    Opts = lists:delete(core, Opts0),
+    %% Disable core compilation for now, since we get different stack
+    %% traces when compiling from Core.
+    test:note(?MODULE, "disabling compilation from core - stack trace differs"),
+    Opts = [{core,false}| Opts0],
 
     hipe:c({?MODULE,t1n,0},Opts),
     hipe:c({?MODULE,t2n,0},Opts),
