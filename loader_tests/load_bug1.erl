@@ -9,27 +9,37 @@
 
 -export([test/0, compile/1]).
 
+-define(ModName, load_bug1_mod).
+
 compile(Flags) ->
-  code:purge(tmp),
-  code:delete(tmp),
+  code:purge(?ModName),
+  code:delete(?ModName),
   hipe:c(?MODULE,Flags).
 
 test() ->
-  old=compile_and_run(write_file(<<"old">>)),
-  new=compile_and_run(write_file(<<"new">>)),
+  io:format("here 1\n"),
+  ModNameString = atom_to_list(?ModName),
+  FN = write_file(ModNameString, <<"old">>),
+  old = compile_and_run(FN),
+  io:format("here ~s\n", [FN]),
+  FN = write_file(ModNameString, <<"new">>),
+  new = compile_and_run(FN),
+  ok = file:delete(list_to_atom(FN)),
+  io:format("here 3\n"),
   ok.
 
 compile_and_run(FN) ->
-  c:c(FN, [{outdir, "/tmp/"}]),
-  tmp:tmp().
+  c:c(FN, []),
+  ?ModName:tmp().
 
-write_file(Ret) ->  
-  Prog = <<"-module(tmp).\n",
-	  "-export([tmp/0]).\n",
-	  "tmp() ->\n",
-	  Ret/binary,".\n">>,
-  FN="/tmp/tmp.erl",
-  file:write_file(FN,Prog),
+write_file(ModNameString, Ret) ->
+  ModBin = list_to_binary(ModNameString),
+  Prog = <<"-module(", ModBin/binary, ").\n",
+	   "-export([tmp/0]).\n",
+	   "tmp() ->\n", Ret/binary,".\n">>,
+  io:format("here 1.1\n"),
+  FN = ModNameString ++ ".erl",
+  file:write_file(FN, Prog),
+  io:format("here 1.2\n"),
   FN.
-
 
