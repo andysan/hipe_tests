@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/10/04 08:39:07 $
-%%    $Revision: 1.6 $
+%%    $Date: 2003/10/14 12:09:17 $
+%%    $Revision: 1.7 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -35,18 +35,16 @@ test() ->
      test("cosEventDomain"),
      %% test("cosFileTransfer"),
      test("cosNotification"),
-     %% test("cosProperty"),
+     test("cosProperty"),
      test("cosTime"),
      test("cosTransactions"),
      test("debugger"),
-     %% test("etk"),
      test("et"),
      test("eva"),
      test("gs"),
      test("ic"),
      test("inets"),
      test("megaco"),
-     %% test("mesh"),	% Does not exist anymore ???
      test("mnemosyne"),
      test("mnesia"),
      test("mnesia_session"),
@@ -66,13 +64,14 @@ test() ->
 test(Application) ->
     Delim = "========================",
     io:format("%%"++Delim++" Compiling "++Application++" "++Delim++"\n"),
-    [ hc_mod(Mod) || Mod <- files(Application) -- excluded(Application) ],
+    Opts = get_comp_opts(),
+    [ hc_mod(Mod,Opts) || Mod <- files(Application) -- excluded(Application) ],
     {ok,Application}.
 
-hc_mod(Mod) ->
+hc_mod(Mod,Opts) ->
     io:format("Compiling ~w ...",[Mod]),
     T0 = time_now(),
-    Res = hipe:c(Mod,get_comp_opts()),
+    Res = hipe:c(Mod,Opts),
     T = time_since(T0) / 1000,
     io:format(" done in ~.2f secs\n",[T]),
     {ok,Mod} = Res.
