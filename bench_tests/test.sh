@@ -11,7 +11,7 @@ ERL_FLAGS=$3
 
 testfiles="fib.erl huff2.erl length.erl nrev.erl qsort.erl smith.erl tak.erl \
            decode1.erl barnes2.erl ring.erl stable.erl life.erl estone.erl \
-           pseudoknot.erl"
+           pseudoknot.erl float_bm.erl"
 
 # nrev.erl  : when run twice, it used to seg-fault.
 # estone.erl: in native code, goes into an infinite loop.
