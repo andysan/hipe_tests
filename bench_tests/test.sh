@@ -19,7 +19,7 @@ testfiles="fib.erl huff2.erl length.erl nrev.erl qsort.erl smith.erl tak.erl \
 ix_exec ()
 {
   {
-    echo echo "test:start\\\("$2","$3","$4"\\\). halt\\\(\\\)." \| $1 $5 -pa . 
+    echo echo "test:start\("$2","$3","$4"\). halt\(\)." \| $1 $5 -pa . 
   } | sh
 }
 

@@ -18,7 +18,7 @@ testfiles="simpl_send_rec?.erl proc_test?.erl link_test?.erl"
 ix_exec ()
 {
   {
-    echo echo "test:start\\\("$2","$3","$4"\\\). halt\\\(\\\)." \| $1 $5 -pa . 
+    echo echo "test:start\("$2","$3","$4"\). halt\(\)." \| $1 $5 -pa . 
   } | sh
 }
 

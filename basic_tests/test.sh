@@ -18,7 +18,7 @@ testfiles="bif01.erl fun??.erl simpl_*.erl tuple.erl small.erl length.erl catche
 ix_exec ()
 {
   {
-    echo echo "test:start\\\("$2","$3","$4"\\\). halt\\\(\\\)." \| $1 $5 -pa . 
+    echo echo "test:start\("$2","$3","$4"\). halt\(\)." \| $1 $5 -pa . 
   } | sh
 }
 
