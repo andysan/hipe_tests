@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.33 2004/08/20 15:47:26 richardc Exp $
+## $Id: testsuite.sh,v 1.34 2004/08/21 15:06:33 kostis Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -62,6 +62,7 @@ do
      --core)
 	    shift
             comp_options="[core]"
+	    excluded_tests="trivial_tests"
             ;;
      --no_nat*)
 	    shift
@@ -117,7 +118,7 @@ if test -z "$1" -o $# -gt 1; then
   echo "                       --rts_options \"-hybrid\""
   echo "	hybrid-a  -- like the --hybrid option but with analysis enabled"
   echo "	core      -- equivalent to:"
-  echo "                       --comp_options \"[core]\""
+  echo "                       --comp_options \"[core]\" --exclude \"trivial_tests\""
   echo "	no_native -- equivalent to:"
   echo "                       --comp_options \"[no_native]\""
   echo "                       --exclude \"${no_native_excl_tests}\""
