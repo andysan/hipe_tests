@@ -1,0 +1,6 @@
+
+bool1:and1/2 :: ((any(),any())->bool())
+bool1:and2/2 :: ((bool(),bool())->bool())
+bool1:and3/2 :: ((bool(),bool())->bool())
+bool1:module_info/0 :: (()->any())
+bool1:module_info/1 :: ((any())->any())

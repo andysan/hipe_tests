@@ -3,7 +3,7 @@
 if test $# -eq 2; then
   testfiles="$2"	## test file is given as unique extra argument
 else
-  testfiles="alias1.erl case1.erl case2.erl case3.erl case4.erl case5.erl\
+  testfiles="alias1.erl bool1.erl case1.erl case2.erl case3.erl case4.erl case5.erl\
 	     case6.erl case7.erl case8.erl catch1.erl cons.erl\
 	     func_head1.erl guard1.erl guard2.erl\
 	     receive*.erl try1.erl t_union1.erl tuple1.erl"

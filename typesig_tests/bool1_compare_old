@@ -1,0 +1,9 @@
+{bool1,and1,2} : OK
+ typesig: ((any(),any())->bool())
+  typean: ((any(),any())->bool())
+{bool1,and2,2} : OK
+ typesig: ((bool(),bool())->bool())
+  typean: ((any(),any())->bool())
+{bool1,and3,2} : OK
+ typesig: ((bool(),bool())->bool())
+  typean: ((any(),any())->any())
