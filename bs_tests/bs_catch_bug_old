@@ -1,0 +1,1 @@
+{{{emu_result,{'EXIT',{{case_clause,foo},[{bs_catch_bug,test,0},{test,start,3},{erl_eval,do_apply,5},{shell,eval_loop,2}]}}},{native_result,{'EXIT',{{case_clause,foo},[{bs_catch_bug,test,0}]}}}},{{emu_compile,{ok,bs_catch_bug}},{native_compile,{ok,bs_catch_bug}}}}
