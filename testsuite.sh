@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.17 2003/11/21 19:41:22 kostis Exp $
+## $Id: testsuite.sh,v 1.18 2003/12/11 16:32:38 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -86,13 +86,15 @@ done
 if test -z "$1" -o $# -gt 1; then
   echo " Usage: testsuite.sh [--rts_opts \"rts_opts\"] [--comp_opts \"comp_opts\"]"
   echo "                     [--add \"add_list\"]  [--exclude \"excl_list\"]"
-  echo "                     [--only \"test_list\"]  OTP_DIR"
+  echo "                     [--only \"test_list\"] [--no_native]  OTP_DIR"
   echo " where: rts_opts  -- options to pass to HiPE executable"
   echo "        comp_opts -- options to pass to HiPE compiler;"
   echo "                     when no options are given, they default to [o2]"
   echo "        excl_list -- the list of tests to NOT run"
   echo "        add_list  -- the list of additional tests to run"
-  echo "        test_list -- run only these tests"
+  echo "        test_list -- the list of tests to run; replaces default,"
+  echo "                     both --exclude and --only can be specified at once"
+  echo "        no_native -- equivalent to --comp_options \"[no_native]\""
   echo "        OTP_DIR   -- full path name of the HiPE installation directory"
   echo ========================================================================
   exit
