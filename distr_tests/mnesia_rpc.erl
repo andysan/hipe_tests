@@ -8,9 +8,9 @@
 %%  History  :	* 2003-03-24 Jesper Wilhelmsson (jesperw@csd.uu.se):
 %%		  Created.
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2003/04/09 14:01:14 $
-%%              $Revision: 1.6 $
+%%              $Author: mikpe $
+%%              $Date: 2004/02/11 11:31:43 $
+%%              $Revision: 1.7 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -27,12 +27,11 @@ test() ->
   OTP_DIR = os:getenv("OTP_DIR"),
   USER = os:getenv("USER"),
   MODULE = atom_to_list(?MODULE),
-  {ok,HOSTNAME} = inet:gethostname(),
-  os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ "_a -noshell &"),
+  os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ "_a@localhost -noshell &"),
   receive after 1000 -> ok end,		% prevent race condition
   S = os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ 
-	     "_b -noshell -noinput -s " ++ MODULE ++
-             " start " ++ USER ++ "_a@" ++ HOSTNAME),
+	     "_b@localhost -noshell -noinput -s " ++ MODULE ++
+             " start " ++ USER ++ "_a@localhost"),
   %% io:format("~w",[S]),
   {match,Pos,Len} = regexp:match(S, "TestResult:"),
   R = string:sub_string(S, Pos+Len+1),

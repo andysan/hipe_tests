@@ -9,9 +9,9 @@
 %%		* 2003-03-12 Kostis Sagonas (kostis@csd.uu.se): 
 %%		  Modified to be run without a shell script.
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2003/04/08 12:45:20 $
-%%              $Revision: 1.3 $
+%%              $Author: mikpe $
+%%              $Date: 2004/02/11 11:31:43 $
+%%              $Revision: 1.4 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -24,10 +24,9 @@ test() ->
   OTP_DIR = os:getenv("OTP_DIR"),
   USER = os:getenv("USER"),
   MODULE = atom_to_list(?MODULE),
-  {ok,HOSTNAME} = inet:gethostname(),
-  os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ "_bar -noshell -s " ++ MODULE ++ " b " ++ USER ++ "_foo@" ++ HOSTNAME ++ " &"),
+  os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ "_bar@localhost -noshell -s " ++ MODULE ++ " b " ++ USER ++ "_foo@localhost &"),
   receive after 1000 -> ok end,		% prevent race condition
-  R = os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ "_foo -noshell -s " ++ MODULE ++ " a"),
+  R = os:cmd(OTP_DIR ++ "/bin/erl -sname " ++ USER ++ "_foo@localhost -noshell -s " ++ MODULE ++ " a"),
   list_to_atom(R).
 
 compile(Opts) ->
