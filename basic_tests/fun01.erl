@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Copyright (c) 2001 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <2004-08-20 14:25:56 richardc>
+%% Time-stamp: <2004-08-20 16:52:20 richardc>
 %% ====================================================================
 %%  Filename : fun01.erl
 %%  Module   : fun01
@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: richardc $
-%%              $Date: 2004/08/20 12:41:26 $
-%%              $Revision: 1.9 $
+%%              $Date: 2004/08/20 14:58:46 $
+%%              $Revision: 1.10 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -44,7 +44,7 @@ test() ->
   l()}.
    
 compile(Opts) ->
-  case lists:member(core, Opts) of
+  case proplists:get_bool(core, Opts) of
     false ->
       hipe:c({?MODULE,test,0}, Opts),
       hipe:c({?MODULE,n_mk_fun,3}, Opts),

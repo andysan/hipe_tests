@@ -7,8 +7,8 @@
 %%  History  :  * 2000-10-28 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: richardc $
-%%    $Date: 2004/08/20 12:41:26 $
-%%    $Revision: 1.7 $
+%%    $Date: 2004/08/20 14:59:04 $
+%%    $Revision: 1.8 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -33,7 +33,7 @@ test() ->
   {contains_fun({free_var1,ok},ignored,{free_var2,{is,also,ok}}), [F(),G(ok)]}.
 
 compile(Opts) ->
-  case lists:member(core, Opts) of
+  case proplists:get_bool(core, Opts) of
     false ->
       hipe:c({?MODULE,contains_fun,3},Opts),
       hipe:c({?MODULE,calls_fun,1},Opts),
