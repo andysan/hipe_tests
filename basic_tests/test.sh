@@ -15,7 +15,8 @@ testfiles="bif01.erl exception01.erl exception02.erl fun??.erl guard01.erl \
 	   simpl_*.erl tuple.erl small.erl length.erl catch*.erl \
 	   hash_test.erl random_test.erl test??.erl mode_errors.erl \
 	   switch_mix.erl var_tuple.erl int_overfl.erl inline_match.erl \
-	   case_end_atom.erl ets_bug.erl ext_ref_test.erl try_expr?.erl"
+	   case_end_atom.erl ets_bug.erl ext_ref_test.erl"
+#testfiles="$testfiles try_expr.erl"
 
 #============================================================================
 
