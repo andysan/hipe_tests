@@ -7,6 +7,15 @@
 {list1,len,2} : OK
  typesig: (([any()],integer()) -> integer())
   typean: ((_,_) -> integer())
+{list1,lists__reverse,1} : OK
+ typesig: (([any()]) -> [any()])
+  typean: ((_) -> [any()])
 {list1,reverse,1} : OK
  typesig: (([any()]) -> [any()])
   typean: ((_) -> [any()])
+{list1,reverse_acc,1} : OK
+ typesig: (([any()]) -> any())
+  typean: ((_) -> any())
+{list1,reverse_acc,2} : OK
+ typesig: (([any()],_) -> any())
+  typean: ((_,_) -> any())
