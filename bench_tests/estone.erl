@@ -206,7 +206,7 @@ run_micros([H|T]) ->
 run_micro(M) ->
     Pid = spawn(estone, run_micro, [self(),M]),
     Res = receive {Pid, Reply} -> Reply end,
-    timer:sleep(2000), %% give system some time 
+    %% timer:sleep(2000), %% give system some time 
     Res.
 
 
