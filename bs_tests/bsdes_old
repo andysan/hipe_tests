@@ -1,1 +1,1 @@
-{{{emu_result,<<0,0,0,0,0,0,0,1>>},{native_result,<<0,0,0,0,0,0,0,1>>}},{{emu_compile,{ok,bsdes}},{native_compile,{'EXIT',{undef,[{bsdes,compile,[[o2]]},{test,start,3},{erl_eval,do_apply,5},{shell,eval_loop,2}]}}}}}
+{{{emu_result,<<0,0,0,0,0,0,0,1>>},{native_result,<<0,0,0,0,0,0,0,1>>}},{{emu_compile,{ok,bsdes}},{native_compile,{ok,bsdes}}}}
