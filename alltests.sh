@@ -3,13 +3,11 @@
 ## File:      alltests.sh
 ## Author(s): Kostis Sagonas
 ##
-## $Id: alltests.sh,v 1.16 2004/10/03 10:52:39 kostis Exp $
+## $Id: alltests.sh,v 1.17 2004/10/29 14:11:03 richardc Exp $
 ##
 ## Run with no options for usage/help.
 
-echo "------------------------------------------------------------------------"
-echo "---                     Running alltests.sh                          ---"
-echo "------------------------------------------------------------------------"
+default_testlist="trivial_tests basic_tests native_tests core_tests process_tests distr_tests bs_tests bench_tests loader_tests"
 
 while test 1=1
 do
@@ -38,6 +36,10 @@ do
 	    shift
 	    only_tests=$1
 	    shift
+	    ;;
+     --list*)
+	    echo $default_testlist
+	    exit 0
 	    ;;
       *)
 	    break
@@ -95,7 +97,9 @@ construct_tests ()
 }
 # ---------------------------------------------------------------------
 
-default_testlist="trivial_tests basic_tests native_tests core_tests process_tests distr_tests bs_tests bench_tests loader_tests"
+echo "------------------------------------------------------------------------"
+echo "---                     Running alltests.sh                          ---"
+echo "------------------------------------------------------------------------"
 
 if test -z "$only_tests"; then
   testlist="$default_testlist $added_tests"
