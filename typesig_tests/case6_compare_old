@@ -1,9 +1,0 @@
-{case6,t1,2} : OK
- typesig: ((2,[any()]) -> atom())
-  typean: ((_,_) -> atom())
-{case6,t2,1} : OK
- typesig: none()
-  typean: ((_) -> none())
-{case6,t3,1} : OK
- typesig: none()
-  typean: ((_) -> 'ok')
