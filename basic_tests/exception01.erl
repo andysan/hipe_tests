@@ -6,8 +6,8 @@
 %%  History  :  * 2001-09-17 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/09/18 14:58:31 $
-%%    $Revision: 1.2 $
+%%    $Date: 2001/09/18 16:39:59 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 
 -module(exception01).
@@ -37,7 +37,7 @@ pending_errors(Config) when list(Config) ->
     %% pending(e_badarg_spawn, badarg),
     ok.
 
-%% ============ AUXILIARY FUNCTIONS =============
+%% ================== AUXILIARY FUNCTIONS =============================
 
 bad_guy(pe_badarith, Other) when Other+1 == 0 -> % badarith (suppressed)
     ok;
@@ -76,7 +76,7 @@ pending(First, Second, Expected) ->
     pending_exit_message([First, Second], Expected).
 
 pending_catched(First, Second, Expected) ->
-    ok = io:format("Catching bad_guy(~p, ~p)", [First, Second]),
+    ok = io:format("Catching bad_guy(~p, ~p)\n", [First, Second]),
     case catch bad_guy(First, Second) of
         {'EXIT', Reason} ->
             pending(Reason, bad_guy, [First, Second], Expected);
@@ -85,7 +85,7 @@ pending_catched(First, Second, Expected) ->
     end.
 
 pending_exit_message(Args, Expected) ->
-    ok = io:format("Trapping EXITs from spawn_link(~p, ~p, ~p)",
+    ok = io:format("Trapping EXITs from spawn_link(~p, ~p, ~p)\n",
                    [?MODULE, bad_guy, Args]),
     process_flag(trap_exit, true),
     Pid = spawn_link(?MODULE, bad_guy, Args),
@@ -99,14 +99,16 @@ pending_exit_message(Args, Expected) ->
     end,
     process_flag(trap_exit, false).
 
-pending({badarg, [{erlang,Bif,BifArgs},{?MODULE,Func,Arity}|_]}, Func, Args, Code)
+pending({badarg, [{erlang,Bif,BifArgs},{?MODULE,Func,Arity}|_]},
+	Func, Args, Code)
   when atom(Bif), list(BifArgs), length(Args) == Arity ->
     ok;
 pending({undef,[{non_existing_module,foo,[]}|_]}, _, _, _) ->
     ok;
 pending({function_clause,[{?MODULE,Func,Args}|_]}, Func, Args, Code) ->
     ok;
-pending({Code,[{?MODULE,Func,Arity}|_]}, Func, Args, Code) when length(Args) == Arity ->
+pending({Code,[{?MODULE,Func,Arity}|_]}, Func, Args, Code)
+  when length(Args) == Arity ->
     ok;
 pending(Reason, Function, Args, Code) ->
     exit({bad_exit_reason,Reason}).
