@@ -1,15 +1,15 @@
 %% ====================================================================
 %% Test module for the HiPE test suite.
 %%
-%%  Filename :  simpl_co.erl
+%%  Filename :  const_size_test.erl
 %%  Purpose  :  Tests loading of constants into the runtime system and
 %%		its interaction with constant propagation. The test is
 %%		written so that it returns 42.
 %%  History  :  * 2003-10-31 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/12/16 15:51:09 $
-%%    $Revision: 1.1 $
+%%    $Date: 2004/02/12 09:53:28 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 
 -module(const_size_test).
