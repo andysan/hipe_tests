@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.22 2004/01/23 14:03:23 kostis Exp $
+## $Id: testsuite.sh,v 1.23 2004/04/21 21:23:08 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -16,7 +16,7 @@
 #        comp_opts -- options to pass to HiPE compiler;
 #                     when no options are given, they default to "[o2]"
 #	 no_native -- a shorthand option which is equivalent to
-#			--comp_options "[no_native]" --exclude "native_tests"
+#			--comp_options "[no_native]" --exclude "native_tests core_tests"
 #        excl_list -- the list of tests (in quotes) to NOT run
 #        add_list  -- list of test directories to add
 #    	     	      (which are normally not tested)
@@ -57,7 +57,7 @@ do
      *--no_nat*)
 	    shift
 	    comp_options=[no_native]
-	    excluded_tests=native_tests
+	    excluded_tests="native_tests core_tests"
 	    ;;
      *--exclud*)
 	    shift
@@ -96,7 +96,7 @@ if test -z "$1" -o $# -gt 1; then
   echo "        test_list -- the list of tests to run; replaces default,"
   echo "                     both --exclude and --only can be specified at once"
   echo "	no_native -- a shorthand option which is equivalent to"
-  echo "                      --comp_options \"[no_native]\" --exclude \"native_tests\""
+  echo "                      --comp_options \"[no_native]\" --exclude \"native_tests core_tests\""
   echo "        OTP_DIR   -- full path name of the HiPE installation directory"
   echo ========================================================================
   exit
