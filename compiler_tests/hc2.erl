@@ -6,9 +6,9 @@
 %%  Purpose  :  Tests whether the HiPE compiler works by compiling and
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2002/09/11 16:35:23 $
-%%    $Revision: 1.3 $
+%%    $Author: happi $
+%%    $Date: 2002/09/19 18:04:39 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -26,9 +26,9 @@ test() ->
      test("asn1"),
      test("cosEvent"),
      test("cosEventDomain"),
-     test("cosFileTransfer"),
+%     test("cosFileTransfer"),
      test("cosNotification"),
-     test("cosProperty"),
+%     test("cosProperty"),
      test("cosTime"),
      test("cosTransactions"),
      test("debugger")
