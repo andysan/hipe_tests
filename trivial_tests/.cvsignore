@@ -1,0 +1,3 @@
+*.beam
+*.hipe.*
+*_new
