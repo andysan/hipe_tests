@@ -1,7 +1,5 @@
-% This is an -*- erlang -*- file.
+%% This is an -*- erlang -*- file.
 
-excluded("hipe") ->
-    [hipe_internal]; % SHOULD NEVER BE COMPILED TO NATIVE CODE
 excluded("stdlib") ->
     [erl_parse];     % COMPILATION TAKES LONG TIME
 excluded("kernel") ->
