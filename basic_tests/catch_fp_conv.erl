@@ -5,29 +5,27 @@
 %%		to floating point numbers.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2002/06/25 10:15:43 $
-%%              $Revision: 1.2 $
+%%              $Date: 2003/12/17 13:20:21 $
+%%              $Revision: 1.3 $
 %% ====================================================================
 
 -module(catch_fp_conv).
 -export([test/0,compile/1]).
 
 test() ->
-    big_arith(),
-    big_const_float(),
+    F = 1.7e308, %% F is a number very close to a maximum float.
+    big_arith(F),
+    big_const_float(F),
     ok.
 
-big_arith() ->
-    %% F is a number very close to a maximum float.
-    F = 1.7e308,
+big_arith(F) ->
     I = trunc(F),
-    {'EXIT',{badarith,_}} = big_arith(I).
+    {'EXIT',{badarith,_}} = i_big_arith(I).
 
-big_arith(I) when integer(I) ->
+i_big_arith(I) when integer(I) ->
     catch(3.0 + 2*I).
 
-big_const_float() ->
-    F = 1.7e308,
+big_const_float(F) ->
     I = trunc(F),
     {'EXIT', _} = (catch 1/(2*I)),
     _Ignore = 2/I,

@@ -17,8 +17,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/02/13 16:49:26 $
-%%    $Revision: 1.2 $
+%%    $Date: 2003/12/17 13:20:21 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -121,11 +121,14 @@ t_list_to_tuple() ->
     Tuple = list_to_tuple(lists:seq(1, Size)),
     Size = size(Tuple),
 
-    {'EXIT', _} = (catch list_to_tuple({a, b})),
-    {'EXIT', _} = (catch list_to_tuple([a|b])),
-    {'EXIT', _} = (catch list_to_tuple([a|b])),
+    {'EXIT', _} = (catch my_list_to_tuple({a, b})),
+    {'EXIT', _} = (catch my_list_to_tuple([a|b])),
+    {'EXIT', _} = (catch my_list_to_tuple([a|b])),
 
     ok.
+
+my_list_to_tuple(X) ->
+    list_to_tuple(X).
 
 %% Tests tuple_to_list/1.
 t_tuple_to_list() ->
@@ -142,10 +145,12 @@ t_tuple_to_list() ->
     Size = size(Tuple),
     List = tuple_to_list(Tuple),
 
-    {'EXIT', _} = (catch tuple_to_list(a)),
-    {'EXIT', _} = (catch tuple_to_list(42)),
-
+    {'EXIT', _} = (catch my_tuple_to_list(a)),
+    {'EXIT', _} = (catch my_tuple_to_list(42)),
     ok.
+
+my_tuple_to_list(X) ->
+    tuple_to_list(X).
 
 %% Tests that a case nested inside a tuple is ok.
 %% (This is known to crash earlier versions of BEAM.)

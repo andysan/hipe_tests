@@ -13,7 +13,7 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/02/13 16:49:25 $
+%%    $Date: 2003/12/17 13:20:21 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -30,11 +30,17 @@ test() ->
     0.0 = math:log(1.0),
     {'EXIT', _} = (catch math:log(0.0)),
     0.0 = math:log(1.0),
-    {'EXIT',_} = (catch 3.23e133 * 3.57e257),
+    {'EXIT',_} = (catch r_mult(3.23e133,3.57e257)),
     0.0 = math:log(1.0),
-    {'EXIT',_} = (catch 5.0/0.0),
+    {'EXIT',_} = (catch r_div(5.0,0.0)),
     0.0 = math:log(1.0),
     ok.
+
+r_mult(X,Y) ->
+    X * Y.
+
+r_div(X,Y) ->
+    X / Y.
 
 compile(Flags) ->
     hipe:c(?MODULE,Flags).

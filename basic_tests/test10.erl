@@ -16,8 +16,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/02/13 16:49:26 $
-%%    $Revision: 1.2 $
+%%    $Date: 2003/12/17 13:20:21 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -79,14 +79,16 @@ t_float() ->
     {'EXIT', _} = (catch float(Big)),
     
     %% Invalid types and lists.
-    {'EXIT', _} = (catch list_to_integer(atom)),
-    {'EXIT', _} = (catch list_to_integer(123)),
-    {'EXIT', _} = (catch list_to_integer([$1, [$2]])),
-    {'EXIT', _} = (catch list_to_integer("1.2")),
-    {'EXIT', _} = (catch list_to_integer("a")),
-    {'EXIT', _} = (catch list_to_integer("")),
+    {'EXIT', _} = (catch my_list_to_integer(atom)),
+    {'EXIT', _} = (catch my_list_to_integer(123)),
+    {'EXIT', _} = (catch my_list_to_integer([$1, [$2]])),
+    {'EXIT', _} = (catch my_list_to_integer("1.2")),
+    {'EXIT', _} = (catch my_list_to_integer("a")),
+    {'EXIT', _} = (catch my_list_to_integer("")),
     ok.
 
+my_list_to_integer(X) ->
+    list_to_integer(X).
 
 %% Tests float_to_list/1.
 
@@ -145,13 +147,15 @@ t_list_to_float_safe() ->
     127.5 = list_to_float("127.5"),
     -199.5 = list_to_float("-199.5"),
     
-    {'EXIT', _} = (catch list_to_float("0")),
-    {'EXIT', _} = (catch list_to_float("0..0")),
-    {'EXIT', _} = (catch list_to_float("0e12")),
-    {'EXIT', _} = (catch list_to_float("--0.0")),
+    {'EXIT', _} = (catch my_list_to_float("0")),
+    {'EXIT', _} = (catch my_list_to_float("0..0")),
+    {'EXIT', _} = (catch my_list_to_float("0e12")),
+    {'EXIT', _} = (catch my_list_to_float("--0.0")),
 %%    {'EXIT', {arg, _}} = (catch list_to_float("0.0e+99999999")),
-
     ok.
+
+my_list_to_float(X) ->
+    list_to_float(X).
 
 %% This might crash the emulator...
 %% (Known to crash the Unix version of Erlang 4.4.1)
