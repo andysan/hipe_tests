@@ -1,0 +1,9 @@
+{fib2,fib_float,1} : OK
+ typesig: ((float())->integer())
+  typean: ((any())->integer())
+{fib2,fib_int,1} : OK
+ typesig: ((integer())->integer())
+  typean: ((any())->integer())
+{fib2,test,0} : OK
+ typesig: (()->bool())
+  typean: (()->bool())
