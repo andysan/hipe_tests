@@ -6,9 +6,9 @@
 %%  Purpose  :  Tests whether the translation of make_fun works.
 %%  History  :  * 2000-10-28 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2001/02/13 16:49:25 $
-%%    $Revision: 1.2 $
+%%    $Author: richardc $
+%%    $Date: 2001/03/23 09:40:35 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -33,7 +33,6 @@ test() ->
     {contains_fun({free_var1,ok},ignored,{free_var2,{is,also,ok}}), [F(),G(ok)]}.
 
 compile(Flags) ->
-    [hipe:compile({?MODULE,contains_fun,3},Flags),
-     hipe:compile({?MODULE,calls_fun,1},Flags),
-     hipe:compile({?MODULE,double_the_fun,0},Flags)].
-
+    [hipe:c({?MODULE,contains_fun,3},Flags),
+     hipe:c({?MODULE,calls_fun,1},Flags),
+     hipe:c({?MODULE,double_the_fun,0},Flags)].

@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Copyright (c) 2001 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <01/02/23 15:02:22 happi>
+%% Time-stamp: <2001-03-22 18:38:00 richardc>
 %% ====================================================================
 %%  Filename : fun01.erl
 %%  Module   : fun01
@@ -9,9 +9,9 @@
 %%  History  : * 2001-01-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: kostis $
-%%              $Date: 2001/02/23 17:03:14 $
-%%              $Revision: 1.2 $
+%%              $Author: richardc $
+%%              $Date: 2001/03/23 09:40:35 $
+%%              $Revision: 1.3 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -40,15 +40,15 @@ test() ->
   l()}.
    
 compile(O) ->
-  hipe:compile({?MODULE,test,0}, O),
-  hipe:compile({?MODULE,n_mk_fun,3}, O),
-  hipe:compile({?MODULE,n_call_fun,1}, O),
-  hipe:compile({?MODULE,n_call_fun2,1}, O),  
-  hipe:compile({?MODULE,b_arity,0}, O),
-  hipe:compile({?MODULE,c_barity,0}, O),
-  hipe:compile({?MODULE,b_fun,0}, O),
-  hipe:compile({?MODULE,l,0}, O),
-  hipe:compile({?MODULE,l2,2}, O).
+  hipe:c({?MODULE,test,0}, O),
+  hipe:c({?MODULE,n_mk_fun,3}, O),
+  hipe:c({?MODULE,n_call_fun,1}, O),
+  hipe:c({?MODULE,n_call_fun2,1}, O),  
+  hipe:c({?MODULE,b_arity,0}, O),
+  hipe:c({?MODULE,c_barity,0}, O),
+  hipe:c({?MODULE,b_fun,0}, O),
+  hipe:c({?MODULE,l,0}, O),
+  hipe:c({?MODULE,l2,2}, O).
 
 
 l() ->

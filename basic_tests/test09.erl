@@ -1,5 +1,5 @@
 %% Copyright (c) 1999 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <99/12/09 12:40:18 happi>
+%% Time-stamp: <2001-03-22 18:37:37 richardc>
 %% ====================================================================
 %% Test module for the HiPE test suite.
 %%
@@ -9,9 +9,9 @@
 %%  Notes    :  Original author: bjorn@erix.ericsson.se
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2001/02/13 16:49:26 $
-%%    $Revision: 1.2 $
+%%    $Author: richardc $
+%%    $Date: 2001/03/23 09:40:35 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -25,10 +25,10 @@ test() ->
     {case_in_case(),case_in_after()}.
 
 compile(Flags) ->
-    {hipe:compile({?MODULE,case_in_case,0},Flags),
-     hipe:compile({?MODULE,search_any,2},Flags),
-     hipe:compile({?MODULE,case_in_after,0},Flags), % used to cause strange error
-     hipe:compile({?MODULE,keysearch,3},Flags)
+    {hipe:c({?MODULE,case_in_case,0},Flags),
+     hipe:c({?MODULE,search_any,2},Flags),
+     hipe:c({?MODULE,case_in_after,0},Flags), % used to cause strange error
+     hipe:c({?MODULE,keysearch,3},Flags)
     }.
 
 case_in_case() ->

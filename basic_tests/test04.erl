@@ -1,5 +1,5 @@
 %% Copyright (c) 1999 by Erik Johansson.  All Rights Reserved 
-%% Time-stamp: <99/12/05 13:09:28 happi>
+%% Time-stamp: <2001-03-22 18:37:23 richardc>
 %% ====================================================================
 %% Test module for the HiPE test suite.
 %%
@@ -9,8 +9,8 @@
 %%  Notes    : 
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: kostis $
-%%    $Date: 2001/02/13 16:49:25 $
+%%    $Author: richardc $
+%%    $Date: 2001/03/23 09:40:35 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -34,4 +34,4 @@ test() ->
   emu(10).
 
 compile(Flags) ->
-  hipe:compile({test04,native,1},Flags).
+  hipe:c({test04,native,1},Flags).
