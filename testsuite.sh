@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.5 2001/03/07 14:43:53 kostis Exp $
+## $Id: testsuite.sh,v 1.6 2001/05/02 17:24:16 kostis Exp $
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
@@ -11,10 +11,11 @@
 #===========================================================================
 # Usage: testsuite.sh [--rts_opts "rts_opts"] [--comp_opts "comp_opts"]
 #    	     	      [--add add_list] [--exclude exclude_list]
-#    	     	      [--only test_list]  osh_dir
+#    	     	      [--only test_list] [--no_native] osh_dir
 # where: rts_opts  -- options to pass to the HiPE runtime system
 #        comp_opts -- options to pass to HiPE compiler;
-#                     when no options are given, they default to [o2]
+#                     when no options are given, they default to "[o2]"
+#	 no_native -- equivalent to --comp_options "[no_native]"
 #        excl_list -- the list of tests (in quotes) to NOT run
 #        add_list  -- list of test directories to add
 #    	     	      (which are normally not tested)
@@ -52,6 +53,10 @@ do
 	    shift
 	    comp_options=$1
 	    shift
+	    ;;
+     *--no_nat*)
+	    shift
+	    comp_options=[no_native]
 	    ;;
      *--exclud*)
 	    shift
