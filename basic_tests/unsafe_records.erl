@@ -18,6 +18,6 @@ test() ->
 doit(X)->
   X#foo{bar=X#foo.baz}.
 
-compile(Flags) ->
-  hipe:c(?MODULE, [Flags]).
+compile(Opts) ->
+  hipe:c(?MODULE, Opts).
   
