@@ -20,14 +20,14 @@ test() ->
     ok.
 
 pp(Bin) ->
-    io:format("PP with ~p~n", [Bin]),
+    %% io:format("PP with ~p~n", [Bin]),
     case Bin of 
 	<<>> -> 
 	    ["."];
 	<<_:2, Len:6, Part:Len/binary>> ->
 	    [binary_to_list(Part)];
 	<<_:2, Len:6, Part:Len/binary, Rest/binary>> ->
-	    io:format("Len ~p Part ~p Rest ~p~n", [Len,Part,Rest]),
+	    %% io:format("Len ~p Part ~p Rest ~p~n", [Len,Part,Rest]),
 	    [binary_to_list(Part), "." | pp(Rest)]
     end.
 
