@@ -9,9 +9,9 @@
 %%  History  : * 2001-01-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: pergu $
-%%              $Date: 2004/07/30 13:26:53 $
-%%              $Revision: 1.7 $
+%%              $Author: kostis $
+%%              $Date: 2004/07/30 18:36:28 $
+%%              $Revision: 1.8 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -43,17 +43,26 @@ test() ->
    NBF,
   l()}.
    
-compile(O) ->
-  hipe:c({?MODULE,test,0}, [{core,false}|O]),
-  hipe:c({?MODULE,n_mk_fun,3}, [{core,false}|O]),
-  hipe:c({?MODULE,n_call_fun,1}, [{core,false}|O]),
-  hipe:c({?MODULE,n_call_fun2,1}, [{core,false}|O]),  
-  hipe:c({?MODULE,b_arity,0}, [{core,false}|O]),
-  hipe:c({?MODULE,c_barity,0}, [{core,false}|O]),
-  hipe:c({?MODULE,b_fun,0}, [{core,false}|O]),
-  hipe:c({?MODULE,l,0}, [{core,false}|O]),
-  hipe:c({?MODULE,l2,2}, [{core,false}|O]),
-  {ok, ?MODULE}.
+compile(Opts) ->
+  case lists:member(core, Opts) of
+    false ->
+      hipe:c({?MODULE,test,0}, Opts),
+      hipe:c({?MODULE,n_mk_fun,3}, Opts),
+      hipe:c({?MODULE,n_call_fun,1}, Opts),
+      hipe:c({?MODULE,n_call_fun2,1}, Opts),  
+      hipe:c({?MODULE,b_arity,0}, Opts),
+      hipe:c({?MODULE,c_barity,0}, Opts),
+      hipe:c({?MODULE,b_fun,0}, Opts),
+      hipe:c({?MODULE,l,0}, Opts),
+      hipe:c({?MODULE,l2,2}, Opts),
+      {ok, ?MODULE};
+    true ->
+      %% This somehow defeats the purpose of the test since it does
+      %% not test calling BEAM funs from native code and vice versa
+      %% but I do not see any way of having such calls since remote
+      %% calls to funs are currently not allowed.
+      hipe:c(?MODULE, Opts)
+  end.
 
 
 l() ->
