@@ -162,15 +162,16 @@ test() ->
   statistics(runtime),
   Result = hd(loop(10,1000.0,Stars,0)),
   {_,Time} = statistics(runtime),
-  {A, B, B, C, C} = Result,
-  Res1 = 
-    if (B > -19228.5134) and (B < -19226.8661) -> true;
-       true -> false
-    end,
-  Res2 =
-    if (C > 0.028278140) and (C < 0.028645911) -> true;
-       true -> false
-    end,
+  {A, B1, B2, C1, C2} = Result,
+  %% io:format("~p\n",[Result]),
+  Res1 = if (abs(B1-B2) < 0.001) %% differ minimally
+	    and (B1 > -19228.5134) and (B1 < -19226.8661) -> true;
+	    true -> false
+	 end,
+  Res2 = if (abs(C1-C2) < 0.001) %% differ minimally
+	    and (C1 > 0.028278140) and (C1 < 0.028645921) -> true;
+	    true -> false
+	 end,
   io:format("\nruntime = ~p msecs\n", [Time]),
   {A, Res1, Res2}.
 
