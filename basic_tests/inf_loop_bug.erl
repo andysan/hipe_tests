@@ -18,4 +18,4 @@ compile(Opts) ->
 
 %% Function that sends the HiPE compiler into an infinite loop.
 auth(_,A,B,C) ->
-  ok. % auth(A,B,C,[]).
+  auth(A,B,C,[]).
