@@ -3,35 +3,20 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.26 2004/07/30 13:26:53 pergu Exp $
+## $Id: testsuite.sh,v 1.27 2004/08/10 14:31:07 richardc Exp $
+##
+## Run with no options for usage/help.
 
 #===========================================================================
 # This is supposed to automate the testsuite by checking the
 # log for possible errors.
 #===========================================================================
-# Usage: testsuite.sh [--rts_opts "rts_opts"] [--comp_opts "comp_opts"]
-#    	     	      [--add add_list] [--exclude exclude_list]
-#    	     	      [--only test_list] [--core] [--no_native] OTP_DIR
-# where: rts_opts  -- options to pass to the Erlang runtime system
-#        comp_opts -- options to pass to HiPE compiler;
-#                     when no options are given, they default to "[o2]"
-#	 core      -- a shorthand option which is equivalent to
-#			--comp_options "[core]" --only "core_tests system_tests"
-#	 no_native -- a shorthand option which is equivalent to
-#			--comp_options "[no_native]" --exclude "native_tests core_tests"
-#        excl_list -- the list of tests (in quotes) to NOT run
-#        add_list  -- list of test directories to add
-#    	     	      (which are normally not tested)
-#        test_list -- the list of tests to run; replaces default,
-#    	     	      both --exclude and --only can be specified at once
-#        OTP_DIR   -- full path name of the OTP installation directory
-#    The Erlang/OTP executable and compiler are assumed to be in:
-#    	 $OTP/bin/erl
-#    and
-#    	 $OTP/lib/hipe/ebin
+# The Erlang/OTP executable and compiler are assumed to be in:
+#   $OTP/bin/erl
+# and
+#   $OTP/lib/hipe/ebin
 
-echo ========================================================================
-
+echo "========================================================================"
 
 if test -n "$USER"; then
    USER=`whoami`
@@ -46,40 +31,48 @@ comp_options=[o2]
 while test 1=1
 do
     case "$1" in
-     *--rts_opt*)
+     --rts_opt*)
 	    shift
 	    rts_options=$1
 	    shift
 	    ;;
-     *--comp_opt*)
+     --comp_opt*)
 	    shift
 	    comp_options=$1
 	    shift
 	    ;;
-     *--core)
-	    shift
-            comp_options=[core]
-            only_tests="core_tests basic_tests bs_tests bench_tests distr_tests system_tests process_tests"
-            ;;
-     *--no_nat*)
-	    shift
-	    comp_options=[no_native]
-	    excluded_tests="native_tests core_tests"
-	    ;;
-     *--exclud*)
-	    shift
-	    excluded_tests=$1
-	    shift
-	    ;;
-     *--add*)
+     --add*)
 	    shift
 	    added_tests=$1
 	    shift
 	    ;;
-     *--only*)
+     --excl*)
+	    shift
+	    excluded_tests=$1
+	    shift
+	    ;;
+     --only*)
 	    shift
 	    only_tests=$1
 	    shift
+	    ;;
+     --core)
+	    shift
+            comp_options="[core]"
+            only_tests="core_tests basic_tests bs_tests bench_tests distr_tests system_tests process_tests"
+            ;;
+     --no_nat*)
+	    shift
+	    comp_options="[no_native]"
+	    excluded_tests="native_tests core_tests"
+	    ;;
+     -q)
+	    shift
+	    quiet=yes
+	    ;;
+     --quiet)
+	    shift
+	    quiet=yes
 	    ;;
      *)
 	    break
@@ -93,21 +86,25 @@ done
 ##
 if test -z "$1" -o $# -gt 1; then
   echo " Usage: testsuite.sh [--rts_opts \"rts_opts\"] [--comp_opts \"comp_opts\"]"
-  echo "                     [--add \"add_list\"]  [--exclude \"excl_list\"]"
-  echo "                     [--only \"test_list\"] [--core] [--no_native]  OTP_DIR"
+  echo "                     [--add \"add_list\"]  [--exclude \"exclude_list\"]"
+  echo "                     [--only \"test_list\"] [--core] [--no_native]"
+  echo "                     [-q|--quiet] OTP_DIR"
   echo " where: rts_opts  -- options to pass to Erlang/OTP executable"
-  echo "        comp_opts -- options to pass to HiPE compiler;"
+  echo "        comp_opts -- options to pass to HiPE compiler"
   echo "                     when no options are given, they default to [o2]"
-  echo "        excl_list -- the list of tests to NOT run"
-  echo "        add_list  -- the list of additional tests to run"
-  echo "        test_list -- the list of tests to run; replaces default,"
+  echo "        add       -- the list of additional tests to run"
+  echo "        exclude   -- the list of tests NOT to run"
+  echo "        only      -- the list of tests to run; replaces default,"
   echo "                     both --exclude and --only can be specified at once"
-  echo "	core      -- a shorthand option which is equivalent to"
-  echo "                      --comp_options \"[core]\" --only \"core_tests\""
-  echo "	no_native -- a shorthand option which is equivalent to"
-  echo "                      --comp_options \"[no_native]\" --exclude \"native_tests core_tests\""
+  echo "	core      -- a shorthand option which is equivalent to:"
+  echo "                       --comp_options \"[core]\""
+  echo "                       --only \"core_tests system_tests\""
+  echo "	no_native -- a shorthand option which is equivalent to:"
+  echo "                       --comp_options \"[no_native]\""
+  echo "                       --exclude \"native_tests core_tests\""
+  echo "	quiet     -- do not send mail to user"
   echo "        OTP_DIR   -- full path name of the OTP installation directory"
-  echo ========================================================================
+  echo "========================================================================"
   exit
 fi
 
@@ -165,10 +162,22 @@ if test -f "$LOG_FILE"; then
 fi
 
 #-----------------------------------------------------------------------------
-echo "Testing $HIPE_RTS"
+echo "Testing $HIPE_RTS $rts_options"
+if test ! -z "$comp_options"; then
+  echo "Compiler options: $comp_options"
+fi
+if test ! -z "$only_tests"; then
+  echo "* Only running: $only_tests"
+fi
+if test ! -z "$excluded_tests"; then
+  echo "* Excluding: $excluded_tests"
+fi
+if test ! -z "$added_tests"; then
+  echo "* Excluding: $added_tests"
+fi
 echo "The log will be left in $LOG_FILE"
 
-echo "Log for  : $HIPE_RTS $options" > $LOG_FILE
+echo "Log for  : $HIPE_RTS $rts_options" > $LOG_FILE
 echo "Date-Time: `date +"%y%m%d-%H%M"`" >> $LOG_FILE
 
 rm -f test.beam
@@ -196,63 +205,90 @@ if test -n "$erl_crashdumps" ; then
   echo "End of the erl_crash.dumps list" >> $RES_FILE
 fi
 
-# check for differences
-$GREP "Differ!" $LOG_FILE >> $RES_FILE
+# (Note that we use case-insensitive grep.)
+
+# This must match the message generated for diffs in test_common.sh
+diffpat="differs!!"
+
+# check for output differences
+pat="$diffpat"
 # check for seg fault
-$GREP "Segmentation fault" $LOG_FILE >> $RES_FILE
+pat="${pat}\|segmentation fault"
 # core dumped
-$GREP "dumped" $LOG_FILE >> $RES_FILE
+pat="${pat}\|core dump"
 # when no output file is generated
-$GREP "no match" $LOG_FILE >> $RES_FILE
+pat="${pat}\|no match"
 # for bus error
-$GREP "bus " $LOG_FILE >> $RES_FILE
-# for overflows (check for Overflow & overflow)
-$GREP "verflow" $LOG_FILE >> $RES_FILE
+pat="${pat}\|bus err"
+# for overflows
+pat="${pat}\|overflow"
 # for ... missing command...
-$GREP "not found" $LOG_FILE >> $RES_FILE
-$GREP "abnorm" $LOG_FILE >> $RES_FILE
-$GREP "denied" $LOG_FILE >> $RES_FILE
-$GREP "no such file" $LOG_FILE >> $RES_FILE
-$GREP " illegal " $LOG_FILE >> $RES_FILE
+pat="${pat}\|not found"
+pat="${pat}\|abnorm"
+pat="${pat}\|denied"
+pat="${pat}\|no such file"
+pat="${pat}\|illegal"
 # sometimes after overflow the diff fails and a message
 # with Missing is displayed
-$GREP "missing " $LOG_FILE >> $RES_FILE
+pat="${pat}\|missing"
 #
-$GREP "Warning" $LOG_FILE >> $RES_FILE
+pat="${pat}\|warning"
 # 
-$GREP "fatal" $LOG_FILE >> $RES_FILE
+pat="${pat}\|fatal"
 # some other problems that should highlight bugs in the test suite
-$GREP "syntax error" $LOG_FILE >> $RES_FILE
-$GREP "cannot find" $LOG_FILE >> $RES_FILE
-echo "------------------------------------------------------------------------"
+pat="${pat}\|syntax error"
+pat="${pat}\|cannot find"
+$GREP "$pat" $LOG_FILE >> $RES_FILE
 
-
-NEW_LOG=$LOG_FILE-`date +"%y.%m.%d-%H:%M:%S"`
-cp $LOG_FILE $NEW_LOG
 
 # -s tests if size > 0
 if test -s $RES_FILE; then
-	cat $RES_FILE
+	NEW_LOG=$LOG_FILE-`date +"%y.%m.%d-%H:%M:%S"`
+	cp $LOG_FILE $NEW_LOG
+        # First list all differing tests as a quick summary
+	echo >> $RES_FILE
+	echo "------------------------------------------------------------------------"
+	cat $RES_FILE | $GREP "$diffpat"
 	echo "------------------------------------------------------------------------"
 	echo "***FAILED testsuite for:"
 	echo "   $HIPE_RTS"
 	echo "on $HOSTNAME"
-        echo "***FAILED testsuite for $HIPE_RTS on $HOSTNAME" > $MSG_FILE
-	echo "Check the log file $NEW_LOG" >> $MSG_FILE
-	echo "" >> $MSG_FILE
-	echo "    Summary of the problems:" >> $MSG_FILE
-	echo "" >> $MSG_FILE
-	cat $RES_FILE >> $MSG_FILE
-	mail $USER < $MSG_FILE
-	rm -f $MSG_FILE
+	if test -z "$quiet"; then
+            echo "***FAILED testsuite for $HIPE_RTS on $HOSTNAME" > $MSG_FILE
+	    echo "Check the log file $NEW_LOG" >> $MSG_FILE
+	    echo >> $MSG_FILE
+	    echo "    Summary of the problems:" >> $MSG_FILE
+	    echo >> $MSG_FILE
+	    echo "Failing tests:" >> $MSG_FILE
+	    echo >> $MSG_FILE
+	    $GREP "$diffpat" $RES_FILE >> $MSG_FILE
+	    echo >> $MSG_FILE
+	    echo "Details:" >> $MSG_FILE
+	    echo >> $MSG_FILE
+	    cat $RES_FILE >> $MSG_FILE
+	    mail $USER < $MSG_FILE
+	    rm -f $MSG_FILE
+        else
+	    NEW_RES=$RES_FILE-`date +"%y.%m.%d-%H:%M:%S"`
+	    echo "(See also the log file $NEW_LOG)" >> $MSG_FILE
+	    echo "Failing tests:" > $NEW_RES
+	    echo >> $NEW_RES
+	    $GREP "$diffpat" $RES_FILE >> $NEW_RES
+	    echo >> $NEW_RES
+	    echo "Details:" >> $NEW_RES
+	    echo >> $NEW_RES
+	    cat $RES_FILE >> $NEW_RES
+	    echo "Quiet mode: no mail sent."
+	    echo "Summary saved in $NEW_RES"
+	    echo "Log file saved in $NEW_LOG"
+        fi
 else
 	echo "PASSED HiPE testsuite for:"
 	echo "   $HIPE_RTS"
 	echo "on $HOSTNAME"
-	rm -f $NEW_LOG
 fi
-
 rm -f $RES_FILE
+
 rm -f $lockfile
 
-echo ========================================================================
+echo "========================================================================"

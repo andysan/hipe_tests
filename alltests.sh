@@ -3,37 +3,38 @@
 ## File:      alltests.sh
 ## Author(s): Kostis Sagonas
 ##
-## $Id: alltests.sh,v 1.13 2004/04/21 21:23:08 kostis Exp $
+## $Id: alltests.sh,v 1.14 2004/08/10 14:31:07 richardc Exp $
 ##
+## Run with no options for usage/help.
 
-echo "-------------------------------------------------------"
-echo "--- Running alltests.sh                             ---"
-echo "-------------------------------------------------------"
+echo "------------------------------------------------------------------------"
+echo "---                     Running alltests.sh                          ---"
+echo "------------------------------------------------------------------------"
 
 while test 1=1
 do
     case "$1" in
-     *--rts_opt*)
+     --rts_opt*)
 	    shift
 	    rts_options=$1
 	    shift
 	    ;;
-     *--comp_opt*)
+     --comp_opt*)
 	    shift
 	    comp_options=$1
 	    shift
 	    ;;
-     *--exclud*)
-	    shift
-	    excluded_tests=$1
-	    shift
-	    ;;
-     *--add*)
+     --add*)
 	    shift
 	    added_tests=$1
 	    shift
 	    ;;
-     *--only*)
+     --excl*)
+	    shift
+	    excluded_tests=$1
+	    shift
+	    ;;
+     --only*)
 	    shift
 	    only_tests=$1
 	    shift
@@ -102,7 +103,9 @@ else
   testlist=$only_tests
 fi
 echo "Will be testing:" $testlist
-echo "however skipping:" $excluded_tests
+if test ! -z "$excluded_tests"; then
+  echo "however skipping:" $excluded_tests
+fi
 
 ##
 ## Run each test in $testlist except for the tests in $excluded_tests

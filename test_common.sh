@@ -20,14 +20,18 @@ for file in $testfiles ; do
 	rm -f ${resfile}
     fi
     ix_exec $HIPE $test "$COMP_FLAGS" "\'$resfile\'" "$ERL_FLAGS"
-    status=0
-    diff -sN ${resfile} ${test}_old || status=1 2>&1
-    if test "$status" = 0 ; then
+    
+    if diff -sN ${resfile} ${test}_old > /dev/null 2>&1; then
+        # zero return status means no diff
 	rm -f ${resfile}
     else
-	echo "$testdir/$test differ!!!"
+        # this time we send the output to the log
+        echo
+	echo "*** $testdir/$test differs!!!"
 	diff -sN ${resfile} ${test}_old
     fi
+    echo
+    echo "------------------------------------------------------------------------"
 done
 
 echo
