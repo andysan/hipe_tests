@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.13 2004/05/06 21:43:36 mikpe Exp $
+%%     $Id: undef_func.erl,v 1.14 2004/05/07 08:45:26 mikpe Exp $
 %%
 
 -module(undef_func).
@@ -175,6 +175,7 @@ exports_used_as_remote_apply_calls() ->
      {hipe_ppc_specific,succ_map,1},
      {hipe_ppc_specific,uses,1},
      {hipe_ppc_specific,var_range,1},
+     {hipe_ppc_specific,is_fixed,1},
 
      {hipe_x86_specific,analyze,1},
      {hipe_x86_specific,bb,2},
