@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.42 2004/10/04 19:20:01 kostis Exp $
+## $Id: testsuite.sh,v 1.43 2004/10/04 21:32:32 kostis Exp $
 ##
 ## Run with no arguments for usage/help.
 
@@ -159,7 +159,7 @@ export DIALYZER_OTP DIALYZER_DIR DIALYZER_TMP
 
 HIPE_RTS=$OTP_DIR/bin/erl
 
-GREP="grep -i"
+GREP="grep"
 MSG_FILE=/tmp/hipe_test_msg.$USER
 LOG_FILE=/tmp/hipe_test_log.$USER
 RES_FILE=/tmp/hipe_test_res.$USER
@@ -255,14 +255,12 @@ if test -n "$erl_crashdumps" ; then
   echo "End of the erl_crash.dumps list" >> $RES_FILE
 fi
 
-# (Note that we use case-insensitive grep for now.)
-
 # This must match the message generated for diffs in test_common.sh
 diffpat="differs!!"
 
 # PLEASE put exact examples of what we're grepping for here, as comments!
-# Then remove case-sensitivity from grep, when we have better patterns!
-# The current search triggers too easily on normal words, filenames, etc.
+# Also note that the search can trigger too easily on normal words,
+# filenames, etc.
 
 # check for output differences
 pat="$diffpat"
@@ -287,14 +285,14 @@ pat="${pat}\|no such file"
 # sometimes after overflow the diff fails and a message
 # with Missing is displayed
 pat="${pat}\|missing"
-#
-pat="${pat}\|warning"
+# for warnings that the BEAM and HiPE compiler and the Dialyzer generate
+pat="${pat}\|Warning"
 # 
 pat="${pat}\|fatal"
 # some other problems that should highlight bugs in the test suite
 pat="${pat}\|syntax error"
 pat="${pat}\|cannot find"
-# reports from system tests
+# reports from system_tests
 pat="${pat}\|\(undefined_functions\|unused_locals\|unused_exports\)_in_hipe"
 $GREP "$pat" $LOG_FILE >> $RES_FILE
 
