@@ -1,3 +1,2 @@
 *.beam
-*.hipe.*
-*_new
+*_new*
