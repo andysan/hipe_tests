@@ -8,7 +8,7 @@
 %%  See the file "license.terms" for information on usage and redistribution
 %%  of this file, and for a DISCLAIMER OF ALL WARRANTIES.
 %%
-%%     $Id: wings.hrl,v 1.1 2004/02/18 21:46:20 kostis Exp $
+%%     $Id: wings.hrl,v 1.2 2004/11/28 10:35:57 kostis Exp $
 %%
 
 -ifdef(NEED_ESDL).
@@ -40,9 +40,6 @@
 -define(NORMAL_LINEWIDTH, 1.0).
 -define(DEGREE, 176).				%Degree character.
 
--define(MOUSE_DIVIDER, 500).
-
--define(UNDO_LEVELS, 32).
 -define(HIT_BUF_SIZE, (1024*1024)).
 
 -define(PANE_COLOR, {0.52,0.52,0.52}).
@@ -53,6 +50,8 @@
 
 -define(SLOW(Cmd), begin wings_io:hourglass(), Cmd end).
 -define(TC(Cmd), wings_util:tc(fun() -> Cmd end, ?MODULE, ?LINE)).
+
+-define(STR(A,B,Str), wings_lang:str({?MODULE,A,B},Str)).
 				       
 -ifdef(DEBUG).
 -define(ASSERT(E), case E of
@@ -97,7 +96,12 @@
 	 split=none,				%Split data.
 	 drag=none,				%For dragging.
 	 transparent=false,			%Object includes transparancy.
-	 proxy_data=none			%Data for smooth proxy.
+	 proxy_data=none,			%Data for smooth proxy.
+
+	 %% List of display lists known to be needed only based
+	 %% on display modes, not whether the lists themselves exist.
+	 %% Example: [work,edges]
+	 needed=[]
 	}).
 
 %% Main state record containing all objects and other important state.
@@ -112,11 +116,13 @@
 	 temp_sel=none,			        %Selection only temporary?
 
 	 mat,					%Defined materials (GbTree).
+	 pal=[],                                %Palette
 	 file,					%Current filename.
 	 saved,					%True if model has been saved.
 	 onext,					%Next object id to use.
 	 bb=none,				%Saved bounding box.
 	 edge_loop=none,			%Previous edge loop.
+	 views={0,{}},				%{Current,TupleOfViews}
 
 	 %% Previous commands.
 	 repeatable,			        %Last repeatable command.
@@ -156,7 +162,8 @@
 						%  IDs.)
 	 mode,					%'vertex'/'material'/'uv'
 	 mirror=none,				%Mirror: none|Face
-	 light=none				%Light data: none|Light
+	 light=none,				%Light data: none|Light
+	 has_shape=true				%true|false
 	}).
 
 -define(IS_VISIBLE(Perm), (Perm =< 1)).
@@ -164,8 +171,11 @@
 -define(IS_SELECTABLE(Perm), (Perm == 0)).
 -define(IS_NOT_SELECTABLE(Perm), (Perm =/= 0)).
 
--define(IS_LIGHT(We), (We#we.light =/= none)).
--define(IS_NOT_LIGHT(We), (We#we.light =:= none)).
+-define(IS_LIGHT(We), ((We#we.light =/= none) and (not We#we.has_shape))).
+-define(IS_ANY_LIGHT(We), (We#we.light =/= none)).
+-define(HAS_SHAPE(We), (We#we.has_shape)).
+%-define(IS_LIGHT(We), (We#we.light =/= none)).
+%-define(IS_NOT_LIGHT(We), (We#we.light =:= none)).
 
 %% Edge in a winged-edge shape.
 -record(edge,
