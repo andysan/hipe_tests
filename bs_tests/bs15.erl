@@ -3,11 +3,11 @@
 %%  Filename : 	bs15.erl
 %%  Purpose  :  These tests are intended to test the construction and 
 %%              matching of binaries using variable sizes 
-%%  Notes    : 
+%%  Notes    :  Added test that crashed beam compiler
 %%  CVS      :
 %%              $Author: pergu $
-%%              $Date: 2003/11/05 15:14:27 $
-%%              $Revision: 1.3 $
+%%              $Date: 2004/01/29 16:43:46 $
+%%              $Revision: 1.4 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(bs15).
@@ -29,6 +29,8 @@ test() ->
   B4 = <<1,2,3>>, 
   A4 = 2,
   {A4,B4} = match4(N4,<<1:N4, A4:4, B4/binary>>),
+  Y = <<5>>,
+  Y = match5(a, Y),
   ok.
    
 match1(N, Bin) ->
@@ -46,3 +48,10 @@ match3(N, Bin) ->
 match4(N, Bin) ->
   <<1:N, A:4, B/binary>>=Bin,
   {A,B}.
+
+match5(X, Y) ->
+    case X of
+        a ->
+            Y2 = 8
+    end,
+    <<5:Y2>> = Y.
