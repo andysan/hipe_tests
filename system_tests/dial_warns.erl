@@ -4,7 +4,7 @@
 %% Purpose: To run Dialyzer on the HiPE application and test that
 %%          there are no discrepancies that it identifies.
 %%
-%% $Id: dial_warns.erl,v 1.7 2004/11/27 19:41:13 kostis Exp $
+%% $Id: dial_warns.erl,v 1.8 2005/04/15 12:23:23 tobiasl Exp $
 %%
 
 -module(dial_warns).
@@ -23,6 +23,7 @@ test() ->
     Base_Dir = filename:dirname(OTP_Dir),
     Dialyzer_Dir = filename:join(Base_Dir, "dialyzer"),
     true = code:add_path(filename:join(Dialyzer_Dir, "ebin")),
+    true = os:putenv("DIALYZER_DIR", Dialyzer_Dir),
 
     %% this is the application which is going to be analyzed
     HiPE_Dir = filename:join([OTP_Dir, "lib", "hipe", "ebin"]),
