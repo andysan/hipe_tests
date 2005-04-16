@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.26 2005/04/04 19:25:25 kostis Exp $
+%%     $Id: undef_func.erl,v 1.27 2005/04/16 08:48:23 kostis Exp $
 %%
 
 -module(undef_func).
@@ -100,6 +100,9 @@ application_interface() ->
      {hipe_jit,start,0},
      {hipe_tool,start,0},
 
+     {hipe_digraph,new,0},	     %% used by Dialyzer
+     {hipe_digraph,to_list,1},	     %% used by Dialyzer
+     {hipe_digraph,add_edge,3},	     %% used by Dialyzer
      {hipe_digraph,take_indep_scc,1},%% used by Dialyzer
 
      {hipe_dot,translate_digraph,3}, %% eventually these will be used 
@@ -110,6 +113,7 @@ application_interface() ->
 
      {erl_bif_types,type,3},	     %% exported for testing purposes
      {cerl_closurean,annotate,1},    %% exported for testing purposes
+     {cerl_cconv,core_transform,2},  %% called from corec as metacall + used by Dialyzer
      {cerl_typean,analyze,1},        %% exported for testing purposes
      {cerl_typean,core_transform,2}, %% called from corec as metacall
      {cerl_typesig,get_export_signatures,1}, %% Used in typesig_test
