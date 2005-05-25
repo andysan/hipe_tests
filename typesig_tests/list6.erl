@@ -33,9 +33,9 @@ do_flatten([], Tail) ->
 flatlength(List) ->
     flatlength(List, 0).
 
-flatlength([H|T], L) when is_list(H) ->
-    flatlength(H, flatlength(T, L));
-flatlength([_|T], L) ->
-    flatlength(T, L + 1);
-flatlength([], L) -> L.
+flatlength([H|T], Len) when is_list(H) ->
+    flatlength(H, flatlength(T, Len));
+flatlength([_|T], Len) ->
+    flatlength(T, Len + 1);
+flatlength([], Len) -> Len.
 
