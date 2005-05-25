@@ -11,17 +11,17 @@
 
 doit([Module]) when is_list(Module) ->
   wait_init(),
-  {ok, _, Code} = compile:file(Module,[to_core,binary,export_all]), 
+  {ok, _, Code} = compile:file(Module,[to_core,binary]), 
   TypeAnSigs = get_typean_sigs(Code),
-  TypeSigSigs = dialyzer_typesig:get_export_signatures(Code),
+  TypeSigSigs = dialyzer_typesig:get_top_level_signatures(Code),
   compare_sigs(Module, TypeSigSigs, TypeAnSigs).
 
 get_typean_sigs(Code0) ->
   Code = cerl_typean:core_transform(Code0, []),
   Tree = cerl:from_records(Code),
-  Exports = cerl:module_exports(Tree),
-  [{cerl:var_name(Fun), 
-    proplists:get_value(type, cerl:get_ann(Fun))} || Fun <- Exports].
+  Defs = cerl:module_defs(Tree),
+  [{cerl:var_name(Var), 
+    proplists:get_value(type, cerl:get_ann(Var))} || {Var, _} <- Defs].
 
 compare_sigs(Module, TypeSigSigs, TypeAnSigs) ->
   compare_sigs_1(list_to_atom(Module), 
