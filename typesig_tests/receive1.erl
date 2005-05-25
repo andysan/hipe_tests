@@ -6,8 +6,7 @@
 %%% Created : 26 Jan 2005 by Tobias Lindahl <tobiasl@it.uu.se>
 %%%-------------------------------------------------------------------
 -module(receive1).
-
--compile(export_all).
+-export([t/0]).
 
 t() ->
   receive

@@ -1,4 +1,4 @@
-{cons,doit,0} : OK
+{cons,t,0} : OK
  typesig: (() -> [any(),...])
   typean: (() -> [any(),...])
 {cons,t,1} : OK

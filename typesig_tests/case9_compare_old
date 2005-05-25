@@ -1,6 +1,6 @@
-{case9,t,1} : OK
- typesig: ((_) -> 'ok')
-  typean: ((_) -> 'error' | 'ok')
+{case9,t,0} : OK
+ typesig: (() -> 'ok')
+  typean: (() -> 'error' | 'ok')
 {case9,t2,0} : OK
  typesig: (() -> 'true')
   typean: (() -> 'true')

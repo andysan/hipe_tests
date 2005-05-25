@@ -13,13 +13,13 @@ test() ->
     {tuple,_,_} = abstract({gazonk,42}).
 
 abstract([]) -> {nil,0};
-abstract(B) when binary(B) ->
+abstract(B) when is_binary(B) ->
     {bin, 0, lists:map(fun(Byte) ->
 			       {bin_element, 0,
 				{integer, 0, Byte}, default, default}
  		       end,
  		       binary_to_list(B))};
-abstract(Tuple) when tuple(Tuple) ->
+abstract(Tuple) when is_tuple(Tuple) ->
     {tuple,0,abstract_list(tuple_to_list(Tuple))}.
 
 abstract_list([H|T]) ->

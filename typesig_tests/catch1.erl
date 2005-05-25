@@ -6,8 +6,7 @@
 %%% Created : 24 Jan 2005 by Tobias Lindahl <tobiasl@it.uu.se>
 %%%-------------------------------------------------------------------
 -module(catch1).
-
--compile(export_all).
+-export([t/1]).
 
 t(X) ->
   catch X + 1.

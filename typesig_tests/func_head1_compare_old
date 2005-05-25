@@ -1,4 +1,4 @@
-{func_head1,doit,0} : OK
+{func_head1,t,0} : OK
  typesig: (() -> 'error1' | 'error2' | 'ok')
   typean: (() -> 'error1' | 'error2' | 'ok')
 {func_head1,t,1} : OK

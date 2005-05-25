@@ -6,8 +6,7 @@
 %%% Created : 26 Jan 2005 by Tobias Lindahl <tobiasl@it.uu.se>
 %%%-------------------------------------------------------------------
 -module(guard3).
-
--compile(export_all).
+-export([t1/1, t2/1, t3/1, t4/1]).
 
 t1(X) when X == 1 -> ok.
 

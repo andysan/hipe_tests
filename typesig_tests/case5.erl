@@ -6,8 +6,7 @@
 %%% Created : 10 Jan 2005 by Tobias Lindahl <tobiasl@it.uu.se>
 %%%-------------------------------------------------------------------
 -module(case5).
-
--compile(export_all).
+-export([t/2]).
 
 t(X, Y) ->
   case X of 

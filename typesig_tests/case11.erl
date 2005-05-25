@@ -6,8 +6,7 @@
 %%% Created :  3 Mar 2005 by Tobias Lindahl <tobiasl@it.uu.se>
 %%%-------------------------------------------------------------------
 -module(case11).
-
--compile(export_all).
+-export([t/1]).
 
 t(X) ->
   F = 

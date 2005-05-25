@@ -6,9 +6,14 @@
 %% Created : 1 Feb 2005 by Kostis Sagonas <kostis@it.uu.se>
 %%-------------------------------------------------------------------
 -module(constraint1).
--compile(export_all).
+%% Currently, all functions are exported but this is a fluke
+-export([is_foo_bar_record/1, is_foo_bar_tuple/1,
+	 middle_element_of_bin_1/1, middle_element_of_bin_2/1,
+	 unsatisfiable_1/1, unsatisfiable_2/1,
+	 unsatisfiable_3/1, unsatisfiable_4/1]).
 
 -record(foo, {atom, num}).
+
 is_foo_bar_record(B) when is_record(B, foo) ->
     42 = B#foo.num,
     bar == element(2,B).
