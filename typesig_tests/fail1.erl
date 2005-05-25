@@ -6,7 +6,7 @@
 %%% Created : 12 Jan 2005 by Tobias Lindahl <tobiasl@it.uu.se>
 %%%-------------------------------------------------------------------
 -module(fail1).
--compile([t1/2, t2/1]).
+-export([t1/2, t2/1]).
 
 t1(X, Y) ->
   case X of

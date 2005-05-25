@@ -1,0 +1,6 @@
+{guard5,is_atom,1} : OK
+ typesig: ((atom()) -> 'true')
+  typean: ((_) -> bool())
+{guard5,is_bool,1} : OK
+ typesig: ((_) -> 'false')
+  typean: ((_) -> bool())

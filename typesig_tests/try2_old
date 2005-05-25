@@ -1,7 +1,5 @@
 
-try2:t1/1 :: ((1) -> {'ok',1} | 'error')
-try2:foo/1 :: ((1) -> {'ok',1})
 try2:bar/0 :: (() -> 'ok')
+try2:foo/1 :: ((1) -> {'ok',1})
+try2:t1/1 :: ((1) -> {'ok',1} | 'error')
 try2:t2/1 :: none()
-try2:module_info/0 :: (() -> any())
-try2:module_info/1 :: ((_) -> any())

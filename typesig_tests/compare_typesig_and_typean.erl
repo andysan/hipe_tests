@@ -13,7 +13,7 @@ doit([Module]) when is_list(Module) ->
   wait_init(),
   {ok, _, Code} = compile:file(Module,[to_core,binary,export_all]), 
   TypeAnSigs = get_typean_sigs(Code),
-  TypeSigSigs = cerl_typesig:get_export_signatures(Code),
+  TypeSigSigs = dialyzer_typesig:get_export_signatures(Code),
   compare_sigs(Module, TypeSigSigs, TypeAnSigs).
 
 get_typean_sigs(Code0) ->

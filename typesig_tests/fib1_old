@@ -1,4 +1,2 @@
 
 fib1:fib/1 :: ((integer()) -> integer())
-fib1:module_info/0 :: (() -> any())
-fib1:module_info/1 :: ((_) -> any())

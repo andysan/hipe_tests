@@ -1,6 +1,4 @@
 
-tak:tak/3 :: ((_,_,_) -> any())
 tak:loop/2 :: ((integer(),_) -> any())
+tak:tak/3 :: ((_,_,_) -> any())
 tak:test/0 :: (() -> any())
-tak:module_info/0 :: (() -> any())
-tak:module_info/1 :: ((_) -> any())

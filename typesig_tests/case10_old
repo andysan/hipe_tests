@@ -1,4 +1,2 @@
 
 case10:t/2 :: ((1 | 2,1 | 2) -> 'a' | 'b')
-case10:module_info/0 :: (() -> any())
-case10:module_info/1 :: ((_) -> any())

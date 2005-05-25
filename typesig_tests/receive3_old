@@ -1,7 +1,5 @@
 
+receive3:loop/1 :: (({'state','sleep',_} | {'state','start',1000} | {'state','wait',_}) -> 'ok')
 receive3:start/0 :: (() -> pid())
-receive3:loop/1 :: ((tuple()) -> 'ok')
-receive3:start/1 :: (({'state',_,_}) -> 'ok')
-receive3:wait/1 :: (({'state',_,_}) -> 'ok')
-receive3:module_info/0 :: (() -> any())
-receive3:module_info/1 :: ((_) -> any())
+receive3:start/1 :: (({'state','sleep',_} | {'state','start',1000} | {'state','wait',_}) -> 'ok')
+receive3:wait/1 :: (({'state','sleep',_} | {'state','start',1000} | {'state','wait',_}) -> 'ok')

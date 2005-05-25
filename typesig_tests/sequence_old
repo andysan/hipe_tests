@@ -1,5 +1,3 @@
 
+sequence:add/3 :: ((integer(),number(),number()) -> 'ok')
 sequence:t/0 :: (() -> 'ok')
-sequence:add/3 :: ((integer(),_,_) -> 'ok')
-sequence:module_info/0 :: (() -> any())
-sequence:module_info/1 :: ((_) -> any())
