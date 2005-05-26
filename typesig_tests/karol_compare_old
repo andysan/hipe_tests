@@ -1,0 +1,9 @@
+{karol,expand_args_any,1} : OK
+ typesig: ((integer() | 'karol') -> [[95,...]])
+  typean: ((_) -> [[95,...]])
+{karol,three,0} : OK
+ typesig: (() -> 3)
+  typean: (() -> char())
+{karol,two,0} : OK
+ typesig: (() -> 2)
+  typean: (() -> 2)

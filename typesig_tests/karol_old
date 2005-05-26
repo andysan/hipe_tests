@@ -1,0 +1,4 @@
+
+karol:expand_args_any/1 :: ((integer() | 'karol') -> [[95,...]])
+karol:three/0 :: (() -> 3)
+karol:two/0 :: (() -> 2)
