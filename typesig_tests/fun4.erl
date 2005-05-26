@@ -25,10 +25,10 @@ start(TracerFun) ->
 		no_tracer ->
 		    {ok, P};
 		Fun when function(Fun) ->
-		    req({tracer,TracerFun})
+		    {tracer,TracerFun}
 	    end;
 	Pid when pid(Pid), function(TracerFun) ->
-	    req({tracer,TracerFun})
+	    {tracer,TracerFun}
     end.
 
 init(Parent) ->
@@ -54,6 +54,3 @@ loop(R) ->
 
 reply(Pid, Reply) ->
     Pid ! {?MODULE,Reply}.
-
-req(R) ->
-    R.
