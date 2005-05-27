@@ -1,5 +1,5 @@
 {tuple2,gazonk,1} : OK
- typesig: (({'bar',_} | {'foo',_}) -> 'bar' | 'foo')
+ typesig: (({'bar','a' | 'b' | 'baz'} | {'foo','a' | 'b' | 'baz'}) -> 'bar' | 'foo')
   typean: ((_) -> 'bar' | 'foo')
 {tuple2,t1,1} : OK
  typesig: (({'bar','baz'} | {'foo','baz'}) -> 'bar' | 'foo')

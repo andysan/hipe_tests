@@ -9,7 +9,7 @@
   typean: ((_) -> 'ok')
 {arith2,two,1} : OK
  typesig: ((2) -> 'ok')
-  typean: ((_) -> 'ok')
+  typean: ((number()) -> 'ok')
 {arith2,zero,1} : OK
  typesig: ((0) -> 'ok')
-  typean: ((_) -> 'ok')
+  typean: ((number()) -> 'ok')
