@@ -1,6 +1,6 @@
 {cons,t,0} : OK
- typesig: (() -> [any(),...])
-  typean: (() -> [any(),...])
+ typesig: (() -> [1,...])
+  typean: (() -> [1,...])
 {cons,t,1} : OK
- typesig: ((_) -> [any(),...])
-  typean: ((_) -> [any(),...])
+ typesig: ((1) -> [1,...])
+  typean: ((1) -> [1,...])
