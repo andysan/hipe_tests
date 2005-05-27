@@ -5,5 +5,5 @@
  typesig: ((((_,_) -> binary() | [any()] | 'eof'),_) -> {'ok',_} | 'eof')
   typean: ((_,_) -> {'ok',_} | 'eof')
 {fun2,read_term,3} : OK
- typesig: ((_,_,binary()) -> {'ok',_})
-  typean: ((_,_,_) -> {'ok',_})
+ typesig: ((((_,_) -> binary() | [any()] | 'eof'),_,binary()) -> {'ok',_})
+  typean: ((_,_,binary()) -> {'ok',_})

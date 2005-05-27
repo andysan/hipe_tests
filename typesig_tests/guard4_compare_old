@@ -1,6 +1,6 @@
 {guard4,f,1} : OK
- typesig: ((binary() | integer()) -> integer())
-  typean: ((_) -> number())
+ typesig: ((42) -> 43)
+  typean: ((42) -> char())
 {guard4,test,0} : OK
- typesig: (() -> integer())
-  typean: (() -> number())
+ typesig: (() -> 43)
+  typean: (() -> char())
