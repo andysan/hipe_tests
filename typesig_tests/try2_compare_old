@@ -1,12 +1,16 @@
 {try2,bar,0} : OK
- typesig: (() -> 'ok')
-  typean: (() -> 'ok')
+ typesig:  (() -> 'ok')
+ dataflow: (() -> 'ok')
+   typean: (() -> 'ok')
 {try2,foo,1} : OK
- typesig: ((1) -> {'ok',1})
-  typean: ((_) -> {'ok',1})
+ typesig:  ((1) -> {'ok',1})
+ dataflow: ((_) -> {'ok',1})
+   typean: ((_) -> {'ok',1})
 {try2,t1,1} : OK
- typesig: ((1) -> {'ok',1} | 'error')
-  typean: ((_) -> any())
+ typesig:  ((1) -> {'ok',1} | 'error')
+ dataflow: ((_) -> {'ok',1} | 'error')
+   typean: ((_) -> any())
 {try2,t2,1} : OK
- typesig: none()
-  typean: ((_) -> any())
+ typesig:  none()
+ dataflow: ((_) -> {'ok',1} | 'error')
+   typean: ((_) -> any())

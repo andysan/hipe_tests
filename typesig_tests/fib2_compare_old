@@ -1,9 +1,12 @@
 {fib2,fib_float,1} : OK
- typesig: ((float()) -> integer())
-  typean: ((float()) -> integer())
+ typesig:  ((float()) -> integer())
+ dataflow: ((float()) -> integer())
+   typean: ((float()) -> integer())
 {fib2,fib_int,1} : OK
- typesig: ((integer()) -> integer())
-  typean: ((integer()) -> integer())
+ typesig:  ((integer()) -> integer())
+ dataflow: ((integer()) -> integer())
+   typean: ((integer()) -> integer())
 {fib2,test,0} : OK
- typesig: (() -> bool())
-  typean: (() -> bool())
+ typesig:  (() -> bool())
+ dataflow: (() -> bool())
+   typean: (() -> bool())

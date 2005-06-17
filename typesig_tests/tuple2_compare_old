@@ -1,9 +1,12 @@
 {tuple2,gazonk,1} : OK
- typesig: (({'bar','a' | 'b' | 'baz'} | {'foo','a' | 'b' | 'baz'}) -> 'bar' | 'foo')
-  typean: ((_) -> 'bar' | 'foo')
+ typesig:  (({'bar','a' | 'b' | 'baz'} | {'foo','a' | 'b' | 'baz'}) -> 'bar' | 'foo')
+ dataflow: (({_,'a' | 'b' | 'baz'}) -> 'bar' | 'foo')
+   typean: ((_) -> 'bar' | 'foo')
 {tuple2,t1,1} : OK
- typesig: (({'bar','baz'} | {'foo','baz'}) -> 'bar' | 'foo')
-  typean: ((_) -> 'bar' | 'foo')
+ typesig:  (({'bar','baz'} | {'foo','baz'}) -> 'bar' | 'foo')
+ dataflow: ((_) -> 'bar' | 'foo')
+   typean: ((_) -> 'bar' | 'foo')
 {tuple2,t2,1} : OK
- typesig: ((1 | 2) -> {'bar' | 'foo',{'bar' | 'foo','a' | 'b'}})
-  typean: ((_) -> {'bar' | 'foo',{'bar' | 'foo','a' | 'b'}})
+ typesig:  ((1 | 2) -> {'bar' | 'foo',{'bar' | 'foo','a' | 'b'}})
+ dataflow: ((_) -> {'bar' | 'foo',{'bar' | 'foo','a' | 'b'}})
+   typean: ((_) -> {'bar' | 'foo',{'bar' | 'foo','a' | 'b'}})

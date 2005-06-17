@@ -1,12 +1,16 @@
 {fun3,l,1} : OK
- typesig: (([any()]) -> integer())
-  typean: ((_) -> integer())
+ typesig:  (([any()]) -> integer())
+ dataflow: ((_) -> integer())
+   typean: ((_) -> integer())
 {fun3,l,2} : OK
- typesig: (([any()],integer()) -> integer())
-  typean: ((_,integer()) -> integer())
+ typesig:  (([any()],integer()) -> integer())
+ dataflow: ((_,integer()) -> integer())
+   typean: ((_,integer()) -> integer())
 {fun3,l_fun,1} : OK
- typesig: (([any()]) -> integer())
-  typean: ((_) -> integer())
+ typesig:  (([any()]) -> integer())
+ dataflow: ((_) -> integer())
+   typean: ((_) -> integer())
 {fun3,l_fun,2} : OK
- typesig: (((() -> [any()]),integer()) -> integer())
-  typean: (((() -> any()),integer()) -> integer())
+ typesig:  (((() -> [any()]),integer()) -> integer())
+ dataflow: (((() -> any()),integer()) -> integer())
+   typean: (((() -> any()),integer()) -> integer())

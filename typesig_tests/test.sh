@@ -35,13 +35,13 @@ check_typesig ()
     $1 -noshell -pa $2 -run dialyzer_typesig doit $3 -s init stop
 }
 
-compare_to_typean ()
+compare_analyses ()
 {
-    $1 -noshell -pa $2 -run compare_typesig_and_typean doit $3 -s init stop
+    $1 -noshell -pa $2 -run compare_analyses doit $3 -s init stop
 }
 
-printf "Recompiling compare_typesig_and_typean..."
-${ERLC} compare_typesig_and_typean.erl
+printf "Recompiling compare_analyses..."
+${ERLC} compare_analyses.erl
 printf " done\n"
 printf "Proceeding with tests\n"
 
@@ -71,8 +71,8 @@ for file in $testfiles ; do
 	diff -sN ${resfile1} ${test}_old
     fi
     
-    printf "Comparing with typean "$test".erl: "
-    compare_to_typean $HIPE $DIALYZER_EBIN $test > ${resfile2}
+    printf "Comparing analyses "$test".erl: "
+    compare_analyses $HIPE $DIALYZER_EBIN $test > ${resfile2}
     
     if diff -sN ${resfile2} ${test}_compare_old > /dev/null 2>&1; then
         # zero return status means no diff

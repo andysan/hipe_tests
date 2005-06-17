@@ -1,6 +1,8 @@
 {guard4,f,1} : OK
- typesig: ((42) -> 43)
-  typean: ((42) -> char())
+ typesig:  ((42) -> 43)
+ dataflow: ((42) -> char())
+   typean: ((42) -> char())
 {guard4,test,0} : OK
- typesig: (() -> 43)
-  typean: (() -> char())
+ typesig:  (() -> 43)
+ dataflow: (() -> char())
+   typean: (() -> char())

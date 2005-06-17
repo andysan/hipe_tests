@@ -1,3 +1,4 @@
 {guard1,t,1} : OK
- typesig: ((integer() | atom()) -> 'atom' | 'int')
-  typean: ((_) -> 'atom' | 'int')
+ typesig:  ((integer() | atom()) -> 'atom' | 'int')
+ dataflow: ((_) -> 'atom' | 'int')
+   typean: ((_) -> 'atom' | 'int')

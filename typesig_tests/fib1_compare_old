@@ -1,3 +1,4 @@
 {fib1,fib,1} : OK
- typesig: ((integer()) -> integer())
-  typean: ((_) -> integer())
+ typesig:  ((integer()) -> integer())
+ dataflow: ((_) -> integer())
+   typean: ((_) -> integer())

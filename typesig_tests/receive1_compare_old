@@ -1,3 +1,4 @@
 {receive1,t,0} : OK
- typesig: (() -> {'float',float()} | {'int',integer()} | 'ok')
-  typean: (() -> {'float',float()} | {'int',integer()} | 'ok')
+ typesig:  (() -> {'float',float()} | {'int',integer()} | 'ok')
+ dataflow: (() -> {'float',float()} | {'int',integer()} | 'ok')
+   typean: (() -> {'float',float()} | {'int',integer()} | 'ok')

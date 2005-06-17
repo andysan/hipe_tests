@@ -1,9 +1,12 @@
 {list5,exported,1} : OK
- typesig: ((possibly_improper_list()) -> [integer()])
-  typean: ((_) -> [any()])
+ typesig:  ((possibly_improper_list()) -> [integer()])
+ dataflow: ((_) -> [any()])
+   typean: ((_) -> [any()])
 {list5,internal,1} : OK
- typesig: ((possibly_improper_list()) -> possibly_improper_list())
-  typean: ((_) -> possibly_improper_list())
+ typesig:  ((possibly_improper_list()) -> possibly_improper_list())
+ dataflow: ((_) -> possibly_improper_list())
+   typean: ((_) -> possibly_improper_list())
 {list5,is_even,1} : OK
- typesig: ((integer()) -> bool())
-  typean: ((_) -> bool())
+ typesig:  ((integer()) -> bool())
+ dataflow: ((_) -> bool())
+   typean: ((_) -> bool())
