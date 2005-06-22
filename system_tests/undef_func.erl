@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.29 2005/05/25 11:42:46 kostis Exp $
+%%     $Id: undef_func.erl,v 1.30 2005/06/22 09:41:18 kostis Exp $
 %%
 
 -module(undef_func).
@@ -133,6 +133,10 @@ application_interface() ->
 %%
 exports_used_as_remote_apply_calls() ->
     [
+     {hipe_graph_coloring_regalloc,regalloc,5},
+     {hipe_coalescing_regalloc,regalloc,5},
+     {hipe_optimistic_regalloc,regalloc,5},
+
      {hipe_sparc_specific,analyze,1},
      {hipe_sparc_specific,bb,2},
      {hipe_sparc_specific,args,1},
