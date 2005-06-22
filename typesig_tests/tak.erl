@@ -11,13 +11,6 @@ tak(X,Y,Z) ->
     true -> Z
   end.
 
-%%tak(0, _, _) -> 42;
-%tak(X,Y,Z) when Y < X ->
-%  tak( tak(X-1,Y,Z),
-%       tak(Y-1,Z,X),
-%       tak(Z-1,X,Y) );
-%tak(_X, _Y, Z) -> Z.
-
 loop(0,R) -> R;
 loop(N,_) -> loop(N-1,tak(18,12,6)).
 
