@@ -1,9 +1,12 @@
 {tak,loop,2} : OK
- typesig: ((integer(),_) -> any())
-  typean: ((_,_) -> any())
+ typesig:  ((integer(),integer()) -> integer())
+ dataflow: ((integer(),integer()) -> integer())
+   typean: ((integer(),integer()) -> integer())
 {tak,tak,3} : OK
- typesig: ((_,_,_) -> any())
-  typean: ((_,_,_) -> any())
+ typesig:  ((integer(),integer(),integer()) -> integer())
+ dataflow: ((integer(),integer(),integer()) -> integer())
+   typean: ((integer(),integer(),integer()) -> integer())
 {tak,test,0} : OK
- typesig: (() -> any())
-  typean: (() -> any())
+ typesig:  (() -> integer())
+ dataflow: (() -> integer())
+   typean: (() -> integer())

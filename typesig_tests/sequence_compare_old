@@ -1,6 +1,8 @@
 {sequence,add,3} : OK
- typesig: ((integer(),_,_) -> 'ok')
-  typean: ((_,_,_) -> 'ok')
+ typesig:  ((integer(),5 | 10,5 | 10) -> 'ok')
+ dataflow: ((integer(),5 | 10,5 | 10) -> 'ok')
+   typean: ((integer(),5 | 10,5 | 10) -> 'ok')
 {sequence,t,0} : OK
- typesig: (() -> 'ok')
-  typean: (() -> 'ok')
+ typesig:  (() -> 'ok')
+ dataflow: (() -> 'ok')
+   typean: (() -> 'ok')
