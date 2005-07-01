@@ -4,5 +4,5 @@
    typean: ((_) -> number())
 {case4,t2,1} : OK
  typesig:  (({'hello',1}) -> 2)
- dataflow: ((_) -> number())
+ dataflow: ((_) -> char())
    typean: ((_) -> number())
