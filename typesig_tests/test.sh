@@ -7,7 +7,7 @@ else
 	     case*.erl catch1.erl cons.erl \
 	     fib*.erl fun*.erl \
 	     func_head1.erl guard1.erl guard2.erl guard4.erl guard5.erl\
-	     inf_loop1.erl karol.erl \
+	     inf_loop1.erl is_funct.erl karol.erl \
 	     list*.erl \
 	     rec1.erl receive*.erl sequence.erl try*.erl t_union1.erl\
 	     tak.erl tuple*.erl"
@@ -21,12 +21,12 @@ ERLC=$1/bin/erlc
 DIALYZER_EBIN=$2/ebin
 
 if test ! -x "${HIPE}" ; then
-    echo "Usage: test OTP_DIR DIALYZER_DIR [testfile.erl]"
+    echo "Usage: test OTP_DIR DIALYZER_DIR [testfile[.erl]]"
     exit 0
 fi
 
 if test ! -e "${DIALYZER_EBIN}/dialyzer_typesig.beam" ; then
-    echo "Usage: test OTP_DIR DIALYZER_DIR [testfile.erl]"
+    echo "Usage: test OTP_DIR DIALYZER_DIR [testfile[.erl]]"
     exit 0
 fi
 
