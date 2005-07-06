@@ -2,3 +2,4 @@
 is_funct:f/1 :: ((((_) -> any())) -> 'ok')
 is_funct:f1/2 :: ((function(),1 | 2) -> 'binary' | 'unary')
 is_funct:f2/2 :: ((((_,_) -> any()),2) -> 'binary')
+is_funct:f3/1 :: ((((_,_,_) -> any())) -> ((_,_,_) -> any()))

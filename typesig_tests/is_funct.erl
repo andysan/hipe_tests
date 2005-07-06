@@ -7,7 +7,7 @@
 %%-------------------------------------------------------------------
 
 -module(is_funct).
--export([f/1, f1/2, f2/2]).
+-export([f/1, f1/2, f2/2, f3/1]).
 
 f(F) when is_function(F,1) ->
   ok.
@@ -22,3 +22,6 @@ f2(F,N) when is_function(F,N) ->
   case N of
     2 -> binary
   end.
+
+f3(F) when is_function(F,3) ->
+  F.
