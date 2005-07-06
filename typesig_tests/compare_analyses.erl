@@ -28,7 +28,7 @@ get_df_sigs(Code) ->
   Tree = dialyzer_dataflow:annotate_module(Code),
   Defs = cerl:module_defs(Tree),
   [{cerl:var_name(Var), 
-    proplists:get_value(type, cerl:get_ann(Var))} || {Var, _} <- Defs].
+    proplists:get_value(type, cerl:get_ann(Fun))} || {Var, Fun} <- Defs].
 
 compare_sigs(Module, TypeSigSigs, DFSigs, TypeAnSigs) ->
   compare_sigs_1(list_to_atom(Module), 

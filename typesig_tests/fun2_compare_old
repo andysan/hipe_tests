@@ -1,12 +1,12 @@
 {fun2,mk_reader,2} : OK
- typesig:  ((((_,_) -> binary() | [any()] | 'eof'),_) -> (() -> possibly_improper_list()))
+ typesig:  ((((_,_) -> any()),_) -> (() -> possibly_improper_list()))
  dataflow: ((_,_) -> (() -> possibly_improper_list()))
    typean: ((_,_) -> (() -> possibly_improper_list()))
 {fun2,read_term,2} : OK
- typesig:  ((((_,_) -> binary() | [any()] | 'eof'),_) -> {'ok',_} | 'eof')
+ typesig:  ((((_,_) -> any()),_) -> {'ok',_} | 'eof')
  dataflow: ((_,_) -> {'ok',_} | 'eof')
    typean: ((_,_) -> {'ok',_} | 'eof')
 {fun2,read_term,3} : OK
- typesig:  ((((_,_) -> binary() | [any()] | 'eof'),_,binary()) -> {'ok',_})
+ typesig:  ((((_,_) -> any()),_,binary()) -> {'ok',_})
  dataflow: ((_,_,binary()) -> {'ok',_})
    typean: ((_,_,binary()) -> {'ok',_})

@@ -1,5 +1,5 @@
 
 fun3:l/1 :: (([any()]) -> integer())
 fun3:l/2 :: (([any()],integer()) -> integer())
-fun3:l_fun/1 :: (([any()]) -> integer())
-fun3:l_fun/2 :: (((() -> [any()]),integer()) -> integer())
+fun3:l_fun/1 :: ((_) -> integer())
+fun3:l_fun/2 :: (((() -> any()),integer()) -> integer())

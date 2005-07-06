@@ -4,8 +4,8 @@
    typean: ((_) -> [[95,...]])
 {karol,three,0} : OK
  typesig:  (() -> 3)
- dataflow: (() -> char())
-   typean: (() -> char())
+ dataflow: (() -> 3)
+   typean: (() -> 3)
 {karol,two,0} : OK
  typesig:  (() -> 2)
  dataflow: (() -> 2)

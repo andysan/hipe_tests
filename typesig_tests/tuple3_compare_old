@@ -8,5 +8,5 @@
    typean: (([any()]) -> [{'nil',0} | {'bin',0,[any()]} | {'tuple',0,[any()]}])
 {tuple3,test,0} : differ!!!
  typesig:  (() -> {'tuple',0,[{_,_} | {_,_,_}]})
- dataflow: (() -> {'tuple',0,[{'nil',0} | {'bin',0,[any()]} | {'tuple',0,[any()]}]})
+ dataflow: (() -> none())
    typean: (() -> {'nil',0} | {'bin',0,[{_,_,_,_,_}]} | {'tuple',0,[{_,_} | {_,_,_}]})

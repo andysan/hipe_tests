@@ -1,4 +1,4 @@
 
-fun2:mk_reader/2 :: ((((_,_) -> binary() | [any()] | 'eof'),_) -> (() -> possibly_improper_list()))
-fun2:read_term/2 :: ((((_,_) -> binary() | [any()] | 'eof'),_) -> {'ok',_} | 'eof')
-fun2:read_term/3 :: ((((_,_) -> binary() | [any()] | 'eof'),_,binary()) -> {'ok',_})
+fun2:mk_reader/2 :: ((((_,_) -> any()),_) -> (() -> possibly_improper_list()))
+fun2:read_term/2 :: ((((_,_) -> any()),_) -> {'ok',_} | 'eof')
+fun2:read_term/3 :: ((((_,_) -> any()),_,binary()) -> {'ok',_})

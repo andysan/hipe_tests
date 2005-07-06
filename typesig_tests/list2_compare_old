@@ -4,7 +4,7 @@
    typean: (() -> 'ok')
 {list2,l_atom,1} : OK
  typesig:  none()
- dataflow: (([1,...]) -> none())
+ dataflow: ((none()) -> none())
    typean: (([1,...]) -> 'ok')
 {list2,l_one,0} : OK
  typesig:  none()
