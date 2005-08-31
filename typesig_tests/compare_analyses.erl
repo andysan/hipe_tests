@@ -21,8 +21,18 @@ get_typean_sigs(Code0) ->
   Code = cerl_typean:core_transform(Code0, []),
   Tree = cerl:from_records(Code),
   Defs = cerl:module_defs(Tree),
-  [{cerl:var_name(Var), 
-    proplists:get_value(type, cerl:get_ann(Var))} || {Var, _} <- Defs].
+  GetFunType = 
+    fun(X) -> 
+	Out0 = proplists:get_value(type, cerl:get_ann(X)),
+	Vars = cerl:fun_vars(X),
+	VarTypes0 = [proplists:get_value(type, cerl:get_ann(V)) || V <- Vars],
+	%% Variables types as any() are not annotated.
+	[Out|VarTypes] = lists:map(fun(undefined) -> erl_types:t_any();
+				      (T) -> T
+				   end, [Out0|VarTypes0]),
+	erl_types:t_fun(VarTypes, Out)
+    end,
+  [{cerl:var_name(Var), GetFunType(Fun)} || {Var, Fun} <- Defs].
 
 get_df_sigs(Code) ->
   Tree = dialyzer_dataflow:annotate_module(Code),
