@@ -11,14 +11,19 @@
 %%              core because of problems with the effect flag
 %%
 %%  CVS      :
-%%              $Author: pergu $
-%%              $Date: 2004/11/15 12:44:56 $
-%%              $Revision: 1.8 $
+%%              $Author: kostis $
+%%              $Date: 2005/09/02 13:52:02 $
+%%              $Revision: 1.9 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(bs15).
--export([test/0,compile/1,c/0,t/0]).
--compile(export_all).
+-export([test/0,compile/1]).
+
+%% c() ->
+%%   hipe:c({bs15,t,0}, [o2,rtl_ssa,pp_rtl_ssa,{regalloc,linear_scan}]).
+%%
+%% t() ->
+%%   ok = in_guard(<<16#BCD:14,3:2>>, 16#BCD).
 
 compile(Opts) ->
   hipe:c(?MODULE,Opts).
@@ -42,6 +47,7 @@ test() ->
   <<171>> = gen2(8, 7, 2#10101010101010101),
   <<0:64>> = construct(),
   ok = construct2(0),
+  ok = in_guard(<<16#BCD:14,3:2>>, 16#BCD),
   ok.
 
 construct() ->
@@ -80,12 +86,6 @@ gen1(N, S, A) ->
 gen2(N, S, A) ->
     <<A:S/little, A:(N-S)/little>>.
 
-t() ->
-  ok = in_guard(<<16#BCD:14,3:2>>, 16#BCD).
-
 in_guard(Bin, A) when <<A:14,3:2>> == Bin -> ok;
 in_guard(_, _) -> nope.
-
-c() ->
-  hipe:c({bs15,t,0}, [o2,rtl_ssa,pp_rtl_ssa,{regalloc,linear_scan}]).
 
