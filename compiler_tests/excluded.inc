@@ -10,7 +10,8 @@ excluded("ic") ->
 excluded("megaco") ->
     [megaco_text_parser_v1,
      megaco_text_parser_v2,
-     megaco_text_parser_prev3a]; % COMPILATION TAKES LONG TIME
+     megaco_text_parser_prev3a,
+     megaco_text_parser_prev3b]; % COMPILATION TAKES LONG TIME
 excluded("cosNotification") ->
     [oe_CosEvent]; % no such file
 excluded("etk") ->
