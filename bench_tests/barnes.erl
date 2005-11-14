@@ -38,7 +38,6 @@
 -export([test/0,compile/1]).
 %% The following triggers a native code compilation error
 -compile({inline,[{quadrant_to_dx,2},{quadrant_to_dy,2}]}).
-%-compile({inline,[{quadrant_to_dx,2}]}).
 
 -define(THETA, 0.3).
 -define(EPSILON, 0.000001).
@@ -202,20 +201,21 @@ compute_acceleration({branch,M,SubTree}, D, OX, OY, X, Y) ->
 	% Not ok to approximate...
 	true -> 
 	    D2 = D / 2,
-    {AX0, AY0} = compute_acceleration(element(1,SubTree),
-                                      D2, OX + quadrant_to_dx(0,D2),
-                                      OY + quadrant_to_dy(0,D2),X,Y),
-    {AX1, AY1} = compute_acceleration(element(2,SubTree),
-                                      D2, OX + quadrant_to_dx(1,D2),
-                                      OY + quadrant_to_dy(1,D2),X,Y),
-    {AX2, AY2} = compute_acceleration(element(3,SubTree),
-                                      D2,OX + quadrant_to_dx(2,D2),
-                                      OY + quadrant_to_dy(2,D2),X,Y),
-    {AX3, AY3} = compute_acceleration(element(4,SubTree),
-                                      D2, OX + quadrant_to_dx(3,D2),
-                                      OY + quadrant_to_dy(3,D2),X,Y),
-    {AX0+AX1+AX2+AX3, AY0+AY1+AY2+AY3}
+	    {AX0, AY0} = compute_acceleration(element(1,SubTree),
+					      D2, OX + quadrant_to_dx(0,D2),
+					      OY + quadrant_to_dy(0,D2),X,Y),
+	    {AX1, AY1} = compute_acceleration(element(2,SubTree),
+					      D2, OX + quadrant_to_dx(1,D2),
+					      OY + quadrant_to_dy(1,D2),X,Y),
+	    {AX2, AY2} = compute_acceleration(element(3,SubTree),
+					      D2,OX + quadrant_to_dx(2,D2),
+					      OY + quadrant_to_dy(2,D2),X,Y),
+	    {AX3, AY3} = compute_acceleration(element(4,SubTree),
+					      D2, OX + quadrant_to_dx(3,D2),
+					      OY + quadrant_to_dy(3,D2),X,Y),
+	    {AX0+AX1+AX2+AX3, AY0+AY1+AY2+AY3}
     end.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% compute_star_accelerations(Tree,Stars)
