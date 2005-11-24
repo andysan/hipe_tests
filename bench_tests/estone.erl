@@ -939,6 +939,8 @@ links(I) ->
     L = mk_link_procs(100),
     send_procs(L, {procs, L, I}),
     wait_for_pids(L),
+    send_procs(L, die),
+    wait_for_pids(L),
     0.
 
 mk_link_procs(0) -> 
@@ -951,6 +953,12 @@ lproc(Top) ->
     receive
 	{procs, Procs, I} ->
 	    Top ! {self(), lproc(Procs, Procs, link, I)}
+    end,
+    %% all siblings must have completed their link/unlink
+    %% sequences before we are allowed to terminate
+    receive
+	die ->
+	    Top ! {self(), dying}
     end.
 
 lproc(_, _, _, 0) ->
