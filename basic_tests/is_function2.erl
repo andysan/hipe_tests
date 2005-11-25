@@ -1,5 +1,5 @@
 %%-------------------------------------------------------------------
-%% File    : is_function.erl
+%% File    : is_function2.erl
 %% Author  : Kostis Sagonas <kostis@it.uu.se>
 %% Description : Tests the new is_function/2 guard and BIF.
 %%
@@ -13,6 +13,7 @@
 
 test() ->
   ok = test_guard(),
+  ok = test_guard2(),
   ok = test_call(),
   ok.
 
@@ -41,6 +42,23 @@ test_f(_) ->
 %% 
 %% three_tuple_as_fun(X,Y,Z) ->
 %%   {X,Y,Z}.
+
+%%---------------------------------------------------------------
+
+test_guard2() ->
+  zero_fun = test_f_n(fun() -> ok end, 0),
+  unary_fun = test_f_n(fun(X) -> X end, 1),
+  binary_fun = test_f_n(fun(X,Y) -> {X,Y} end, 2),
+  no_fun = test_f_n(gazonk, 0),
+  ok.
+
+test_f_n(F, N) when is_function(F,N) ->
+  case N of
+    0 -> zero_fun;
+    1 -> unary_fun;
+    2 -> binary_fun
+  end;
+test_f_n(_, _) -> no_fun.
 
 %%---------------------------------------------------------------
 
