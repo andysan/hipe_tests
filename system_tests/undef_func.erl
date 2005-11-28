@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.30 2005/06/22 09:41:18 kostis Exp $
+%%     $Id: undef_func.erl,v 1.31 2005/11/28 23:58:32 kostis Exp $
 %%
 
 -module(undef_func).
@@ -101,6 +101,7 @@ application_interface() ->
      {hipe_tool,start,0},
 
      {erl_types, t_is_atom, 2},	     %% used by Dialyzer's typesig
+     {hipe_icode,is_enter,1},	     %% used by Dialyzer
      {hipe_digraph,new,0},	     %% used by Dialyzer
      {hipe_digraph,to_list,1},	     %% used by Dialyzer
      {hipe_digraph,add_edge,3},	     %% used by Dialyzer
