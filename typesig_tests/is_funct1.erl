@@ -1,12 +1,12 @@
 %%-------------------------------------------------------------------
-%% File    : is_funct.erl
+%% File    : is_funct1.erl
 %% Author  : Kostis Sagonas <kostis@it.uu.se>
 %% Description : Tests the handling of the new is_function/2 type guard.
 %%
 %% Created : 5 Jul 2005 by Kostis Sagonas <kostis@it.uu.se>
 %%-------------------------------------------------------------------
 
--module(is_funct).
+-module(is_funct1).
 -export([f/1, f1/2, f2/2, f3/1]).
 
 f(F) when is_function(F,1) ->
