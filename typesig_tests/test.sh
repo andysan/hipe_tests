@@ -7,7 +7,7 @@ else
 	     case*.erl catch1.erl cons.erl \
 	     fib*.erl fun*.erl \
 	     func_head1.erl guard1.erl guard2.erl guard4.erl guard5.erl\
-	     inf_loop1.erl is_funct* karol.erl \
+	     inf_loop1.erl is_funct?.erl karol.erl \
 	     list*.erl \
 	     rec1.erl receive*.erl sequence.erl try*.erl t_union1.erl\
 	     tak.erl tuple*.erl"
