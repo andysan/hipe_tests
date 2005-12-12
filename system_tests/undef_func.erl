@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.31 2005/11/28 23:58:32 kostis Exp $
+%%     $Id: undef_func.erl,v 1.32 2005/12/12 22:02:43 kostis Exp $
 %%
 
 -module(undef_func).
@@ -17,8 +17,8 @@ test() ->
 			       "/lib/compiler/ebin",
 			       %% syntax_tools is needed by cerl_typean
 			       "/lib/syntax_tools/ebin",
-			       %% gs is needed for the hipe_tool
-			       "/lib/gs/ebin"]],
+			       %% gs and edoc are needed for the hipe_tool
+			       "/lib/gs/ebin", "/lib/edoc/ebin"]],
     Server = hipe_testsuite,
     xref:start(Server),
     xref:set_default(Server, [{verbose,false},{warnings,false}]),
@@ -100,7 +100,8 @@ application_interface() ->
      {hipe_jit,start,0},
      {hipe_tool,start,0},
 
-     {erl_types, t_is_atom, 2},	     %% used by Dialyzer's typesig
+     {erl_bif_types,is_known,3},     %% used by Dialyzer
+     {erl_types,t_is_atom,2},	     %% used by Dialyzer's typesig
      {hipe_icode,is_enter,1},	     %% used by Dialyzer
      {hipe_digraph,new,0},	     %% used by Dialyzer
      {hipe_digraph,to_list,1},	     %% used by Dialyzer
