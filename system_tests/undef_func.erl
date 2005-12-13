@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.32 2005/12/12 22:02:43 kostis Exp $
+%%     $Id: undef_func.erl,v 1.33 2005/12/13 12:29:57 mikpe Exp $
 %%
 
 -module(undef_func).
@@ -243,6 +243,9 @@ exports_used_as_remote_apply_calls() ->
      {hipe_ppc_liveness_all,analyze,1},	% liveness.inc breakage
      {hipe_ppc_liveness_fpr,analyze,1},	% liveness.inc breakage
      {hipe_ppc_liveness_gpr,analyze,1},	% liveness.inc breakage
+
+     {hipe_arm_liveness_gpr,livein,2},	% liveness.inc breakage (remove when coalescing is impl)
+     {hipe_arm_liveness_gpr,analyze,1},	% liveness.inc breakage
 
      {hipe_x86_specific,analyze,1},
      {hipe_x86_specific,bb,2},
