@@ -1,8 +1,9 @@
 %%-------------------------------------------------------------------
 %% File    : inf_loop1.erl
 %% Author  : Kostis Sagonas <kostis@it.uu.se>
-%% Description : File that sends the new type inference into an
-%%               infinite loop.
+%% Description : File that seems to be sending the new type inference
+%%               into an infinite loop because the analusis takes way
+%%               too long.
 %%
 %% Created : 10 Feb 2005 by Kostis Sagonas <kostis@it.uu.se>
 %%-------------------------------------------------------------------
@@ -56,7 +57,7 @@ adapt0(BClause, Hash, ITree) ->
       end
   end.
 
-%%----------------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
 
 get_all_similar_match(Match, BClause) ->
   List = get_all_similar_match(Match, BClause, []),

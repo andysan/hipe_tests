@@ -1,5 +1,5 @@
 {inf_loop1,adapt,3} : OK
- typesig:  (([] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}},_,_) -> {[] | {'clause_tree',{'label',_},{'clause_tree',{_,_,_},[] | {_,_,_,_},[] | {_,_,_,_}},[]},_})
+ typesig:  (([] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}},_,_) -> {[] | {'clause_tree',{'label',{_,_,_}},{'clause_tree',{_,_,_},[] | {_,_,_,_},[] | {_,_,_,_}},[]},_})
  dataflow: ((_,_,_) -> {[] | {'clause_tree',{'label',_},{'clause_tree',{_,_,_},[] | {_,_,_,_},[] | {_,_,_,_}},[]},_})
    typean: ((_,_,_) -> {[] | {'clause_tree',{_,_},{_,_,_,_},[]},_})
 {inf_loop1,adapt0,3} : OK
@@ -15,7 +15,7 @@
  dataflow: ((_) -> {'match',_,_} | 'none')
    typean: ((_) -> any())
 {inf_loop1,get_all_similar_match,2} : OK
- typesig:  ((_,[] | {'b_clause',[any()],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}}}) -> any())
+ typesig:  ((_,[] | {'b_clause',[any()],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}}}) -> {integer(),{_,{_,_,_} | 'nil',{_,_,_} | 'nil'} | 'nil'})
  dataflow: ((_,_) -> any())
    typean: ((_,_) -> any())
 {inf_loop1,get_all_similar_match,3} : OK
