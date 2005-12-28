@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.34 2005/12/21 22:37:16 kostis Exp $
+%%     $Id: undef_func.erl,v 1.35 2005/12/28 16:57:20 mikpe Exp $
 %%
 
 -module(undef_func).
@@ -245,7 +245,29 @@ exports_used_as_remote_apply_calls() ->
      {hipe_ppc_liveness_fpr,analyze,1},	% liveness.inc breakage
      {hipe_ppc_liveness_gpr,analyze,1},	% liveness.inc breakage
 
-     {hipe_arm_liveness_gpr,livein,2},	% liveness.inc breakage (remove when coalescing is impl)
+     {hipe_arm_specific,all_precoloured,0},
+     {hipe_arm_specific,allocatable,0},
+     {hipe_arm_specific,analyze,1},
+     {hipe_arm_specific,args,1},
+     {hipe_arm_specific,bb,2},
+     {hipe_arm_specific,check_and_rewrite,2},
+     {hipe_arm_specific,def_use,1},
+     {hipe_arm_specific,defines,1},
+     {hipe_arm_specific,defun_to_cfg,1},
+     {hipe_arm_specific,is_move,1},
+     {hipe_arm_specific,is_precoloured,1},
+     {hipe_arm_specific,labels,1},
+     {hipe_arm_specific,livein,2},
+     {hipe_arm_specific,liveout,2},
+     {hipe_arm_specific,non_alloc,1},
+     {hipe_arm_specific,number_of_temporaries,1},
+     {hipe_arm_specific,physical_name,1},
+     {hipe_arm_specific,reg_nr,1},
+     {hipe_arm_specific,reverse_postorder,1},
+     {hipe_arm_specific,succ_map,1},
+     {hipe_arm_specific,uses,1},
+     {hipe_arm_specific,var_range,1},
+
      {hipe_arm_liveness_gpr,analyze,1},	% liveness.inc breakage
 
      {hipe_x86_specific,analyze,1},
