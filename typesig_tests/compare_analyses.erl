@@ -11,7 +11,7 @@
 
 doit([Module]) when is_list(Module) ->
   wait_init(),
-  {ok, _, Code} = compile:file(Module,[to_core,binary]), 
+  {ok, _, Code} = compile:file(Module,[to_core,binary,strict_record_tests]), 
   TypeAnSigs = get_typean_sigs(Code),
   TypeSigSigs = dialyzer_typesig:get_top_level_signatures(Code),
   DFSigs = get_df_sigs(Code),
