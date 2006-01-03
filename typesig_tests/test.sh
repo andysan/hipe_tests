@@ -8,11 +8,13 @@ else
 	     fib*.erl fun*.erl \
 	     guard1.erl guard2.erl guard4.erl guard5.erl\
 	     inf_loop1.erl is_funct?.erl karol.erl \
-	     list*.erl \
+	     letrec1.erl list*.erl \
+	     product1.erl\
+	     record1.erl\
 	     rec1.erl receive*.erl sequence.erl try*.erl t_union1.erl\
 	     tak.erl tuple*.erl"
   ## The following files are currently not giving right results
-  #testfiles=" guard3.erl"
+  #testfiles="guard3.erl record2.erl"
 fi
 
 HIPE=$1/bin/erl
