@@ -1,3 +1,6 @@
 
 sequence:add/3 :: ((integer(),5 | 10,5 | 10) -> 'ok')
-sequence:t/0 :: (() -> 'ok')
+sequence:bad_add/2 :: ((none(),none()) -> none())
+sequence:t1/0 :: (() -> 'ok')
+sequence:t2/1 :: ((none()) -> none())
+sequence:t3/1 :: ((none()) -> none())

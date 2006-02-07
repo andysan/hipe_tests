@@ -11,6 +11,6 @@
  dataflow: ((_) -> {'ok',1} | 'error')
    typean: ((_) -> any())
 {try2,t2,1} : OK
- typesig:  none()
+ typesig:  ((none()) -> none())
  dataflow: ((_) -> {'ok',1} | 'error')
    typean: ((_) -> any())

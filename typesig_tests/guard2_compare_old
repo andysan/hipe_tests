@@ -3,7 +3,7 @@
  dataflow: ((_) -> 'ok')
    typean: ((_) -> 'ok')
 {guard2,t2,1} : OK
- typesig:  none()
+ typesig:  ((none()) -> none())
  dataflow: ((none()) -> none())
    typean: ((_) -> 'ok')
 {guard2,t3,1} : OK

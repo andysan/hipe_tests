@@ -1,13 +1,13 @@
 {list2,l_atom,0} : OK
- typesig:  none()
+ typesig:  (() -> none())
  dataflow: (() -> none())
    typean: (() -> 'ok')
 {list2,l_atom,1} : OK
- typesig:  none()
+ typesig:  ((none()) -> none())
  dataflow: ((none()) -> none())
    typean: (([1,...]) -> 'ok')
 {list2,l_one,0} : OK
- typesig:  none()
+ typesig:  (() -> none())
  dataflow: (() -> 'ok')
    typean: (() -> 'ok')
 {list2,l_one,1} : OK
@@ -15,6 +15,6 @@
  dataflow: (([1 | 2,...]) -> 'ok')
    typean: (([1 | 2,...]) -> 'ok')
 {list2,test,0} : OK
- typesig:  none()
+ typesig:  (() -> none())
  dataflow: (() -> none())
    typean: (() -> {'ok','ok'})

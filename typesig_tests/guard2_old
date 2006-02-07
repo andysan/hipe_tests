@@ -1,6 +1,6 @@
 
 guard2:t1/1 :: (([any()] | atom()) -> 'ok')
-guard2:t2/1 :: none()
+guard2:t2/1 :: ((none()) -> none())
 guard2:t3/1 :: (('foo') -> 'ok')
 guard2:t4/1 :: (('bar' | 'foo') -> 'ok')
 guard2:t5/2 :: (([any()],[any()]) -> 'ok')

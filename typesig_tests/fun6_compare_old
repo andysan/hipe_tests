@@ -1,0 +1,4 @@
+{fun6,t,1} : OK
+ typesig:  ((atom()) -> ((none()) -> none()))
+ dataflow: ((_) -> ((none()) -> none()))
+   typean: ((_) -> ((_) -> number()))
