@@ -7,13 +7,15 @@
 %%%-------------------------------------------------------------------
 -module(record2).
 
--export([t/0]).
+-export([t1/0, t2/0]).
 
 -record(foo, {bar}).
 
-t() ->
-  R = {an, improper, record},
-  bar(R).
+t1() ->
+  bar({an, improper, record}).
+
+t2() ->
+  bar(#foo{bar=1}).
 
 bar(X) when X#foo.bar > 0 ->
   X.
