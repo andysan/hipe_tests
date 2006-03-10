@@ -8,7 +8,7 @@
 %% like constants will match, if they should match as patterns
 %%
 %% Reported by Peter Nagy (Ericsson, Hungary) and fixed by Richard Carlsson.
-%% Twst program by Kostis Sagonas.
+%% Test program by Kostis Sagonas.
 %%--------------------------------------------------------------------------
 
 -module(nagy).
