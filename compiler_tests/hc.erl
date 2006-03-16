@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2005/11/05 13:42:58 $
-%%    $Revision: 1.16 $
+%%    $Date: 2006/03/16 12:14:10 $
+%%    $Revision: 1.17 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -32,6 +32,7 @@ test() ->
        STDLIB,
        test("compiler"),
        test("kernel"),
+       test("dialyzer"),
        test("tools"),
        
        test("appmon"),

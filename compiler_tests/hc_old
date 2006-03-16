@@ -3,6 +3,7 @@
           {ok,"stdlib"},
           {ok,"compiler"},
           {ok,"kernel"},
+          {ok,"dialyzer"},
           {ok,"tools"},
           {ok,"appmon"},
           {ok,"asn1"},
