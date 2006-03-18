@@ -1,7 +1,7 @@
 #! /bin/sh
 
-if test $# -eq 3; then
-  testfiles="$3"	## test file is given as unique extra argument
+if test $# -eq 2; then
+  testfiles="$2"	## test file is given as unique extra argument
 else
   testfiles="alias1.erl arith*.erl bool1.erl \
 	     case*.erl catch1.erl cons.erl \
@@ -19,16 +19,11 @@ fi
 
 HIPE=$1/bin/erl
 ERLC=$1/bin/erlc
-
-DIALYZER_EBIN=$2/ebin
+DIALYZER=$1/lib/dialyzer
+DIALYZER_EBIN=$DIALYZER/ebin
 
 if test ! -x "${HIPE}" ; then
-    echo "Usage: test OTP_DIR DIALYZER_DIR [testfile[.erl]]"
-    exit 0
-fi
-
-if test ! -e "${DIALYZER_EBIN}/dialyzer_typesig.beam" ; then
-    echo "Usage: test OTP_DIR DIALYZER_DIR [testfile[.erl]]"
+    echo "Usage: test OTP_DIR [testfile[.erl]]"
     exit 0
 fi
 
