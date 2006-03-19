@@ -2,10 +2,11 @@
 -export([main/0]).
 
 %% turn characters a..z to uppercase and strip out any newline
-to_upper_no_nl(Str) ->                               to_upper_no_nl(Str, []).
-to_upper_no_nl([C|Cs], Acc) when C >= $a, C =< $z -> to_upper_no_nl(Cs, [C-($a-$A)| Acc]);
-to_upper_no_nl([C|Cs], Acc) when C == $\n ->         to_upper_no_nl(Cs,  Acc);
-to_upper_no_nl([C|Cs], Acc) ->                       to_upper_no_nl(Cs, [C | Acc]);
+to_upper_no_nl(Str) -> to_upper_no_nl(Str, []).
+
+to_upper_no_nl([C|Cs], Acc) when C >= $a, C =< $z -> to_upper_no_nl(Cs, [C-($a-$A)|Acc]);
+to_upper_no_nl([C|Cs], Acc) when C == $\n ->         to_upper_no_nl(Cs, Acc);
+to_upper_no_nl([C|Cs], Acc) ->                       to_upper_no_nl(Cs, [C|Acc]);
 to_upper_no_nl([], Acc) ->                           lists:reverse(Acc).
 
 % Read in lines from stdin and discard them until a line starting with
@@ -19,8 +20,9 @@ seek_three() ->
   
 %% Read in lines from stdin until eof.
 %% Lines are converted to upper case and put into a single list. 
-dna_seq()      -> seek_three(), dna_seq([]).
-dna_seq( Seq ) ->
+dna_seq() -> seek_three(), dna_seq([]).
+
+dna_seq(Seq) ->
     case io:get_line('') of
         eof  -> list_to_binary(lists:reverse(Seq));
         Line -> Uline = to_upper_no_nl(Line),
@@ -45,6 +47,7 @@ gen_freq(_, _, Frequency, Acc, _) ->
 %% Print the frequency table    
 printf({Frequency, Tot}) ->
     printf(lists:reverse(lists:keysort(2,dict:to_list(Frequency))),Tot).
+
 printf([],_) -> 
     io:fwrite("\n");
 printf([H |T],Tot)->
@@ -63,6 +66,7 @@ main() ->
     Seq = dna_seq(),
     lists:foreach(fun(H) -> printf(gen_freq(Seq,H)) end, [1,2]),
     lists:foreach(fun(H) -> write_count(Seq,H) end,
-		  [<<"GGT">>,<<"GGTA">>,<<"GGTATT">>,<<"GGTATTTTAATT">>,<<"GGTATTTTAATTTATAGT">>]),
+		  [<<"GGT">>,<<"GGTA">>,<<"GGTATT">>,
+		   <<"GGTATTTTAATT">>,<<"GGTATTTTAATTTATAGT">>]),
     halt(0).
 
