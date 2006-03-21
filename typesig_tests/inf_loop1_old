@@ -1,5 +1,5 @@
 
-inf_loop1:adapt/3 :: (([] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}},_,_) -> {[] | {'clause_tree',{'label',_},{'clause_tree',{_,_,_},[] | {_,_,_,_},[] | {_,_,_,_}},[]},_})
+inf_loop1:adapt/3 :: (([] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}},_,_) -> {[] | {'clause_tree',{'label',{_,_,_}},{'clause_tree',{_,_,_},[] | {_,_,_,_},[] | {_,_,_,_}},[]},_})
 inf_loop1:adapt0/3 :: (({'b_clause',[{'match',_,_}],_,_,_,[] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}}},{'hash_cons',{number(),{{_,_,_,_},integer(),number()} | {_,_,_,_} | 'nil'},number()},_) -> {{'clause_tree',{'match',_,_},[] | {'clause_tree',{_,_},{_,_,_,_},[]},[] | {'clause_tree',{_,_},{_,_,_,_},[]}},_})
 inf_loop1:b_clause_segments/1 :: (({'b_clause',[{'match',_,_}],_,_,_,[] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}}}) -> [{'match',_,_}])
 inf_loop1:choose_binseg/1 :: (({'b_clause',[{'match',_,_}],_,_,_,[] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,[] | {_,_,_,_,_,_}}}}) -> {'match',_,_} | 'none')
