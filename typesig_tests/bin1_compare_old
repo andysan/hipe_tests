@@ -1,0 +1,8 @@
+{bin1,t,0} : OK
+ typesig:  (() -> {byte(),binary()})
+ dataflow: (() -> {byte(),binary()})
+   typean: (() -> {byte(),binary()})
+{bin1,t,1} : OK
+ typesig:  ((binary()) -> {byte(),binary()})
+ dataflow: ((binary()) -> {byte(),binary()})
+   typean: ((binary()) -> {byte(),binary()})

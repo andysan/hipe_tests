@@ -1,12 +1,12 @@
-{record2,bar,1} : differ!!!
+{record2,bar,1} : OK
  typesig:  (({'foo',1}) -> {'foo',1})
- dataflow: ((none()) -> none())
+ dataflow: (({'foo',1}) -> {'foo',1})
    typean: (({'foo',1} | {'an','improper','record'}) -> {'foo',1} | {'an','improper','record'})
 {record2,t1,0} : OK
  typesig:  (() -> none())
  dataflow: (() -> none())
    typean: (() -> {'foo',1} | {'an','improper','record'})
-{record2,t2,0} : differ!!!
+{record2,t2,0} : OK
  typesig:  (() -> {'foo',1})
- dataflow: (() -> none())
+ dataflow: (() -> {'foo',1})
    typean: (() -> {'foo',1} | {'an','improper','record'})

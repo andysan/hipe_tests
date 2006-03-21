@@ -1,0 +1,3 @@
+
+bin1:t/0 :: (() -> {byte(),binary()})
+bin1:t/1 :: ((binary()) -> {byte(),binary()})
