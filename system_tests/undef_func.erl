@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.35 2005/12/28 16:57:20 mikpe Exp $
+%%     $Id: undef_func.erl,v 1.36 2006/03/23 23:45:38 kostis Exp $
 %%
 
 -module(undef_func).
@@ -12,6 +12,7 @@ compile(_Options) ->
 test() ->
     Root = code:root_dir(),
     HiPE = Root ++ "/lib/hipe",
+    Dialyzer = Root ++ "/lib/dialyzer",
     Path = [Root ++ D || D <- ["/lib/kernel/ebin",
 			       "/lib/stdlib/ebin",
 			       "/lib/compiler/ebin",
@@ -23,7 +24,8 @@ test() ->
     xref:start(Server),
     xref:set_default(Server, [{verbose,false},{warnings,false}]),
     xref:set_library_path(Server, Path),
-    {ok,_App} = xref:add_application(Server, HiPE),
+    {ok,_} = xref:add_application(Server, HiPE),
+    {ok,_} = xref:add_application(Server, Dialyzer),
     {ok,Undef} = xref:analyze(Server, undefined_function_calls),
     {ok,UnusedLocals} = xref:analyze(Server, locals_not_used),
     {ok,UnusedExports} = xref:analyze(Server, exports_not_used),
@@ -37,7 +39,7 @@ test() ->
 					    [format_mfa(MFA1),
 					     format_mfa(MFA2)])
 			       end, Undef),
-		 {undefined_functions_in_hipe,Undef}
+		 {undefined_functions,Undef}
 	 end,
     U2 = case UnusedLocals of
 	     [] -> no_unused_local_functions;
@@ -45,7 +47,7 @@ test() ->
 		 lists:foreach(fun (MFA) ->
 				  io:format("unused: ~s\n", [format_mfa(MFA)])
 			       end, UnusedLocals),
-		 {unused_locals_in_hipe,UnusedLocals}
+		 {unused_locals,UnusedLocals}
 	 end,
     U3 = case ReallyUnusedExports of
 	     [] -> no_unused_exported_functions;
@@ -54,7 +56,7 @@ test() ->
 				  io:format("exported but unused: ~s\n",
 					    [format_mfa(MFA)])
 			       end, ReallyUnusedExports),
-		 {unused_exports_in_hipe,ReallyUnusedExports}
+		 {unused_exports,ReallyUnusedExports}
 	 end,
     {U1,U2,U3}.
 
@@ -70,13 +72,15 @@ format_mfa({M,F,A}) ->
 %%=====================================================================
 
 used_exports() ->
-    application_interface() ++ exports_used_as_remote_apply_calls().
+    hipe_application_interface() ++
+    dialyzer_application_interface() ++
+    hipe_exports_used_as_remote_apply_calls().
 
 %%
 %% This is the list of all functions which are supposed to be
 %% accessible by the user or by other applications.
 %%
-application_interface() ->
+hipe_application_interface() ->
     [
      {hipe,help,0},
      {hipe,help_option,1},
@@ -100,17 +104,13 @@ application_interface() ->
      {hipe_jit,start,0},
      {hipe_tool,start,0},
 
-     {erl_bif_types,is_known,3},     %% used by Dialyzer
-     {erl_types,t_has_var,1},	     %% used by Dialyzer's typesig
-     {erl_types,t_is_atom,2},	     %% used by Dialyzer's typesig
-     {hipe_icode,is_enter,1},	     %% used by Dialyzer
-     {hipe_digraph,new,0},	     %% used by Dialyzer
-     {hipe_digraph,to_list,1},	     %% used by Dialyzer
-     {hipe_digraph,add_edge,3},	     %% used by Dialyzer
-     {hipe_digraph,take_indep_scc,1},%% used by Dialyzer
+     {erl_types,t_nonempty_string,0},	     %% used by Typer
+     {erl_types,t_improper_list,1},	     %% used by Typer
+     {erl_types,t_nonempty_improper_list,1}, %% used by Typer
+     {erl_types,t_nonempty_improper_list,0}, %% used by Typer
 
      {hipe_dot,translate_digraph,3}, %% eventually these will be used 
-     {hipe_dot,translate_digraph,5}, %% inside hipe, but now they are 
+     {hipe_dot,translate_digraph,5}, %% inside HiPE, but now they are 
      {hipe_dot,translate_list,3},    %% mostly used from the outside
      {hipe_dot,translate_list,5},    %% by Tobias
      {hipe_dot,translate_list,4},
@@ -134,7 +134,7 @@ application_interface() ->
 %% I would love if there were a way for the following to be discovered
 %% automatically, but currently there does not appear to be any...
 %%
-exports_used_as_remote_apply_calls() ->
+hipe_exports_used_as_remote_apply_calls() ->
     [
      {hipe_graph_coloring_regalloc,regalloc,5},
      {hipe_coalescing_regalloc,regalloc,5},
@@ -403,3 +403,28 @@ exports_used_as_remote_apply_calls() ->
      {hipe_amd64_specific_x87,postorder,1},
      {hipe_amd64_specific_x87,reverse_postorder,1}
     ].
+
+%%=====================================================================
+%% Below appears some hard-coded information about exported functions
+%% which are used either outside the Dialyzer application.
+%%=====================================================================
+
+%%
+%% This is the list of all functions which are supposed to be
+%% accessible by the user or by other applications.
+%%
+dialyzer_application_interface() ->
+    [
+     {dialyzer,cl,1},
+     {dialyzer_dep,test,1},
+     {dialyzer,gui,1},
+     {dialyzer,run,1},
+     {dialyzer,cl_check_init_plt,1},
+     {dialyzer_dataflow,annotate_module,1},
+     {dialyzer_dataflow,doit,1},	%% debugging
+     {dialyzer_dataflow,pp,1},		%% debugging
+     {dialyzer_typesig,pp,1},		%% debugging
+     {dialyzer_typesig,doit,1},		%% debugging
+     {dialyzer_typesig,get_top_level_signatures,1}
+    ].
+
