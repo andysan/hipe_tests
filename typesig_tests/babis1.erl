@@ -1,13 +1,17 @@
 %% -*- erlang-indent-level: 2 -*-
 %%-----------------------------------------------------------------------
-%% A totally stupid program whose first function sends typesig into
-%% the land of no return... even though there are no big types,
-%% function dependencies in this one or any compilcated SCCs.
+%% A totally stupid program whose first function sends the typesig
+%% version of March 2006 into the land of no return...
+%% This, despite the fact that there are sizes of types are small,
+%% there are no function dependencies in this one or complicated SCCs.
 %%-----------------------------------------------------------------------
 
 -module(babis1).
 -export([token/4]).
 
+%%
+%% This function, which is analyzed last, is the culprit.
+%%
 token(Token,PrevTokenList,Stream,Counter) ->
   %%--- Wire Out ( Client view )
   case tWO_Header(Token,PrevTokenList,Stream,Counter) of false -> 
