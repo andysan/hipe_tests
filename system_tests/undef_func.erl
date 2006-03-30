@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.36 2006/03/23 23:45:38 kostis Exp $
+%%     $Id: undef_func.erl,v 1.37 2006/03/30 15:21:50 kostis Exp $
 %%
 
 -module(undef_func).
@@ -83,6 +83,7 @@ used_exports() ->
 hipe_application_interface() ->
     [
      {hipe,help,0},
+     {hipe,help_hiper,0},
      {hipe,help_option,1},
      {hipe,help_options,0},
      {hipe,compile,1},
@@ -94,7 +95,6 @@ hipe_application_interface() ->
      {hipe,file,1},
      {hipe,file,2},
      {hipe,load,1},
-     {hipe,load,2},
      {hipe,has_hipe_code,1},
      {hipe,help_debug_options,0},
      {hipe,version,0},
