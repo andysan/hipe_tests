@@ -1,0 +1,3 @@
+
+fib4:fib/1 :: ((integer()) -> integer())
+fib4:fibaux/4 :: ((integer(),integer(),integer(),integer()) -> integer())

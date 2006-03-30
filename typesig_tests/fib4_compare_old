@@ -1,0 +1,8 @@
+{fib4,fib,1} : OK
+ typesig:  ((integer()) -> integer())
+ dataflow: ((_) -> integer())
+   typean: ((_) -> integer())
+{fib4,fibaux,4} : OK
+ typesig:  ((integer(),integer(),integer(),integer()) -> integer())
+ dataflow: ((integer(),integer(),integer(),_) -> integer())
+   typean: ((integer(),integer(),integer(),_) -> integer())
