@@ -1,0 +1,92 @@
+{babis1,tSO_Int,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'INT',number(),[any(),...]} | 'false')
+ dataflow: ((_,_,_,_) -> {'INT',number(),[any(),...]} | 'false')
+   typean: ((_,_,_,_) -> {'INT',number(),[any(),...]} | 'false')
+{babis1,tSO_ObjectStream,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'OBJECT_STREAM',number(),_} | 'false')
+ dataflow: ((_,_,_,_) -> {'OBJECT_STREAM',number(),_} | 'false')
+   typean: ((_,_,_,_) -> {'OBJECT_STREAM',number(),_} | 'false')
+{babis1,tSO_Utf,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'UTF',number(),[any(),...]} | 'false')
+ dataflow: ((_,_,_,_) -> {'UTF',number(),[any(),...]} | 'false')
+   typean: ((_,_,_,_) -> {'UTF',number(),[any(),...]} | 'false')
+{babis1,tWI_PingAck,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'PING_ACK',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'PING_ACK',number()} | 'false')
+   typean: ((_,_,_,_) -> {'PING_ACK',number()} | 'false')
+{babis1,tWI_ProtNotSupported,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'PROT_NOT_SUPPORTED',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'PROT_NOT_SUPPORTED',number()} | 'false')
+   typean: ((_,_,_,_) -> {'PROT_NOT_SUPPORTED',number()} | 'false')
+{babis1,tWI_ProtocolAck,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'PROTOCOL_ACK',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'PROTOCOL_ACK',number()} | 'false')
+   typean: ((_,_,_,_) -> {'PROTOCOL_ACK',number()} | 'false')
+{babis1,tWI_ReturnData,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'RETURN_DATA',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'RETURN_DATA',number()} | 'false')
+   typean: ((_,_,_,_) -> {'RETURN_DATA',number()} | 'false')
+{babis1,tWI_ReturnValue,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'RETURN_EXCEPTION',number()} | {'RETURN_VALUE',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'RETURN_EXCEPTION',number()} | {'RETURN_VALUE',number()} | 'false')
+   typean: ((_,_,_,_) -> {'RETURN_EXCEPTION',number()} | {'RETURN_VALUE',number()} | 'false')
+{babis1,tWO_Call,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'CALL',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'CALL',number()} | 'false')
+   typean: ((_,_,_,_) -> {'CALL',number()} | 'false')
+{babis1,tWO_DgcAck,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'DGC_ACK',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'DGC_ACK',number()} | 'false')
+   typean: ((_,_,_,_) -> {'DGC_ACK',number()} | 'false')
+{babis1,tWO_Hash,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'HASH',number(),[any(),...]} | 'false')
+ dataflow: ((_,_,_,_) -> {'HASH',number(),[any(),...]} | 'false')
+   typean: ((_,_,_,_) -> {'HASH',number(),[any(),...]} | 'false')
+{babis1,tWO_Header,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'HEADER',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'HEADER',number()} | 'false')
+   typean: ((_,_,_,_) -> {'HEADER',number()} | 'false')
+{babis1,tWO_MultiplexProtocol,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'MULTIPLEX_PROTOCOL',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'MULTIPLEX_PROTOCOL',number()} | 'false')
+   typean: ((_,_,_,_) -> {'MULTIPLEX_PROTOCOL',number()} | 'false')
+{babis1,tWO_ObjNumber,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'OBJ_NUMBER',number(),[any(),...]} | 'false')
+ dataflow: ((_,_,_,_) -> {'OBJ_NUMBER',number(),[any(),...]} | 'false')
+   typean: ((_,_,_,_) -> {'OBJ_NUMBER',number(),[any(),...]} | 'false')
+{babis1,tWO_Operation,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'OPERATION',number(),[any(),...]} | 'false')
+ dataflow: ((_,_,_,_) -> {'OPERATION',number(),[any(),...]} | 'false')
+   typean: ((_,_,_,_) -> {'OPERATION',number(),[any(),...]} | 'false')
+{babis1,tWO_Ping,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'PING',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'PING',number()} | 'false')
+   typean: ((_,_,_,_) -> {'PING',number()} | 'false')
+{babis1,tWO_SingleOpProtocol,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'SINGLE_OP_PROTOCOL',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'SINGLE_OP_PROTOCOL',number()} | 'false')
+   typean: ((_,_,_,_) -> {'SINGLE_OP_PROTOCOL',number()} | 'false')
+{babis1,tWO_StreamProtocol,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'STREAM_PROTOCOL',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'STREAM_PROTOCOL',number()} | 'false')
+   typean: ((_,_,_,_) -> {'STREAM_PROTOCOL',number()} | 'false')
+{babis1,tWO_Version,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'VERSION',number()} | 'false')
+ dataflow: ((_,_,_,_) -> {'VERSION',number()} | 'false')
+   typean: ((_,_,_,_) -> {'VERSION',number()} | 'false')
+{babis1,tW_UidCount,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'UID_COUNT',number(),[any(),...]} | 'false')
+ dataflow: ((_,_,_,_) -> {'UID_COUNT',number(),[any(),...]} | 'false')
+   typean: ((_,_,_,_) -> {'UID_COUNT',number(),[any(),...]} | 'false')
+{babis1,tW_UidNumber,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'UID_NUMBER',number(),[any(),...]} | 'false')
+ dataflow: ((_,_,_,_) -> {'UID_NUMBER',number(),[any(),...]} | 'false')
+   typean: ((_,_,_,_) -> {'UID_NUMBER',number(),[any(),...]} | 'false')
+{babis1,tW_UidTime,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {'UID_TIME',number(),[any(),...]} | 'false')
+ dataflow: ((_,_,_,_) -> {'UID_TIME',number(),[any(),...]} | 'false')
+   typean: ((_,_,_,_) -> {'UID_TIME',number(),[any(),...]} | 'false')
+{babis1,token,4} : OK
+ typesig:  ((_,nonempty_possibly_improper_list(),_,_) -> {atom(),number()} | {atom(),number(),_} | 'false')
+ dataflow: ((_,_,_,_) -> {atom(),number()} | {atom(),number(),_} | 'false')
+   typean: ((_,_,_,_) -> {atom(),number()} | {atom(),number(),_} | 'false')
