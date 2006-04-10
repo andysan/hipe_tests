@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.37 2006/03/30 15:21:50 kostis Exp $
+%%     $Id: undef_func.erl,v 1.38 2006/04/10 16:31:52 mikpe Exp $
 %%
 
 -module(undef_func).
@@ -250,17 +250,23 @@ hipe_exports_used_as_remote_apply_calls() ->
      {hipe_arm_specific,analyze,1},
      {hipe_arm_specific,args,1},
      {hipe_arm_specific,bb,2},
+     {hipe_arm_specific,breadthorder,1},
      {hipe_arm_specific,check_and_rewrite,2},
      {hipe_arm_specific,def_use,1},
      {hipe_arm_specific,defines,1},
      {hipe_arm_specific,defun_to_cfg,1},
+     {hipe_arm_specific,is_arg,1},
+     {hipe_arm_specific,is_fixed,1},
+     {hipe_arm_specific,is_global,1},
      {hipe_arm_specific,is_move,1},
      {hipe_arm_specific,is_precoloured,1},
      {hipe_arm_specific,labels,1},
      {hipe_arm_specific,livein,2},
      {hipe_arm_specific,liveout,2},
+     {hipe_arm_specific,new_spill_index,1},
      {hipe_arm_specific,non_alloc,1},
      {hipe_arm_specific,number_of_temporaries,1},
+     {hipe_arm_specific,postorder,1},
      {hipe_arm_specific,physical_name,1},
      {hipe_arm_specific,reg_nr,1},
      {hipe_arm_specific,reverse_postorder,1},
