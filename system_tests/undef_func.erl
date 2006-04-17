@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.38 2006/04/10 16:31:52 mikpe Exp $
+%%     $Id: undef_func.erl,v 1.39 2006/04/17 13:34:17 kostis Exp $
 %%
 
 -module(undef_func).
@@ -108,6 +108,7 @@ hipe_application_interface() ->
      {erl_types,t_improper_list,1},	     %% used by Typer
      {erl_types,t_nonempty_improper_list,1}, %% used by Typer
      {erl_types,t_nonempty_improper_list,0}, %% used by Typer
+     {erl_types,t_to_string,2},		     %% used by Typer
 
      {hipe_dot,translate_digraph,3}, %% eventually these will be used 
      {hipe_dot,translate_digraph,5}, %% inside HiPE, but now they are 
