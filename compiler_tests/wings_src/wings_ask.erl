@@ -9,7 +9,7 @@
 %%  See the file "license.terms" for information on usage and redistribution
 %%  of this file, and for a DISCLAIMER OF ALL WARRANTIES.
 %%
-%%     $Id: wings_ask.erl,v 1.1 2004/11/28 10:36:47 kostis Exp $
+%%     $Id: wings_ask.erl,v 1.2 2006/04/21 19:44:16 kostis Exp $
 %%
 
 -module(wings_ask).
@@ -392,8 +392,6 @@ dialog(true, Title, Qs, Fun) -> dialog(Title, Qs, Fun).
 
 dialog(Title, Qs, Fun) ->
     do_dialog(Title, Qs, [make_ref()], Fun).
-
--record(position, {position}).
 
 do_dialog(Title, Qs, Level, Fun) ->
     GrabWin = wings_wm:release_focus(),
