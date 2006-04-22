@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.39 2006/04/17 13:34:17 kostis Exp $
+%%     $Id: undef_func.erl,v 1.40 2006/04/22 08:16:47 kostis Exp $
 %%
 
 -module(undef_func).
@@ -423,6 +423,7 @@ hipe_exports_used_as_remote_apply_calls() ->
 dialyzer_application_interface() ->
     [
      {dialyzer,cl,1},
+     {dialyzer,plain_cl,0},
      {dialyzer_dep,test,1},
      {dialyzer,gui,1},
      {dialyzer,run,1},
