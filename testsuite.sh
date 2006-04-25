@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.55 2005/02/07 15:17:17 kostis Exp $
+## $Id: testsuite.sh,v 1.56 2006/04/25 00:35:31 mikpe Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -37,6 +37,7 @@ ERL_COMPILER_OPTIONS=[nowarn_shadow_vars]
 
 core_excl_tests="trivial_tests"	## no point
 no_native_excl_tests="native_tests core_tests"
+smp_excl_tests="memory_tests"
 
 while test 1=1
 do
@@ -86,6 +87,11 @@ do
 	    comp_options="[no_native]"
 	    excluded_tests="${no_native_excl_tests}"
 	    ;;
+     --smp)
+	    shift
+	    rts_options="-smp"
+	    excluded_tests="${smp_excl_tests}"
+            ;;
      --shared)
 	    shift
 	    rts_options="-shared"
@@ -140,7 +146,7 @@ if test -n "${help}" -o -z "${OTP_DIR}" -o $# -gt 1; then
 =============================================================================
  Usage: testsuite.sh [--rts_opts "rts_opts"] [--comp_opts "comp_opts"]
                      [--add "add_list"]  [--exclude "exclude_list"]
-                     [--only "test_list"] [--shared] [--hybrid]
+                     [--only "test_list"] [--smp] [--shared] [--hybrid]
                      [--system] [--types] [--core] [--no_native] [-q|--quiet]
                      [--list] [--default] [--help] [OTP_DIR]
  where: OTP_DIR   -- directory of OTP/Erlang system; default is current dir.
@@ -151,6 +157,8 @@ if test -n "${help}" -o -z "${OTP_DIR}" -o $# -gt 1; then
         exclude   -- the list of tests NOT to run
         only      -- the list of tests to run; replaces default,
                      both --exclude and --only can be specified at once
+        smp       -- a shorthand option, equivalent to:
+                       --rts_options "-smp" --exclude "${smp_excl_tests}"
         shared    -- a shorthand option, equivalent to:
                        --rts_options "-shared"
         hybrid    -- equivalent to:
