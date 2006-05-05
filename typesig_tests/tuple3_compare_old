@@ -6,7 +6,7 @@
  typesig:  (([binary() | [] | tuple()]) -> [{'nil',0} | {'bin',0,[any()]} | {'tuple',0,[any()]}])
  dataflow: (([any()]) -> [{'nil',0} | {'bin',0,[{_,_,_,_,_}]} | {'tuple',0,[{_,_} | {_,_,_}]}])
    typean: (([any()]) -> [{'nil',0} | {'bin',0,[any()]} | {'tuple',0,[any()]}])
-{tuple3,test,0} : differ!!!
+{tuple3,test,0} : OK
  typesig:  (() -> {'tuple',0,[{'nil',0} | {'bin',0,[any()]} | {'tuple',0,[any()]}]})
- dataflow: (() -> none())
+ dataflow: (() -> {'tuple',0,[{'nil',0} | {'bin',0,[any()]} | {'tuple',0,[any()]}]})
    typean: (() -> {'nil',0} | {'bin',0,[{_,_,_,_,_}]} | {'tuple',0,[{_,_} | {_,_,_}]})

@@ -9,8 +9,6 @@ start() ->
 
 %% @spec loop({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok'
 %%
-%% XXX: Note that cerl_typean gets this wrong!
-%%
 loop(State) ->
   case State#state.mode of
     start ->

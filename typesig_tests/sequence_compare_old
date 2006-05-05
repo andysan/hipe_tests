@@ -4,7 +4,7 @@
    typean: ((_,5 | 7 | 10,5 | 7 | 10) -> 'ok')
 {sequence,bad_add,2} : OK
  typesig:  ((none(),none()) -> none())
- dataflow: ((none(),none()) -> none())
+ dataflow: ((_,_) -> none())
    typean: ((_,_) -> none())
 {sequence,t1,0} : OK
  typesig:  (() -> 'ok')
@@ -16,5 +16,5 @@
    typean: ((_) -> 'ok')
 {sequence,t3,1} : OK
  typesig:  ((none()) -> none())
- dataflow: ((none()) -> none())
+ dataflow: ((_) -> none())
    typean: ((_) -> 'ok')

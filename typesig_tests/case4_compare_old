@@ -1,6 +1,6 @@
 {case4,t1,1} : OK
  typesig:  ((none()) -> none())
- dataflow: ((none()) -> none())
+ dataflow: ((_) -> none())
    typean: ((_) -> number())
 {case4,t2,1} : OK
  typesig:  (({'hello',1}) -> 2)

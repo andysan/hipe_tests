@@ -4,5 +4,5 @@
    typean: (() -> 'ok')
 {case2,t,1} : OK
  typesig:  ((none()) -> none())
- dataflow: ((none()) -> none())
+ dataflow: ((1) -> none())
    typean: ((1) -> 'ok')

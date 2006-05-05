@@ -1,5 +1,5 @@
 
 receive3:loop/1 :: (({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok')
 receive3:start/0 :: (() -> pid())
-receive3:start/1 :: (({'state','start',1000}) -> 'ok')
-receive3:wait/1 :: (({'state','wait',1000}) -> 'ok')
+receive3:start/1 :: (({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok')
+receive3:wait/1 :: (({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok')

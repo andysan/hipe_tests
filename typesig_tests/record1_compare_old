@@ -1,6 +1,6 @@
 {record1,t1,1} : OK
  typesig:  (({'foo',_,_}) -> {'foo',_,_})
- dataflow: ((_) -> any())
+ dataflow: ((_) -> {'foo',_,_})
    typean: ((_) -> any())
 {record1,t2,1} : OK
  typesig:  (({'foo',1,_}) -> {'foo',1,_})
@@ -12,5 +12,5 @@
    typean: ((_) -> any())
 {record1,t4,0} : OK
  typesig:  (() -> none())
- dataflow: (() -> none())
+ dataflow: (() -> {'foo',_,_})
    typean: (() -> any())

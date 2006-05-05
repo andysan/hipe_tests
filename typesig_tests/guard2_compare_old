@@ -4,7 +4,7 @@
    typean: ((_) -> 'ok')
 {guard2,t2,1} : OK
  typesig:  ((none()) -> none())
- dataflow: ((none()) -> none())
+ dataflow: ((_) -> none())
    typean: ((_) -> 'ok')
 {guard2,t3,1} : OK
  typesig:  (('foo') -> 'ok')
