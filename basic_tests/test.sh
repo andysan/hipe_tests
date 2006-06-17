@@ -11,7 +11,7 @@ ERL_FLAGS=$3
 
 #============================================================================
 
-testfiles="bif01.erl exception01.erl exception02.erl fun??.erl guard*.erl \
+testfiles="bi*.erl exception01.erl exception02.erl fun??.erl guard*.erl \
 	   simpl_*.erl tuple.erl small.erl length.erl catch*.erl \
 	   *_test.erl test??.erl mode_errors.erl hello_world.erl \
 	   switch_mix.erl var_tuple.erl int_overfl.erl inline_match.erl \
