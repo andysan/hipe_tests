@@ -11,8 +11,7 @@ ERL_FLAGS=$3
 
 #============================================================================
 
-#testfiles="*.erl"
-testfiles="ffun1.erl ffun2.erl ffun3.erl fun1.erl fun2.erl fun3.erl fun4.erl guard1.erl lc1.erl lc2.erl loop1.erl loop2.erl nagy.erl pmatch1.erl pmatch2.erl pmatch3.erl rec1.erl"
+testfiles="*.erl"
 
 testdir="core_tests"
 
