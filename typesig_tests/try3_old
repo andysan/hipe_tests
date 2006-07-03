@@ -1,0 +1,7 @@
+
+try3:arg_flush/1 :: (('none' | 'sync') -> 0 | 1)
+try3:call/3 :: ((port() | atom(),7,binary()) -> any())
+try3:collect/1 :: ((port() | atom()) -> [any()])
+try3:collect/2 :: ((port() | atom(),[any()]) -> [any()])
+try3:deflate/3 :: ((_,_,_) -> any())
+try3:flush/1 :: ((_) -> 'ok')
