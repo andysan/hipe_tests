@@ -19,12 +19,12 @@
  dataflow: ((atom(),_) -> byte())
    typean: ((atom(),_) -> byte())
 {babis2,yeccpars1,5} : OK
- typesig:  ((possibly_improper_list(),'false' | {atom() | tuple(),atom(),[any()]},byte(),[any()],[nonempty_improper_list(any(),possibly_improper_list() | tuple()) | tuple()]) -> any())
- dataflow: ((_,'false' | {atom() | tuple(),atom(),[any()]},byte(),[any()],[nonempty_improper_list(any(),possibly_improper_list() | tuple()) | tuple()]) -> any())
+ typesig:  ((possibly_improper_list(),'false' | {atom() | tuple(),atom(),[any()]},byte(),[any()],[nonempty_improper_list(nonempty_possibly_improper_list() | tuple(),possibly_improper_list() | tuple()) | tuple()]) -> any())
+ dataflow: ((_,'false' | {atom() | tuple(),atom(),[any()]},byte(),[any()],[nonempty_improper_list(nonempty_possibly_improper_list() | tuple(),possibly_improper_list() | tuple()) | tuple()]) -> any())
    typean: ((_,'false' | {_,_,_},byte(),[any()],[any()]) -> any())
 {babis2,yeccpars2,7} : OK
- typesig:  ((byte(),_,[any()],[nonempty_improper_list(any(),possibly_improper_list() | tuple()) | tuple()],tuple(),_,'false' | {atom() | tuple(),atom(),[any()]}) -> any())
- dataflow: ((byte(),_,[any()],[nonempty_improper_list(any(),possibly_improper_list() | tuple()) | tuple()],tuple(),_,'false' | {atom() | tuple(),atom(),[any()]}) -> any())
+ typesig:  ((byte(),_,[any()],[nonempty_improper_list(nonempty_possibly_improper_list() | tuple(),possibly_improper_list() | tuple()) | tuple()],tuple(),_,'false' | {atom() | tuple(),atom(),[any()]}) -> any())
+ dataflow: ((byte(),_,[any()],[nonempty_improper_list(nonempty_possibly_improper_list() | tuple(),possibly_improper_list() | tuple()) | tuple()],tuple(),_,'false' | {atom() | tuple(),atom(),[any()]}) -> any())
    typean: ((byte(),_,[any()],[any()],_,_,'false' | {_,_,_}) -> any())
 {babis2,yecctoken2string,1} : OK
  typesig:  ((tuple()) -> any())
