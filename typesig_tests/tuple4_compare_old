@@ -1,4 +1,4 @@
 {tuple4,to_tuple,1} : OK
- typesig:  ((tuple() | integer()) -> tuple())
+ typesig:  ((integer() | tuple()) -> tuple())
  dataflow: ((_) -> tuple())
    typean: ((_) -> any())

@@ -1,6 +1,6 @@
 {catch1,add_one,1} : OK
  typesig:  ((integer()) -> integer())
- dataflow: ((integer() | atom()) -> integer())
+ dataflow: ((atom() | integer()) -> integer())
    typean: ((_) -> number())
 {catch1,t1,1} : OK
  typesig:  ((_) -> any())

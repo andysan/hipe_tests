@@ -1,2 +1,2 @@
 
-rec1:traverse_linked_list/1 :: (({_,{_,{_,{_,_} | 'nil'} | 'nil'} | 'nil'}) -> [any(),...])
+rec1:traverse_linked_list/1 :: (({_,'nil' | {_,'nil' | {_,_}}}) -> [any(),...])

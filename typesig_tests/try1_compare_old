@@ -1,4 +1,4 @@
 {try1,t,2} : OK
- typesig:  ((4 | atom(),number()) -> number())
+ typesig:  ((atom() | 4,number()) -> number())
  dataflow: ((_,_) -> number())
    typean: ((_,_) -> any())

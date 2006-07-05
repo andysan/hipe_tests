@@ -7,10 +7,10 @@
  dataflow: ((_) -> {'ok',1})
    typean: ((_) -> {'ok',1})
 {try2,t1,1} : OK
- typesig:  ((1) -> {'ok',1} | 'error')
- dataflow: ((_) -> {'ok',1} | 'error')
+ typesig:  ((1) -> 'error' | {'ok',1})
+ dataflow: ((_) -> 'error' | {'ok',1})
    typean: ((_) -> any())
 {try2,t2,1} : OK
  typesig:  ((none()) -> none())
- dataflow: ((_) -> {'ok',1} | 'error')
+ dataflow: ((_) -> 'error' | {'ok',1})
    typean: ((_) -> any())

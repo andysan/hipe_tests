@@ -1,2 +1,2 @@
 
-try1:t/2 :: ((4 | atom(),number()) -> number())
+try1:t/2 :: ((atom() | 4,number()) -> number())

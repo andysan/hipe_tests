@@ -3,16 +3,16 @@
  dataflow: ((_) -> 0 | 1)
    typean: ((_) -> 0 | 1)
 {try3,call,3} : differ!!!
- typesig:  ((port() | atom(),7,binary()) -> any())
- dataflow: ((port() | atom(),7,binary()) -> integer() | atom())
+ typesig:  ((atom() | port(),7,binary()) -> any())
+ dataflow: ((atom() | port(),7,binary()) -> atom() | integer())
    typean: ((_,7,binary()) -> any())
 {try3,collect,1} : OK
- typesig:  ((port() | atom()) -> [any()])
- dataflow: ((port() | atom()) -> [any()])
+ typesig:  ((atom() | port()) -> [any()])
+ dataflow: ((atom() | port()) -> [any()])
    typean: ((_) -> [any()])
 {try3,collect,2} : OK
- typesig:  ((port() | atom(),[any()]) -> [any()])
- dataflow: ((port() | atom(),[any()]) -> [any()])
+ typesig:  ((atom() | port(),[any()]) -> [any()])
+ dataflow: ((atom() | port(),[any()]) -> [any()])
    typean: ((_,[any()]) -> [any()])
 {try3,deflate,3} : differ!!!
  typesig:  ((_,_,_) -> any())

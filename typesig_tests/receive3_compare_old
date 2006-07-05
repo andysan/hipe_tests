@@ -1,16 +1,16 @@
 {receive3,loop,1} : OK
- typesig:  (({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok')
- dataflow: (({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok')
-   typean: (({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok')
+ typesig:  (({'state','sleep' | 'start' | 'wait',1000}) -> 'ok')
+ dataflow: (({'state','sleep' | 'start' | 'wait',1000}) -> 'ok')
+   typean: (({'state','sleep' | 'start' | 'wait',1000}) -> 'ok')
 {receive3,start,0} : OK
  typesig:  (() -> pid())
  dataflow: (() -> pid())
    typean: (() -> pid())
 {receive3,start,1} : OK
- typesig:  (({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok')
- dataflow: (({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok')
-   typean: (({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok')
+ typesig:  (({'state','sleep' | 'start' | 'wait',1000}) -> 'ok')
+ dataflow: (({'state','sleep' | 'start' | 'wait',1000}) -> 'ok')
+   typean: (({'state','sleep' | 'start' | 'wait',1000}) -> 'ok')
 {receive3,wait,1} : OK
- typesig:  (({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok')
- dataflow: (({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok')
-   typean: (({'state','sleep',1000} | {'state','start',1000} | {'state','wait',1000}) -> 'ok')
+ typesig:  (({'state','sleep' | 'start' | 'wait',1000}) -> 'ok')
+ dataflow: (({'state','sleep' | 'start' | 'wait',1000}) -> 'ok')
+   typean: (({'state','sleep' | 'start' | 'wait',1000}) -> 'ok')

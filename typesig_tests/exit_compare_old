@@ -3,6 +3,6 @@
  dataflow: (() -> none())
    typean: (() -> none())
 {exit,t2,1} : OK
- typesig:  ((identifier()) -> 'true')
+ typesig:  ((pid() | port()) -> 'true')
  dataflow: ((_) -> 'true')
    typean: ((_) -> 'true')
