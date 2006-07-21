@@ -5,12 +5,12 @@
 %%  Creator  : Erik Stenman <Erik.Stenman@epfl.ch>
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/02/28 11:25:32 $
-%%    $Revision: 1.1 $
+%%    $Date: 2006/07/21 11:59:51 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 
 -module(try_expr2).
--export([test/0,compile/1]).
+-export([test/0, compile/1]).
 
 test() ->
   {[c(foo),
@@ -29,16 +29,24 @@ t(V) ->
     foo -> bar;
     Other -> Other
   catch
-    {'EXIT',Reason} -> Reason;
-    {'ERROR',{What,TraceList}} -> [Head|_] = TraceList, {What,[Head]};
-    OtherException -> OtherException
+    exit:{What,TraceList} -> [Head|_] = TraceList, {What,[Head]};
+    exit:Reason when is_atom(Reason) -> Reason;
+    error:OtherException -> {OtherException, case erlang:get_stacktrace() of
+					       [] -> [];
+					       S when is_list(S) -> [hd(S)]
+					     end};
+    throw:OtherException -> OtherException
   end.
 
 c(V) ->
   case catch seq(V) of
     foo -> bar;
-    {'EXIT',{What,TraceList}} -> [Head|_] = TraceList, {What,[Head]};
-    {'EXIT',Reason} when atom(Reason) -> Reason;
+    {'EXIT',{What,TraceList}} ->
+      case TraceList of
+	[] -> {What,[]};
+	[Head|_] -> {What,[Head]}
+      end;
+    {'EXIT',Reason} when is_atom(Reason) -> Reason;
     OtherException -> OtherException
   end.
 
@@ -54,4 +62,4 @@ seq(_) ->
   other.
 
 compile(Flags) ->
-  hipe:c(?MODULE,Flags).
+  hipe:c(?MODULE, Flags).
