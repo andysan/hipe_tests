@@ -9,7 +9,7 @@ HIPE=$1
 COMP_FLAGS=$2
 ERL_FLAGS=$3
 
-testfiles=trivial_??.erl
+testfiles="*.erl"
 
 testdir="trivial_tests"
 
