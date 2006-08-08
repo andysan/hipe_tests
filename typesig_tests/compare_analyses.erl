@@ -14,7 +14,7 @@ doit([Module]) when is_list(Module) ->
   {ok, _, Code} = compile:file(Module,[to_core,binary,strict_record_tests]), 
   TypeAnSigs = get_typean_sigs(Code),
   TypeSigSigs = dialyzer_typesig:get_top_level_signatures(Code),
-  DFSigs = get_df_sigs(Code),
+  DFSigs = dialyzer_dataflow:get_top_level_signatures(Code),
   compare_sigs(Module, TypeSigSigs, DFSigs, TypeAnSigs).
 
 get_typean_sigs(Code0) ->
@@ -33,12 +33,6 @@ get_typean_sigs(Code0) ->
 	erl_types:t_fun(VarTypes, Out)
     end,
   [{cerl:var_name(Var), GetFunType(Fun)} || {Var, Fun} <- Defs].
-
-get_df_sigs(Code) ->
-  Tree = dialyzer_dataflow:annotate_module(Code),
-  Defs = cerl:module_defs(Tree),
-  [{cerl:var_name(Var), 
-    proplists:get_value(type, cerl:get_ann(Fun))} || {Var, Fun} <- Defs].
 
 compare_sigs(Module, TypeSigSigs, DFSigs, TypeAnSigs) ->
   compare_sigs_1(list_to_atom(Module), 
