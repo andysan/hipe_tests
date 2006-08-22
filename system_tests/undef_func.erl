@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.40 2006/04/22 08:16:47 kostis Exp $
+%%     $Id: undef_func.erl,v 1.41 2006/08/22 15:42:56 kostis Exp $
 %%
 
 -module(undef_func).
@@ -430,9 +430,10 @@ dialyzer_application_interface() ->
      {dialyzer,cl_check_init_plt,1},
      {dialyzer_dataflow,annotate_module,1},
      {dialyzer_dataflow,doit,1},	%% debugging
+     {dialyzer_dataflow,get_top_level_signatures,1}, %% typesig_tests
      {dialyzer_dataflow,pp,1},		%% debugging
-     {dialyzer_typesig,pp,1},		%% debugging
      {dialyzer_typesig,doit,1},		%% debugging
-     {dialyzer_typesig,get_top_level_signatures,1}
+     {dialyzer_typesig,pp,1},		%% debugging
+     {dialyzer_typesig,get_top_level_signatures,1}   %% typesig_tests + typer
     ].
 
