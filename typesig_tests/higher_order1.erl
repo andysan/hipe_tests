@@ -7,7 +7,7 @@
 %%-------------------------------------------------------------------
 
 -module(higher_order1).
--export([test/1, bar/1]).
+-export([test/1, bar/1, foo/2]).
 
 % spec test(1 | 2) -> ((1 | 2 | 3) -> ok)
 test(X) ->
