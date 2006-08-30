@@ -1,3 +1,7 @@
+%% Program that shows how type information is completely lost when
+%% accessing individual elements of records via the . notation.
+%% This problem should be fixed.	- Kostis
+
 -module(record3).
 -export([m/1]).
 
