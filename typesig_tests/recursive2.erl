@@ -31,7 +31,7 @@ field_width(Fmt0, Args0) ->
 
 value([C|Fmt], Args, F) when is_integer(C), C >= $0, C =< $9 ->
     value(Fmt, Args, 10*F + (C - $0));
-value(Fmt, Args, F) -> %% when is_integer(F) ->
+value(Fmt, Args, F) ->
     {F,Fmt,Args}.
 
 width(F, Fmt, Args) when F < 0 ->
