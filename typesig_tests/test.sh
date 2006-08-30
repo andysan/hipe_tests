@@ -12,7 +12,8 @@ else
 	     orelse1.erl\
 	     product1.erl\
 	     record*.erl\
-	     rec1.erl receive*.erl sequence.erl try*.erl t_union1.erl\
+	     rec1.erl receive*.erl recursive*.erl\
+	     sequence.erl try*.erl t_union1.erl\
 	     tak.erl tuple*.erl"
   ## The following files are currently not giving right results
   #testfiles="guard3.erl record2.erl"
