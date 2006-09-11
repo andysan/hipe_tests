@@ -1,0 +1,4 @@
+{int_mult1,f,2} : OK
+ typesig:  ((integer(),integer()) -> integer())
+ dataflow: ((_,_) -> integer())
+   typean: ((_,_) -> integer())

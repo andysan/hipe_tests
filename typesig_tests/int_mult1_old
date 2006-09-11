@@ -1,0 +1,2 @@
+
+int_mult1:f/2 :: ((integer(),integer()) -> integer())
