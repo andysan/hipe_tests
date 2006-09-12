@@ -7,7 +7,7 @@ else
 	     case*.erl catch1.erl cons.erl \
 	     exit.erl fib*.erl fun*.erl \
 	     guard1.erl guard2.erl guard4.erl guard5.erl\
-	     inf_loop1.erl inf_loop2.erl int_mult1.erl is_funct?.erl karol.erl \
+	     inf_loop*.erl int_mult1.erl is_funct?.erl karol.erl \
 	     letrec1.erl list*.erl \
 	     orelse1.erl\
 	     product1.erl\
