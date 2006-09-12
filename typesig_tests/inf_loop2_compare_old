@@ -19,8 +19,8 @@
  dataflow: ((_,string()) -> string())
    typean: ((_,string()) -> string())
 {inf_loop2,filter_options,3} : OK
- typesig:  ((string(),[any()],[any()]) -> [any()])
- dataflow: ((string(),_,[any()]) -> [any()])
+ typesig:  ((string(),[any()],['binary' | 'export_all' | 'fast' | 'trace' | tuple()]) -> ['binary' | 'export_all' | 'fast' | 'trace' | tuple()])
+ dataflow: ((string(),_,['binary' | 'export_all' | 'fast' | 'trace' | tuple()]) -> ['binary' | 'export_all' | 'fast' | 'trace' | tuple()])
    typean: (([any()],_,[any()]) -> [any()])
 {inf_loop2,find_src,1} : OK
  typesig:  ((atom() | nonempty_possibly_improper_list(atom() | possibly_improper_list() | char(),atom() | [])) -> {'error' | 'ok' | string(),_})

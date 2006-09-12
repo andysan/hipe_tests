@@ -1,0 +1,3 @@
+
+equal1:eq/1 :: (('foo') -> 'foo')
+equal1:exact_eq/1 :: (('foo') -> 'foo')
