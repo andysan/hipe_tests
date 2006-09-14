@@ -1,6 +1,6 @@
 {inf_loop1,adapt,3} : OK
- typesig:  (([] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,_}},_,_) -> {[] | {'clause_tree',{'label',_},{'clause_tree',{_,_,_},_,_},[]},_})
- dataflow: ((_,_,_) -> {[] | {'clause_tree',{'label',_},{'clause_tree',{_,_,_},_,_},[]},_})
+ typesig:  (([] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,_}},_,_) -> {[] | {'clause_tree',{'label',{_,_,_}},{'clause_tree',{_,_,_},_,_},[]},_})
+ dataflow: ((_,_,_) -> {[] | {'clause_tree',{'label',{_,_,_}},{'clause_tree',{_,_,_},_,_},[]},_})
    typean: ((_,_,_) -> {[] | {'clause_tree',{_,_},{_,_,_,_},[]},_})
 {inf_loop1,adapt0,3} : differ!!!
  typesig:  (({'b_clause',[{'match',_,_}],_,_,_,[] | {'b_clause',[{_,_,_}],_,_,_,[] | {'b_clause',[any()],_,_,_,_}}},{'hash_cons',{number(),_},number()},_) -> {{'clause_tree',{'match',_,_},[] | {'clause_tree',{_,_},{_,_,_,_},[]},[] | {'clause_tree',{_,_},{_,_,_,_},[]}},_})
