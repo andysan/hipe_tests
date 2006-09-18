@@ -1,0 +1,4 @@
+
+bin3:construct_float_bin/0 :: (() -> binary())
+bin3:construct_neg_integer_bin/0 :: (() -> {binary(),binary(),binary()})
+bin3:construct_pos_integer_bin/0 :: (() -> {binary(),binary(),binary()})

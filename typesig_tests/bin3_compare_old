@@ -1,0 +1,12 @@
+{bin3,construct_float_bin,0} : OK
+ typesig:  (() -> binary())
+ dataflow: (() -> binary())
+   typean: (() -> binary())
+{bin3,construct_neg_integer_bin,0} : OK
+ typesig:  (() -> {binary(),binary(),binary()})
+ dataflow: (() -> {binary(),binary(),binary()})
+   typean: (() -> {binary(),binary(),binary()})
+{bin3,construct_pos_integer_bin,0} : OK
+ typesig:  (() -> {binary(),binary(),binary()})
+ dataflow: (() -> {binary(),binary(),binary()})
+   typean: (() -> {binary(),binary(),binary()})
