@@ -1,0 +1,2 @@
+
+type_widening1:from_records/1 :: (({'c_binary' | 'c_tuple' | 'c_var',_,_} | {'c_apply' | 'c_cons' | 'c_primop',_,_,_} | {'c_clause' | 'c_receive',_,_,_,_} | {'c_module',_,_,_,_,_} | {'c_bitstr' | 'c_try',_,_,_,_,_,_}) -> {'c_binary' | 'c_tuple' | 'c_var' | 'literal',[],'undefined'} | {'c_apply' | 'c_cons' | 'c_primop',[],'undefined','undefined'} | {'c_clause' | 'c_receive',[],'undefined','undefined','undefined'} | {'c_module',[],'undefined','undefined','undefined','undefined'} | {'c_bitstr' | 'c_try',[],'undefined','undefined','undefined','undefined','undefined'})
