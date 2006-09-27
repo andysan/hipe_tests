@@ -1,3 +1,6 @@
+%% This program is supposed to check inference of integer ranges.
+%% Currently, they are not handled by typesig.  They should be.
+
 -module(range1).
 -export([l/1]).
 
