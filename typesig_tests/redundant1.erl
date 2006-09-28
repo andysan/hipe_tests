@@ -1,3 +1,8 @@
+%% Module that contains various kinds of redundant clauses.
+%% It shows how success typings might overapproximate the return type.
+%% I am not so sure much can be done about it -- perhaps the BEAM
+%% compiler might be interested in warning about these redundancies.
+
 -module(redundant1).
 -export([a/1, b/1, c/1]).
 
