@@ -29,7 +29,7 @@ fi
 
 check_typesig ()
 {
-    $1 -noshell -pa $2 -run dialyzer_typesig doit $3 -s init stop
+    $1 -noshell -pa $2 -run dialyzer_succ_typings doit $3 -s init stop
 }
 
 compare_analyses ()
