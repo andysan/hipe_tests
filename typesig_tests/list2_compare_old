@@ -2,8 +2,8 @@
  typesig:  (() -> none())
  dataflow: (() -> none())
    typean: (() -> 'ok')
-{list2,l_atom,1} : OK
- typesig:  ((none()) -> none())
+{list2,l_atom,1} : differ!!!
+ typesig:  (([atom(),...]) -> 'ok')
  dataflow: (([1,...]) -> none())
    typean: (([1,...]) -> 'ok')
 {list2,l_one,0} : OK

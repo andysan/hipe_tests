@@ -1,0 +1,4 @@
+
+bin2:f/1 :: ((number()) -> number())
+bin2:i/1 :: ((number()) -> number())
+bin2:t/3 :: ((integer(),number(),number()) -> binary())

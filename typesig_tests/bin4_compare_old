@@ -1,0 +1,8 @@
+{bin4,leaf_to_bin,1} : OK
+ typesig:  (([integer()]) -> [binary()])
+ dataflow: ((_) -> [binary()])
+   typean: ((_) -> [binary()])
+{bin4,leaf_to_bin,2} : OK
+ typesig:  (([integer()],[binary()]) -> [binary()])
+ dataflow: ((_,[binary()]) -> [binary()])
+   typean: ((_,[binary()]) -> [binary()])

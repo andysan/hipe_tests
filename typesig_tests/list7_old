@@ -1,2 +1,2 @@
 
-list7:read_entity_body/2 :: ((_,[any()]) -> {'ok',[any()]})
+list7:read_entity_body/2 :: ((number(),[any()]) -> {'ok',[any()]})

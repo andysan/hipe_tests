@@ -23,7 +23,7 @@
  dataflow: ((_) -> 'ok')
    typean: ((_) -> 'ok')
 {guard2,t7,1} : OK
- typesig:  ((_) -> 'ok')
+ typesig:  (('false') -> 'ok')
  dataflow: ((_) -> 'ok')
    typean: ((_) -> 'ok')
 {guard2,t8,1} : OK
