@@ -4,7 +4,7 @@
    typean: ((_,_) -> [any()])
 {recursive2,collect_cseq,2} : OK
  typesig:  ((_,_) -> {{'tag' | integer(),'left' | 'right'},_,_})
- dataflow: ((_,_) -> {{'tag' | integer(),'left' | 'right'},_,_})
+ dataflow: ((_,_) -> {{_,'left' | 'right'},_,_})
    typean: ((_,_) -> {{_,'left' | 'right'},_,_})
 {recursive2,field_val,2} : OK
  typesig:  ((_,_) -> {'tag' | integer(),_,_})
