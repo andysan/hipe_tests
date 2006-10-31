@@ -1,0 +1,4 @@
+{fun9,t,2} : OK
+ typesig:  ((function(),[any(),...]) -> {_,function()})
+ dataflow: ((_,_) -> {_,function()})
+   typean: ((_,_) -> {_,_})

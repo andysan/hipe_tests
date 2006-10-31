@@ -1,0 +1,2 @@
+
+fun9:t/2 :: ((function(),[any(),...]) -> {_,function()})
