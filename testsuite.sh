@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.56 2006/04/25 00:35:31 mikpe Exp $
+## $Id: testsuite.sh,v 1.57 2006/10/31 12:38:34 kostis Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -92,10 +92,6 @@ do
 	    rts_options="-smp"
 	    excluded_tests="${smp_excl_tests}"
             ;;
-     --shared)
-	    shift
-	    rts_options="-shared"
-            ;;
      --hybrid)
 	    shift
 	    rts_options="-hybrid"
@@ -146,7 +142,7 @@ if test -n "${help}" -o -z "${OTP_DIR}" -o $# -gt 1; then
 =============================================================================
  Usage: testsuite.sh [--rts_opts "rts_opts"] [--comp_opts "comp_opts"]
                      [--add "add_list"]  [--exclude "exclude_list"]
-                     [--only "test_list"] [--smp] [--shared] [--hybrid]
+                     [--only "test_list"] [--smp] [--hybrid]
                      [--system] [--types] [--core] [--no_native] [-q|--quiet]
                      [--list] [--default] [--help] [OTP_DIR]
  where: OTP_DIR   -- directory of OTP/Erlang system; default is current dir.
@@ -159,9 +155,7 @@ if test -n "${help}" -o -z "${OTP_DIR}" -o $# -gt 1; then
                      both --exclude and --only can be specified at once
         smp       -- a shorthand option, equivalent to:
                        --rts_options "-smp" --exclude "${smp_excl_tests}"
-        shared    -- a shorthand option, equivalent to:
-                       --rts_options "-shared"
-        hybrid    -- equivalent to:
+        hybrid    -- a shorthand option, equivalent to:
                        --rts_options "-hybrid"
         hybrid-a  -- like the --hybrid option but with analysis enabled
 	system    -- runs only system_tests which check consistency of HiPE;
@@ -213,7 +207,7 @@ if test ! -x "$HIPE_RTS"; then
     echo "Can't execute $HIPE_RTS" >$MSG_FILE
     echo "Aborted testsuite on $HOSTNAME..." >> $MSG_FILE
     if test -z "$quiet"; then
-	mail -s "Testsuite aborted" $USER < $MSG_FILE
+	mail -s "HiPE testsuite aborted" $USER < $MSG_FILE
     fi
     rm -f $MSG_FILE
     exit
@@ -359,7 +353,7 @@ if test -s $RES_FILE; then
 	    echo "Details:" >> $MSG_FILE
 	    echo >> $MSG_FILE
 	    cat $RES_FILE >> $MSG_FILE
-	    mail -s "Testsuite failed" $USER < $MSG_FILE
+	    mail -s "HiPE testsuite failed" $USER < $MSG_FILE
 	    rm -f $MSG_FILE
 	    cp $RES_FILE $NEW_RES
         else
