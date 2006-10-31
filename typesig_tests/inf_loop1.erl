@@ -22,17 +22,17 @@
 -record(hash_cons, {tree=gb_trees:empty(), number=0}).
 
 b_clause_segments(#b_clause{segments=X}) -> X.
-match_tag(#match{tag=X})-> X.
-match_val(#match{val=X})-> X.
+match_tag(#match{tag=X}) -> X.
+match_val(#match{val=X}) -> X.
 
-%%---------------------------------------------------------------------
+%%-------------------------------------------------------------------
 %% The culprit are these two mutually recursive functions: For
 %% example, comment these two out (there is an appropriate export
 %% directive that needs commenting too) and you will see that some
 %% types are inferred for the remaining functions.
-%%---------------------------------------------------------------------
+%%-------------------------------------------------------------------
 
-adapt([], Hash, _ITree)->
+adapt([], Hash, _ITree) ->
   {[], Hash};
 adapt(BClause, Hash=#hash_cons{tree=Tree, number=Number}, ITree) ->
   NewLabelName = cerl:c_int(Number),
@@ -46,7 +46,7 @@ adapt0(BClause, Hash, ITree) ->
   BinSeg = choose_binseg(BClause),
   case BinSeg of
     #match{} ->
-      MatchSet=get_all_similar_match(BinSeg,BClause),
+      MatchSet = get_all_similar_match(BinSeg,BClause),
       case gb_sets:size(MatchSet) of
 	1 ->
 	  NewSuccClause = remove_succ_match(BinSeg, BClause, ITree),
@@ -57,7 +57,7 @@ adapt0(BClause, Hash, ITree) ->
       end
   end.
 
-%%-----------------------------------------------------------------------------
+%%-------------------------------------------------------------------
 
 get_all_similar_match(Match, BClause) ->
   List = get_all_similar_match(Match, BClause, []),
@@ -107,7 +107,7 @@ mismatch(Match, BinSegs, ITree) ->
   mismatch(Match,BinSegs, [], ITree).
 
 mismatch(Match=#match{tag=Tag, val=Val1}, [#match{tag=Tag, val=Val2}|Rest], Acc, ITree) ->
-  case cerl:concrete(Val1)==cerl:concrete(Val2) of
+  case cerl:concrete(Val1) == cerl:concrete(Val2) of
     true -> mismatch(Match, Rest, Acc, ITree);
     false -> true
   end;
@@ -194,7 +194,7 @@ remove_fail_match(_Match, [], _ITree) ->
   [].
 
 match(Match=#match{tag=Tag, val=Val1}, [#match{tag=Tag, val=Val2}|Rest], ITree) ->
-  case cerl:concrete(Val1)==cerl:concrete(Val2) of
+  case cerl:concrete(Val1) == cerl:concrete(Val2) of
     true -> true;
     false -> match(Match, Rest, ITree)
   end;
@@ -240,7 +240,7 @@ get_largest_count([BinSeg|Rest], CountTree, Top={_,Count}) ->
   NewTop =
     case BinSeg of
       #match{} ->
-	Tag=match_tag(BinSeg),
+	Tag = match_tag(BinSeg),
 	{value, {_, MC, _, _}} = gb_trees:lookup(Tag, CountTree),
 	case MC >= Count of
 	  true -> {BinSeg, MC};
