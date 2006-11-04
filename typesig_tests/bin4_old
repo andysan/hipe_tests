@@ -1,3 +1,4 @@
 
-bin4:leaf_to_bin/1 :: (([integer()]) -> [binary()])
-bin4:leaf_to_bin/2 :: (([integer()],[binary()]) -> [binary()])
+bin4:intlist_to_binlist/2 :: (([integer()],[binary()]) -> [binary()])
+bin4:list_to_binlist/1 :: (([integer()]) -> {[binary()],[binary()]})
+bin4:rnglist_to_binlist/2 :: (([integer()],[binary()]) -> [binary()])

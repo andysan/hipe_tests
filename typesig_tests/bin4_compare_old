@@ -1,8 +1,12 @@
-{bin4,leaf_to_bin,1} : OK
- typesig:  (([integer()]) -> [binary()])
- dataflow: ((_) -> [binary()])
-   typean: ((_) -> [binary()])
-{bin4,leaf_to_bin,2} : OK
+{bin4,intlist_to_binlist,2} : OK
+ typesig:  (([integer()],[binary()]) -> [binary()])
+ dataflow: ((_,[binary()]) -> [binary()])
+   typean: ((_,[binary()]) -> [binary()])
+{bin4,list_to_binlist,1} : OK
+ typesig:  (([integer()]) -> {[binary()],[binary()]})
+ dataflow: ((_) -> {[binary()],[binary()]})
+   typean: ((_) -> {[binary()],[binary()]})
+{bin4,rnglist_to_binlist,2} : OK
  typesig:  (([integer()],[binary()]) -> [binary()])
  dataflow: ((_,[binary()]) -> [binary()])
    typean: ((_,[binary()]) -> [binary()])
