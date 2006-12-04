@@ -4,6 +4,7 @@
           {ok,"compiler"},
           {ok,"kernel"},
           {ok,"dialyzer"},
+          {ok,"typer"},
           {ok,"tools"},
           {ok,"appmon"},
           {ok,"asn1"},
