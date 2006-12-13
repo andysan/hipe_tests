@@ -1,4 +1,4 @@
 {bin5,t,1} : OK
- typesig:  ((binary()) -> [range(0, 31),...])
- dataflow: ((_) -> [range(0, 31),...])
-   typean: ((_) -> [range(0, 31),...])
+ typesig:  ((binary()) -> [byte(),...])
+ dataflow: ((_) -> [byte(),...])
+   typean: ((_) -> [byte(),...])
