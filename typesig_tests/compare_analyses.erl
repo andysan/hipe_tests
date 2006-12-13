@@ -11,11 +11,13 @@
 
 doit([Module]) when is_list(Module) ->
   wait_init(),
-  {ok, _, Code} = compile:file(Module,[to_core,binary,strict_record_tests]), 
+  AbstrCode = dialyzer_utils:get_abstract_code_from_src(Module),
+  Code = dialyzer_utils:get_core_from_abstract_code(AbstrCode),
+  Records = dialyzer_utils:get_record_info(AbstrCode),
   TypeAnSigs = get_typean_sigs(Code),
-  TypeSigSigs = dialyzer_succ_typings:get_top_level_signatures(Code),
-  DFSigs = dialyzer_dataflow:get_top_level_signatures(Code),
-  compare_sigs(Module, TypeSigSigs, DFSigs, TypeAnSigs).
+  TypeSigSigs = dialyzer_succ_typings:get_top_level_signatures(Code, Records),
+  DFSigs = dialyzer_dataflow:get_top_level_signatures(Code, Records),
+  compare_sigs(Module, TypeSigSigs, DFSigs, TypeAnSigs, Records).
 
 get_typean_sigs(Code0) ->
   Code = cerl_typean:core_transform(Code0, []),
@@ -34,38 +36,37 @@ get_typean_sigs(Code0) ->
     end,
   [{cerl:var_name(Var), GetFunType(Fun)} || {Var, Fun} <- Defs].
 
-compare_sigs(Module, TypeSigSigs, DFSigs, TypeAnSigs) ->
+compare_sigs(Module, TypeSigSigs, DFSigs, TypeAnSigs, Records) ->
   compare_sigs_1(list_to_atom(Module), 
 		 lists:keysort(1, TypeSigSigs),
 		 lists:keysort(1, DFSigs),
-		 lists:keysort(1, TypeAnSigs)).
+		 lists:keysort(1, TypeAnSigs),
+		 Records).
 
 compare_sigs_1(M, 
 	       [{{F, A}, TSType}|TSLeft], 
 	       [{{F, A}, DFType}|DFLeft], 
-	       [{{F, A}, TAType}|TALeft]) ->
+	       [{{F, A}, TAType}|TALeft],
+	       Records) ->
   case (F == module_info andalso A =< 1) of
     true -> ok;	%% no need to show the module_info/[0,1] type signatures
     false ->
+      TSTypeString = erl_types:t_to_string(TSType, Records),
+      DFTypeString = erl_types:t_to_string(DFType, Records),
+      TATypeString = erl_types:t_to_string(TAType, Records),
       case erl_types:t_is_subtype(TSType, DFType) 
 	andalso erl_types:t_is_subtype(DFType, TAType) of
         true ->
           io:format("~w : OK\n typesig:  ~s\n dataflow: ~s\n   typean: ~s\n", 
-		    [{M, F, A}, 
-		     erl_types:t_to_string(TSType),
-		     erl_types:t_to_string(DFType),
-		     erl_types:t_to_string(TAType)]);
+		    [{M, F, A}, TSTypeString, DFTypeString, TATypeString]);
         false ->
           io:format("~w : differ!!!\n typesig:  ~s\n"
 		    " dataflow: ~s\n   typean: ~s\n", 
-		    [{M, F, A}, 
-		     erl_types:t_to_string(TSType),
-		     erl_types:t_to_string(DFType),
-		     erl_types:t_to_string(TAType)])
+		    [{M, F, A}, TSTypeString, DFTypeString, TATypeString])
       end
   end,
-  compare_sigs_1(M, TSLeft, DFLeft, TALeft);
-compare_sigs_1(_M, [], [], []) ->
+  compare_sigs_1(M, TSLeft, DFLeft, TALeft, Records);
+compare_sigs_1(_M, [], [], [], _Records) ->
   ok.
 
 wait_init() ->
