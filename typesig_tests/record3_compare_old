@@ -3,6 +3,6 @@
  dataflow: ((_,_) -> tuple())
    typean: ((_,_) -> tuple())
 {record3,m,1} : OK
- typesig:  (({'dict',_,_,tuple()}) -> {'dict',_,_,tuple()})
- dataflow: ((_) -> {'dict',_,_,tuple()})
+ typesig:  ((#dict{segs=tuple()}) -> #dict{segs=tuple()})
+ dataflow: ((_) -> #dict{segs=tuple()})
    typean: ((_) -> tuple())

@@ -1,12 +1,12 @@
 {record2,bar,1} : OK
- typesig:  (({'foo',1}) -> {'foo',1})
- dataflow: (({'foo',1} | {'an','improper','record'}) -> {'foo',1})
-   typean: (({'foo',1} | {'an','improper','record'}) -> {'foo',1} | {'an','improper','record'})
+ typesig:  ((#foo{bar=1}) -> #foo{bar=1})
+ dataflow: ((#foo{bar=1} | {'an','improper','record'}) -> #foo{bar=1})
+   typean: ((#foo{bar=1} | {'an','improper','record'}) -> #foo{bar=1} | {'an','improper','record'})
 {record2,t1,0} : OK
  typesig:  (() -> none())
- dataflow: (() -> {'foo',1})
-   typean: (() -> {'foo',1} | {'an','improper','record'})
+ dataflow: (() -> #foo{bar=1})
+   typean: (() -> #foo{bar=1} | {'an','improper','record'})
 {record2,t2,0} : OK
- typesig:  (() -> {'foo',1})
- dataflow: (() -> {'foo',1})
-   typean: (() -> {'foo',1} | {'an','improper','record'})
+ typesig:  (() -> #foo{bar=1})
+ dataflow: (() -> #foo{bar=1})
+   typean: (() -> #foo{bar=1} | {'an','improper','record'})

@@ -1,5 +1,5 @@
 {is_record1,t1,1} : OK
- typesig:  (({'foo',_}) -> 'ok')
+ typesig:  ((#foo{}) -> 'ok')
  dataflow: ((_) -> 'ok')
    typean: ((_) -> 'ok')
 {is_record1,t2,2} : OK

@@ -1,16 +1,16 @@
 {record1,t1,1} : OK
- typesig:  (({'foo',_,_}) -> {'foo',_,_})
- dataflow: ((_) -> {'foo',_,_})
+ typesig:  ((#foo{}) -> #foo{})
+ dataflow: ((_) -> #foo{})
    typean: ((_) -> any())
 {record1,t2,1} : OK
- typesig:  (({'foo',1,_}) -> {'foo',1,_})
- dataflow: ((_) -> {'foo',1,_})
-   typean: ((_) -> {'foo',1,_})
+ typesig:  ((#foo{bar=1}) -> #foo{bar=1})
+ dataflow: ((_) -> #foo{bar=1})
+   typean: ((_) -> #foo{bar=1})
 {record1,t3,1} : OK
- typesig:  (({'foo',1 | 3,2 | 3}) -> {'foo',1 | 3,2 | 3})
- dataflow: ((_) -> {'foo',_,_})
+ typesig:  ((#foo{bar=1 | 3,baz=2 | 3}) -> #foo{bar=1 | 3,baz=2 | 3})
+ dataflow: ((_) -> #foo{})
    typean: ((_) -> any())
 {record1,t4,0} : OK
  typesig:  (() -> none())
- dataflow: (() -> {'foo',_,_})
+ dataflow: (() -> #foo{})
    typean: (() -> any())
