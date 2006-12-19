@@ -39,11 +39,11 @@
  dataflow: (([integer()],atom(),_) -> {'error','source_file_not_found'} | {'ok',_})
    typean: (([number()],atom(),_) -> {'error','source_file_not_found'} | {'ok',_})
 {inf_loop2,join,2} : OK
- typesig:  ((atom() | possibly_improper_list(),atom() | possibly_improper_list()) -> [integer()])
+ typesig:  ((atom() | possibly_improper_list(),atom() | [atom() | [any()] | integer()]) -> [integer()])
  dataflow: ((_,_) -> [integer()])
    typean: ((_,_) -> [number()])
 {inf_loop2,join1,4} : OK
- typesig:  ((possibly_improper_list(),possibly_improper_list(),[integer()],atom() | {atom(),atom()}) -> [integer()])
+ typesig:  (([atom() | [any()] | integer()],[atom() | [any()] | integer()],[integer()],atom() | {atom(),atom()}) -> [integer()])
  dataflow: ((_,possibly_improper_list(),[integer()],atom() | {atom(),atom()}) -> [integer()])
    typean: ((_,_,[number()],_) -> [number()])
 {inf_loop2,major_os_type,0} : OK
@@ -51,7 +51,7 @@
  dataflow: (() -> atom() | {atom(),atom()})
    typean: (() -> any())
 {inf_loop2,make_abs_path,2} : OK
- typesig:  ((atom() | possibly_improper_list(),atom() | possibly_improper_list()) -> [integer()])
+ typesig:  ((atom() | possibly_improper_list(),atom() | [atom() | [any()] | integer()]) -> [integer()])
  dataflow: ((_,_) -> [integer()])
    typean: ((_,_) -> [number()])
 {inf_loop2,maybe_remove_dirsep,2} : OK
@@ -59,7 +59,7 @@
  dataflow: (([integer()],atom() | {atom(),atom()}) -> [integer()])
    typean: (([number()],_) -> [number()])
 {inf_loop2,pathtype,1} : OK
- typesig:  ((possibly_improper_list()) -> 'absolute' | 'relative')
+ typesig:  (([atom() | [any()] | integer()]) -> 'absolute' | 'relative')
  dataflow: ((possibly_improper_list()) -> 'absolute' | 'relative')
    typean: ((_) -> 'absolute' | 'relative')
 {inf_loop2,readable_file,1} : OK
@@ -91,7 +91,7 @@
  dataflow: (('undefined' | string(),atom(),_) -> {'error' | 'ok' | [integer()],_})
    typean: (('undefined' | [integer()],atom(),_) -> {'error' | 'ok' | [number()],_})
 {inf_loop2,try_file,4} : OK
- typesig:  ((atom() | possibly_improper_list(),[integer()],atom(),_) -> {'error' | 'ok' | string(),_})
+ typesig:  ((atom() | [atom() | [any()] | integer()],[integer()],atom(),_) -> {'error' | 'ok' | string(),_})
  dataflow: ((_,[integer()],atom(),_) -> {'error' | 'ok' | [integer()],_})
    typean: ((_,[number()],atom(),_) -> {'error' | 'ok' | [number()],_})
 {inf_loop2,try_rule,4} : OK
@@ -99,6 +99,6 @@
  dataflow: ((string(),[integer()],_,_) -> 'error' | {'ok',[integer()]})
    typean: (([any()],_,_,_) -> 'error' | {'ok',[number()]})
 {inf_loop2,unix_pathtype,1} : OK
- typesig:  ((_) -> 'absolute' | 'relative')
+ typesig:  (([any()]) -> 'absolute' | 'relative')
  dataflow: ((_) -> 'absolute' | 'relative')
    typean: ((_) -> 'absolute' | 'relative')
