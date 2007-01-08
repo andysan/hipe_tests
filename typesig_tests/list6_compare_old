@@ -3,13 +3,13 @@
  dataflow: ((_,possibly_improper_list()) -> possibly_improper_list())
    typean: ((_,_) -> any())
 {list6,flatlength,1} : OK
- typesig:  (([any()]) -> integer())
- dataflow: ((_) -> integer())
-   typean: ((_) -> integer())
+ typesig:  (([any()]) -> non_neg_integer())
+ dataflow: ((_) -> non_neg_integer())
+   typean: ((_) -> non_neg_integer())
 {list6,flatlength,2} : OK
- typesig:  (([any()],integer()) -> integer())
- dataflow: ((_,integer()) -> integer())
-   typean: ((_,integer()) -> integer())
+ typesig:  (([any()],non_neg_integer()) -> non_neg_integer())
+ dataflow: ((_,non_neg_integer()) -> non_neg_integer())
+   typean: ((_,non_neg_integer()) -> non_neg_integer())
 {list6,flatten,1} : OK
  typesig:  (([any()]) -> possibly_improper_list())
  dataflow: ((_) -> possibly_improper_list())

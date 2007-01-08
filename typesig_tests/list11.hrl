@@ -1,2 +1,2 @@
--record(label, {name}).
+-record(label, {name::integer()}).
 

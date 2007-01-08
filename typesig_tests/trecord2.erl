@@ -14,7 +14,7 @@
 
 -record(icode, {is_closure    :: bool()
 	        %% Uncomment below and see what happens
-	       ,closure_arity :: integer() %% | 'undefined'
+	       ,closure_arity :: integer() % | 'undefined'
 	       ,info=[]}).
 
 mk_icode(Closure) ->

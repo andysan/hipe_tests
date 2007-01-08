@@ -1,8 +1,8 @@
 {fib4,fib,1} : OK
- typesig:  ((integer()) -> integer())
- dataflow: ((_) -> integer())
-   typean: ((_) -> integer())
+ typesig:  ((non_neg_integer()) -> non_neg_integer())
+ dataflow: ((_) -> non_neg_integer())
+   typean: ((_) -> non_neg_integer())
 {fib4,fibaux,4} : OK
- typesig:  ((integer(),integer(),integer(),integer()) -> integer())
- dataflow: ((integer(),integer(),integer(),_) -> integer())
-   typean: ((integer(),integer(),integer(),_) -> integer())
+ typesig:  ((non_neg_integer(),pos_integer(),non_neg_integer(),non_neg_integer()) -> pos_integer())
+ dataflow: ((non_neg_integer(),pos_integer(),non_neg_integer(),_) -> pos_integer())
+   typean: ((non_neg_integer(),pos_integer(),non_neg_integer(),_) -> pos_integer())

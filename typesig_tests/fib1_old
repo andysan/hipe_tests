@@ -1,2 +1,2 @@
 
-fib1:fib/1 :: ((integer()) -> integer())
+fib1:fib/1 :: ((non_neg_integer()) -> pos_integer())

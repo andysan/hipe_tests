@@ -4,7 +4,7 @@
 -module(fib4).
 -export([fib/1]).
 
-fib(0) -> 0;
+fib(0) -> 1;
 fib(N) ->
     fibaux(0,1,0,N).
 

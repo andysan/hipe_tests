@@ -1,4 +1,4 @@
 
-tak:loop/2 :: ((integer(),integer()) -> integer())
+tak:loop/2 :: ((0 | 1 | 2,integer()) -> integer())
 tak:tak/3 :: ((integer(),integer(),integer()) -> integer())
 tak:test/0 :: (() -> integer())
