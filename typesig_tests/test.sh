@@ -13,6 +13,7 @@ else
 	     mfalist.erl\
 	     orelse1.erl\
 	     product1.erl\
+	     range*.erl\
 	     rec*.erl refined_bug1.erl sequence.erl try*.erl t_union1.erl\
 	     tak.erl trecord*.erl tuple*.erl type_widening1.erl"
   ## The following files are currently not giving right results

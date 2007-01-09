@@ -1,5 +1,5 @@
 {karol,expand_args_any,1} : OK
- typesig:  (('karol' | integer()) -> [[95,...]])
+ typesig:  (('karol' | non_neg_integer()) -> [[95,...]])
  dataflow: ((_) -> [[95,...]])
    typean: ((_) -> [[95,...]])
 {karol,three,0} : OK

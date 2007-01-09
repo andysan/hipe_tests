@@ -1,5 +1,5 @@
 {tak,loop,2} : OK
- typesig:  ((integer(),integer()) -> integer())
+ typesig:  ((0 | 1 | 2,integer()) -> integer())
  dataflow: ((integer(),integer()) -> integer())
    typean: ((integer(),integer()) -> integer())
 {tak,tak,3} : OK
