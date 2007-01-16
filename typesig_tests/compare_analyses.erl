@@ -13,7 +13,7 @@ doit([Module]) when is_list(Module) ->
   wait_init(),
   AbstrCode = dialyzer_utils:get_abstract_code_from_src(Module),
   Code = dialyzer_utils:get_core_from_abstract_code(AbstrCode),
-  Records = dialyzer_utils:get_record_info(AbstrCode),
+  {ok, Records} = dialyzer_utils:get_record_info(AbstrCode),
   TypeAnSigs = get_typean_sigs(Code),
   TypeSigSigs = dialyzer_succ_typings:get_top_level_signatures(Code, Records),
   DFSigs = dialyzer_dataflow:get_top_level_signatures(Code, Records),

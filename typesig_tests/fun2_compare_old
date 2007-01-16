@@ -1,7 +1,7 @@
 {fun2,mk_reader,2} : OK
- typesig:  ((_,_) -> (() -> possibly_improper_list(any(),(() -> possibly_improper_list()) | [])))
- dataflow: ((_,_) -> (() -> possibly_improper_list()))
-   typean: ((_,_) -> (() -> possibly_improper_list()))
+ typesig:  ((_,_) -> (() -> possibly_improper_list(any(),(() -> possibly_improper_list(any(),(() -> any()) | [])) | [])))
+ dataflow: ((_,_) -> (() -> possibly_improper_list(any(),(() -> any()) | [])))
+   typean: ((_,_) -> (() -> possibly_improper_list(any(),(() -> any()) | [])))
 {fun2,read_term,2} : OK
  typesig:  ((((_,_) -> any()),_) -> 'eof' | {'ok',_})
  dataflow: ((_,_) -> 'eof' | {'ok',_})

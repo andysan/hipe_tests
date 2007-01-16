@@ -3,6 +3,6 @@
  dataflow: ((_) -> [integer()] | {'error','einval'})
    typean: ((_) -> [any()] | {'error','einval'})
 {try4,file_name_1,1} : OK
- typesig:  ((atom() | possibly_improper_list(atom() | possibly_improper_list() | (1..255),atom() | [])) -> string())
+ typesig:  ((atom() | possibly_improper_list(atom() | possibly_improper_list(atom() | possibly_improper_list(any(),atom() | []) | (1..255),atom() | []) | (1..255),atom() | [])) -> string())
  dataflow: ((_) -> [integer()])
    typean: ((_) -> [any()])

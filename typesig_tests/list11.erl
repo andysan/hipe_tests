@@ -5,6 +5,13 @@
 %% Answer: Because the second parameter can be anything during
 %% the loop due to the call to label_name/1 and then just before
 %% the leaf call turn back to an integer.
+%%
+%% Revised answer: It can find that the second argument is
+%% integer()|'undefined' since highest_label/2 is not exported it is
+%% fed with 0 and then in the loop it will either stay the same or
+%% become integer()|'undefined' since we are getting it from
+%% label_name/1. The above answer is true if we export highest_label/2.
+%%
 %%--------------------------------------------------------------
 -module(list11).
 -export([highest_label/1]).
