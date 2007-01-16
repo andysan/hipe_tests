@@ -7,6 +7,7 @@
 %%%-------------------------------------------------------------------
 -module(trecord1).
 
+-record(rec0, {a}).
 -record(rec1, {a :: float()}).
 -record(rec2, {bar=1 :: integer(),
 	       baz::#rec1{}}).
