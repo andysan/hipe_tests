@@ -7,9 +7,11 @@
 -export([test/0,compile/1]).
 
 test() ->
-    Self = self(),	%% get the parent process
-    c:c(?MODULE,[native,{hipe,[{timeout,1}]}]),	%% This will kill the process
-    Self == self().	%% make sure the parent process stays the same
+    error_logger:tty(false), % disable printouts of error reports
+    Self = self(),	     % get the parent process
+    c:c(?MODULE,[native,{hipe,[{timeout,1}]}]),	% This will kill the process
+    Self =:= self(),	     % make sure the parent process stays the same
+    ok.
 
 compile(_Flags) ->
-    {ok,?MODULE}.	%% no reason for native code compilation, really
+    {ok, ?MODULE}.	     % no reason for native code compilation, really
