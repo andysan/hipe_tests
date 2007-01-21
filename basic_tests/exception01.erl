@@ -5,9 +5,9 @@
 %%  Purpose  :  Checks correct handling of exceptions.
 %%  History  :  * 2001-09-17 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
-%%    $Author: richardc $
-%%    $Date: 2004/10/27 21:51:27 $
-%%    $Revision: 1.8 $
+%%    $Author: kostis $
+%%    $Date: 2007/01/21 11:01:18 $
+%%    $Revision: 1.9 $
 %% ====================================================================
 
 -module(exception01).
@@ -16,6 +16,7 @@
 -export([bad_guy/2]).
 
 test() ->
+    error_logger:tty(false),	% disable printouts of error reports
     pending_errors().
     
 compile(Flags) ->
@@ -37,7 +38,7 @@ pending_errors() ->
 
 %% ================== AUXILIARY FUNCTIONS =============================
 
-bad_guy(pe_badarith, Other) when Other+1 == 0 -> % badarith (suppressed)
+bad_guy(pe_badarith, Other) when Other+1 =:= 0 -> % badarith (suppressed)
     ok;
 bad_guy(pe_badarg, Other) when length(Other) > 0 -> % badarg (suppressed)
     ok;
@@ -81,7 +82,7 @@ pending(First, Second, Expected) ->
     pending_exit_message([First, Second], Expected).
 
 pending_catched(First, Second, Expected) ->
-    ok = io:format("Catching bad_guy(~p, ~p)\n", [First, Second]),
+    %% ok = io:format("Catching bad_guy(~p, ~p)\n", [First, Second]),
     case catch bad_guy(First, Second) of
         {'EXIT', Reason} ->
             pending(Reason, bad_guy, [First, Second], Expected);
@@ -90,8 +91,8 @@ pending_catched(First, Second, Expected) ->
     end.
 
 pending_exit_message(Args, Expected) ->
-    ok = io:format("Trapping exits from spawn_link(~p, ~p, ~p)\n",
-                   [?MODULE, bad_guy, Args]),
+    %% ok = io:format("Trapping exits from spawn_link(~p, ~p, ~p)\n",
+    %%                [?MODULE, bad_guy, Args]),
     process_flag(trap_exit, true),
     Pid = spawn_link(?MODULE, bad_guy, Args),
     receive
@@ -108,20 +109,20 @@ pending_exit_message(Args, Expected) ->
 %% 	Func, Args, _Code)
 %%   when atom(Bif), list(BifArgs), length(Args) == Arity ->
 %%     ok;
-pending({badarg,Trace}, _, _, _) when list(Trace) ->
+pending({badarg,Trace}, _, _, _) when is_list(Trace) ->
     ok;
 %% pending({undef,[{non_existing_module,foo,[]}|_]}, _, _, _) ->
 %%     ok;
-pending({undef,Trace}, _, _, _)  when list(Trace) ->
+pending({undef,Trace}, _, _, _)  when is_list(Trace) ->
     ok;
 %% pending({function_clause,[{?MODULE,Func,Args}|_]}, Func, Args, _Code) ->
 %%     ok;
-pending({function_clause,Trace}, _, _, _) when list(Trace) ->
+pending({function_clause,Trace}, _, _, _) when is_list(Trace) ->
     ok;
 %% pending({Code,[{?MODULE,Func,Arity}|_]}, Func, Args, Code)
 %%   when length(Args) == Arity ->
 %%     ok;
-pending({Code,Trace}, _, _, Code) when list(Trace) ->
+pending({Code,Trace}, _, _, Code) when is_list(Trace) ->
     ok;
 pending(Reason, _Function, _Args, _Code) ->
     exit({bad_exit_reason,Reason}).
