@@ -71,8 +71,8 @@
  dataflow: ((#match{},_,_) -> [] | #b_clause{next_clause=[] | #b_clause{next_clause=[] | {_,_,_,_,_,_}}})
    typean: ((_,_,_) -> [] | #b_clause{next_clause=[] | #b_clause{next_clause=[] | {_,_,_,_,_,_}}})
 {inf_loop1,remove_succ_match,3} : OK
- typesig:  ((#match{},[] | #b_clause{segments=possibly_improper_list(),next_clause=[] | #b_clause{segments=possibly_improper_list(),next_clause=[] | #b_clause{segments=possibly_improper_list(),next_clause=[] | {_,_,_,_,_,_}}}},_) -> [] | #b_clause{segments='true' | [any()],next_clause=[] | #b_clause{segments='true' | [any()],next_clause=[] | {_,_,_,_,_,_}}})
- dataflow: ((#match{},_,_) -> [] | #b_clause{segments='true' | [any()],next_clause=[] | #b_clause{segments='true' | [any()],next_clause=[] | {_,_,_,_,_,_}}})
+ typesig:  ((#match{},[] | #b_clause{segments=possibly_improper_list(),next_clause=[] | #b_clause{segments=possibly_improper_list(),next_clause=[] | #b_clause{segments=possibly_improper_list(),next_clause=[] | {_,_,_,_,_,_}}}},_) -> [] | #b_clause{segments=[any()],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}})
+ dataflow: ((#match{},_,_) -> [] | #b_clause{segments=[any()],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}})
    typean: ((_,_,_) -> [] | #b_clause{segments='true' | [any()],next_clause=[] | #b_clause{segments='true' | [any()],next_clause=[] | {_,_,_,_,_,_}}})
 {inf_loop1,simpl_count,1} : OK
  typesig:  ((#b_clause{segments=[#match{}],next_clause=[] | #b_clause{segments=[{_,_,_}],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}}}) -> {_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}})

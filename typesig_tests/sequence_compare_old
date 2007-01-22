@@ -1,6 +1,6 @@
 {sequence,add,3} : OK
- typesig:  ((non_neg_integer(),5 | 10,5 | 10) -> 'ok')
- dataflow: ((atom() | integer(),5 | 7 | 10,5 | 7 | 10) -> 'ok')
+ typesig:  ((byte(),5 | 10,5 | 10) -> 'ok')
+ dataflow: ((atom() | byte(),5 | 7 | 10,5 | 7 | 10) -> 'ok')
    typean: ((_,5 | 7 | 10,5 | 7 | 10) -> 'ok')
 {sequence,bad_add,2} : OK
  typesig:  ((none(),none()) -> none())

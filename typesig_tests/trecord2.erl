@@ -17,6 +17,6 @@
 	       ,closure_arity :: integer() % | 'undefined'
 	       ,info=[]}).
 
-mk_icode(Closure) ->
+mk_icode(Closure) when Closure =/= 'undefined' ->
   #icode{is_closure=Closure}.
 

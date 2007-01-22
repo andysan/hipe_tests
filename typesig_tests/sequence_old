@@ -1,5 +1,5 @@
 
-sequence:add/3 :: ((non_neg_integer(),5 | 10,5 | 10) -> 'ok')
+sequence:add/3 :: ((byte(),5 | 10,5 | 10) -> 'ok')
 sequence:bad_add/2 :: ((none(),none()) -> none())
 sequence:t1/0 :: (() -> 'ok')
 sequence:t2/1 :: ((none()) -> none())
