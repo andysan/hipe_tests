@@ -6,7 +6,7 @@
  typesig:  (() -> none())
  dataflow: (() -> none())
    typean: (() -> none())
-{lfold1,lfold_ok,0} : OK
+{lfold1,lfold_sum,0} : OK
  typesig:  (() -> number())
  dataflow: (() -> number())
    typean: (() -> number())
