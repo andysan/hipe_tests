@@ -1,0 +1,4 @@
+
+lfold1:lfold_nil/0 :: (() -> 0)
+lfold1:lfold_none/0 :: (() -> none())
+lfold1:lfold_ok/0 :: (() -> number())

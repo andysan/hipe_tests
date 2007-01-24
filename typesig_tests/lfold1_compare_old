@@ -1,0 +1,12 @@
+{lfold1,lfold_nil,0} : OK
+ typesig:  (() -> 0)
+ dataflow: (() -> 0)
+   typean: (() -> 0)
+{lfold1,lfold_none,0} : OK
+ typesig:  (() -> none())
+ dataflow: (() -> none())
+   typean: (() -> none())
+{lfold1,lfold_ok,0} : OK
+ typesig:  (() -> number())
+ dataflow: (() -> number())
+   typean: (() -> number())
