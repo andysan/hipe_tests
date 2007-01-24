@@ -1,0 +1,16 @@
+{lflatmap1,fm1,0} : OK
+ typesig:  (() -> [any()])
+ dataflow: (() -> [any()])
+   typean: (() -> [any()])
+{lflatmap1,fm2,0} : OK
+ typesig:  (() -> [integer()])
+ dataflow: (() -> [integer()])
+   typean: (() -> [number()])
+{lflatmap1,fm_nil,0} : OK
+ typesig:  (() -> [])
+ dataflow: (() -> [])
+   typean: (() -> [number()])
+{lflatmap1,fm_none,0} : OK
+ typesig:  (() -> none())
+ dataflow: (() -> none())
+   typean: (() -> [number()])
