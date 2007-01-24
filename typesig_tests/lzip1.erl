@@ -1,7 +1,8 @@
 -module(lzip1).
 -export([zip2/0, zip3/0,
 	 zipwith3/0, zipwith3_nil/0,
-	 zipwith4/0, zipwith4_nil/0]).
+	 zipwith4/0, zipwith4_nil/0,
+	 unzip1/0]).
 
 zip2() ->
   lists:zip([1,2], [a,b]).
@@ -24,3 +25,6 @@ zipwith4() ->
 zipwith4_nil() ->
   F = fun (X,Y,_) -> {X,gazonk,Y} end,
   lists:zipwith3(F, [], [], []).
+
+unzip1() ->
+  lists:unzip(zip2()).
