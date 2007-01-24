@@ -7,6 +7,7 @@ lfold_sum() ->
   F = fun (X, Sum) when is_integer(Sum) -> X + Sum end,
   lists:foldl(F, 0, [1,2,3]).
 
+%% The fact that F fails should play no role in this case
 lfold_nil() ->
   F = fun (X, Sum) when is_atom(Sum) -> X + Sum end,
   lists:foldl(F, 0, []).
@@ -15,12 +16,13 @@ lfold_none() ->
   F = fun (X, Sum) when is_atom(Sum) -> X + Sum end,
   lists:foldl(F, 0, [a,b,c]).
 
-%% Here the list is known, so accumulator plays no role
+%% Here the type of the accumulator plays no role, but the type system
+%% is not strong enough to discover this fact, so we over-approximate
 lfold_ignore_acc_nonempty() ->
   F = fun (X, _) when is_integer(X) -> X + 1 end,
   lists:foldl(F, gazonk, [1,2,3]).
 
-%% ... but here obviously the accumulator cannot be ignored
+%% ... here obviously the accumulator cannot be ignored
 lfold_ignore_acc_nil() ->
   F = fun (X, _) when is_integer(X) -> X + 1 end,
   lists:foldl(F, gazonk, []).
