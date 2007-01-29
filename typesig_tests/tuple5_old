@@ -1,0 +1,3 @@
+
+tuple5:normalise/1 :: (({'nil',_} | {'atom' | 'bin' | 'char' | 'float' | 'integer' | 'string' | 'tuple',_,_} | {'cons' | 'op' | 'record_field',_,_,_}) -> any())
+tuple5:normalise_list/1 :: (([{'nil',_} | {'atom' | 'bin' | 'char' | 'float' | 'integer' | 'string' | 'tuple',_,_} | {'cons' | 'op' | 'record_field',_,_,_}]) -> [any()])

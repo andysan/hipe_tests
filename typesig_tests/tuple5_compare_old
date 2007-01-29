@@ -1,0 +1,8 @@
+{tuple5,normalise,1} : OK
+ typesig:  (({'nil',_} | {'atom' | 'bin' | 'char' | 'float' | 'integer' | 'string' | 'tuple',_,_} | {'cons' | 'op' | 'record_field',_,_,_}) -> any())
+ dataflow: ((_) -> any())
+   typean: ((_) -> any())
+{tuple5,normalise_list,1} : OK
+ typesig:  (([{'nil',_} | {'atom' | 'bin' | 'char' | 'float' | 'integer' | 'string' | 'tuple',_,_} | {'cons' | 'op' | 'record_field',_,_,_}]) -> [any()])
+ dataflow: ((_) -> [any()])
+   typean: ((_) -> [any()])

@@ -1,6 +1,9 @@
-%% Module (from erl_parse.erl) showing that the widening function is
-%% losing too much information when record-like tuples are involved.
+%%=====================================================================
+%% Module (from erl_parse.erl) showing that the widening function was
+%% losing too much information when record-like tuples were involved.
 %%
+%% Problem description
+%% -------------------
 %% We are hitting some sort of limit here, because commenting out any
 %% clause solves the problem, but I do not really see why this limit
 %% is relevant.  Ideally, in this case, the widening should be to:
@@ -8,6 +11,9 @@
 %% If that's too difficult to:
 %%	t_tuple()
 %% But widening to t_any() is not acceptable.
+%%
+%% FIXED: 29 Jan 2007
+%%=====================================================================
 
 -module(tuple5).
 -export([normalise/1]).
