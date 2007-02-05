@@ -34,6 +34,13 @@ just_compile_me() ->
     end
   end.
 
-compile(Opts) ->
+compile(Opts0) ->
+  case proplists:get_bool(core, Opts0) of
+    true ->
+	test:note(?MODULE, "disabling compilation from core - BUG"),
+	Opts = [{core,false}|Opts0];
+    false ->
+	Opts = Opts0
+  end,
   hipe:c(?MODULE, Opts).
 
