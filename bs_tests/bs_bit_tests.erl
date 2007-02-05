@@ -15,7 +15,7 @@
 -compile(binary_comprehension).
 
 compile(O) ->
-  hipe:c(?MODULE,O).
+  hipe:c(?MODULE,[bitlevel_binaries|O]).
 
 test() ->
   <<1:100>> = <<1:100>>,
