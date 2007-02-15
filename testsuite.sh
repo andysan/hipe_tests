@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.57 2006/10/31 12:38:34 kostis Exp $
+## $Id: testsuite.sh,v 1.58 2007/02/15 15:46:57 pergu Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -101,6 +101,18 @@ do
 	    rts_options="-hybrid"
             ERL_COMPILER_OPTIONS="[{core_transform,cerl_hybrid_transform},nowarn_shadow_vars]"
             ;;
+     --bitlevel)
+            shift
+            ERL_COMPILER_OPTIONS="[bitlevel_binaries,nowarn_shadow_vars]"
+	    ;;
+     --bincomp)
+            shift
+            ERL_COMPILER_OPTIONS="[binary_comprehension,nowarn_shadow_vars]"
+	    ;;
+     --newbin)
+            shift
+            ERL_COMPILER_OPTIONS="[bitlevel_binaries,binary_comprehension,nowarn_shadow_vars]"
+	    ;;
      -q)
 	    shift
 	    quiet=yes
@@ -158,6 +170,9 @@ if test -n "${help}" -o -z "${OTP_DIR}" -o $# -gt 1; then
         hybrid    -- a shorthand option, equivalent to:
                        --rts_options "-hybrid"
         hybrid-a  -- like the --hybrid option but with analysis enabled
+	bitlevel  -- use bit-level binaries
+	bincomp   -- allow binary comprehensions
+        newbin    -- allow both bit-level binaries and binary comprehensions
 	system    -- runs only system_tests which check consistency of HiPE;
                      it is equivalent to:
                        --comp_options "[no_native]" --only "system_tests"

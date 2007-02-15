@@ -88,6 +88,7 @@ big_unsymmetric_tests() ->
   ok.
 
 binary_to_and_from_list() ->
+  <<1:7>> = list_to_binary(binary_to_list(<<1:7>>)),
   <<1,2,3,4,1:1>> = list_to_binary(binary_to_list(<<1,2,3,4,1:1>>)),
   [1,2,3,4,<<1:1>>] = binary_to_list(<<1,2,3,4,1:1>>),
   <<1:1,1,2,3,4>> = list_to_binary([<<1:1>>,1,2,3,4]),
