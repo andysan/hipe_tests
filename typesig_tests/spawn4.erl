@@ -14,10 +14,10 @@ spawn(N,M,F,A) when atom(N), atom(M), atom(F), length(A) >= 0 ->
 	Pid when pid(Pid) ->
 	    Pid;
 	Error ->
-	    case foo:remote_spawn_error(Error, {no_link, N, M, F, A, []}) of
+	    case erlang:remote_spawn_error(Error, {no_link, N, M, F, A, []}) of
 		{fault, Fault} ->
 		    erlang:fault(Fault, [N, M, F, A]);
-		Pid ->
+		Pid when is_pid(Pid) ->
 		    Pid
 	    end
     end.
