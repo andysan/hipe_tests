@@ -12,7 +12,7 @@ inf_loop2:get_source_file/3 :: (([integer()],atom(),_) -> {'error','source_file_
 inf_loop2:join/2 :: ((atom() | possibly_improper_list(),atom() | [atom() | [atom() | [any()] | integer()] | integer()]) -> [integer()])
 inf_loop2:join1/4 :: (([atom() | [atom() | [any()] | integer()] | integer()],[atom() | [atom() | [any()] | integer()] | integer()],[integer()],atom()) -> [integer()])
 inf_loop2:major_os_type/0 :: (() -> atom())
-inf_loop2:make_abs_path/2 :: ((atom() | possibly_improper_list(),atom() | [atom() | [atom() | [any()] | integer()] | integer()]) -> [integer()])
+inf_loop2:make_abs_path/2 :: ((string(),atom() | [atom() | [atom() | [any()] | integer()] | integer()]) -> [integer()])
 inf_loop2:maybe_remove_dirsep/2 :: (([integer()],atom()) -> [integer()])
 inf_loop2:pathtype/1 :: (([atom() | [atom() | [any()] | integer()] | integer()]) -> 'absolute' | 'relative')
 inf_loop2:readable_file/1 :: (([integer()]) -> bool())

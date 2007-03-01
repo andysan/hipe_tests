@@ -51,8 +51,8 @@
  dataflow: (() -> atom())
    typean: (() -> any())
 {inf_loop2,make_abs_path,2} : OK
- typesig:  ((atom() | possibly_improper_list(),atom() | [atom() | [atom() | [any()] | integer()] | integer()]) -> [integer()])
- dataflow: ((_,_) -> [integer()])
+ typesig:  ((string(),atom() | [atom() | [atom() | [any()] | integer()] | integer()]) -> [integer()])
+ dataflow: ((string(),_) -> [integer()])
    typean: ((_,_) -> [number()])
 {inf_loop2,maybe_remove_dirsep,2} : OK
  typesig:  (([integer()],atom()) -> [integer()])
