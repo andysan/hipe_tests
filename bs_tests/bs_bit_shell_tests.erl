@@ -1,9 +1,9 @@
 %%%-------------------------------------------------------------------
 %%% File    : bs_bit_shell_tests.erl
 %%% Author  : Per Gustafsson <pergu@it.uu.se>
-%%% Description : tests for bit stream operations including
-%%%               matching, construction and binary_to_list,
-%%%               list_to_binary in the shell
+%%% Description : tests for bit stream operations including matching,
+%%%               construction and binary_to_list, list_to_binary in
+%%%		  the shell
 %%%
 %%% Created :  6 Sep 2006 by Per Gustafsson <pergu@it.uu.se>
 %%%-------------------------------------------------------------------
@@ -56,10 +56,10 @@ match1(N) ->
   ok.
 
 test_bitsize() ->
-  101 =parse_and_eval("101 = erlang:bitsize(<<1:101>>)."),
-  1001 =parse_and_eval("1001 = erlang:bitsize(<<1:1001>>)."),
+  101 = parse_and_eval("101 = erlang:bitsize(<<1:101>>)."),
+  1001 = parse_and_eval("1001 = erlang:bitsize(<<1:1001>>)."),
   80 = parse_and_eval("80 = erlang:bitsize(<<1:80>>)."),
-  800 =parse_and_eval("800 = erlang:bitsize(<<1:800>>)."),
+  800 = parse_and_eval("800 = erlang:bitsize(<<1:800>>)."),
   16#10000001 = parse_and_eval("Bin = <<0:16#1000000>>,
   BigBin = list_to_binary([Bin||_ <- lists:seq(1,16#10)]++[<<1:1>>]),
   16#10000001 = erlang:bitsize(BigBin)."),
@@ -74,13 +74,13 @@ horrid_match() ->
     parse_and_eval("<<1:4,B:24/bitstr>> = 
 <<1:4,42:24/little>>,<<42:24/little>> = B."), 
   ok.
-			 
+
 test_bitstr() ->
   <<1:1,6>> = parse_and_eval("<<1:7,B/bitstr>> = <<1:7,<<1:1,6>>/bitstr>>,
   <<1:1,6>> = B,
   B = <<1:1,6>>."),
   ok.
-		      
+     
 unsymmetric_tests() ->
   <<1:12>> = parse_and_eval("<<1:12>> = <<0,1:4>>."),
   <<0,1:4>> = parse_and_eval("<<0,1:4>> = <<1:12>>."),
