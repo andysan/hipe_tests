@@ -12,7 +12,7 @@
 
 test() ->
   BeamRes = vs_to_bin({1.0,2.0,3.0}),
-  hipe:c({?MODULE,vs_to_bin,1}, [inline_bs,o2]),
+  hipe:c({?MODULE,vs_to_bin,1}, [o2]),
   HipeRes = vs_to_bin({1.0,2.0,3.0}),
   %% io:format("Beam result = ~w\nHiPE result = ~w\n", [BeamRes,HipeRes]),
   BeamRes = HipeRes,
