@@ -1,0 +1,4 @@
+
+bin6:t1/1 :: ((integer()) -> {binary(),integer()})
+bin6:t2/1 :: ((number()) -> {binary(),number()})
+bin6:t3/1 :: ((_) -> none())

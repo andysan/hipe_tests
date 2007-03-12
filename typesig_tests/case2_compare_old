@@ -2,7 +2,7 @@
  typesig:  (() -> none())
  dataflow: (() -> none())
    typean: (() -> 'ok')
-{case2,t,1} : OK
- typesig:  ((none()) -> none())
+{case2,t,1} : differ!!!
+ typesig:  ((_) -> none())
  dataflow: ((1) -> none())
    typean: ((1) -> 'ok')

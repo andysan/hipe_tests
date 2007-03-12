@@ -7,7 +7,7 @@
 %%%-------------------------------------------------------------------
 -module(is_record1).
 
--export([t1/1, t2/2, t3/2, t4/3, t5/3, t6/1]).
+-export([t1/1, t2/2, t3/2, t4/3, t5/3, t6/1,t7/1]).
 
 -record(foo, {bar}).
 
@@ -27,4 +27,14 @@ t5(X, Y, Z) ->
   true = is_record(X, Y, Z).
 
 t6(X) when is_record(X, bar, 5) ->
-  ok.
+  X.
+
+t7(X) ->
+  case X of
+    true -> t8({foo, bar});
+    false -> t8({bar, foo})
+  end.
+
+t8(X) when is_record(X, foo) ->
+  X.
+

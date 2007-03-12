@@ -333,410 +333,410 @@ yeccpars2(44, 'FLOAT', __Ss, __Stack, __T, __Ts, __Tzr) ->
  yeccpars1(__Ts, __Tzr, 31, [44 | __Ss], [__T | __Stack]);
 yeccpars2(44, 'LONG', __Ss, __Stack, __T, __Ts, __Tzr) ->
  yeccpars1(__Ts, __Tzr, 33, [44 | __Ss], [__T | __Stack]);
-yeccpars2(44, 'INT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 32, [44 | __Ss], [__T | __Stack]);
-yeccpars2(44, 'SHORT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 34, [44 | __Ss], [__T | __Stack]);
-yeccpars2(44, 'BYTE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 28, [44 | __Ss], [__T | __Stack]);
-yeccpars2(44, 'BOOL', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 27, [44 | __Ss], [__T | __Stack]);
-yeccpars2(44, __Cat, __Ss,  [__4,__3,__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  {__1,__2,__3,__4},
- __Nss = lists:nthtail(3, __Ss),
- yeccpars2(yeccgoto(callData, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(45, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(46, 'STREAM_VERSION', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 57, [46 | __Ss], [__T | __Stack]);
-yeccpars2(46, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(47, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(48, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(49, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(50, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(51, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(52, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(53, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(value, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(54, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(55, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(value, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(56, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(arguments, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(57, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(version, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(58, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 35, [58 | __Ss], [__T | __Stack]);
-yeccpars2(58, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 39, [58 | __Ss], [__T | __Stack]);
-yeccpars2(58, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 40, [58 | __Ss], [__T | __Stack]);
-yeccpars2(58, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 42, [58 | __Ss], [__T | __Stack]);
-yeccpars2(58, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 43, [58 | __Ss], [__T | __Stack]);
-yeccpars2(58, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 59, [58 | __Ss], [__T | __Stack]);
-yeccpars2(58, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 41, [58 | __Ss], [__T | __Stack]);
-yeccpars2(58, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 36, [58 | __Ss], [__T | __Stack]);
-yeccpars2(58, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 38, [58 | __Ss], [__T | __Stack]);
-yeccpars2(58, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 37, [58 | __Ss], [__T | __Stack]);
-yeccpars2(58, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(59, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(blockData, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(60, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(content, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(61, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  [__1],
- yeccpars2(yeccgoto(contents, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(62, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 35, [62 | __Ss], [__T | __Stack]);
-yeccpars2(62, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 39, [62 | __Ss], [__T | __Stack]);
-yeccpars2(62, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 40, [62 | __Ss], [__T | __Stack]);
-yeccpars2(62, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 42, [62 | __Ss], [__T | __Stack]);
-yeccpars2(62, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 43, [62 | __Ss], [__T | __Stack]);
-yeccpars2(62, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 59, [62 | __Ss], [__T | __Stack]);
-yeccpars2(62, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 41, [62 | __Ss], [__T | __Stack]);
-yeccpars2(62, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 36, [62 | __Ss], [__T | __Stack]);
-yeccpars2(62, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 38, [62 | __Ss], [__T | __Stack]);
-yeccpars2(62, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 37, [62 | __Ss], [__T | __Stack]);
-yeccpars2(62, __Cat, __Ss,  [__3,__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __3,
- __Nss = lists:nthtail(2, __Ss),
- yeccpars2(yeccgoto(object, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(63, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(content, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(64, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  lists:append(__1,[__2]),
- __Nss = lists:nthtail(1, __Ss),
- yeccpars2(yeccgoto(contents, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(65, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  {__1,__2},
- __Nss = lists:nthtail(1, __Ss),
- yeccpars2(yeccgoto(arguments, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(66, 'UTF', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 67, [66 | __Ss], [__T | __Stack]);
-yeccpars2(66, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(67, __Cat, __Ss,  [__3,__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  {__1,__2,__3},
- __Nss = lists:nthtail(2, __Ss),
- yeccpars2(yeccgoto(newString, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(68, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  {__1,__2},
- __Nss = lists:nthtail(1, __Ss),
- yeccpars2(yeccgoto(prevObject, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(69, 'NEWHANDLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 73, [69 | __Ss], [__T | __Stack]);
-yeccpars2(69, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(70, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(classDesc, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(71, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(classDesc, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(72, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(classDesc, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(73, 'CLASSDATAAREA', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 74, [73 | __Ss], [__T | __Stack]);
-yeccpars2(73, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(74, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 35, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 39, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 40, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 42, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 43, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 59, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 41, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 36, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 38, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 37, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'CHAR', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 29, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'DOUBLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 30, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'FLOAT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 31, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'LONG', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 33, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'INT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 32, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'SHORT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 34, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'BYTE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 28, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, 'BOOL', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 27, [74 | __Ss], [__T | __Stack]);
-yeccpars2(74, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(75, 'TC_ENDBLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 82, [75 | __Ss], [__T | __Stack]);
-yeccpars2(75, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(76, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 35, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 39, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 40, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 42, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 43, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 59, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 41, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 36, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 38, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 37, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'CHAR', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 29, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'DOUBLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 30, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'FLOAT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 31, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'LONG', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 33, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'INT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 32, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'SHORT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 34, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'BYTE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 28, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, 'BOOL', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 27, [76 | __Ss], [__T | __Stack]);
-yeccpars2(76, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(classDataArray, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(77, 'ENDOFDATAAREA', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 88, [77 | __Ss], [__T | __Stack]);
-yeccpars2(77, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(78, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(values, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(79, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(values, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(80, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 35, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 39, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 40, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 42, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 43, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 59, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 41, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 36, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 38, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 37, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'CHAR', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 29, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'DOUBLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 30, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'FLOAT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 31, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'LONG', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 33, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'INT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 32, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'SHORT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 34, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'BYTE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 28, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, 'BOOL', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 27, [80 | __Ss], [__T | __Stack]);
-yeccpars2(80, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  [__1],
- yeccpars2(yeccgoto(valuesArray, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(81, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 35, [81 | __Ss], [__T | __Stack]);
-yeccpars2(81, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 39, [81 | __Ss], [__T | __Stack]);
-yeccpars2(81, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 40, [81 | __Ss], [__T | __Stack]);
-yeccpars2(81, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 42, [81 | __Ss], [__T | __Stack]);
-yeccpars2(81, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 43, [81 | __Ss], [__T | __Stack]);
-yeccpars2(81, 'TC_ENDBLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 82, [81 | __Ss], [__T | __Stack]);
-yeccpars2(81, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 59, [81 | __Ss], [__T | __Stack]);
-yeccpars2(81, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 41, [81 | __Ss], [__T | __Stack]);
-yeccpars2(81, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 36, [81 | __Ss], [__T | __Stack]);
-yeccpars2(81, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 38, [81 | __Ss], [__T | __Stack]);
-yeccpars2(81, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 37, [81 | __Ss], [__T | __Stack]);
-yeccpars2(81, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(classData, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(82, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(endBlockData, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(83, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 35, [83 | __Ss], [__T | __Stack]);
-yeccpars2(83, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 39, [83 | __Ss], [__T | __Stack]);
-yeccpars2(83, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 40, [83 | __Ss], [__T | __Stack]);
-yeccpars2(83, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 42, [83 | __Ss], [__T | __Stack]);
-yeccpars2(83, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 43, [83 | __Ss], [__T | __Stack]);
-yeccpars2(83, 'TC_ENDBLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 82, [83 | __Ss], [__T | __Stack]);
-yeccpars2(83, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 59, [83 | __Ss], [__T | __Stack]);
-yeccpars2(83, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 41, [83 | __Ss], [__T | __Stack]);
-yeccpars2(83, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 36, [83 | __Ss], [__T | __Stack]);
-yeccpars2(83, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 38, [83 | __Ss], [__T | __Stack]);
-yeccpars2(83, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 37, [83 | __Ss], [__T | __Stack]);
-yeccpars2(83, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(84, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(objectAnnotation, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(85, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  lists:append(__1,__2),
- __Nss = lists:nthtail(1, __Ss),
- yeccpars2(yeccgoto(classData, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(86, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  {__1,__2},
- __Nss = lists:nthtail(1, __Ss),
- yeccpars2(yeccgoto(objectAnnotation, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(87, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  lists:append([__1],__2),
- __Nss = lists:nthtail(1, __Ss),
- yeccpars2(yeccgoto(valuesArray, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(88, __Cat, __Ss,  [__6,__5,__4,__3,__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  {__1,__2,__3,__5},
- __Nss = lists:nthtail(5, __Ss),
- yeccpars2(yeccgoto(newObject, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(89, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  lists:append(__1,__2),
- __Nss = lists:nthtail(1, __Ss),
- yeccpars2(yeccgoto(classDataArray, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(90, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- __Nss = lists:nthtail(1, __Ss),
- yeccpars2(yeccgoto(values, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(91, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 35, [91 | __Ss], [__T | __Stack]);
-yeccpars2(91, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 39, [91 | __Ss], [__T | __Stack]);
-yeccpars2(91, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 40, [91 | __Ss], [__T | __Stack]);
-yeccpars2(91, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 42, [91 | __Ss], [__T | __Stack]);
-yeccpars2(91, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 43, [91 | __Ss], [__T | __Stack]);
-yeccpars2(91, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 41, [91 | __Ss], [__T | __Stack]);
-yeccpars2(91, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 36, [91 | __Ss], [__T | __Stack]);
-yeccpars2(91, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 38, [91 | __Ss], [__T | __Stack]);
-yeccpars2(91, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 37, [91 | __Ss], [__T | __Stack]);
-yeccpars2(91, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(92, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(93, __Cat, __Ss,  [__4,__3,__2,__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  {__1,__2,__3,__4},
- __Nss = lists:nthtail(3, __Ss),
- yeccpars2(yeccgoto(exception, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(94, 'SERIAL_VERSION_UID', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 95, [94 | __Ss], [__T | __Stack]);
-yeccpars2(94, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(95, 'NEWHANDLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 96, [95 | __Ss], [__T | __Stack]);
-yeccpars2(95, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(96, 'SC_EXTERNALIZABLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 97, [96 | __Ss], [__T | __Stack]);
-yeccpars2(96, 'SC_SERIALIZABLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 98, [96 | __Ss], [__T | __Stack]);
-yeccpars2(96, 'SC_WRRD_METHODS', __Ss, __Stack, __T, __Ts, __Tzr) ->
- yeccpars1(__Ts, __Tzr, 99, [96 | __Ss], [__T | __Stack]);
-yeccpars2(96, _, _, _, __T, _, _) ->
- yeccerror(__T);
-yeccpars2(97, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(classDescFlags, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
-yeccpars2(98, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
- __Val =  __1,
- yeccpars2(yeccgoto(classDescFlags, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(44, 'INT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 32, [44 | __Ss], [__T | __Stack]);
+%yeccpars2(44, 'SHORT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 34, [44 | __Ss], [__T | __Stack]);
+%yeccpars2(44, 'BYTE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 28, [44 | __Ss], [__T | __Stack]);
+%yeccpars2(44, 'BOOL', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 27, [44 | __Ss], [__T | __Stack]);
+%yeccpars2(44, __Cat, __Ss,  [__4,__3,__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  {__1,__2,__3,__4},
+% __Nss = lists:nthtail(3, __Ss),
+% yeccpars2(yeccgoto(callData, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(45, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(46, 'STREAM_VERSION', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 57, [46 | __Ss], [__T | __Stack]);
+%yeccpars2(46, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(47, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(48, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(49, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(50, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(51, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(52, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(53, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(value, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(54, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(object, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(55, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(value, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(56, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(arguments, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(57, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(version, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(58, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 35, [58 | __Ss], [__T | __Stack]);
+%yeccpars2(58, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 39, [58 | __Ss], [__T | __Stack]);
+%yeccpars2(58, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 40, [58 | __Ss], [__T | __Stack]);
+%yeccpars2(58, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 42, [58 | __Ss], [__T | __Stack]);
+%yeccpars2(58, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 43, [58 | __Ss], [__T | __Stack]);
+%yeccpars2(58, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 59, [58 | __Ss], [__T | __Stack]);
+%yeccpars2(58, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 41, [58 | __Ss], [__T | __Stack]);
+%yeccpars2(58, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 36, [58 | __Ss], [__T | __Stack]);
+%yeccpars2(58, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 38, [58 | __Ss], [__T | __Stack]);
+%yeccpars2(58, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 37, [58 | __Ss], [__T | __Stack]);
+%yeccpars2(58, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(59, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(blockData, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(60, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(content, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(61, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  [__1],
+% yeccpars2(yeccgoto(contents, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(62, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 35, [62 | __Ss], [__T | __Stack]);
+%yeccpars2(62, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 39, [62 | __Ss], [__T | __Stack]);
+%yeccpars2(62, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 40, [62 | __Ss], [__T | __Stack]);
+%yeccpars2(62, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 42, [62 | __Ss], [__T | __Stack]);
+%yeccpars2(62, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 43, [62 | __Ss], [__T | __Stack]);
+%yeccpars2(62, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 59, [62 | __Ss], [__T | __Stack]);
+%yeccpars2(62, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 41, [62 | __Ss], [__T | __Stack]);
+%yeccpars2(62, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 36, [62 | __Ss], [__T | __Stack]);
+%yeccpars2(62, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 38, [62 | __Ss], [__T | __Stack]);
+%yeccpars2(62, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 37, [62 | __Ss], [__T | __Stack]);
+%yeccpars2(62, __Cat, __Ss,  [__3,__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __3,
+% __Nss = lists:nthtail(2, __Ss),
+% yeccpars2(yeccgoto(object, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(63, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(content, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(64, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  lists:append(__1,[__2]),
+% __Nss = lists:nthtail(1, __Ss),
+% yeccpars2(yeccgoto(contents, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(65, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  {__1,__2},
+% __Nss = lists:nthtail(1, __Ss),
+% yeccpars2(yeccgoto(arguments, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(66, 'UTF', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 67, [66 | __Ss], [__T | __Stack]);
+%yeccpars2(66, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(67, __Cat, __Ss,  [__3,__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  {__1,__2,__3},
+% __Nss = lists:nthtail(2, __Ss),
+% yeccpars2(yeccgoto(newString, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(68, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  {__1,__2},
+% __Nss = lists:nthtail(1, __Ss),
+% yeccpars2(yeccgoto(prevObject, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(69, 'NEWHANDLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 73, [69 | __Ss], [__T | __Stack]);
+%yeccpars2(69, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(70, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(classDesc, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(71, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(classDesc, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(72, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(classDesc, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(73, 'CLASSDATAAREA', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 74, [73 | __Ss], [__T | __Stack]);
+%yeccpars2(73, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(74, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 35, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 39, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 40, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 42, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 43, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 59, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 41, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 36, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 38, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 37, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'CHAR', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 29, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'DOUBLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 30, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'FLOAT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 31, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'LONG', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 33, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'INT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 32, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'SHORT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 34, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'BYTE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 28, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, 'BOOL', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 27, [74 | __Ss], [__T | __Stack]);
+%yeccpars2(74, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(75, 'TC_ENDBLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 82, [75 | __Ss], [__T | __Stack]);
+%yeccpars2(75, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(76, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 35, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 39, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 40, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 42, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 43, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 59, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 41, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 36, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 38, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 37, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'CHAR', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 29, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'DOUBLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 30, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'FLOAT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 31, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'LONG', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 33, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'INT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 32, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'SHORT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 34, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'BYTE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 28, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, 'BOOL', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 27, [76 | __Ss], [__T | __Stack]);
+%yeccpars2(76, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(classDataArray, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(77, 'ENDOFDATAAREA', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 88, [77 | __Ss], [__T | __Stack]);
+%yeccpars2(77, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(78, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(values, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(79, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(values, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(80, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 35, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 39, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 40, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 42, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 43, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 59, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 41, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 36, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 38, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 37, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'CHAR', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 29, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'DOUBLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 30, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'FLOAT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 31, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'LONG', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 33, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'INT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 32, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'SHORT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 34, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'BYTE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 28, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, 'BOOL', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 27, [80 | __Ss], [__T | __Stack]);
+%yeccpars2(80, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  [__1],
+% yeccpars2(yeccgoto(valuesArray, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(81, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 35, [81 | __Ss], [__T | __Stack]);
+%yeccpars2(81, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 39, [81 | __Ss], [__T | __Stack]);
+%yeccpars2(81, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 40, [81 | __Ss], [__T | __Stack]);
+%yeccpars2(81, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 42, [81 | __Ss], [__T | __Stack]);
+%yeccpars2(81, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 43, [81 | __Ss], [__T | __Stack]);
+%yeccpars2(81, 'TC_ENDBLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 82, [81 | __Ss], [__T | __Stack]);
+%yeccpars2(81, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 59, [81 | __Ss], [__T | __Stack]);
+%yeccpars2(81, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 41, [81 | __Ss], [__T | __Stack]);
+%yeccpars2(81, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 36, [81 | __Ss], [__T | __Stack]);
+%yeccpars2(81, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 38, [81 | __Ss], [__T | __Stack]);
+%yeccpars2(81, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 37, [81 | __Ss], [__T | __Stack]);
+%yeccpars2(81, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(classData, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(82, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(endBlockData, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(83, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 35, [83 | __Ss], [__T | __Stack]);
+%yeccpars2(83, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 39, [83 | __Ss], [__T | __Stack]);
+%yeccpars2(83, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 40, [83 | __Ss], [__T | __Stack]);
+%yeccpars2(83, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 42, [83 | __Ss], [__T | __Stack]);
+%yeccpars2(83, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 43, [83 | __Ss], [__T | __Stack]);
+%yeccpars2(83, 'TC_ENDBLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 82, [83 | __Ss], [__T | __Stack]);
+%yeccpars2(83, 'TC_BLOCKDATA', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 59, [83 | __Ss], [__T | __Stack]);
+%yeccpars2(83, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 41, [83 | __Ss], [__T | __Stack]);
+%yeccpars2(83, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 36, [83 | __Ss], [__T | __Stack]);
+%yeccpars2(83, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 38, [83 | __Ss], [__T | __Stack]);
+%yeccpars2(83, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 37, [83 | __Ss], [__T | __Stack]);
+%yeccpars2(83, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(84, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(objectAnnotation, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(85, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  lists:append(__1,__2),
+% __Nss = lists:nthtail(1, __Ss),
+% yeccpars2(yeccgoto(classData, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(86, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  {__1,__2},
+% __Nss = lists:nthtail(1, __Ss),
+% yeccpars2(yeccgoto(objectAnnotation, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(87, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  lists:append([__1],__2),
+% __Nss = lists:nthtail(1, __Ss),
+% yeccpars2(yeccgoto(valuesArray, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(88, __Cat, __Ss,  [__6,__5,__4,__3,__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  {__1,__2,__3,__5},
+% __Nss = lists:nthtail(5, __Ss),
+% yeccpars2(yeccgoto(newObject, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(89, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  lists:append(__1,__2),
+% __Nss = lists:nthtail(1, __Ss),
+% yeccpars2(yeccgoto(classDataArray, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(90, __Cat, __Ss,  [__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% __Nss = lists:nthtail(1, __Ss),
+% yeccpars2(yeccgoto(values, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(91, 'STREAM_MAGIC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 35, [91 | __Ss], [__T | __Stack]);
+%yeccpars2(91, 'TC_EXCEPTION', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 39, [91 | __Ss], [__T | __Stack]);
+%yeccpars2(91, 'TC_NULL', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 40, [91 | __Ss], [__T | __Stack]);
+%yeccpars2(91, 'TC_REFERENCE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 42, [91 | __Ss], [__T | __Stack]);
+%yeccpars2(91, 'TC_STRING', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 43, [91 | __Ss], [__T | __Stack]);
+%yeccpars2(91, 'TC_OBJECT', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 41, [91 | __Ss], [__T | __Stack]);
+%yeccpars2(91, 'TC_ARRAY', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 36, [91 | __Ss], [__T | __Stack]);
+%yeccpars2(91, 'TC_CLASSDESC', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 38, [91 | __Ss], [__T | __Stack]);
+%yeccpars2(91, 'TC_CLASS', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 37, [91 | __Ss], [__T | __Stack]);
+%yeccpars2(91, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(92, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(93, __Cat, __Ss,  [__4,__3,__2,__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  {__1,__2,__3,__4},
+% __Nss = lists:nthtail(3, __Ss),
+% yeccpars2(yeccgoto(exception, hd(__Nss)), __Cat, __Nss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(94, 'SERIAL_VERSION_UID', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 95, [94 | __Ss], [__T | __Stack]);
+%yeccpars2(94, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(95, 'NEWHANDLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 96, [95 | __Ss], [__T | __Stack]);
+%yeccpars2(95, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(96, 'SC_EXTERNALIZABLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 97, [96 | __Ss], [__T | __Stack]);
+%yeccpars2(96, 'SC_SERIALIZABLE', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 98, [96 | __Ss], [__T | __Stack]);
+%yeccpars2(96, 'SC_WRRD_METHODS', __Ss, __Stack, __T, __Ts, __Tzr) ->
+% yeccpars1(__Ts, __Tzr, 99, [96 | __Ss], [__T | __Stack]);
+%yeccpars2(96, _, _, _, __T, _, _) ->
+% yeccerror(__T);
+%yeccpars2(97, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(classDescFlags, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
+%yeccpars2(98, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
+% __Val =  __1,
+% yeccpars2(yeccgoto(classDescFlags, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);
 yeccpars2(99, __Cat, __Ss,  [__1|__Stack], __T, __Ts, __Tzr) ->
  __Val =  __1,
  yeccpars2(yeccgoto(classDescFlags, hd(__Ss)), __Cat, __Ss, [__Val | __Stack], __T, __Ts, __Tzr);

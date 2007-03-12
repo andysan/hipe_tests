@@ -5,7 +5,7 @@
 {letrec1,add_one_int,1} : OK
  typesig:  ((integer()) -> integer())
  dataflow: ((_) -> integer())
-   typean: ((_) -> number())
+   typean: ((_) -> integer())
 {letrec1,t1,1} : OK
  typesig:  (([number()]) -> [number()])
  dataflow: ((_) -> [number()])
@@ -21,4 +21,4 @@
 {letrec1,t4,1} : OK
  typesig:  (([integer()]) -> [integer()])
  dataflow: ((_) -> [integer()])
-   typean: ((_) -> [number()])
+   typean: ((_) -> [integer()])

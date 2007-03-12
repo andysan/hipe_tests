@@ -1,2 +1,2 @@
 
-fun6:t/1 :: ((atom()) -> ((none()) -> none()))
+fun6:t/1 :: ((atom()) -> ((_) -> none()))

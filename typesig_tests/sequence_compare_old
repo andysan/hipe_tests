@@ -1,9 +1,9 @@
 {sequence,add,3} : OK
  typesig:  ((byte(),5 | 10,5 | 10) -> 'ok')
  dataflow: ((atom() | byte(),5 | 7 | 10,5 | 7 | 10) -> 'ok')
-   typean: ((_,5 | 7 | 10,5 | 7 | 10) -> 'ok')
+   typean: ((atom() | integer(),5 | 7 | 10,5 | 7 | 10) -> 'ok')
 {sequence,bad_add,2} : OK
- typesig:  ((none(),none()) -> none())
+ typesig:  ((_,_) -> none())
  dataflow: ((_,_) -> none())
    typean: ((_,_) -> none())
 {sequence,t1,0} : OK
@@ -11,10 +11,10 @@
  dataflow: (() -> 'ok')
    typean: (() -> 'ok')
 {sequence,t2,1} : OK
- typesig:  ((none()) -> none())
+ typesig:  ((_) -> none())
  dataflow: ((_) -> 'ok')
    typean: ((_) -> 'ok')
 {sequence,t3,1} : OK
- typesig:  ((none()) -> none())
+ typesig:  ((_) -> none())
  dataflow: ((_) -> none())
    typean: ((_) -> 'ok')

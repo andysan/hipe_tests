@@ -1,0 +1,12 @@
+{bin6,t1,1} : OK
+ typesig:  ((integer()) -> {binary(),integer()})
+ dataflow: ((_) -> {binary(),integer()})
+   typean: ((_) -> {binary(),_})
+{bin6,t2,1} : OK
+ typesig:  ((number()) -> {binary(),number()})
+ dataflow: ((_) -> {binary(),number()})
+   typean: ((_) -> {binary(),_})
+{bin6,t3,1} : OK
+ typesig:  ((_) -> none())
+ dataflow: ((_) -> none())
+   typean: ((_) -> {binary(),float()})

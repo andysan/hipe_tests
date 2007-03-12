@@ -5,7 +5,7 @@
 {lists_map,flatmap2,0} : OK
  typesig:  (() -> [integer(),...])
  dataflow: (() -> [integer(),...])
-   typean: (() -> [number(),...])
+   typean: (() -> [integer(),...])
 {lists_map,flatmap_nil1,0} : OK
  typesig:  (() -> [])
  dataflow: (() -> [])
@@ -13,19 +13,19 @@
 {lists_map,flatmap_nil2,1} : OK
  typesig:  (([any()]) -> [])
  dataflow: ((_) -> [])
-   typean: ((_) -> [number()])
+   typean: ((_) -> [])
 {lists_map,flatmap_none1,0} : OK
  typesig:  (() -> none())
  dataflow: (() -> none())
-   typean: (() -> [number(),...])
+   typean: (() -> none())
 {lists_map,flatmap_none2,0} : OK
  typesig:  (() -> none())
  dataflow: (() -> [integer(),...])
-   typean: (() -> [number(),...])
+   typean: (() -> [integer(),...])
 {lists_map,map_int_list,0} : OK
  typesig:  (() -> [integer(),...])
  dataflow: (() -> [integer(),...])
-   typean: (() -> [number(),...])
+   typean: (() -> [integer(),...])
 {lists_map,map_list,0} : OK
  typesig:  (() -> [any(),...])
  dataflow: (() -> [any(),...])
@@ -37,12 +37,12 @@
 {lists_map,map_nil2,1} : OK
  typesig:  (([any()]) -> [])
  dataflow: ((_) -> [])
-   typean: ((_) -> [number()])
+   typean: ((_) -> [])
 {lists_map,map_none1,0} : OK
  typesig:  (() -> none())
  dataflow: (() -> none())
-   typean: (() -> [number(),...])
+   typean: (() -> none())
 {lists_map,map_none2,0} : OK
  typesig:  (() -> none())
  dataflow: (() -> [integer(),...])
-   typean: (() -> [number(),...])
+   typean: (() -> [integer(),...])
