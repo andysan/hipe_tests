@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.58 2007/02/15 15:46:57 pergu Exp $
+## $Id: testsuite.sh,v 1.59 2007/03/20 09:57:47 mikpe Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -87,6 +87,10 @@ do
 	    comp_options="[no_native]"
 	    excluded_tests="${no_native_excl_tests}"
 	    ;;
+     --nofrag)
+	    shift
+	    rts_options="-nofrag"
+            ;;
      --smp)
 	    shift
 	    rts_options="-smp"
@@ -207,7 +211,7 @@ DIALYZER_TMP=/tmp/dialyzer_tmp_dir.$USER
 export DIALYZER_OTP DIALYZER_DIR DIALYZER_TMP
 #============================================================================
 
-HIPE_RTS=$OTP_DIR/bin/erl
+HIPE_RTS=$OTP_DIR/bin/cerl
 
 GREP="grep"
 MSG_FILE=/tmp/hipe_test_msg.$USER
