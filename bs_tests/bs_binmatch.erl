@@ -11,19 +11,19 @@ test() ->
     ok -> ok;
     {error,{already_started,crypto}} -> ok
   end,
-  "DF58248C414F342C81E056B40BEE12D17A08BF61" = checksum(<<42>>),
+  "3389DAE361AF79B04C9C8E7057F60CC6" = checksum(<<42>>),
   ok.
 
 checksum(Bin) ->
-  Context = crypto:sha_init(),
+  Context = erlang:md5_init(),
   checksum(Context, Bin).
 
 checksum(Context, <<>>) ->
-  bin_to_hex(crypto:sha_final(Context));
+  bin_to_hex(erlang:md5_final(Context));
 checksum(Context, <<Bin:20480,Rest>>) ->
-  checksum(crypto:sha_update(Context, Bin), Rest);
+  checksum(erlang:md5_update(Context, Bin), Rest);
 checksum(Context,Bin) ->
-  checksum(crypto:sha_update(Context, Bin), <<>>).
+  checksum(erlang:md5_update(Context, Bin), <<>>).
 
 bin_to_hex(Bin) ->
   lists:flatten([byte_to_hex(X) || X <- binary_to_list(Bin)]).
