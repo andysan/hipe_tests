@@ -7,10 +7,6 @@
 -export([test/0, compile/1]).
 
 test() ->
-  case crypto:start() of
-    ok -> ok;
-    {error,{already_started,crypto}} -> ok
-  end,
   "3389DAE361AF79B04C9C8E7057F60CC6" = checksum(<<42>>),
   ok.
 
