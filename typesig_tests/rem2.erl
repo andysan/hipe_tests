@@ -1,5 +1,5 @@
 %%----------------------------------------------------------------------------
-%% Tests ths ranges that we infer for taking the remainder with the integer 2.
+%% Tests the ranges that we infer for taking the remainder with the integer 2.
 %%----------------------------------------------------------------------------
 
 -module(rem2).
