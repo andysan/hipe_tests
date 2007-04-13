@@ -2,11 +2,23 @@
 %% Author  : RHS Linux User <klacke@erix.ericsson.se>
 %% Purpose : Measure Erlang implementations on a certain machine
 %% Created : 29 Oct 1996 by RHS Linux User <klacke@jb.du.etx.ericsson.se>
+%% Modified: 13 Apr 2005 by another RHS Linux User <kostis@it.uu.se>
+%%		- changed the export_all to selextive export of functions
+%%		- removed unused functions and most Dialyzer warnings
 
 -module(estone).
 -author('klacke@erix.ericsson.se').
 
--compile(export_all).
+-export([test/0, compile/1, macro/1, micros/0, run_micro/2,
+         int_arith/1, lists/1, msgp/1, msgp_medium/1, msgp_huge/1, p1/1,
+         pattern/1, trav/1, large_dataset_work/1, mk_big_procs/1, big_proc/0,
+         large_local_dataset_work/1, very_big/1, alloc/1, bif_dispatch/1,
+         binary_h/1, echo/1, ets/1, generic/1, gserv/4, handle_call/3, req/2,
+         float_arith/1, fcalls/1, remote0/1, remote1/1, app0/1, app1/1,
+         timer/1, links/1, lproc/1]).
+%% The following ones are currently not used in computing the estone
+%% ranking, but exported nevertheless...
+-export([determine_loop_data/0, port_io/1, ppp/2]).
 
 -define(TOTAL, (3000 * 1000 * 100)).   %% 300 secs
 -define(BIGPROCS, 2).
@@ -46,57 +58,45 @@ test() ->
     R.
 
 compile(Flags) ->
-    hipe:c(?MODULE,Flags).
+    hipe:c(?MODULE, Flags).
 
-run(Compiler, Version, Flags, Os, CPu, MHz) ->
-    L = ?MODULE:macro(?MODULE:micros()),
-    run(Compiler, Version, Flags, Os, CPu, MHz, L).
+%% run(Compiler, Version, Flags, Os, CPu, MHz) ->
+%%     L = ?MODULE:macro(?MODULE:micros()),
+%%     run(Compiler, Version, Flags, Os, CPu, MHz, L).
+%%
+%% run(Compiler, Version, Flags, Os, CPu, MHz, L) ->
+%%     Fname = mk_fname([Compiler, Version, Flags, Os, CPu, MHz]),
+%%     {ok, F} = file:open(lists:append(Fname, ".EST"), read_write),
+%%     L2 = [[{compiler, Compiler},
+%% 	   {version, Version},
+%% 	   {flags, Flags},
+%% 	   {os, Os},
+%% 	   {cpu, CPu},
+%% 	   {mhz, MHz}] | L],
+%%     io:format(F, "~w.~n", [L2]),
+%%     io:format("Output written to ~s~n", [lists:append(Fname, ".EST")]),
+%%     file:close(F).
 
-run(Compiler, Version, Flags, Os, CPu, MHz, L) ->
-    Fname = mk_fname([Compiler, Version, Flags, Os, CPu, MHz]),
-    {ok, F} = file:open(lists:append(Fname , ".EST"), read_write),
-    L2 = [[{compiler, Compiler},
-	   {version, Version},
-	   {flags, Flags},
-	   {os, Os},
-	   {cpu, CPu},
-	   {mhz, MHz}] | L],
-    io:format(F, "~w.~n", [L2]),
-    io:format("Output written to ~s~n", [lists:append(Fname , ".EST")]),
-    file:close(F).
-
-
-
-tty() ->
-    tty(all).
 tty(all) ->
-    pp(macro(micros()));
-tty(MicroName) ->
-    case find_micro(MicroName, micros()) of
-	{ok,M} -> pp(macro([M]));
-	Other -> Other
-    end.
+    pp(macro(micros())).
 
-find_micro(N, [M|_]) when M#micro.function == N ->
+find_micro(N, [M|_]) when M#micro.function =:= N ->
     {ok, M};
 find_micro(N, [_|T]) ->
     find_micro(N, T);
 find_micro(_, []) ->
     notfound.
 
-% SEEMS NOT USED SO I AM COMMENTING IT OUT - KOSTIS.
-% test() ->
-%    macro(determine_loop_data()).
-
-iterate(Ofile, Times) ->
-    {ok, Out} = file:open(Ofile, write),
-    iterate2(Out, Times),
-    file:close(Out).
-iterate2(_, 0) ->
-    ok;
-iterate2(Out, I) ->
-    pp(Out, macro(micros())),
-    iterate2(Out, I-1).
+%% iterate(Ofile, Times) ->
+%%     {ok, Out} = file:open(Ofile, write),
+%%     iterate2(Out, Times),
+%%     file:close(Out).
+%%
+%% iterate2(_, 0) ->
+%%     ok;
+%% iterate2(Out, I) ->
+%%     pp(Out, macro(micros())),
+%%     iterate2(Out, I-1).
 
 %% Return a list of micro's
 micros() ->
@@ -135,10 +135,10 @@ micros() ->
 	    loops = 2247,
 	    str = "traverse"},
 
-%     #micro{function = port_io,
-%	    weight = 12,
-%	    loops = 6070,
-%	    str = "Port i/o"},
+%%   #micro{function = port_io,
+%%	    weight = 12,
+%%	    loops = 6070,
+%%	    str = "Port i/o"},
 
      #micro{function = large_dataset_work,
 	    weight = 3,
@@ -275,7 +275,7 @@ gci(Micros, Words, Gcs) ->
     ((256 * Gcs) / Micros) + (Words / Micros).
 
 apply_micro(Name, Loops) ->
-    %io:format("~w(~w) ", [Name, Loops]),
+    %% io:format("~w(~w) ", [Name, Loops]),
     apply(?MODULE, Name, [Loops]).
 
 %%%%%%%%%%%% micro bench manipulating lists. %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -296,6 +296,7 @@ revt(I, L) ->
 
 reverse(L) ->
     reverse(L, []).
+
 reverse([H|T], Ack) -> reverse(T, [H|Ack]);
 reverse([], Ack) -> Ack.
 
@@ -346,7 +347,7 @@ msgp_loop(I, P, Msg) ->
 	    msgp_loop(I-1, P, Msg)
     end.
 
-%%%%%%%%%%%% large massage passing and ctxt switching %%%%%%%
+%%%%%%%%%%%% large message passing and ctxt switching %%%%%%%
 msgp_medium(I) ->
         msgp_medium(I, big()).
 
@@ -362,11 +363,11 @@ msgp_medium(I, Msg) ->
 
 
 
-%%%%%%%%%%%% huge massage passing and ctxt switching %%%%%%%
+%%%%%%%%%%%% huge message passing and ctxt switching %%%%%%%
 msgp_huge(I) ->
         msgp_huge(I, very_big(15)).
 
-msgp_huge(0, _) -> 
+msgp_huge(0, _) ->
     0;
 msgp_huge(I, Msg) ->
     P1 = spawn(?MODULE, p1, [self()]),
@@ -380,7 +381,7 @@ pattern(0) ->
     0;
 pattern(I) ->
     Tail = "aaabbaaababba",
-    P1 = [0, 1,2,3,4,5|Tail],
+    P1 = [0,1,2,3,4,5|Tail],
     pat_loop1(100, P1),
     pat_loop2(100, P1),
     pat_loop3(100, P1),
@@ -390,44 +391,44 @@ pattern(I) ->
 
 pat_loop1(0, _) -> 
     ok;
-pat_loop1(_, [_,_X,_Y, 0 | _])  ->
+pat_loop1(_, [_,_X,_Y, 0 | _]) ->
     ok;
 pat_loop1(_, [_,_X,_Y, 1 | _]) ->
     ok;
 pat_loop1(_, [_,_X,_Y, 2 | _]) -> 
     ok;
 pat_loop1(I, [_, X, Y, 3 | T]) ->
-    pat_loop1(I-1, [0, X,Y,3|T]).
+    pat_loop1(I-1, [0, X, Y, 3 | T]).
 
 pat_loop2(0, _) ->
     ok;
-pat_loop2(_, [_, Y |_Tail]) when Y bsl 1 == 0 ->
+pat_loop2(_, [_, Y |_Tail]) when Y bsl 1 =:= 0 ->
     ok;
-pat_loop2(_, [_, Y |_Tail]) when Y bsl 2 == 0 ->
+pat_loop2(_, [_, Y |_Tail]) when Y bsl 2 =:= 0 ->
     ok;
-pat_loop2(I, [X, Y | Tail]) when Y bsl 2 == 4 ->
+pat_loop2(I, [X, Y | Tail]) when Y bsl 2 =:= 4 ->
     pat_loop2(I-1, [X, Y |Tail]).
 
 pat_loop3(0, _) ->
     ok;
-pat_loop3(_, [{c,h}| _]) -> 
+pat_loop3(_, [{c, h} | _]) -> 
     ok;
 pat_loop3(_, [1, 0 | _]) ->
     ok;
-pat_loop3(_, [X, _ | _]) when binary(X), size(X) == 1 ->
+pat_loop3(_, [X, _ | _]) when binary(X), size(X) =:= 1 ->
     ok;
 pat_loop3(_, [no,_ | _]) -> 
     ok;
 pat_loop3(_, []) ->
     ok;
-pat_loop3(_, [X, _ | _]) when X /= 0 ->
+pat_loop3(_, [X, _ | _]) when X =/= 0 ->
     ok;
 pat_loop3(_, [2, 3 | _]) ->
     ok;
 pat_loop3(_, [1, 2]) ->
     ok;
-pat_loop3(I, [0, 1 |T]) ->
-    pat_loop3(I-1, [0,1|T]).
+pat_loop3(I, [0, 1 | T]) ->
+    pat_loop3(I-1, [0, 1 | T]).
 
 
 pat_loop4(0, _) ->  ok;
@@ -479,7 +480,7 @@ pat_loop5(_, [0, 6|_]) -> ok;
 pat_loop5(I, [0, 1|T]) -> 
     pat_loop5(I-1, [0,1|T]).
 
-%%%%%%%%%% term traversal representing simple pattern matchhing %%%
+%%%%%%%%%% term traversal representing simple pattern matching %%%
 %%%%%%%%%                              + some arith
 trav(I) ->
     X = very_big(10),
@@ -694,7 +695,7 @@ req(Name, Req) ->
 
 gserv(Name, Mod, State, Debug) ->
     receive
-	{From, Ref, {call, Req}} when Debug == [] ->
+	{From, Ref, {call, Req}} when Debug =:= [] ->
 	    case catch apply(Mod, handle_call, [From, State, Req]) of
 		{reply, Reply, State2} ->
 		    From ! {Name, Ref, Reply},
@@ -893,7 +894,7 @@ remote0(N) ->
 
 remote1(0) -> 0;
 remote1(N) ->
-    1+?MODULE:remote1(N-1).
+    1 + ?MODULE:remote1(N-1).
 
 app0(0) -> 0;
 app0(N) ->
@@ -957,8 +958,7 @@ lproc(Top) ->
     %% all siblings must have completed their link/unlink
     %% sequences before we are allowed to terminate
     receive
-	die ->
-	    Top ! {self(), dying}
+	die -> Top ! {self(), dying}
     end.
 
 lproc(_, _, _, 0) ->
@@ -973,7 +973,6 @@ lproc([Pid|Tail], Procs, unlink, I) ->
 lproc([Pid|Tail], Procs, link, I) ->
     link(Pid),
     lproc(Tail, Procs, unlink, I).
-
 
 
 %%%%%%%%%%% various utility functions %%%%%%%
@@ -1008,15 +1007,15 @@ wait_for_pids([P|Tail]) ->
 send_procs([P|Tail], Msg) -> P ! Msg, send_procs(Tail, Msg);
 send_procs([], _) -> ok.
 			     
-%% Time to perform one subtraction + one function call
-loopt() ->
-    Before = erlang:now(),
-    loopt(10000),
-    After = erlang:now(),
-    subtr(Before, After) / 10000.
-
-loopt(0) -> ok;
-loopt(I) -> loopt(I-1).
+%% %% Time to perform one subtraction + one function call
+%% loopt() ->
+%%     Before = erlang:now(),
+%%     loopt(10000),
+%%     After = erlang:now(),
+%%     subtr(Before, After) / 10000.
+%%
+%% loopt(0) -> ok;
+%% loopt(I) -> loopt(I-1).
 
 
 %% This function is run be me only (me being klacke) when
@@ -1028,7 +1027,8 @@ determine_loop_data() ->
     determine_loop_data(1).
 determine_loop_data(I) ->
     ppld(determine_loop_data(I, micros())).
-determine_loop_data(0, _) ->
+
+determine_loop_data(0, _Ms) ->
     [];
 determine_loop_data(I, Ms) ->
     io:format("Determining loop counts \n",[]),
@@ -1044,6 +1044,7 @@ determine_loop_data(I, Ms) ->
     
 ppld(Mss) ->
     ppld(micros(), Mss).
+
 ppld([], _) ->
     ok;
 ppld([M| Tail], Mss) ->
@@ -1067,7 +1068,6 @@ find_loops(Fn, [MicroList | Tail]) ->
 find_loops(_, []) ->
     [].
 
-    
 
 %% We want the macro to take ?TOTAL microsecs
 %% This loop runs micro M, M#micro.loops times,
@@ -1080,7 +1080,7 @@ set_loops([M|Tail]) ->
     MicroTime = (M#micro.weight * ?TOTAL * 0.01),
     Loops = round(MicroTime / TT1),
     if
-	Loops == M#micro.loops -> 
+	Loops =:= M#micro.loops -> 
 	    io:format("~s is the same~n", [M#micro.str]),
 	    ok;
 	true ->
@@ -1096,16 +1096,14 @@ sum_micros([]) -> 0;
 sum_micros([H|T]) -> H#micro.weight + sum_micros(T).
 
 tt1([M|Tail]) ->
-    %%M2 = M#micro{loops = ?TEST_LOOP_COUNT},
+    %% M2 = M#micro{loops = ?TEST_LOOP_COUNT},
     {value, {_, Ms}} = lists:keysearch(millisecs, 1, run_micro(M)),
     [M#micro{tt1 = 1000 * (Ms / M#micro.loops)} | tt1(Tail)];
 tt1([]) -> 
     io:nl(),
     [].
 
-
-mk_fname([Hz]) -> integer_to_list(Hz);
-mk_fname([H|T]) when atom(H) -> 
-    lists:concat([atom_to_list(H) , "-" , mk_fname(T)]);
-mk_fname([H|T]) -> lists:concat([H, "-", mk_fname(T)]).
-
+%% mk_fname([Hz]) -> integer_to_list(Hz);
+%% mk_fname([H|T]) when atom(H) -> 
+%%     lists:concat([atom_to_list(H) , "-" , mk_fname(T)]);
+%% mk_fname([H|T]) -> lists:concat([H, "-", mk_fname(T)]).
