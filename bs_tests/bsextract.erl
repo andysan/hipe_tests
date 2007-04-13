@@ -44,38 +44,32 @@ get_external_id(<<0:3,_:4,0:1,1:8,_Length:16,SequenceNumber:16,
 %% Create PDP Context Request
 %% GTP97, SNN=0
 %% (No SNDCP N-PDU number)
-get_external_id(<<0:3,_:4,0:1,16:8,_Length:16,SequenceNumber:16,
+get_external_id(<<0:3,_:4,0:1,16:8,_Length:16,_SequenceNumber:16,
 		 _FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
 		 TID:8/binary-unit:8,_InformationElements/binary>>) ->
   case extract_imsi(TID) of
     {ok,IMSI} ->
-      {ok,IMSI};
-    {fault,Cause} ->
-      {fault,Cause,16,SequenceNumber}
+      {ok,IMSI}
   end;
 %%% Update PDP Context Request
 %%% GTP97, SNN=0
 %%% (No SNDCP N-PDU number)
-get_external_id(<<0:3,_:4,0:1,18:8,_Length:16,SequenceNumber:16,
+get_external_id(<<0:3,_:4,0:1,18:8,_Length:16,_SequenceNumber:16,
 		 _FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
 		 TID:8/binary-unit:8,_InformationElements/binary>>) ->
   case extract_imsi(TID) of
     {ok,IMSI} ->
-      {ok,IMSI};
-    {fault,Cause} ->
-      {fault,Cause,18,SequenceNumber}
+      {ok,IMSI}
   end;
 %%% Delete PDP Context Request
 %%% GTP97, SNN=0
 %%% (No SNDCP N-PDU number)
-get_external_id(<<0:3,_:4,0:1,20:8,_Length:16,SequenceNumber:16,
+get_external_id(<<0:3,_:4,0:1,20:8,_Length:16,_SequenceNumber:16,
 		 _FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
 		 TID:8/binary-unit:8,_InformationElements/binary>>) ->
   case extract_imsi(TID) of
     {ok,IMSI} ->
-      {ok,IMSI};
-    {fault,Cause} ->
-      {fault,Cause,20,SequenceNumber}
+      {ok,IMSI}
   end;
 %%% Error handling: GTP Message Too Short
 %%% Error handling: Unknown GTP Signalling message.
@@ -89,9 +83,7 @@ get_external_id(_GTP_Message) ->
 extract_imsi(TID) ->
   case tid_internal_storage(TID,[]) of
     {ok,#mvsgT_tid{imsi=IMSI}} ->
-      {ok,IMSI};
-    {fault} ->
-      {fault,193} %% Invalid message format
+      {ok,IMSI}
   end.
 
 %%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
