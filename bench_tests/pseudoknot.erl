@@ -1,7 +1,7 @@
 % file: "pseudoknot.erl"
 
-%% Note that if this is compiled with inlining enabled, the
-%% Beam is likely to choke on the huge constant term that is
+%% Note that if this is compiled with inlining enabled, the BEAM
+%% compiler is likely to choke on the huge constant term that is
 %% formed. (Native code compilation has no such problems.)
 
 -ifdef(ETOS).
@@ -18,9 +18,9 @@ append([H|T], Z) ->
 append([], X) ->
   X.
 
-atan2(Y,X) when X>0.0 ->
+atan2(Y,X) when X > 0.0 ->
   math:atan(Y/X);
-atan2(Y,X) when Y<0.0 ->
+atan2(Y,X) when Y < 0.0 ->
   if
     X == 0.0 -> -1.57079632679489661923;
     true -> math:atan(Y/X) - 3.14159265358979323846
@@ -3147,8 +3147,7 @@ check0(Dist) when ?IS_FLOAT(Dist), Dist =< 3.0 -> true;
 check0(_) -> false.
 
 dist(J,V,Partial_inst) ->
-    pt_dist(atom_pos(nuc_P, get_var(J,Partial_inst)), 
-                   atom_pos(nuc_O3_,V)).
+    pt_dist(atom_pos(nuc_P, get_var(J,Partial_inst)), atom_pos(nuc_O3_,V)).
 
 % anticodon() -> search([], anticodon_domains(), anticodon_constraint).
 
@@ -3315,7 +3314,6 @@ test() ->
     R.
 
 compile(Flags) ->
-%    hipe:load_file(?MODULE).
     hipe:c(?MODULE,Flags).
 
 native_compile() ->
@@ -3328,9 +3326,9 @@ native_compile() ->
     hipe:c({pseudoknot,pt_theta,1},Flags),
     hipe:c({pseudoknot,tfo_id,0},Flags),
     hipe:c({pseudoknot,tfo_apply,2},Flags),
-%    hipe:c({pseudoknot,tfo_combine,2},Flags),
+    %% hipe:c({pseudoknot,tfo_combine,2},Flags),
     hipe:c({pseudoknot,tfo_inv_ortho,1},Flags),
-%    hipe:c({pseudoknot,tfo_align,3},Flags),
+    %% hipe:c({pseudoknot,tfo_align,3},Flags),
     hipe:c({pseudoknot,type,1},Flags),
     hipe:c({pseudoknot,nuc_C1_,1},Flags),
     hipe:c({pseudoknot,nuc_C2,1},Flags),
@@ -3346,45 +3344,45 @@ native_compile() ->
     hipe:c({pseudoknot,nuc_p_o3__60_tfo,1},Flags),
     hipe:c({pseudoknot,rA_N9,1},Flags),
     hipe:c({pseudoknot,rG_N9,1},Flags),
-%    hipe:c({pseudoknot,rA,0},Flags),
-%    hipe:c({pseudoknot,rA01,0},Flags),
-%    hipe:c({pseudoknot,rA02,0},Flags),
-%    hipe:c({pseudoknot,rA03,0},Flags),
-%    hipe:c({pseudoknot,rA04,0},Flags),
-%    hipe:c({pseudoknot,rA05,0},Flags),
-%    hipe:c({pseudoknot,rA06,0},Flags),
-%    hipe:c({pseudoknot,rA07,0},Flags),
-%    hipe:c({pseudoknot,rA08,0},Flags),
-%    hipe:c({pseudoknot,rA09,0},Flags),
-%    hipe:c({pseudoknot,rA10,0},Flags),
-%    hipe:c({pseudoknot,rAs,0},Flags),
-%    hipe:c({pseudoknot,rC,0},Flags),
-%    hipe:c({pseudoknot,rC01,0},Flags),
-%    hipe:c({pseudoknot,rC02,0},Flags),
-%    hipe:c({pseudoknot,rC03,0},Flags),
-%    hipe:c({pseudoknot,rC04,0},Flags),
-%    hipe:c({pseudoknot,rC05,0},Flags),
-%    hipe:c({pseudoknot,rC06,0},Flags),
-%    hipe:c({pseudoknot,rC07,0},Flags),
-%    hipe:c({pseudoknot,rC08,0},Flags),
-%    hipe:c({pseudoknot,rC09,0},Flags),
-%    hipe:c({pseudoknot,rC10,0},Flags),
-%    hipe:c({pseudoknot,rCs,0},Flags),
-%    hipe:c({pseudoknot,rG,0},Flags),
-%    hipe:c({pseudoknot,rU,0},Flags),
-%    hipe:c({pseudoknot,rU01,0},Flags),
-%    hipe:c({pseudoknot,rU02,0},Flags),
-%    hipe:c({pseudoknot,rU03,0},Flags),
-%    hipe:c({pseudoknot,rU04,0},Flags),
-%    hipe:c({pseudoknot,rU05,0},Flags),
-%    hipe:c({pseudoknot,rU06,0},Flags),
-%    hipe:c({pseudoknot,rU07,0},Flags),
-%    hipe:c({pseudoknot,rU08,0},Flags),
-%    hipe:c({pseudoknot,rU09,0},Flags),
-%    hipe:c({pseudoknot,rU10,0},Flags),
-%    hipe:c({pseudoknot,rUs,0},Flags),
-%    hipe:c({pseudoknot,rG_,0},Flags),
-%    hipe:c({pseudoknot,rU_,0},Flags),
+    %% hipe:c({pseudoknot,rA,0},Flags),
+    %% hipe:c({pseudoknot,rA01,0},Flags),
+    %% hipe:c({pseudoknot,rA02,0},Flags),
+    %% hipe:c({pseudoknot,rA03,0},Flags),
+    %% hipe:c({pseudoknot,rA04,0},Flags),
+    %% hipe:c({pseudoknot,rA05,0},Flags),
+    %% hipe:c({pseudoknot,rA06,0},Flags),
+    %% hipe:c({pseudoknot,rA07,0},Flags),
+    %% hipe:c({pseudoknot,rA08,0},Flags),
+    %% hipe:c({pseudoknot,rA09,0},Flags),
+    %% hipe:c({pseudoknot,rA10,0},Flags),
+    %% hipe:c({pseudoknot,rAs,0},Flags),
+    %% hipe:c({pseudoknot,rC,0},Flags),
+    %% hipe:c({pseudoknot,rC01,0},Flags),
+    %% hipe:c({pseudoknot,rC02,0},Flags),
+    %% hipe:c({pseudoknot,rC03,0},Flags),
+    %% hipe:c({pseudoknot,rC04,0},Flags),
+    %% hipe:c({pseudoknot,rC05,0},Flags),
+    %% hipe:c({pseudoknot,rC06,0},Flags),
+    %% hipe:c({pseudoknot,rC07,0},Flags),
+    %% hipe:c({pseudoknot,rC08,0},Flags),
+    %% hipe:c({pseudoknot,rC09,0},Flags),
+    %% hipe:c({pseudoknot,rC10,0},Flags),
+    %% hipe:c({pseudoknot,rCs,0},Flags),
+    %% hipe:c({pseudoknot,rG,0},Flags),
+    %% hipe:c({pseudoknot,rU,0},Flags),
+    %% hipe:c({pseudoknot,rU01,0},Flags),
+    %% hipe:c({pseudoknot,rU02,0},Flags),
+    %% hipe:c({pseudoknot,rU03,0},Flags),
+    %% hipe:c({pseudoknot,rU04,0},Flags),
+    %% hipe:c({pseudoknot,rU05,0},Flags),
+    %% hipe:c({pseudoknot,rU06,0},Flags),
+    %% hipe:c({pseudoknot,rU07,0},Flags),
+    %% hipe:c({pseudoknot,rU08,0},Flags),
+    %% hipe:c({pseudoknot,rU09,0},Flags),
+    %% hipe:c({pseudoknot,rU10,0},Flags),
+    %% hipe:c({pseudoknot,rUs,0},Flags),
+    %% hipe:c({pseudoknot,rG_,0},Flags),
+    %% hipe:c({pseudoknot,rU_,0},Flags),
     hipe:c({pseudoknot,absolute_pos,2},Flags),
     hipe:c({pseudoknot,atom_pos,2},Flags),
     hipe:c({pseudoknot,get_var,2},Flags),
@@ -3412,7 +3410,7 @@ native_compile() ->
     hipe:c({pseudoknot,anticodon_constraint,2},Flags),
     hipe:c({pseudoknot,check0,1},Flags),
     hipe:c({pseudoknot,dist,3},Flags),
-%    hipe:c({pseudoknot,pseudoknot_domains,0},Flags),
+    %% hipe:c({pseudoknot,pseudoknot_domains,0},Flags),
     hipe:c({pseudoknot,pseudoknot_constraint,2},Flags),
     hipe:c({pseudoknot,check1,1},Flags),
     hipe:c({pseudoknot,check2,1},Flags),

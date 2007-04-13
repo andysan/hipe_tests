@@ -16,7 +16,7 @@ compile(Flags) ->
 %%
 
 bench(N,M,Num) ->
-%    life_random:seed(),
+    %% life_random:seed(),
     Raw = make(N,M),
     start_all(Raw,Num),
     sum_all(Raw).
@@ -132,25 +132,24 @@ receive_nghs([X|Xs], N) ->
 	    receive_nghs(Xs, N+M)
     end.
 
-
 %%
 %% cell reproduction
 %%
 
 repro(N, S) ->
     if 
-	S <2 -> 0;
-        S==2 -> N;
-	S==3 -> 1;
-	S >3 -> 0
+	S < 2 -> 0;
+        S=:=2 -> N;
+	S=:=3 -> 1;
+	S > 3 -> 0
     end.
 
 %%
 %% access matrix 
 %%
 
-% access(I,J,Matrix) ->
-%     nth(J,nth(I,Matrix)).
+%% access(I,J,Matrix) ->
+%%     nth(J,nth(I,Matrix)).
 
 %%
 %% complete torus
@@ -165,16 +164,14 @@ complete_lines([L|Ls]) ->
     [complete_list(L) | complete_lines(Ls)].
 
 complete_list(Ls) ->
-    [last(Ls) | app(Ls, [nth(1,Ls)])].
+    [last(Ls) | app(Ls, [hd(Ls)])].
 
-last([L]) ->
-  L;
+last([L]) -> L;
 last([_|M]) -> last(M).
 
 app([H|T],L) -> [H|app(T,L)];
 app([],L)    -> L.
 
-nth(1,[E|_]) -> E;
-nth(N,[_|L]) -> 
-  nth(N-1,L).
-
+%% nth(1,[E|_]) -> E;
+%% nth(N,[_|L]) -> 
+%%   nth(N-1,L).
