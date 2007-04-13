@@ -16,7 +16,7 @@ checksum(Bin) ->
 
 checksum(Context, <<>>) ->
   bin_to_hex(erlang:md5_final(Context));
-checksum(Context, <<Bin:20480,Rest>>) ->
+checksum(Context, <<Bin:20480/binary,Rest/binary>>) ->
   checksum(erlang:md5_update(Context, Bin), Rest);
 checksum(Context,Bin) ->
   checksum(erlang:md5_update(Context, Bin), <<>>).

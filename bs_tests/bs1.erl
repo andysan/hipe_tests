@@ -2,16 +2,16 @@
 %% Copyright (c) 2001 by Erik Johansson.  All Rights Reserved 
 %% Time-stamp: <01/06/13 11:13:11 happi>
 %% ====================================================================
-%%  Filename : 	bs.erl
-%%  Module   :	bs
+%%  Filename : 	bs1.erl
+%%  Module   :	bs1
 %%  Purpose  :  
 %%  Notes    : 
 %%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: pergu $
-%%              $Date: 2004/02/26 10:27:50 $
-%%              $Revision: 1.2 $
+%%              $Author: kostis $
+%%              $Date: 2007/04/13 14:58:58 $
+%%              $Revision: 1.3 $
 %% ====================================================================
 %%  Exports  :
 %%

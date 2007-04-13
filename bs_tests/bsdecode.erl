@@ -145,7 +145,7 @@ decode_ie_create(<<>>,PresentIEs,Errors,CreateReq) ->
 decode_ie_create(<<6:8,QoSElement:3/binary-unit:8,Rest/binary>>,PresentIEs,
     Errors,CreateReq) ->
     if
-        (PresentIEs band 16#00000001) == 16#00000001 -> %Repeated IE's, ignore
+        (PresentIEs band 16#00000001) =:= 16#00000001 -> %Repeated IE's, ignore
             decode_ie_create(Rest,PresentIEs,Errors,CreateReq);
         PresentIEs > 16#00000001 -> %Out of sequence
             UpdatedErrors=Errors#protocolErrors{outOfSequence=true},
@@ -178,7 +178,7 @@ decode_ie_create(<<6:8,QoSElement:3/binary-unit:8,Rest/binary>>,PresentIEs,
 decode_ie_create(<<14:8,Recovery:8,Rest/binary>>,
     PresentIEs,Errors,CreateReq) ->
     if
-        (PresentIEs band 16#00000002) == 16#00000002 -> %Repeated IE, ignored
+        (PresentIEs band 16#00000002) =:= 16#00000002 -> %Repeated IE, ignored
             decode_ie_create(Rest,PresentIEs,Errors,CreateReq);
         PresentIEs > 16#00000002 -> %Out of sequence
             UpdatedErrors=Errors#protocolErrors{outOfSequence=true}, 
@@ -195,7 +195,7 @@ decode_ie_create(<<14:8,Recovery:8,Rest/binary>>,
 decode_ie_create(<<15:8,_:6,SelectionMode:2,Rest/binary>>,PresentIEs,
     Errors,CreateReq) ->
     if
-        (PresentIEs band 16#00000004) == 16#00000004 -> %Repeated IE, ignored
+        (PresentIEs band 16#00000004) =:= 16#00000004 -> %Repeated IE, ignored
             decode_ie_create(Rest,PresentIEs,Errors,CreateReq);
         PresentIEs > 16#00000004 -> %Out of sequence
             UpdatedErrors=Errors#protocolErrors{outOfSequence=true},
@@ -213,7 +213,7 @@ decode_ie_create(<<15:8,_:6,SelectionMode:2,Rest/binary>>,PresentIEs,
 %%% Flow Label Data I, Mandatory
 decode_ie_create(<<16:8,FlowLabel:16,Rest/binary>>,PresentIEs,Errors,CreateReq) ->
     if
-        (PresentIEs band 16#00000008) == 16#00000008 -> %Repeated IE, ignored
+        (PresentIEs band 16#00000008) =:= 16#00000008 -> %Repeated IE, ignored
             decode_ie_create(Rest,PresentIEs,Errors,CreateReq);
         PresentIEs > 16#00000008 -> %Out of sequence
             UpdatedErrors=Errors#protocolErrors{outOfSequence=true},
@@ -229,7 +229,7 @@ decode_ie_create(<<16:8,FlowLabel:16,Rest/binary>>,PresentIEs,Errors,CreateReq) 
 %%% Flow Label Signalling, Mandatory
 decode_ie_create(<<17:8,FlowLabel:16,Rest/binary>>,PresentIEs,Errors,CreateReq) ->
     if
-        (PresentIEs band 16#00000010) == 16#00000010 -> %Repeated IE, ignored
+        (PresentIEs band 16#00000010) =:= 16#00000010 -> %Repeated IE, ignored
             decode_ie_create(Rest,PresentIEs,Errors,CreateReq);
         PresentIEs > 16#00000010 -> %Out of sequence
             UpdatedErrors=Errors#protocolErrors{outOfSequence=true},
@@ -247,7 +247,7 @@ decode_ie_create(<<128:8,Length:16,More/binary>>,PresentIEs,
     Errors,CreateReq) ->
     <<PDPElement:Length/binary-unit:8,Rest/binary>> = More,
     if
-        (PresentIEs band 16#00000020) == 16#00000020 -> %Repeated IE, ignore
+        (PresentIEs band 16#00000020) =:= 16#00000020 -> %Repeated IE, ignore
             decode_ie_create(Rest,PresentIEs,Errors,CreateReq);
         PresentIEs > 16#00000020 -> %Out of sequence
             case pdp_addr_internal_storage(PDPElement) of
@@ -280,7 +280,7 @@ decode_ie_create(<<131:8,Length:16,More/binary>>,PresentIEs,
     Errors,CreateReq) ->
     <<APNElement:Length/binary-unit:8,Rest/binary>> = More,
     if
-        (PresentIEs band 16#00000040) == 16#00000040 -> %Repeated IE, ignore
+        (PresentIEs band 16#00000040) =:= 16#00000040 -> %Repeated IE, ignore
             decode_ie_create(Rest,PresentIEs,Errors,CreateReq);
         PresentIEs > 16#00000040 -> %Out of sequence
             case catch apn_internal_storage(APNElement,[]) of
@@ -312,7 +312,7 @@ decode_ie_create(<<131:8,Length:16,More/binary>>,PresentIEs,
 decode_ie_create(<<132:8,Length:16,More/binary>>,PresentIEs,Errors,CreateReq) ->
     <<ConfigurationElement:Length/binary-unit:8,Rest/binary>> = More,
     if
-        (PresentIEs band 16#00000080) == 16#00000080 -> %Repeated IE, ignore
+        (PresentIEs band 16#00000080) =:= 16#00000080 -> %Repeated IE, ignore
             decode_ie_create(Rest,PresentIEs,Errors,CreateReq);
         PresentIEs > 16#00000080 -> %Out of sequence
             case catch pco_internal_storage(ConfigurationElement) of
@@ -345,11 +345,11 @@ decode_ie_create(<<133:8,Length:16,More/binary>>,PresentIEs,
     Errors,CreateReq) ->
     <<AddressElement:Length/binary-unit:8,Rest/binary>> = More,
     if
-        (PresentIEs band 16#00000300) == 16#00000300 -> %Repeated IE, ignore
+        (PresentIEs band 16#00000300) =:= 16#00000300 -> %Repeated IE, ignore
             decode_ie_create(Rest,PresentIEs,Errors,CreateReq);
         PresentIEs > 16#00000200 -> %Out of sequence
             if
-                (PresentIEs band 16#00000100) == 16#00000000 -> %Signalling
+                (PresentIEs band 16#00000100) =:= 16#00000000 -> %Signalling
                     case gsn_addr_internal_storage(AddressElement) of
 			{ok,GSNAddr} ->
 			    UpdatedErrors=Errors#protocolErrors{outOfSequence=true},
@@ -405,7 +405,7 @@ decode_ie_create(<<134:8,Length:16,More/binary>>,PresentIEs,
     Errors,CreateReq) ->
     <<MSISDNElement:Length/binary-unit:8,Rest/binary>> = More,
     if
-        (PresentIEs band 16#00000400) == 16#00000400 -> %Repeated IE, ignore
+        (PresentIEs band 16#00000400) =:= 16#00000400 -> %Repeated IE, ignore
             decode_ie_create(Rest,PresentIEs,Errors,CreateReq);
         PresentIEs > 16#00000400 -> %Out of sequence
             case msisdn_internal_storage(MSISDNElement,[]) of
@@ -469,7 +469,7 @@ decode_ie_update(<<>>,PresentIEs,Errors,UpdateReq) ->
 decode_ie_update(<<6:8,QoSElement:3/binary-unit:8,Rest/binary>>,PresentIEs,
     Errors,UpdateReq) ->
     if
-        (PresentIEs band 16#00000001) == 16#00000001 -> %Repeated IE's, ignore
+        (PresentIEs band 16#00000001) =:= 16#00000001 -> %Repeated IE's, ignore
             decode_ie_update(Rest,PresentIEs,Errors,UpdateReq);
         PresentIEs > 16#00000001 -> %Out of sequence
             UpdatedErrors=Errors#protocolErrors{outOfSequence=true},
@@ -502,7 +502,7 @@ decode_ie_update(<<6:8,QoSElement:3/binary-unit:8,Rest/binary>>,PresentIEs,
 decode_ie_update(<<14:8,Recovery:8,Rest/binary>>,
     PresentIEs,Errors,UpdateReq) ->
     if
-        (PresentIEs band 16#00000002) == 16#00000002 -> %Repeated IE, ignored
+        (PresentIEs band 16#00000002) =:= 16#00000002 -> %Repeated IE, ignored
             decode_ie_update(Rest,PresentIEs,Errors,UpdateReq);
         PresentIEs > 16#00000002 -> %Out of sequence
             UpdatedErrors=Errors#protocolErrors{outOfSequence=true}, 
@@ -518,7 +518,7 @@ decode_ie_update(<<14:8,Recovery:8,Rest/binary>>,
 %%% Flow Label Data I, Mandatory
 decode_ie_update(<<16:8,FlowLabel:16,Rest/binary>>,PresentIEs,Errors,UpdateReq) ->
     if
-        (PresentIEs band 16#00000004) == 16#00000004 -> %Repeated IE, ignored
+        (PresentIEs band 16#00000004) =:= 16#00000004 -> %Repeated IE, ignored
             decode_ie_update(Rest,PresentIEs,Errors,UpdateReq);
         PresentIEs > 16#00000004 -> %Out of sequence
             UpdatedErrors=Errors#protocolErrors{outOfSequence=true},
@@ -534,7 +534,7 @@ decode_ie_update(<<16:8,FlowLabel:16,Rest/binary>>,PresentIEs,Errors,UpdateReq) 
 %%% Flow Label Signalling, Mandatory
 decode_ie_update(<<17:8,FlowLabel:16,Rest/binary>>,PresentIEs,Errors,UpdateReq) ->
     if
-        (PresentIEs band 16#00000008) == 16#00000008 -> %Repeated IE, ignored
+        (PresentIEs band 16#00000008) =:= 16#00000008 -> %Repeated IE, ignored
             decode_ie_update(Rest,PresentIEs,Errors,UpdateReq);
         PresentIEs > 16#00000008 -> %Out of sequence
             UpdatedErrors=Errors#protocolErrors{outOfSequence=true},
@@ -552,11 +552,11 @@ decode_ie_update(<<133:8,Length:16,More/binary>>,PresentIEs,
     Errors,UpdateReq) ->
     <<AddressElement:Length/binary-unit:8,Rest/binary>> = More,
     if
-        (PresentIEs band 16#00000030) == 16#00000030 -> %Repeated IE, ignore
+        (PresentIEs band 16#00000030) =:= 16#00000030 -> %Repeated IE, ignore
             decode_ie_update(Rest,PresentIEs,Errors,UpdateReq);
         PresentIEs > 16#00000020 -> %Out of sequence
             if
-                (PresentIEs band 16#00000010) == 16#00000000 -> %Signalling
+                (PresentIEs band 16#00000010) =:= 16#00000000 -> %Signalling
                     case gsn_addr_internal_storage(AddressElement) of
 			{ok,GSNAddr} ->
 			    UpdatedErrors=Errors#protocolErrors{outOfSequence=true},
@@ -636,9 +636,9 @@ decode_ie_update(UnexpectedIE,PresentIEs,Errors,UpdateReq) ->
 
 %%% All elements decoded
 decode_ie_delete_res(<<>>,PresentIEs,Errors,DeleteRes) ->
-    %Check mandatory IE's
+    %% Check mandatory IE's
     if
-	(PresentIEs band 16#0001) /= 16#0001 ->
+	(PresentIEs band 16#0001) =/= 16#0001 ->
 	    {fault,202,DeleteRes}; %Mandatory IE missing
 	true -> %OK
 	    %% Check errors during decoding
@@ -655,10 +655,9 @@ decode_ie_delete_res(<<>>,PresentIEs,Errors,DeleteRes) ->
     end;
 
 %%% Cause, Mandatory
-decode_ie_delete_res(<<1:8,Cause:8,Rest/binary>>,
-    PresentIEs,Errors,DeleteRes) ->
+decode_ie_delete_res(<<1:8,Cause:8,Rest/binary>>,PresentIEs,Errors,DeleteRes) ->
     if
-        (PresentIEs band 16#00000001) == 16#00000001 -> %Repeated IE, ignored
+        (PresentIEs band 16#00000001) =:= 16#00000001 -> %Repeated IE, ignored
             decode_ie_delete_res(Rest,PresentIEs,Errors,DeleteRes);
         PresentIEs > 16#00000001 -> %Out of sequence
             UpdatedErrors=Errors#protocolErrors{outOfSequence=true},

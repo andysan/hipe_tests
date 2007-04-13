@@ -73,9 +73,7 @@ subkeys(Key, N) ->
 	<<L:27, X1:1, R:27, X2:1>>;
       2 ->
 	<<X1:2, L:26, X2:2, R:26>> = Key,
-	<<L:26, X1:2, R:26, X2:2>>;  
-      _ ->
-	error
+	<<L:26, X1:2, R:26, X2:2>>
     end,
   [pc2(TmpKey)|subkeys(TmpKey, N+1)].
 
