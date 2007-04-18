@@ -458,8 +458,6 @@ decode_ie_update(<<>>,PresentIEs,Errors,UpdateReq) ->
 		    {fault,201,UpdateReq}; %Mandatory IE incorrect
 		#protocolErrors{outOfSequence=true} -> %Out of sequence
 		    {fault,193,UpdateReq}; %Invalid message format
-		#protocolErrors{incorrectOptIE=true} -> %Incorrect optional IE
-		    {fault,203,UpdateReq}; %Optional IE incorrect
 		_ -> %OK
 		    {ok,UpdateReq}
 	    end
@@ -635,23 +633,13 @@ decode_ie_update(UnexpectedIE,PresentIEs,Errors,UpdateReq) ->
 %%% Decode information elements for Delete PDP Context Response
 
 %%% All elements decoded
-decode_ie_delete_res(<<>>,PresentIEs,Errors,DeleteRes) ->
+decode_ie_delete_res(<<>>,PresentIEs,_Errors,DeleteRes) ->
     %% Check mandatory IE's
     if
 	(PresentIEs band 16#0001) =/= 16#0001 ->
 	    {fault,202,DeleteRes}; %Mandatory IE missing
 	true -> %OK
-	    %% Check errors during decoding
-	    case Errors of
-		#protocolErrors{invalidManIE=true} -> %Invalid mandatory IE
-		    {fault,201,DeleteRes}; %Mandatory IE incorrect
-		#protocolErrors{outOfSequence=true} -> %Out of sequence
-		    {fault,193,DeleteRes}; %Invalid message format
-		#protocolErrors{incorrectOptIE=true} -> %Incorrect optional IE
-		    {fault,203,DeleteRes}; %Optional IE incorrect
-		_ -> %OK
-		    {ok,DeleteRes}
-	    end
+	    {ok,DeleteRes}
     end;
 
 %%% Cause, Mandatory
@@ -659,11 +647,6 @@ decode_ie_delete_res(<<1:8,Cause:8,Rest/binary>>,PresentIEs,Errors,DeleteRes) ->
     if
         (PresentIEs band 16#00000001) =:= 16#00000001 -> %Repeated IE, ignored
             decode_ie_delete_res(Rest,PresentIEs,Errors,DeleteRes);
-        PresentIEs > 16#00000001 -> %Out of sequence
-            UpdatedErrors=Errors#protocolErrors{outOfSequence=true},
-            UpdatedDeleteRes=DeleteRes#sesT_deleteResV0{cause=Cause},
-            decode_ie_delete_res(Rest,(PresentIEs bor 16#00000001),
-                UpdatedErrors,UpdatedDeleteRes);
         true -> %OK
             UpdatedDeleteRes=DeleteRes#sesT_deleteResV0{cause=Cause},
             decode_ie_delete_res(Rest,(PresentIEs bor 16#00000001),Errors,
@@ -884,7 +867,7 @@ ppp_configuration_options(<<16#C023:16,_Length:8,1:8,Identifier:8,DataLength:16,
 
 ppp_configuration_options(<<16#C023:16,Length:8,More/binary>>,PAP,CHAP,IPCP) ->
     %% PAP - Other, not implemented
-    <<PAP:Length/binary-unit:8,Rest/binary>> = More,
+    <<_PAP:Length/binary-unit:8,Rest/binary>> = More,
     ppp_configuration_options(Rest,PAP,CHAP,IPCP);
 ppp_configuration_options(<<16#C223:16,_Length:8,1:8,Identifier:8,DataLength:16,
 			 More/binary>>,PAP,CHAP,IPCP) ->
@@ -910,7 +893,7 @@ ppp_configuration_options(<<16#C223:16,_Length:8,2:8,Identifier:8,DataLength:16,
 			      IPCP);
 ppp_configuration_options(<<16#C223:16,Length:8,More/binary>>,PAP,CHAP,IPCP) ->
     %% CHAP - Other, not implemented
-    <<CHAP:Length/binary-unit:8,Rest/binary>> = More,
+    <<_CHAP:Length/binary-unit:8,Rest/binary>> = More,
     ppp_configuration_options(Rest,PAP,CHAP,IPCP);
 ppp_configuration_options(<<16#8021:16,_Length:8,1:8,Identifier:8,OptionsLength:16,
 			  More/binary>>,PAP,CHAP,IPCP) ->
