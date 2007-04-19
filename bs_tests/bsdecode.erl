@@ -100,11 +100,9 @@ decode_gtpc_msg(<<0:3,_:4,0:1,20:8,_Length:16,SequenceNumber:16,
 decode_gtpc_msg(<<0:3,_:4,0:1,21:8,_Length:16,SequenceNumber:16,
 		_FlowLabel:16,_SNDCP_N_PDU_Number:8,_:3/binary-unit:8,
 		TID:8/binary-unit:8,InformationElements/binary>>) ->
-    Errors=#protocolErrors{},
     {ok,TID2}=tid_internal_storage(TID,[]),
     EmptyDeleteRes=#sesT_deleteResV0{tid=TID2},
-    case catch decode_ie_delete_res(InformationElements,0,Errors,
-				    EmptyDeleteRes) of
+    case catch decode_ie_delete_res(InformationElements,0,EmptyDeleteRes) of
 	{ok, DeleteRes} ->
 	    {ok,DeleteRes,SequenceNumber};
 	{fault,Cause,DeleteRes} ->
@@ -633,7 +631,7 @@ decode_ie_update(UnexpectedIE,PresentIEs,Errors,UpdateReq) ->
 %%% Decode information elements for Delete PDP Context Response
 
 %%% All elements decoded
-decode_ie_delete_res(<<>>,PresentIEs,_Errors,DeleteRes) ->
+decode_ie_delete_res(<<>>,PresentIEs,DeleteRes) ->
     %% Check mandatory IE's
     if
 	(PresentIEs band 16#0001) =/= 16#0001 ->
@@ -643,13 +641,13 @@ decode_ie_delete_res(<<>>,PresentIEs,_Errors,DeleteRes) ->
     end;
 
 %%% Cause, Mandatory
-decode_ie_delete_res(<<1:8,Cause:8,Rest/binary>>,PresentIEs,Errors,DeleteRes) ->
+decode_ie_delete_res(<<1:8,Cause:8,Rest/binary>>,PresentIEs,DeleteRes) ->
     if
         (PresentIEs band 16#00000001) =:= 16#00000001 -> %Repeated IE, ignored
-            decode_ie_delete_res(Rest,PresentIEs,Errors,DeleteRes);
+            decode_ie_delete_res(Rest,PresentIEs,DeleteRes);
         true -> %OK
             UpdatedDeleteRes=DeleteRes#sesT_deleteResV0{cause=Cause},
-            decode_ie_delete_res(Rest,(PresentIEs bor 16#00000001),Errors,
+            decode_ie_delete_res(Rest,(PresentIEs bor 16#00000001),
 		UpdatedDeleteRes)
      end;       
 
@@ -657,12 +655,12 @@ decode_ie_delete_res(<<1:8,Cause:8,Rest/binary>>,PresentIEs,Errors,DeleteRes) ->
 %%% Not implemented
 
 %%% Error handling, Unexpected or unknown IE
-decode_ie_delete_res(UnexpectedIE,PresentIEs,Errors,DeleteRes) ->
+decode_ie_delete_res(UnexpectedIE,PresentIEs,DeleteRes) ->
     case check_ie(UnexpectedIE) of
         {defined_ie,Rest} -> %OK, ignored
-            decode_ie_delete_res(Rest,PresentIEs,Errors,DeleteRes);
+            decode_ie_delete_res(Rest,PresentIEs,DeleteRes);
         {handled_ie,Rest} -> %OK, ignored
-            decode_ie_delete_res(Rest,PresentIEs,Errors,DeleteRes);
+            decode_ie_delete_res(Rest,PresentIEs,DeleteRes);
         {unhandled_ie} -> %Error, abort decoding
             {fault,193,DeleteRes} %Invalid message format
     end.
