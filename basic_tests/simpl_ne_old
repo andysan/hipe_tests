@@ -1,1 +1,1 @@
-{{{emu_result,{ok,ok}},{native_result,{ok,ok}}},{{emu_compile,{ok,simpl_ne}},{native_compile,{ok,simpl_ne}}}}
+{{{emu_result,ok},{native_result,ok}},{{emu_compile,{ok,simpl_ne}},{native_compile,{ok,simpl_ne}}}}

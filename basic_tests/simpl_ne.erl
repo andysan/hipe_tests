@@ -7,8 +7,8 @@
 %%  History  :	* 2000-10-29 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/02/13 16:49:25 $
-%%    $Revision: 1.2 $
+%%    $Date: 2007/05/15 12:29:06 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -18,20 +18,22 @@
 -module(simpl_ne).
 -export([test/0,compile/1]).
 
-guard1(X) when X /= 0, float(X), constant(X) ->
-     ok.
+guard1(X) when X /= 0, is_float(X), is_constant(X) ->
+  ok.
 
-guard2(X) when constant(X) ->
-    error1;
-guard2(X) when reference(hd(X)) ->
-    error2;
-guard2(X) when integer(hd(X)) ->
-    error3;
+guard2(X) when is_constant(X) ->
+  error1;
+guard2(X) when is_reference(hd(X)) ->
+  error2;
+guard2(X) when is_integer(hd(X)) ->
+  error3;
 guard2(X) when hd(X) == foo ->
-    ok.
+  ok.
 
 test() ->
-    {guard1(4.2),guard2([foo])}.
+  ok = guard1(4.2),
+  ok = guard2([foo]),
+  ok.
 
 compile(Flags) ->
-    hipe:c(?MODULE,Flags).
+  hipe:c(?MODULE, Flags).
