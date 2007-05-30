@@ -5,8 +5,8 @@
 %%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2005/02/02 15:12:24 $
-%%              $Revision: 1.4 $
+%%              $Date: 2007/05/30 12:47:35 $
+%%              $Revision: 1.5 $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 -module(bs6).
@@ -20,7 +20,8 @@ compile(O) ->
 test() ->
   PI = math:pi(),
   ?FAIL(<<PI>>),
-  ?FAIL(<<<<1,2>>>>),
+  Bin12 = <<1,2>>,
+  ?FAIL(<<Bin12>>),
 
   E = 2.71,
   ?FAIL(<<E/binary>>),
@@ -29,7 +30,8 @@ test() ->
   ?FAIL(<<Int/binary>>),
   ?FAIL(<<BigInt/binary>>),
 
-  ?FAIL(<<<<1,2,3>>/float>>),
+  Bin123 = <<1,2,3>>,
+  ?FAIL(<<Bin123/float>>),
 
   ok.
 
