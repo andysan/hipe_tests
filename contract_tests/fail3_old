@@ -1,0 +1,4 @@
+
+fail3:f1/0 :: (() -> pos_integer())
+fail3:f2/0 :: (() -> none())
+fail3:fac/1 :: ((byte()) -> pos_integer())

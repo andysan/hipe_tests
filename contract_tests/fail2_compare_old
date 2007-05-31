@@ -1,0 +1,15 @@
+{fail2,fac,1}: Invalid type specification or violation of the contract
+{fail2,f1,1}: Invalid type specification or violation of the contract
+{fail2,f2,2}: Invalid type specification or violation of the contract
+{fail2,f1,1} : OK
+ typesig:  ((non_neg_integer()) -> pos_integer())
+ dataflow: ((_) -> number())
+   typean: ((_) -> number())
+{fail2,f2,2} : OK
+ typesig:  ((_,_) -> pos_integer())
+ dataflow: ((_,_) -> number())
+   typean: ((_,_) -> number())
+{fail2,fac,1} : OK
+ typesig:  ((non_neg_integer()) -> pos_integer())
+ dataflow: ((_) -> number())
+   typean: ((_) -> number())

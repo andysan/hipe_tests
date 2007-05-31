@@ -1,0 +1,4 @@
+
+cont_union1:numbers/1 :: ((number()) -> number())
+cont_union1:numbers2/0 :: (() -> float())
+cont_union1:numbers3/0 :: (() -> integer())

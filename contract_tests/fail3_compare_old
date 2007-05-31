@@ -1,0 +1,12 @@
+{fail3,f1,0} : OK
+ typesig:  (() -> pos_integer())
+ dataflow: (() -> pos_integer())
+   typean: (() -> integer())
+{fail3,f2,0} : OK
+ typesig:  (() -> none())
+ dataflow: (() -> pos_integer())
+   typean: (() -> integer())
+{fail3,fac,1} : OK
+ typesig:  ((byte()) -> pos_integer())
+ dataflow: ((char()) -> pos_integer())
+   typean: ((integer()) -> integer())

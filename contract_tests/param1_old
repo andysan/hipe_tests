@@ -1,0 +1,3 @@
+
+param1:mystery/1 :: (([integer()]) -> [integer()])
+param1:mystery/2 :: ((integer(),[integer()]) -> [integer(),...])

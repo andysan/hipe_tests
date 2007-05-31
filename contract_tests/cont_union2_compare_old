@@ -1,0 +1,12 @@
+{cont_union2,t,1} : OK
+ typesig:  (([number(),...]) -> ['foo' | 2,...])
+ dataflow: (([number(),...]) -> ['foo' | 2,...])
+   typean: (([number(),...]) -> ['foo' | 2,...])
+{cont_union2,t1,0} : OK
+ typesig:  (() -> ['foo',...])
+ dataflow: (() -> ['foo' | 2,...])
+   typean: (() -> ['foo' | 2,...])
+{cont_union2,t2,0} : OK
+ typesig:  (() -> ['foo' | 2,...])
+ dataflow: (() -> ['foo' | 2,...])
+   typean: (() -> ['foo' | 2,...])

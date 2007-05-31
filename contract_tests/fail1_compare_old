@@ -1,0 +1,15 @@
+{fail1,fac,1}: Invalid type specification or violation of the contract
+Contract for function that does not exist: {fail1,f1,2}
+Contract for function that does not exist: {fail1,f2,1}
+{fail1,f1,1} : OK
+ typesig:  ((non_neg_integer()) -> pos_integer())
+ dataflow: ((_) -> number())
+   typean: ((_) -> number())
+{fail1,f2,2} : OK
+ typesig:  ((_,_) -> pos_integer())
+ dataflow: ((_,_) -> number())
+   typean: ((_,_) -> number())
+{fail1,fac,1} : OK
+ typesig:  ((non_neg_integer()) -> pos_integer())
+ dataflow: ((_) -> number())
+   typean: ((_) -> number())

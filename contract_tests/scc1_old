@@ -1,0 +1,3 @@
+
+scc1:mini_scc1/1 :: (([integer()]) -> bool())
+scc1:mini_scc/2 :: (([integer()],bool()) -> bool())

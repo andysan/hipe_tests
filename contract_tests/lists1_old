@@ -1,0 +1,5 @@
+
+lists1:append/1 :: (([[any()]]) -> [any()])
+lists1:append/2 :: (([any()],[any()]) -> [any()])
+lists1:nth/2 :: ((pos_integer(),[any(),...]) -> any())
+lists1:subtract/2 :: (([any()],[any()]) -> [any()])
