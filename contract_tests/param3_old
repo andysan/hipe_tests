@@ -1,0 +1,21 @@
+
+--------   Success typings   ---------
+
+param3:t1/2 :: (('foo',1) -> ['foo' | 1,...])
+param3:t11/2 :: ((3,1) -> [1 | 3,...])
+param3:t2/2 :: ((1,integer()) -> [integer(),...])
+param3:t3/1 :: ((1) -> 2)
+param3:t4/0 :: (() -> 2)
+param3:t5/0 :: (() -> none())
+
+
+-----------   Contracts   ------------
+{param3,t1,2}: Invalid type specification or violation of the contract
+{param3,t5,0}: Invalid type specification or violation of the contract
+
+param3:t1/2 :: (('foo',1) -> ['foo' | 1,...])
+param3:t11/2 :: ((3,1) -> [1 | 3,...])
+param3:t2/2 :: ((1,integer()) -> [integer(),...])
+param3:t3/1 :: ((1) -> 2)
+param3:t4/0 :: (() -> 2)
+param3:t5/0 :: (() -> none())
