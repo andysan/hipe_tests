@@ -1,7 +1,16 @@
 
-{fail2,f1,1}: Invalid type specification or violation of the contract
+--------   Success typings   ---------
+
 fail2:f1/1 :: ((non_neg_integer()) -> pos_integer())
-{fail2,f2,2}: Invalid type specification or violation of the contract
 fail2:f2/2 :: ((_,_) -> pos_integer())
+fail2:fac/1 :: ((non_neg_integer()) -> pos_integer())
+
+
+-----------   Contracts   ------------
 {fail2,fac,1}: Invalid type specification or violation of the contract
+{fail2,f1,1}: Invalid type specification or violation of the contract
+{fail2,f2,2}: Invalid type specification or violation of the contract
+
+fail2:f1/1 :: ((non_neg_integer()) -> pos_integer())
+fail2:f2/2 :: ((_,_) -> pos_integer())
 fail2:fac/1 :: ((non_neg_integer()) -> pos_integer())

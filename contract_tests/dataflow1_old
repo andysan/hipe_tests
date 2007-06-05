@@ -1,4 +1,13 @@
 
-dataflow1:add/1 :: ((pos_integer()) -> unit())
-dataflow1:f3/0 :: (() -> unit())
-dataflow1:f4/0 :: (() -> unit())
+--------   Success typings   ---------
+
+dataflow1:add/1 :: ((254) -> 255)
+dataflow1:f3/0 :: (() -> 255)
+dataflow1:f4/0 :: (() -> 255)
+
+
+-----------   Contracts   ------------
+
+dataflow1:add/1 :: ((number()) -> number())
+dataflow1:f3/0 :: (() -> 254)
+dataflow1:f4/0 :: (() -> 254)

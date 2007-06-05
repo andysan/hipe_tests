@@ -1,5 +1,23 @@
 
-lists1:append/1 :: (([[any()]]) -> [any()])
+--------   Success typings   ---------
+
+lists1:append/1 :: (([any()]) -> any())
+lists1:append/2 :: (([any()],_) -> any())
+lists1:nth/2 :: ((pos_integer(),nonempty_possibly_improper_list()) -> any())
+lists1:subtract/2 :: (([any()],[any()]) -> [any()])
+lists1:t/0 :: (() -> any())
+lists1:t1/0 :: (() -> any())
+lists1:t2/1 :: (([any()]) -> any())
+lists1:t3/1 :: ((pos_integer()) -> any())
+
+
+-----------   Contracts   ------------
+
+lists1:append/1 :: (([any()]) -> any())
 lists1:append/2 :: (([any()],[any()]) -> [any()])
 lists1:nth/2 :: ((pos_integer(),[any(),...]) -> any())
 lists1:subtract/2 :: (([any()],[any()]) -> [any()])
+lists1:t/0 :: (() -> integer())
+lists1:t1/0 :: (() -> [integer()])
+lists1:t2/1 :: (([any()]) -> [atom()])
+lists1:t3/1 :: ((pos_integer()) -> 'true')

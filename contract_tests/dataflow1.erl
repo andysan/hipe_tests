@@ -8,12 +8,12 @@
 -module(dataflow1).
 -export([f3/0, f4/0]).
 
+-spec (add/1 :: ((a()) -> a())).
 -spec (f3/0 :: (() -> byte())).
 -spec (f4/0 :: (() -> byte())).
 
-
 add(X) ->
-    add(X + 1).
+    X + 1.
 
 %% Will succeed. Not working yet (dataflow)!
 f3() ->
@@ -21,4 +21,4 @@ f3() ->
 
 %% Will fail. Not working yet (dataflow)!
 f4() ->
-    add(255).
+    add(257).

@@ -1,7 +1,16 @@
 
-Contract for function that does not exist: {fail1,f1,2}
-Contract for function that does not exist: {fail1,f2,1}
+--------   Success typings   ---------
+
 fail1:f1/1 :: ((non_neg_integer()) -> pos_integer())
 fail1:f2/2 :: ((_,_) -> pos_integer())
+fail1:fac/1 :: ((non_neg_integer()) -> pos_integer())
+
+
+-----------   Contracts   ------------
 {fail1,fac,1}: Invalid type specification or violation of the contract
+Contract for function that does not exist: {fail1,f1,2}
+Contract for function that does not exist: {fail1,f2,1}
+
+fail1:f1/1 :: ((non_neg_integer()) -> pos_integer())
+fail1:f2/2 :: ((_,_) -> pos_integer())
 fail1:fac/1 :: ((non_neg_integer()) -> pos_integer())

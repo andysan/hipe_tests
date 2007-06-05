@@ -1,8 +1,0 @@
-{param1,mystery,1} : OK
- typesig:  (([integer()]) -> [integer()])
- dataflow: ((_) -> [any()])
-   typean: ((_) -> [any()])
-{param1,mystery,2} : OK
- typesig:  ((integer(),[integer()]) -> [integer(),...])
- dataflow: ((_,_) -> [any(),...])
-   typean: ((_,_) -> [any(),...])

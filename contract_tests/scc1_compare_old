@@ -1,8 +1,0 @@
-{scc1,mini_scc,2} : OK
- typesig:  (([integer()],bool()) -> bool())
- dataflow: ((_,_) -> bool())
-   typean: ((_,_) -> bool())
-{scc1,mini_scc1,1} : OK
- typesig:  (([integer()]) -> bool())
- dataflow: ((_) -> bool())
-   typean: ((_) -> bool())
