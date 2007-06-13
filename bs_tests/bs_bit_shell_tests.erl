@@ -61,10 +61,10 @@ test_bitsize() ->
   80 = parse_and_eval("80 = erlang:bitsize(<<1:80>>)."),
   800 = parse_and_eval("800 = erlang:bitsize(<<1:800>>)."),
   16#10000001 = parse_and_eval("Bin = <<0:16#1000000>>,
-  BigBin = list_to_binary([Bin||_ <- lists:seq(1,16#10)]++[<<1:1>>]),
+  BigBin = erlang:list_to_bitstr([Bin||_ <- lists:seq(1,16#10)]++[<<1:1>>]),
   16#10000001 = erlang:bitsize(BigBin)."),
   %% Only run these on computers with lots of memory
-  %% HugeBin = list_to_binary([BigBin||_ <- lists:seq(1,16#10)]++[<<1:1>>]),
+  %% HugeBin = erlang:list_to_bitstr([BigBin||_ <- lists:seq(1,16#10)]++[<<1:1>>]),
   %% 16#100000011 = erlang:bitsize(HugeBin), 
   0 = parse_and_eval("0 = erlang:bitsize(<<>>)."),
   ok.
@@ -104,17 +104,17 @@ big_unsymmetric_tests() ->
   ok.
 
 binary_to_and_from_list() ->
-  <<1:7>> = parse_and_eval("list_to_binary(binary_to_list(<<1:7>>))."),
-  <<1,2,3,4,1:1>> = parse_and_eval("list_to_binary(binary_to_list(<<1,2,3,4,1:1>>))."),
-  [1,2,3,4,<<1:1>>] = parse_and_eval("binary_to_list(<<1,2,3,4,1:1>>)."),
-  <<1:1,1,2,3,4>> = parse_and_eval("list_to_binary([<<1:1>>,1,2,3,4])."),
-  [128,129,1,130,<<0:1>>] = parse_and_eval("binary_to_list(<<1:1,1,2,3,4>>)."),
+  <<1:7>> = parse_and_eval("erlang:list_to_bitstr(erlang:bitstr_to_list(<<1:7>>))."),
+  <<1,2,3,4,1:1>> = parse_and_eval("erlang:list_to_bitstr(erlang:bitstr_to_list(<<1,2,3,4,1:1>>))."),
+  [1,2,3,4,<<1:1>>] = parse_and_eval("erlang:bitstr_to_list(<<1,2,3,4,1:1>>)."),
+  <<1:1,1,2,3,4>> = parse_and_eval("erlang:list_to_bitstr([<<1:1>>,1,2,3,4])."),
+  [128,129,1,130,<<0:1>>] = parse_and_eval("erlang:bitstr_to_list(<<1:1,1,2,3,4>>)."),
   ok.
  
 big_binary_to_and_from_list() ->
-  <<1:800,2,3,4,1:1>> = parse_and_eval("list_to_binary(binary_to_list(<<1:800,2,3,4,1:1>>))."),
-  [1,2,3,4|_Rest1] = parse_and_eval("binary_to_list(<<1,2,3,4,1:800,1:1>>)."),
-  <<1:801,1,2,3,4>> = parse_and_eval("list_to_binary([<<1:801>>,1,2,3,4])."),
+  <<1:800,2,3,4,1:1>> = parse_and_eval("erlang:list_to_bitstr(erlang:bitstr_to_list(<<1:800,2,3,4,1:1>>))."),
+  [1,2,3,4|_Rest1] = parse_and_eval("erlang:bitstr_to_list(<<1,2,3,4,1:800,1:1>>)."),
+  <<1:801,1,2,3,4>> = parse_and_eval("erlang:list_to_bitstr([<<1:801>>,1,2,3,4])."),
   ok.  
 
 send_and_receive() -> 
