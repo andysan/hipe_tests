@@ -7,8 +7,8 @@
 %%  History  :	* 2000-10-29 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2007/05/15 12:29:06 $
-%%    $Revision: 1.3 $
+%%    $Date: 2007/06/13 14:45:46 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -18,10 +18,10 @@
 -module(simpl_ne).
 -export([test/0,compile/1]).
 
-guard1(X) when X /= 0, is_float(X), is_constant(X) ->
+guard1(X) when X /= 0, is_float(X) ->
   ok.
 
-guard2(X) when is_constant(X) ->
+guard2(X) when is_atom(X) orelse is_float(X) ->
   error1;
 guard2(X) when is_reference(hd(X)) ->
   error2;
