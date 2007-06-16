@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.59 2007/03/20 09:57:47 mikpe Exp $
+## $Id: testsuite.sh,v 1.60 2007/06/16 17:35:24 mikpe Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -38,6 +38,7 @@ ERL_COMPILER_OPTIONS=[nowarn_shadow_vars]
 core_excl_tests="trivial_tests"	## no point
 no_native_excl_tests="native_tests core_tests"
 smp_excl_tests="memory_tests"
+erl=erl
 
 while test 1=1
 do
@@ -90,6 +91,7 @@ do
      --nofrag)
 	    shift
 	    rts_options="-nofrag"
+	    erl=cerl
             ;;
      --smp)
 	    shift
@@ -211,7 +213,7 @@ DIALYZER_TMP=/tmp/dialyzer_tmp_dir.$USER
 export DIALYZER_OTP DIALYZER_DIR DIALYZER_TMP
 #============================================================================
 
-HIPE_RTS=$OTP_DIR/bin/cerl
+HIPE_RTS=$OTP_DIR/bin/$erl
 
 GREP="grep"
 MSG_FILE=/tmp/hipe_test_msg.$USER
@@ -283,7 +285,7 @@ rm -f core erl_crash.dump */core */erl_crash.dump
 
 ./alltests.sh --rts_opts "$rts_options" --comp_opts "$comp_options" \
 	--only "$only_tests" --exclude "$excluded_tests" \
-	--add "$added_tests" "$OTP_DIR"  >> $LOG_FILE 2>&1
+	--add "$added_tests" "$OTP_DIR" "$HIPE_RTS" >> $LOG_FILE 2>&1
 
 touch $RES_FILE
 

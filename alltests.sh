@@ -3,7 +3,7 @@
 ## File:      alltests.sh
 ## Author(s): Kostis Sagonas
 ##
-## $Id: alltests.sh,v 1.20 2007/03/20 09:57:47 mikpe Exp $
+## $Id: alltests.sh,v 1.21 2007/06/16 17:35:23 mikpe Exp $
 ##
 ## Run with no options for usage/help.
 
@@ -63,7 +63,10 @@ if test -z "$1" -o $# -gt 2; then
 fi
 
 OTP_DIR=$1
-HIPE_RTS=$OTP_DIR/bin/cerl
+HIPE_RTS=$2
+if [ -z "$HIPE_RTS" ]; then
+    HIPE_RTS=$OTP_DIR/bin/erl
+fi
 
 # ---------------------------------------------------------------------
 # Tests if element is a member of a list of tests
