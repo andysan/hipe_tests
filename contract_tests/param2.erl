@@ -9,16 +9,16 @@
 -export([add/1, mystery/2, mystery2/2]).
 
 %% Will fail
--spec (add/1::((a()) -> a())). 
+-spec (add/1::((A) -> A)). 
 -spec (mul/1 :: ((non_neg_integer()) -> byte())).
 %% Success type for mystery/2:
 %% ((non_neg_integer(),number()) -> byte())
 %% With contract:
 %% ((non_neg_integer(),non_neg_integer()) -> byte())
 %% OK since all are subtypes
--spec (mystery/2 :: ((a(), a()) -> a())).
+-spec (mystery/2 :: ((B, B) -> B)).
 %% Will fail since they are not subtypes
--spec (mystery2/2 :: ((a(), a()) -> a())).
+-spec (mystery2/2 :: ((B, B) -> B)).
 
 
 add(X) ->

@@ -8,7 +8,7 @@
 -module(param1).
 -export([mystery/1]).
 
--spec (mystery/2 :: ((a(), [a()]) -> [a()])).
+-spec (mystery/2 :: ((A, [A]) -> [A])).
 %% Without contract:
 %% mystery/1 :: (([any()]) -> [any()])
 %% mystery/2 :: ((integer(),[any()]) -> [any(),...])

@@ -9,10 +9,10 @@
 -module(lists1).
 -export([nth/2, subtract/2, append/1, append/2, t/0, t1/0]).
 
--spec (append/2 :: (([a()], [a()]) -> [a()])).
--spec (append/1 :: (([a()]) -> a())).
--spec (subtract/2 :: (([a()], [a()]) -> [a()])).
--spec (nth/2 :: ((non_neg_integer(), [a()]) -> a())).
+-spec (append/2 :: (([A], [A]) -> [A])).
+-spec (append/1 :: (([A]) -> A)).
+-spec (subtract/2 :: (([A], [A]) -> [A])).
+-spec (nth/2 :: ((non_neg_integer(), [A]) -> A)).
 
 
 nth(1, [H|_]) -> H;

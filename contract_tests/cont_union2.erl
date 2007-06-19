@@ -8,9 +8,8 @@
 -module(cont_union2).
 -export([t1/0, t2/0]).
 
-%% We should consider both contracts if called with an integer()
-%% since number() > integer()  
--spec(t/1 :: (([number()]) -> [atom()]) , 
+%% This contract will be rejected since number() > integer()  
+-spec(t/1 :: (([number()]) -> [atom()]) ; 
              (([integer()]) -> [integer()])).
 
 
@@ -23,11 +22,9 @@ t(P) ->
     end, 
     P).
 
-%% Range is [atom()] since it matches the first union of the contract
 t1() ->
     t([3.0,4.0,5.0]).
 
-%% Range is ([atom()] | [integer()]) since it matches both contracts
 t2() ->
     t([1,1,1]).
 

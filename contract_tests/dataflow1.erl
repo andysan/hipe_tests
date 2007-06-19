@@ -8,7 +8,7 @@
 -module(dataflow1).
 -export([f3/0, f4/0]).
 
--spec (add/1 :: ((a()) -> a())).
+-spec (add/1 :: ((A) -> A)).
 -spec (f3/0 :: (() -> byte())).
 -spec (f4/0 :: (() -> byte())).
 

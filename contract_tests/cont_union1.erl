@@ -7,10 +7,10 @@
 %%%-------------------------------------------------------------------
 
 -module(cont_union1).
--export([numbers2/0, numbers3/0]).
+-export([numbers2/0]).
 
 %% numbers2/0 and numbers3/0 would return number() without the contract
--spec(numbers/1 :: ((integer()) -> integer()) , 
+-spec(numbers/1 :: ((integer()) -> integer()) ; 
                    ((float()) -> float())).
 
 
