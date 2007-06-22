@@ -8,7 +8,7 @@
 -module(dataflow1).
 -export([f3/0, f4/0]).
 
--spec (add/1 :: ((A) -> A)).
+-spec (add/1 :: ((Primero :: A) -> A)).
 -spec (f3/0 :: (() -> byte())).
 -spec (f4/0 :: (() -> byte())).
 
@@ -17,8 +17,8 @@ add(X) ->
 
 %% Will succeed. Not working yet (dataflow)!
 f3() ->
-    add(254).
+    add(200).
 
 %% Will fail. Not working yet (dataflow)!
 f4() ->
-    add(257).
+    add(300).

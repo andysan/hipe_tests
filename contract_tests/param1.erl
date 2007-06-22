@@ -8,7 +8,7 @@
 -module(param1).
 -export([mystery/1]).
 
--spec (mystery/2 :: ((A, [A]) -> [A])).
+-spec (mystery/2 :: ((A, [A]) -> [A]) when is_subtype(A, byte())).
 %% Without contract:
 %% mystery/1 :: (([any()]) -> [any()])
 %% mystery/2 :: ((integer(),[any()]) -> [any(),...])

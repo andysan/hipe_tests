@@ -37,10 +37,10 @@ t() ->
 t1() ->
     append([6],[7]).
 
-
 t2(X) ->
-    append(X,[foo,dsssa,aerf,swer,sefr,sefewfewafew,esffese,fef,safeesf,efsesf,sedf,sdfsfd,sfd]).
+    append(X,[foo]).
+
+t3() ->
+    append([],5.4).
 
 
-t3(X) ->
-    nth(X, [true]).

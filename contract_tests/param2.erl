@@ -39,5 +39,6 @@ mystery2(X, Y)->
   mul(X),
   Y + 5.0.
 
-
+mystery2_call() ->
+    mystery2(3, 4).
 
