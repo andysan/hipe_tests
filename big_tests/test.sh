@@ -2,14 +2,14 @@
 
 #============================================================================
 echo "------------------------------------------------------------------------"
-echo "---                  Running bs_tests/test.sh                        ---"
+echo "---                  Running big_tests/test.sh                       ---"
 echo "------------------------------------------------------------------------"
 
 HIPE=$1
 COMP_FLAGS=$2
 ERL_FLAGS=$3
 
-testfiles=big*.erl
+testfiles=big_binary.erl
 
 testdir="big_tests"
 
