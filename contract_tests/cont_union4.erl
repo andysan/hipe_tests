@@ -5,11 +5,11 @@
 %%%
 %%% Created : 30 May 2007
 %%%-------------------------------------------------------------------
--module(cont_union2).
+-module(cont_union4).
 -export([t1/0, t2/0]).
 
 -spec(t/1 :: (([number()]) -> [atom()]) ; 
-             (([integer()]) -> [integer()])).
+             (([atom()]) -> [integer()])).
 
 
 t(P) -> 

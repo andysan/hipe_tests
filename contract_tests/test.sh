@@ -3,7 +3,7 @@
 if test $# -eq 2; then
   testfiles="$2"	## test file is given as unique extra argument
 else
-  testfiles="ar*.erl f*.erl d*.erl cont*.erl l*.erl s*.erl p*.erl"
+  testfiles="ar*.erl f*.erl d*.erl case*.erl cont*.erl i*.erl li*.erl s*.erl p*.erl tu*.erl"
 fi
 
 HIPE=$1/bin/erl

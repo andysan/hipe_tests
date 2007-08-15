@@ -7,7 +7,7 @@
 %%% Created : 30 May 2007
 %%%-------------------------------------------------------------------
 -module(lists1).
--export([nth/2, subtract/2, append/1, append/2, t/0, t1/0]).
+-export([nth/2, subtract/2, append/1, append/2, t/0, t1/0, t2/1, t3/0]).
 
 -spec (append/2 :: (([A], [A]) -> [A])).
 -spec (append/1 :: (([A]) -> A)).
