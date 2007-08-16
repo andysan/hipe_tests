@@ -7,8 +7,8 @@
 %%  History  :	* 2000-11-21 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/02/13 16:49:25 $
-%%    $Revision: 1.2 $
+%%    $Date: 2007/08/16 12:59:11 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -21,12 +21,12 @@
 foo(_,_,_,_) ->
     ok.
 
-guard(X) when function(X) ->
+guard(X) when is_function(X) ->
      ok.
 
 if_test(X) ->
     if
-	function(X) ->
+	is_function(X) ->
 	    ok;
 	true ->
 	    weird

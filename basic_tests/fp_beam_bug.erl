@@ -25,7 +25,7 @@ t1() ->
       error
   end.
 
-bad_arith1(X, Y) when float(X) ->
+bad_arith1(X, Y) when is_float(X) ->
   X1 = X * 1.7e+308,
   X2 = X1 + 1.0,
   Y1 = Y * 2,
@@ -44,7 +44,7 @@ t2() ->
       error
   end.
 
-bad_arith2(X, Y) when float(X) ->
+bad_arith2(X, Y) when is_float(X) ->
   X1 = X * 1.7e+308,
   Y1 = element(1, Y),
   {X1 + 1.0, Y1}.

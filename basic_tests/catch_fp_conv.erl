@@ -5,8 +5,8 @@
 %%		to floating point numbers.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2003/12/17 13:20:21 $
-%%              $Revision: 1.3 $
+%%              $Date: 2007/08/16 12:59:10 $
+%%              $Revision: 1.4 $
 %% ====================================================================
 
 -module(catch_fp_conv).
@@ -22,7 +22,7 @@ big_arith(F) ->
     I = trunc(F),
     {'EXIT',{badarith,_}} = i_big_arith(I).
 
-i_big_arith(I) when integer(I) ->
+i_big_arith(I) when is_integer(I) ->
     catch(3.0 + 2*I).
 
 big_const_float(F) ->

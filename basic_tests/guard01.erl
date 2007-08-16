@@ -6,8 +6,8 @@
 %%  History  :  * 2001-09-17 Kostis Sagonas (kostis@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/09/20 13:39:59 $
-%%    $Revision: 1.2 $
+%%    $Date: 2007/08/16 12:59:11 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 
 -module(guard01).
@@ -21,7 +21,7 @@ compile(Flags) ->
 
 guard_bifs(doc) -> "Test all guard bifs with nasty (but legal arguments).";
 guard_bifs(suite) -> [];
-guard_bifs(Config) when list(Config) ->
+guard_bifs(Config) when is_list(Config) ->
     Big = -237849247829874297658726487367328971246284736473821617265433,
     Float = 387924.874,
 

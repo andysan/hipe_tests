@@ -9,8 +9,8 @@
 %%  Notes    : 
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
-%%    $Author: richardc $
-%%    $Date: 2004/08/20 14:59:34 $
+%%    $Author: kostis $
+%%    $Date: 2007/08/16 12:59:11 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -21,7 +21,7 @@
 -module(test04).
 -export([test/0,compile/1]).
 
-native(N) when N>0 ->
+native(N) when N > 0 ->
   emu(N-1);
 native(_) ->
   0.

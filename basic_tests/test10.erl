@@ -16,8 +16,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/12/17 13:20:21 $
-%%    $Revision: 1.3 $
+%%    $Date: 2007/08/16 12:59:11 $
+%%    $Revision: 1.4 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -220,11 +220,15 @@ t_trunc() ->
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Local lists functions....
 
-duplicate(N, X) when integer(N), N >= 0 -> duplicate(N, X, []).
+duplicate(N, X) when is_integer(N), N >= 0 ->
+    duplicate(N, X, []).
+
 duplicate(0, _, L) -> L;
 duplicate(N, X, L) -> duplicate(N-1, X, [X|L]).
 
-reverse(X) -> reverse(X, []).
+reverse(X) ->
+    reverse(X, []).
+
 reverse([H|T], Y) ->
     reverse(T, [H|Y]);
 reverse([], X) -> X.

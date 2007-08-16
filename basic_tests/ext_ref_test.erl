@@ -4,7 +4,7 @@
 test() ->
   test(an_external_ref()).
 
-test(Ref) when reference(Ref) ->
+test(Ref) when is_reference(Ref) ->
   ok;
 test(_Ref) ->
   buggy_ext_ref_test.
