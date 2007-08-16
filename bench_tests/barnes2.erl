@@ -84,7 +84,7 @@ resolve_body_conflict(M0, X0, Y0, M1, X1, Y1, OX, OY, D) ->
 compute_acceleration(empty, _, _, _, _, _,L) -> 
   {{0.0, 0.0},L+1};
 compute_acceleration({body,BM,BX,BY}, _D, _OX, _OY, X, Y,L)
-  when float(BX), float(BY), float(X), float(Y)->
+  when is_float(BX), is_float(BY), is_float(X), is_float(Y) ->
   DX = BX - X,
   DY = BY - Y,
   R2 = (DX * DX) + (DY * DY),
@@ -97,7 +97,7 @@ compute_acceleration({body,BM,BX,BY}, _D, _OX, _OY, X, Y,L)
       {{DX * Expr, DY * Expr},L+1}
   end;
 compute_acceleration({branch,M,SubTree}, D, OX, OY, X, Y,L)
-  when float(D), float(OX), float(OY), float(X), float(Y)->
+  when is_float(D), is_float(OX), is_float(OY), is_float(X), is_float(Y) ->
   DX = OX - X,
   DY = OY - Y,
   R2 = (DX * DX) + (DY * DY),
@@ -142,7 +142,7 @@ compute_star_accelerations(Tree,[{_,X, Y,_,_}|Stars],L) ->
 compute_next_state([],_,_) -> 
   [];
 compute_next_state([{M,X,Y,VX,VY}|Stars],[{AX,AY}|Accs],Time)
-  when float(AX), float(AY), float(VX), float(VY), float(Time)->
+  when is_float(AX), is_float(AY), is_float(VX), is_float(VY), is_float(Time) ->
   VX0 = VX + (AX * Time),
   VY0 = VY + (AY * Time),
   [{M,X+(VX*Time),Y+(VY*Time),VX0,VY0} | compute_next_state(Stars,Accs,Time)].

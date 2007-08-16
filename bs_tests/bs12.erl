@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2002/05/08 07:33:40 $
-%%              $Revision: 1.2 $
+%%              $Date: 2007/08/16 14:15:06 $
+%%              $Revision: 1.3 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -79,4 +79,4 @@ test_zero_tail(<<A:8>>) -> A.
 
 test_zero_tail2(<<_:4,_:4>>) -> ok.
 
-mkbin(L) when list(L) -> list_to_binary(L).
+mkbin(L) when is_list(L) -> list_to_binary(L).

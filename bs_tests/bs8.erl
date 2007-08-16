@@ -9,9 +9,9 @@
 %%  History  :	* 2001-04-10 Erik Johansson (happi@csd.uu.se): 
 %%               Created.
 %%  CVS      :
-%%              $Author: richardc $
-%%              $Date: 2004/08/20 15:46:37 $
-%%              $Revision: 1.6 $
+%%              $Author: kostis $
+%%              $Date: 2007/08/16 14:15:06 $
+%%              $Revision: 1.7 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -94,4 +94,4 @@ bits_to_list([H|_]=List, Mask) ->
    end|bits_to_list(List, Mask bsr 1)];
 bits_to_list([], _) -> [].
 
-mkbin(L) when list(L) -> list_to_binary(L).
+mkbin(L) when is_list(L) -> list_to_binary(L).

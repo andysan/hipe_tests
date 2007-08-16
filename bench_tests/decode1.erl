@@ -1,12 +1,12 @@
-%----------------------------------------------------------------------
-% decode1.erl (new version)
-%----------------------------------------------------------------------
-%    -*- Erlang -*- 
-%    File:	decode1.erl  (~jb/decode/decode1.erl)
-%    Author:	Johan Bevemyr
-%    Created:	Tue Jan 14 09:33:49 1997
-%    Purpose:   
-%    Notes:     Rewritten for use in ETOS. (Happi)
+%%----------------------------------------------------------------------
+%% decode1.erl (new version)
+%%----------------------------------------------------------------------
+%%    -*- Erlang -*- 
+%%    File:	decode1.erl  (~jb/decode/decode1.erl)
+%%    Author:	Johan Bevemyr
+%%    Created:	Tue Jan 14 09:33:49 1997
+%%    Purpose:   
+%%    Notes:     Rewritten for use in ETOS. (Happi)
 
 -module(decode1).
 -author('jb@erix.ericsson.se').
@@ -17,10 +17,8 @@
 	 run_orig/2]).
 
 -ifdef(ETOS).
--define(IS_BINARY(X),is_binary(X)).
 -define(CHAR_TO_INTEGER(X),char_to_integer(X)).
 -else.
--define(IS_BINARY(X),binary(X)).
 -define(CHAR_TO_INTEGER(X),X).
 -endif.
 
@@ -189,16 +187,16 @@ run_orig(N,Frame) ->
 %%%             order must be incoming IE's must be preserved, this
 %%%             only applicable in msg setup
 %%% ----------------------------------------------------------
-decode_ie_heads_setup(Bin)->
+decode_ie_heads_setup(Bin) ->
    decode_ie_heads_setup(Bin,no_bbc_ie,no_epr,[],no_brep).
 	
-decode_ie_heads_setup(Bin,TypeOfCall,EprFlag,IEList,BrepFlag) when ?IS_BINARY(Bin),size(Bin) >= 4 ->
+decode_ie_heads_setup(Bin,TypeOfCall,EprFlag,IEList,BrepFlag) when is_binary(Bin),size(Bin) >= 4 ->
    {Bin1,Bin2} = split_binary(Bin,4),
    [Id,F,L1,L0]= binary_to_list(Bin1),
    Action = decode_action(F),
    Coding = decode_ie_coding(F),
    case ?getint16(L1,L0) of
-      Len when Len >0 ->
+      Len when Len > 0 ->
 	 %%catch needed we cannot trust indata
 	 case catch split_binary(Bin2,Len) of 
 	    {'EXIT',_} ->  %%binary unpacked as far as possible
@@ -256,7 +254,7 @@ decode_ie_heads_setup(Bin,TypeOfCall,EprFlag,IEList,BrepFlag) when ?IS_BINARY(Bi
 					   [IE|IEList],BrepFlag)
 	       end
 	 end;
-      Len when Len == 0 ->%ie body empty, treat as if whole ie was missing
+      Len when Len =:= 0 ->%ie body empty, treat as if whole ie was missing
 	 decode_ie_heads_setup(Bin2,TypeOfCall,EprFlag,IEList,BrepFlag)
    end;
 decode_ie_heads_setup(_,?SCCT_P_TO_MP,yes_epr,IEList,no_brep) ->

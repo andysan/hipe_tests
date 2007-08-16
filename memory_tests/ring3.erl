@@ -32,7 +32,7 @@ format(Fd, {N, {Spawn, Send}}) ->
     io:fwrite(Fd, "~w\t~w\t~w~n", [N, Spawn, Send]).
     
 
-run(N, Msg) when integer(N), N > 1 ->
+run(N, Msg) when is_integer(N), N > 1 ->
     {First, Last, SpawnTime} = spawn_ring(N),
     SendTime = send_ring(First, Last, Msg),
     exit({SpawnTime/N, SendTime/N}).

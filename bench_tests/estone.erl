@@ -415,7 +415,7 @@ pat_loop3(_, [{c, h} | _]) ->
     ok;
 pat_loop3(_, [1, 0 | _]) ->
     ok;
-pat_loop3(_, [X, _ | _]) when binary(X), size(X) =:= 1 ->
+pat_loop3(_, [X, _ | _]) when is_binary(X), size(X) =:= 1 ->
     ok;
 pat_loop3(_, [no,_ | _]) -> 
     ok;
@@ -491,11 +491,11 @@ trav(I, T) ->
     do_trav(T),
     trav(I-1, T).
 
-do_trav(T) when tuple(T) ->
+do_trav(T) when is_tuple(T) ->
     tup_trav(T, 1, 1 + size(T));
 do_trav([H|T]) ->
     do_trav(H) + do_trav(T);
-do_trav(X) when integer(X) -> 1;
+do_trav(X) when is_integer(X) -> 1;
 do_trav(_) -> 0.
 
 tup_trav(_, P, P) -> 0;
@@ -1104,6 +1104,6 @@ tt1([]) ->
     [].
 
 %% mk_fname([Hz]) -> integer_to_list(Hz);
-%% mk_fname([H|T]) when atom(H) -> 
+%% mk_fname([H|T]) when is_atom(H) -> 
 %%     lists:concat([atom_to_list(H) , "-" , mk_fname(T)]);
 %% mk_fname([H|T]) -> lists:concat([H, "-", mk_fname(T)]).

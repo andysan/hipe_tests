@@ -7,7 +7,7 @@ qsort(L) -> qsort(L,[]).
 qsort([H|T],L) -> partition(H,T,[],[],L);
 qsort([],L)    -> L.
 
-partition(Pivot,[H|T],A,B,L) when H<Pivot ->
+partition(Pivot,[H|T],A,B,L) when H < Pivot ->
   partition(Pivot,T,[H|A],B,L);
 partition(Pivot,[H|T],A,B,L) ->
   partition(Pivot,T,A,[H|B],L);

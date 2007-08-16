@@ -4,12 +4,6 @@
 %% compiler is likely to choke on the huge constant term that is
 %% formed. (Native code compilation has no such problems.)
 
--ifdef(ETOS).
--define(IS_FLOAT(X),is_float(X)).
--else.
--define(IS_FLOAT(X),float(X)).
--endif.
-
 -module(pseudoknot).
 -export([test/0,compile/1,native_compile/0]).
 
@@ -36,20 +30,20 @@ atan2(Y,X) ->
 %pt ::= {X, Y, Z} where X,Y,Z are floats
 
 pt_sub({X1, Y1, Z1}, {X2, Y2, Z2}) 
-    when ?IS_FLOAT(X1), ?IS_FLOAT(Y1), ?IS_FLOAT(Z1),
-         ?IS_FLOAT(X2), ?IS_FLOAT(Y2), ?IS_FLOAT(Z2) ->
+    when is_float(X1), is_float(Y1), is_float(Z1),
+         is_float(X2), is_float(Y2), is_float(Z2) ->
     {X1 - X2, Y1 - Y2, Z1 - Z2}.
 
 pt_dist({X1, Y1, Z1}, {X2, Y2, Z2})
-    when ?IS_FLOAT(X1), ?IS_FLOAT(Y1), ?IS_FLOAT(Z1),
-         ?IS_FLOAT(X2), ?IS_FLOAT(Y2), ?IS_FLOAT(Z2) ->
+    when is_float(X1), is_float(Y1), is_float(Z1),
+         is_float(X2), is_float(Y2), is_float(Z2) ->
     Dx = X1 - X2,
     Dy = Y1 - Y2,
     Dz = Z1 - Z2,
     math:sqrt(Dx * Dx + Dy * Dy + Dz * Dz).
 
 pt_phi({X, Y, Z})
-    when ?IS_FLOAT(X), ?IS_FLOAT(Z) ->
+    when is_float(X), is_float(Z) ->
     B = atan2(X, Z),
     atan2(math:cos(B) * Z + math:sin(B) * X, Y).
 
@@ -81,9 +75,9 @@ tfo_id() -> {1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0}.
 % point vector, p.  The result is a new point.
 
 tfo_apply ({A,B,C,D,E,F,G,H,I,Tx,Ty,Tz}, {X,Y,Z})
-    when ?IS_FLOAT(A), ?IS_FLOAT(B), ?IS_FLOAT(C), ?IS_FLOAT(D), ?IS_FLOAT(E),
-         ?IS_FLOAT(F), ?IS_FLOAT(G), ?IS_FLOAT(H), ?IS_FLOAT(I), 
-         ?IS_FLOAT(Tx), ?IS_FLOAT(Ty), ?IS_FLOAT(Tz), ?IS_FLOAT(X), ?IS_FLOAT(Y), ?IS_FLOAT(Z) ->
+    when is_float(A), is_float(B), is_float(C), is_float(D), is_float(E),
+         is_float(F), is_float(G), is_float(H), is_float(I), 
+         is_float(Tx), is_float(Ty), is_float(Tz), is_float(X), is_float(Y), is_float(Z) ->
     {X * A + Y * D + Z * G + Tx,
      X * B + Y * E + Z * H + Ty,
      X * C + Y * F + Z * I + Tz}.
@@ -94,12 +88,12 @@ tfo_apply ({A,B,C,D,E,F,G,H,I,Tx,Ty,Tz}, {X,Y,Z})
 
 tfo_combine({A_a,A_b,A_c,A_d,A_e,A_f,A_g,A_h,A_i,A_tx,A_ty,A_tz},
    {B_a,B_b,B_c,B_d,B_e,B_f,B_g,B_h,B_i,B_tx,B_ty,B_tz}) 
-   when ?IS_FLOAT(A_a), ?IS_FLOAT(A_b), ?IS_FLOAT(A_c), ?IS_FLOAT(A_d), ?IS_FLOAT(A_e),
-        ?IS_FLOAT(A_f), ?IS_FLOAT(A_g), ?IS_FLOAT(A_h), ?IS_FLOAT(A_i), ?IS_FLOAT(A_tx),
-        ?IS_FLOAT(A_ty), ?IS_FLOAT(A_tz),
-        ?IS_FLOAT(B_a), ?IS_FLOAT(B_b), ?IS_FLOAT(B_c), ?IS_FLOAT(B_d), ?IS_FLOAT(B_e),
-        ?IS_FLOAT(B_f), ?IS_FLOAT(B_g), ?IS_FLOAT(B_h), ?IS_FLOAT(B_i), ?IS_FLOAT(B_tx),
-        ?IS_FLOAT(B_ty), ?IS_FLOAT(B_tz) ->
+   when is_float(A_a), is_float(A_b), is_float(A_c), is_float(A_d), is_float(A_e),
+        is_float(A_f), is_float(A_g), is_float(A_h), is_float(A_i), is_float(A_tx),
+        is_float(A_ty), is_float(A_tz),
+        is_float(B_a), is_float(B_b), is_float(B_c), is_float(B_d), is_float(B_e),
+        is_float(B_f), is_float(B_g), is_float(B_h), is_float(B_i), is_float(B_tx),
+        is_float(B_ty), is_float(B_tz) ->
     {A_a * B_a + A_b * B_d + A_c * B_g,
       A_a * B_b + A_b * B_e + A_c * B_h,
       A_a * B_c + A_b * B_f + A_c * B_i,
@@ -117,8 +111,8 @@ tfo_combine({A_a,A_b,A_c,A_d,A_e,A_f,A_g,A_h,A_i,A_tx,A_ty,A_tz},
 % transformation matrix.
 
 tfo_inv_ortho({A,B,C,D,E,F,G,H,I,Tx,Ty,Tz})
-    when ?IS_FLOAT(A), ?IS_FLOAT(B), ?IS_FLOAT(C), ?IS_FLOAT(D), ?IS_FLOAT(E), ?IS_FLOAT(F),
-         ?IS_FLOAT(G), ?IS_FLOAT(H), ?IS_FLOAT(I), ?IS_FLOAT(Tx), ?IS_FLOAT(Ty), ?IS_FLOAT(Tz) ->
+    when is_float(A), is_float(B), is_float(C), is_float(D), is_float(E), is_float(F),
+         is_float(G), is_float(H), is_float(I), is_float(Tx), is_float(Ty), is_float(Tz) ->
     {A,D,G,
      B,E,H,
      C,F,I,
@@ -131,9 +125,9 @@ tfo_inv_ortho({A,B,C,D,E,F,G,H,I,Tx,Ty,Tz})
 % mapped to the Y axis and p3 gets mapped to the YZ plane.
 
 tfo_align({X1,Y1,Z1},{X2,Y2,Z2},{X3,Y3,Z3})
-      when ?IS_FLOAT(X1), ?IS_FLOAT(Y1), ?IS_FLOAT(Z1),
-           ?IS_FLOAT(X2), ?IS_FLOAT(Y2), ?IS_FLOAT(Z2),
-           ?IS_FLOAT(X3), ?IS_FLOAT(Y3), ?IS_FLOAT(Z3) ->
+      when is_float(X1), is_float(Y1), is_float(Z1),
+           is_float(X2), is_float(Y2), is_float(Z2),
+           is_float(X3), is_float(Y3), is_float(Z3) ->
       X31 = X3 - X1,
       Y31 = Y3 - Y1,
       Z31 = Z3 - Z1,
@@ -3143,7 +3137,7 @@ anticodon_constraint({33,T,N},Partial_inst) ->
     check0(dist(34,{33,T,N},Partial_inst));
 anticodon_constraint(_,_) -> true.
 
-check0(Dist) when ?IS_FLOAT(Dist), Dist =< 3.0 -> true;
+check0(Dist) when is_float(Dist), Dist =< 3.0 -> true;
 check0(_) -> false.
 
 dist(J,V,Partial_inst) ->
@@ -3193,10 +3187,10 @@ pseudoknot_constraint({6,T,N}, Partial_inst) ->
     check2(dist(7, {6,T,N}, Partial_inst));
 pseudoknot_constraint(_,_) -> true.
 
-check1(Dist) when ?IS_FLOAT(Dist), Dist =< 4.0 -> true;
+check1(Dist) when is_float(Dist), Dist =< 4.0 -> true;
 check1(_) -> false.
 
-check2(Dist) when ?IS_FLOAT(Dist), Dist =< 4.5 -> true;
+check2(Dist) when is_float(Dist), Dist =< 4.5 -> true;
 check2(_) -> false.
 
 pseudoknot() -> search([], pseudoknot_domains(), pseudoknot_constraint).
@@ -3245,7 +3239,7 @@ distance(V,P) ->
     {X,Y,Z} = absolute_pos(V,P),
     distance(X,Y,Z).
 
-distance(X,Y,Z) when ?IS_FLOAT(X), ?IS_FLOAT(Y), ?IS_FLOAT(Z) ->
+distance(X,Y,Z) when is_float(X), is_float(Y), is_float(Z) ->
     math:sqrt(X * X + Y * Y + Z * Z).
 
 sol_most_distant_atom(S) ->
@@ -3257,7 +3251,7 @@ most_distant_atom(Sols) ->
 maximum([H|T]) ->
     max(T,H).
 
-max([H|T],M) when ?IS_FLOAT(H), ?IS_FLOAT(M), H > M ->
+max([H|T],M) when is_float(H), is_float(M), H > M ->
     max(T,H);
 max([_|T],M) ->
     max(T,M);
