@@ -74,7 +74,7 @@ yecctoken2string({Cat, _, Val}) -> io_lib:format('~w', [Val]);
 yecctoken2string({'dot', _}) -> io_lib:format('~w', ['.']);
 yecctoken2string({'$end', _}) ->
     [];
-yecctoken2string({Other, _}) when atom(Other) ->
+yecctoken2string({Other, _}) when is_atom(Other) ->
     io_lib:format('~w', [Other]);
 yecctoken2string(Other) ->
     io_lib:write(Other).

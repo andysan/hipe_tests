@@ -5,13 +5,13 @@
 -module(spawn4).
 -export([spawn/4]).
 
-spawn(N,M,F,A) when N == node(), atom(M), atom(F), list(A) ->
+spawn(N,M,F,A) when N == node(), is_atom(M), is_atom(F), is_list(A) ->
     spawn(M,F,A);
-spawn(N,M,F,A) when atom(N), atom(M), atom(F), length(A) >= 0 ->
+spawn(N,M,F,A) when is_atom(N), is_atom(M), is_atom(F), length(A) >= 0 ->
     case catch gen_server:call({net_kernel,N},
 			       {spawn,M,F,A,group_leader()},
 			       infinity) of
-	Pid when pid(Pid) ->
+	Pid when is_pid(Pid) ->
 	    Pid;
 	Error ->
 	    case erlang:remote_spawn_error(Error, {no_link, N, M, F, A, []}) of

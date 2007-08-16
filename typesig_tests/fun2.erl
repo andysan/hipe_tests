@@ -26,9 +26,9 @@ mk_reader(ReadFun, Source) ->
 
 read_term(ReadFun, Source) ->
     case ReadFun(Source, 5) of
-	Bin when binary(Bin) ->
+	Bin when is_binary(Bin) ->
 	    read_term(ReadFun, Source, Bin);
-	List when list(List) ->
+	List when is_list(List) ->
 	    read_term(ReadFun, Source, list_to_binary(List));
 	eof ->
 	    eof
@@ -41,9 +41,9 @@ read_term(ReadFun, Source, <<Op, Size:32>> = Tag) ->
 		eof ->
 		    exit({'trace term missing', 
 			  binary_to_list(Tag)});
-		Bin when binary(Bin) ->
+		Bin when is_binary(Bin) ->
 		    {ok, binary_to_term(Bin)};
-		List when list(List) ->
+		List when is_list(List) ->
 		    {ok, binary_to_term(list_to_binary(List))}
 	    end;
 	1 ->

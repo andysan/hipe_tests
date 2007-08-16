@@ -4,9 +4,9 @@
 test() ->
   f(42).
 
-f(N) when integer(N) ->
+f(N) when is_integer(N) ->
   N + 1;
-f(L) when list(L) ->
+f(L) when is_list(L) ->
   size(L);	%% erroneous use which should not influence result
-f(L) when binary(L) ->
+f(L) when is_binary(L) ->
   size(L).

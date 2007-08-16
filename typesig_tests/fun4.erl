@@ -24,10 +24,10 @@ start(TracerFun) ->
 	    case TracerFun of
 		no_tracer ->
 		    {ok, P};
-		Fun when function(Fun) ->
+		Fun when is_function(Fun) ->
 		    {tracer,TracerFun}
 	    end;
-	Pid when pid(Pid), function(TracerFun) ->
+	Pid when is_pid(Pid), is_function(TracerFun) ->
 	    {tracer,TracerFun}
     end.
 

@@ -19,12 +19,12 @@ file_name(N) ->
         {error, einval}
     end.
 
-file_name_1([C|T]) when integer(C), C > 0, C =< 255 ->
+file_name_1([C|T]) when is_integer(C), C > 0, C =< 255 ->
     [C|file_name_1(T)];
 file_name_1([H|T]) ->
     file_name_1(H) ++ file_name_1(T);
 file_name_1([]) ->
     [];
-file_name_1(N) when atom(N) ->
+file_name_1(N) when is_atom(N) ->
     atom_to_list(N).
 
