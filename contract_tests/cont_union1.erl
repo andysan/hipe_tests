@@ -15,12 +15,12 @@
 
 
 numbers(X) when is_integer(X) ->
-    X+4;
+  X + 4;
 numbers(X) when is_float(X) ->
-    X+4.0.
+  X + 4.0.
 
 numbers2() ->
-    numbers(5.0).
+  numbers(5.0).
 
 numbers3() ->
-    numbers(5).
+  numbers(5).
