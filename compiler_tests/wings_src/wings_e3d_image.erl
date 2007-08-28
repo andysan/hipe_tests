@@ -8,7 +8,7 @@
 %%  See the file "license.terms" for information on usage and redistribution
 %%  of this file, and for a DISCLAIMER OF ALL WARRANTIES.
 %%
-%%     $Id: wings_e3d_image.erl,v 1.1 2004/02/18 17:11:13 kostis Exp $
+%%     $Id: wings_e3d_image.erl,v 1.2 2007/08/28 09:25:26 kostis Exp $
 %%
 
 -module(wings_e3d_image).
@@ -181,7 +181,6 @@ height2normal(Old = #e3d_image{width=W,bytes_pp=B,alignment=A,image=I,name=Name}
     Old#e3d_image{bytes_pp=3,type=r8g8b8, image=New, alignment=1,
 		  filename=none, name=Name++"bump"}.
 	
-%bumps(Row1,Row2,Rest,RSz,B,First,Acc) ->
 bumps(R1,R2,Rest,RSz,B,First,S,Bump) 
   when size(Rest) < RSz, size(R2) < RSz ->
     <<F:8,_/binary>> = R1,
@@ -301,10 +300,6 @@ downSampleNormalMap(I,J,W,H,Bin,Acc) ->
 
     L = math:sqrt(X*X+Y*Y+Z*Z),
     if L > 0.00005 ->
-%	    SL = L / 4,
-% 	    M = if SL > 1.0 -> 255;
-% 		   true -> 255*SL
-% 		end,
 	    %% Normalize the vector to unit length and convert to RGB
 	    InvL = 1.0/L,
 	    New = [?N2RGB(X*InvL),?N2RGB(Y*InvL),?N2RGB(Z*InvL)], %M],
@@ -348,12 +343,8 @@ fix_outtype(Res, _) ->  %% Propagate Error Case
     Res.
 
 
-%-define(C3(A,B,C), A,B,C).
-%-define(C4(A,B,C,D), A,B,C,D). 
 -define(C3(A,B,C), [A,B,C]).
 -define(C4(A,B,C,D), [A,B,C,D]).   %% Seems faster if I make a binary of each row!!
-%-define(C3(A,B,C), <<A:8,B:8,C:8>>).
-%-define(C4(A,B,C,D), <<A:8,B:8,C:8,D:8>>).
 
 swap(Action, W, W, Bin, OPL, NP, {SC,SR}, Row, Acc) ->
     <<_Skip:OPL/binary, Rest/binary>> = Bin,    
@@ -459,12 +450,6 @@ swap3to4(C, W, <<B0:8,G0:8,R0:8, R/binary>>, OPL, NP, OC, Row, Acc) when C =/= W
     swap3to4( C+1, W, R, OPL, NP, OC, [?C4(R0,G0,B0,255)|Row], Acc);
 swap3to4(C, W, Bin, OPL, NP, OC, Row, Acc) ->
     swap(swap3to4, C, W, Bin, OPL, NP, OC, Row, Acc).
-
-%fix_alignment(<<>>, RL, OldP, NewP, Acc) ->
-%    list_to_binary(lists:reverse(Acc));
-%fix_alignment(Image, RL, OldP, NewP, Acc) ->
-%    <<Row:RL/binary, Skip:OldP/binary, Rest/binary>> = Image,
-%    fix_alignment(Rest, RL, OldP, NewP, [NewP, Row | Acc]).
 
 type_conv(Type, Type) ->  %% No swap
     case bytes_pp(Type) of
