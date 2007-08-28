@@ -4,7 +4,7 @@
 %%% Created : 30 Jan 2004 by Torbjorn Tornkvist <tobbe@bluetail.com>
 %%% Purpose : Somewhat similar to Sambas 'smbclient' program
 %%%
-%%% $Id: esmb_client.erl,v 1.1 2004/11/15 17:40:46 kostis Exp $
+%%% $Id: esmb_client.erl,v 1.2 2007/08/28 11:39:10 kostis Exp $
 %%% --------------------------------------------------------------------
 -export([start/2, start/4, astart/2, istart/2, ustart/2]).
 -export([swap/3, to_ucs2/3, ucs2_to_charset/2]).
@@ -195,8 +195,8 @@ two(I) ->
 	X   -> X
     end.
 
-i2l(I) when integer(I) -> integer_to_list(I);
-i2l(L) when list(L)    -> L.
+i2l(I) when is_integer(I) -> integer_to_list(I);
+i2l(L) when is_list(L)    -> L.
 
 
 check_attr(A) ->
@@ -237,11 +237,11 @@ eat_until(Cs, X) ->
 eat_until([X|_] = Cs, X, Acc) -> {lists:reverse(Acc), Cs};
 eat_until([H|T], X, Acc)      -> eat_until(T, X, [H|Acc]).
     
-l2b(L) when list(L)   -> list_to_binary(L);
-l2b(B) when binary(B) -> B.
+l2b(L) when is_list(L)   -> list_to_binary(L);
+l2b(B) when is_binary(B) -> B.
 
-b2l(B) when binary(B) -> binary_to_list(B);
-b2l(L) when list(L)   -> L.
+b2l(B) when is_binary(B) -> binary_to_list(B);
+b2l(L) when is_list(L)   -> L.
 
 %%%
 %%% We are using slash ('/') as a directory separator 
@@ -333,7 +333,7 @@ to_ucs2(Str, Cset) ->
 to_charset(Neg, Str) ->
     to_charset(Neg, Str, get(charset)).
 
-to_charset(Neg, Ustr, Cset) when ?USE_UNICODE(Neg), binary(Ustr)  ->
+to_charset(Neg, Ustr, Cset) when ?USE_UNICODE(Neg), is_binary(Ustr)  ->
     ucs2_to_charset(Ustr, Cset);
 to_charset(_, Str, _) ->
     Str.

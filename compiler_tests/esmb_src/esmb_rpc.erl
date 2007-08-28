@@ -11,7 +11,7 @@
 %%% @reference "DCE/RPC over SMB", Luke Leighton, ISBN-1-57870-150-3 .
 %%% @end
 %%%
-%%% $Id: esmb_rpc.erl,v 1.1 2004/11/15 17:40:47 kostis Exp $
+%%% $Id: esmb_rpc.erl,v 1.2 2007/08/28 11:39:10 kostis Exp $
 %%% --------------------------------------------------------------------
 -module(esmb_rpc).
 -export([rpc_samr_connect/3, rpc_samr_close/3, rpc_samr_enum_doms/3,
@@ -162,7 +162,7 @@ do_samr_test(S, Pdu, IpStr) ->
 
     
 
-print_names(L) when list(L) -> 
+print_names(L) when is_list(L) -> 
     F = fun(E) -> io:format("Group Names: ~s~n",
 			    [b2l(ucs2_to_ascii(E#name_entry.name))])
 	end,
@@ -172,7 +172,7 @@ print_names(E) ->
 
     
 
-print_edom(L) when list(L) -> 
+print_edom(L) when is_list(L) -> 
     F = fun(E) -> io:format("Domain: ~s~n",
 			    [b2l(ucs2_to_ascii(E#dom_entry.domain))])
 	end,
@@ -233,7 +233,7 @@ rpc_bind(S, Pdu, ServiceType) ->
     Rpc = e_rpc_bind(ServiceType),
     {ok,BindRes} = esmb:named_pipe_transaction(S, Pdu, Rpc),
     case catch d_bind_response(BindRes) of
-	Ack when record(Ack, rpc_bind_ack) ->
+	Ack when is_record(Ack, rpc_bind_ack) ->
 	    ok;
 	Else ->
 	    throw({error, Else})
@@ -262,7 +262,7 @@ rpc_netr_share_enum(S, Pdu, IpStr) ->
     SrvSvcPdu = e_rpc_netr_share_enum(UnicodeP, IpStr),
     {ok,RpcRes} = esmb:named_pipe_transaction(S, Pdu, SrvSvcPdu),
     case catch d_rpc_response(RpcRes) of
-	NseRes when record(NseRes, rpc_response) ->
+	NseRes when is_record(NseRes, rpc_response) ->
 	    case catch d_rpc_netr_share_enum(UnicodeP, NseRes) of
 		{ok, Nse} -> Nse;
 		Else ->
@@ -291,7 +291,7 @@ rpc_samr_connect(S, Pdu, IpStr) ->
     SamrPDU = e_rpc_samr_connect2(UnicodeP, IpStr),
     {ok,RpcRes} = esmb:named_pipe_transaction(S, Pdu, SamrPDU),
     case catch d_rpc_response(RpcRes) of
-	Resp1 when record(Resp1, rpc_response) ->
+	Resp1 when is_record(Resp1, rpc_response) ->
 	    case catch d_rpc_samr_connect2(UnicodeP, Resp1) of
 		{ok, CtxHandle}   -> CtxHandle;
 		{error,_Rc} = Err -> throw(Err);
@@ -319,7 +319,7 @@ rpc_samr_close(S, Pdu, CtxHandle) ->
     SamrPDU = e_rpc_samr_close(CtxHandle),
     {ok,RpcRes} = esmb:named_pipe_transaction(S, Pdu, SamrPDU),
     case catch d_rpc_response(RpcRes) of
-	Resp when record(Resp, rpc_response) ->
+	Resp when is_record(Resp, rpc_response) ->
 	    case catch d_rpc_samr_close(Resp) of
 		ok                -> ok;
 		{error,_Rc} = Err -> throw(Err);
@@ -346,7 +346,7 @@ rpc_samr_enum_doms(S, Pdu, CtxHandle) ->
     SamrPDU = e_rpc_samr_enum_doms(UnicodeP, CtxHandle),
     {ok,RpcRes} = esmb:named_pipe_transaction(S, Pdu, SamrPDU),
     case catch d_rpc_response(RpcRes) of
-	Resp1 when record(Resp1, rpc_response) ->
+	Resp1 when is_record(Resp1, rpc_response) ->
 	    case d_rpc_samr_enum_doms(UnicodeP, Resp1) of
 		{ok, Doms}        -> Doms;
 		{error,_Rc} = Err -> throw(Err);
@@ -380,7 +380,7 @@ rpc_samr_lookup_doms(S, Pdu, CtxHandle, Doms) ->
     SamrPDU = e_rpc_samr_lookup_doms(UnicodeP, CtxHandle, Dom),
     {ok,RpcRes} = esmb:named_pipe_transaction(S, Pdu, SamrPDU),
     case catch d_rpc_response(RpcRes) of
-	Resp1 when record(Resp1, rpc_response) ->
+	Resp1 when is_record(Resp1, rpc_response) ->
 	    case d_rpc_samr_lookup_doms(UnicodeP, Resp1, Dom) of
 		{ok, Ds}          -> Ds;
 		{error,_Rc} = Err -> throw(Err);
@@ -407,7 +407,7 @@ rpc_samr_open_domain(S, Pdu, _IpStr, CtxHandle, Domain) ->
     SamrPDU = e_rpc_samr_open_domain(CtxHandle, Domain),
     {ok,RpcRes} = esmb:named_pipe_transaction(S, Pdu, SamrPDU),
     case catch d_rpc_response(RpcRes) of
-	Resp1 when record(Resp1, rpc_response) ->
+	Resp1 when is_record(Resp1, rpc_response) ->
 	    case d_rpc_samr_open_domain(Resp1) of
 		{ok, CtxHandle2}  -> CtxHandle2;
 		{error,_Rc} = Err -> throw(Err);
@@ -437,7 +437,7 @@ rpc_samr_lookup_names(S, Pdu, _IpStr, CtxHandle, Names) ->
     SamrPDU = e_rpc_samr_lookup_names(Pdu, CtxHandle, Names),
     {ok,RpcRes} = esmb:named_pipe_transaction(S, Pdu, SamrPDU),
     case catch d_rpc_response(RpcRes) of
-	Resp1 when record(Resp1, rpc_response) ->
+	Resp1 when is_record(Resp1, rpc_response) ->
 	    case d_rpc_samr_lookup_names(Resp1) of
 		{ok, Rid, Type}   -> {Rid, Type};
 		{error,_Rc} = Err -> throw(Err);
@@ -465,7 +465,7 @@ rpc_samr_open_user(S, Pdu, _IpStr, CtxHandle, User) ->
     SamrPDU = e_rpc_samr_open_user(CtxHandle, User),
     {ok,RpcRes} = esmb:named_pipe_transaction(S, Pdu, SamrPDU),
     case catch d_rpc_response(RpcRes) of
-	Resp1 when record(Resp1, rpc_response) ->
+	Resp1 when is_record(Resp1, rpc_response) ->
 	    case d_rpc_samr_open_user(Resp1) of
 		{ok, CtxHandle2}  -> CtxHandle2;
 		{error,_Rc} = Err -> throw(Err);
@@ -493,7 +493,7 @@ rpc_samr_user_groups(S, Pdu, _IpStr, CtxHandle) ->
     SamrPDU = e_rpc_samr_user_groups(CtxHandle),
     {ok,RpcRes} = esmb:named_pipe_transaction(S, Pdu, SamrPDU),
     case catch d_rpc_response(RpcRes) of
-	Resp1 when record(Resp1, rpc_response) ->
+	Resp1 when is_record(Resp1, rpc_response) ->
 	    case d_rpc_samr_user_groups(Resp1) of
 		{ok, RidList}     -> RidList;
 		{error,_Rc} = Err -> throw(Err);
@@ -522,7 +522,7 @@ rpc_samr_lookup_rids(S, Pdu, _IpStr, CtxHandle, Ns0) ->
     SamrPDU = e_rpc_samr_lookup_rids(CtxHandle, Ns0),
     {ok,RpcRes} = esmb:named_pipe_transaction(S, Pdu, SamrPDU),
     case catch d_rpc_response(RpcRes) of
-	Resp1 when record(Resp1, rpc_response) ->
+	Resp1 when is_record(Resp1, rpc_response) ->
 	    case d_rpc_samr_lookup_rids(unicode_p(Pdu), Resp1, Ns0) of
 		{ok, Ns}          -> Ns;
 		{error,_Rc} = Err -> throw(Err);
@@ -598,7 +598,7 @@ e_rpc_samr_lookup_rids(CtxHandle, Rids) ->
     e_rpc_request(?OP_SAMR_LOOKUP_RIDS_IN_DOMAIN, Pdu).
 
 %%% Rids == list of nameEntry()
-e_samr_lookup_rids(CtxHandle, Rids) when list(Rids) ->
+e_samr_lookup_rids(CtxHandle, Rids) when is_list(Rids) ->
     Count = length(Rids),
     F = fun(R,Acc) -> <<(R#name_entry.rid):32/little, Acc/binary>> end,
     B = lists:foldr(F, <<>>, Rids),
@@ -618,7 +618,7 @@ e_rpc_samr_user_groups(CtxHandle) ->
     Pdu = e_samr_user_groups(CtxHandle),
     e_rpc_request(?OP_SAMR_GET_GROUPS_FOR_USER, Pdu).
 
-e_samr_user_groups(CtxHandle) when binary(CtxHandle) ->
+e_samr_user_groups(CtxHandle) when is_binary(CtxHandle) ->
     CtxHandle.
 
 %%% ---
@@ -640,7 +640,7 @@ e_rpc_samr_lookup_names(Pdu, CtxHandle, Names) ->
     Pdu2 = e_samr_lookup_names(unicode_p(Pdu), CtxHandle, Names),
     e_rpc_request(?OP_SAMR_LOOKUP_NAMES_IN_DOMAIN, Pdu2).
 
-e_samr_lookup_names(UnicodeP, CtxHandle, Name) when binary(Name) ->
+e_samr_lookup_names(UnicodeP, CtxHandle, Name) when is_binary(Name) ->
     Count = 1, 
     MaxCount = 1000,   % Some sort of flag ?
     ActualCount = 1,
@@ -684,7 +684,7 @@ e_rpc_samr_close(CtxHandle) ->
     Pdu = e_samr_close(CtxHandle),
     e_rpc_request(?OP_SAMR_CLOSE_HANDLE, Pdu).
 
-e_samr_close(CtxHandle) when binary(CtxHandle) ->
+e_samr_close(CtxHandle) when is_binary(CtxHandle) ->
     CtxHandle.
 
 %%% ---
@@ -747,7 +747,7 @@ e_rpc_netr_share_enum(UnicodeP, IpStr) ->
     e_rpc_request(?OP_SS_NETR_SHARE_ENUM, Pdu).
 
 %%% Example: IpStr = "\\\\192.168.128.51"
-e_ss_netr_share_enum(UnicodeP, IpStr) when list(IpStr) ->
+e_ss_netr_share_enum(UnicodeP, IpStr) when is_list(IpStr) ->
     RefId = 1,      % ?
     Offset = 0,
     UipStr = to_ucs2_and_null(UnicodeP, IpStr),
@@ -779,7 +779,7 @@ e_ss_netr_share_enum(UnicodeP, IpStr) when list(IpStr) ->
 
 %%% ---
 
-e_rpc_request(OpNum, PDU) when integer(OpNum), binary(PDU) -> 
+e_rpc_request(OpNum, PDU) when is_integer(OpNum), is_binary(PDU) -> 
     PDUsize = size(PDU),
     FragLength = PDUsize + 24, % The length of the whole RPC packet.
     AuthLength = 0,      % ?
@@ -809,7 +809,7 @@ e_rpc_request(OpNum, PDU) when integer(OpNum), binary(PDU) ->
 %%% Decode a SAMR LookupRids response
 %%%
 
-d_rpc_samr_lookup_rids(UnicodeP, R, Ns0) when record(R,rpc_response),list(Ns0)->
+d_rpc_samr_lookup_rids(UnicodeP, R, Ns0) when is_record(R,rpc_response), is_list(Ns0) ->
     <<Count:32/little,     % Number of array entries
      _:4/binary,           % RefId
      _MaxCount:32/little,
@@ -872,7 +872,7 @@ parse_rid_types(UnicodeP, NumEntries,
 %%% Decode a SAMR Get User Groups response.
 %%% 
 
-d_rpc_samr_user_groups(R)  when record(R, rpc_response) ->
+d_rpc_samr_user_groups(R) when is_record(R, rpc_response) ->
     <<_:4/binary,         % RefId
       Count:32/little,    % Num of array entries
       _:4/binary,         % RefId2
@@ -899,7 +899,7 @@ parse_user_groups(0, _) ->
 %%% Decode a SAMR OpenUser response.
 %%% 
 
-d_rpc_samr_open_user(R)  when record(R, rpc_response) ->
+d_rpc_samr_open_user(R) when is_record(R, rpc_response) ->
     <<CtxHandle:20/binary,
       ReturnCode:32/little>> = R#rpc_response.data,
     if (ReturnCode == 0) -> {ok, CtxHandle};
@@ -911,7 +911,7 @@ d_rpc_samr_open_user(R)  when record(R, rpc_response) ->
 %%% Decode a SAMR OpenDomain response.
 %%% 
 
-d_rpc_samr_open_domain(R)  when record(R, rpc_response) ->
+d_rpc_samr_open_domain(R) when is_record(R, rpc_response) ->
     <<CtxHandle:20/binary,
       ReturnCode:32/little>> = R#rpc_response.data,
     if (ReturnCode == 0) -> {ok, CtxHandle};
@@ -924,7 +924,7 @@ d_rpc_samr_open_domain(R)  when record(R, rpc_response) ->
 %%%
 
 %%% NB: We only takes care of one single entry at the moment
-d_rpc_samr_lookup_names(R) when record(R, rpc_response) ->
+d_rpc_samr_lookup_names(R) when is_record(R, rpc_response) ->
     %% --- Rid Array ---
     <<_Count:32/little,   
       _:32/little,        % RefId
@@ -946,7 +946,7 @@ d_rpc_samr_lookup_names(R) when record(R, rpc_response) ->
 %%% Decode a SAMR Close response
 %%%
 
-d_rpc_samr_close(R)  when record(R, rpc_response) ->
+d_rpc_samr_close(R) when is_record(R, rpc_response) ->
     <<_:20/binary,            % CtxHandle
      ReturnCode:32/little>> = R#rpc_response.data,
     if (ReturnCode == 0) -> ok;
@@ -959,7 +959,7 @@ d_rpc_samr_close(R)  when record(R, rpc_response) ->
 %%%
 
 d_rpc_samr_lookup_doms(_UnicodeP, R, Dom) 
-  when record(R, rpc_response), record(Dom, dom_entry)  ->
+  when is_record(R, rpc_response), is_record(Dom, dom_entry)  ->
     <<_RefId:32/little,
       _Count:32/little,
       Sid:24/binary,
@@ -971,7 +971,7 @@ d_rpc_samr_lookup_doms(_UnicodeP, R, Dom)
 %%% Decode a SAMR Connect2 response
 %%%
 
-d_rpc_samr_connect2(_UnicodeP, R) when record(R, rpc_response) ->
+d_rpc_samr_connect2(_UnicodeP, R) when is_record(R, rpc_response) ->
     <<CtxHandle:20/binary,
      ReturnCode:32/little>> = R#rpc_response.data,
     if (ReturnCode == 0) -> {ok, CtxHandle};
@@ -982,7 +982,7 @@ d_rpc_samr_connect2(_UnicodeP, R) when record(R, rpc_response) ->
 %%% Decode a SAMR Enumerate Domains response
 %%%
 
-d_rpc_samr_enum_doms(UnicodeP, R) when record(R, rpc_response) ->
+d_rpc_samr_enum_doms(UnicodeP, R) when is_record(R, rpc_response) ->
     <<_ResumeHandle:32/little,
       _RefId1:32/little,
       Count:32/little,
@@ -990,8 +990,8 @@ d_rpc_samr_enum_doms(UnicodeP, R) when record(R, rpc_response) ->
       _MaxCount:32/little,
       Blob/binary>> = R#rpc_response.data,
     case catch parse_edom_blob(UnicodeP, Count, Blob) of
-	L when list(L) -> {ok, L};
-	_Else          -> {error, "parse_edom_blob"}
+	L when is_list(L) -> {ok, L};
+	_Else             -> {error, "parse_edom_blob"}
     end.
 
 parse_edom_blob(UnicodeP, NumEntries, Blob) ->
@@ -1029,7 +1029,7 @@ parse_edom_bodies(UnicodeP, Blob, [H|T]) ->
 %%% Decode a SRSVC NetrShareEnum response
 %%%
       
-d_rpc_netr_share_enum(UnicodeP, R) when record(R, rpc_response) ->
+d_rpc_netr_share_enum(UnicodeP, R) when is_record(R, rpc_response) ->
     <<_InfoLevel1:32/little,
       _InfoLevel2:32/little,
       _RefId1:32/little,

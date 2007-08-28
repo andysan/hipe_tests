@@ -5,7 +5,7 @@
 %%% Purpose : iconv support
 %%% Created : 23 Mar 2004 by <tobbe@bluetail.com>
 %%%
-%%% $Id: iconv.erl,v 1.1 2004/11/15 17:40:47 kostis Exp $
+%%% $Id: iconv.erl,v 1.2 2007/08/28 11:39:10 kostis Exp $
 %%%----------------------------------------------------------------------
 -behaviour(gen_server).
 -export([start/0, start_link/0, open/2, conv/2, close/1]).
@@ -37,10 +37,10 @@ start_link() ->
 open(To, From) ->
     gen_server:call(?SERVER, {open, l2b(To), l2b(From)}, infinity).
 
-conv(Cd, String) when binary(Cd) ->
+conv(Cd, String) when is_binary(Cd) ->
     gen_server:call(?SERVER, {conv, Cd, l2b(String)}, infinity).
 
-close(Cd) when binary(Cd) ->
+close(Cd) when is_binary(Cd) ->
     gen_server:call(?SERVER, {close, Cd}, infinity).
 
 %%%----------------------------------------------------------------------
@@ -155,5 +155,5 @@ load_path(File) ->
             {error, enoent}
     end.
 
-l2b(L) when list(L)   -> list_to_binary(L);
-l2b(B) when binary(B) -> B.
+l2b(L) when is_list(L)   -> list_to_binary(L);
+l2b(B) when is_binary(B) -> B.

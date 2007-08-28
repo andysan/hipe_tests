@@ -4,7 +4,7 @@
 %%% Created : 10 Dec 2003 by Torbjorn Tornkvist <tobbe@bluetail.com>
 %%% Purpose : Implementation of the NetBIOS/SMB protocol.
 %%%
-%%% $Id: esmb.erl,v 1.1 2004/11/15 17:40:46 kostis Exp $
+%%% $Id: esmb.erl,v 1.2 2007/08/28 11:39:09 kostis Exp $
 %%% --------------------------------------------------------------------
 -export([called_name/1, calling_name/1, ucase/1, lcase/1, check_dir/3,
 	 connect/1, connect/2, connect/3, close/1, user_logon/3, emsg/3,
@@ -114,7 +114,7 @@ list_shares(Host, User, Passwd, Workgroup, SockOpts) ->
 
 h2s({A,B,C,D}) -> 
     lists:flatten(io_lib:format("~w.~w.~w.~w", [A,B,C,D]));
-h2s(Host) when list(Host) -> 
+h2s(Host) when is_list(Host) -> 
     Host.
 
 ipc_path(Neg, Path) when ?USE_UNICODE(Neg) ->    
@@ -178,13 +178,13 @@ warning(_,_,S) -> io:format("~s~n", [S]).
 %%% Named Pipe Transaction
 %%% --------------------------------------------------------
 
-named_pipe_transaction(S, InReq, Rpc) when binary(Rpc) ->
+named_pipe_transaction(S, InReq, Rpc) when is_binary(Rpc) ->
     Pipe = "\\PIPE\\",
     Path = to_ucs2_and_null(unicode_p(InReq), Pipe),
     named_pipe_transaction(S, InReq, Rpc, Path).
 
 named_pipe_transaction(S, InReq, Rpc, PipeName) 
-  when binary(PipeName), binary(Rpc) ->
+  when is_binary(PipeName), is_binary(Rpc) ->
     {Req, Pdu} = smb_named_pipe_transaction(InReq, PipeName, Rpc),
     decode_smb_response(Req, nbss_session_service(S, Pdu)).
 
@@ -817,10 +817,10 @@ strip(Strip, Rest0) when Strip>0, Strip<size(Rest0) ->
 strip(_, Rest) ->
     Rest.
 
-bytes_per_character(Pdu) when record(Pdu,smbpdu),
+bytes_per_character(Pdu) when is_record(Pdu,smbpdu),
 			      ?F2_USE_UNICODE(Pdu) -> 
     2;
-bytes_per_character(Neg) when record(Neg,smb_negotiate_res),
+bytes_per_character(Neg) when is_record(Neg,smb_negotiate_res),
 			    ?USE_UNICODE(Neg) ->  
     2;
 bytes_per_character(_) -> 
@@ -852,14 +852,12 @@ large_integer(<<LowPart:32/little, HiPart:32/little>>) ->
     end.
 
 
-    
-	
 %%% ---    
 
 safe_dec_smb(Req, Pdu) ->
     case catch dec_smb(Req, Pdu) of
 	R when R#smbpdu.eclass == ?SUCCESS -> R;
-	R when record(R,smbpdu)            -> throw({error,R});
+	R when is_record(R,smbpdu)         -> throw({error,R});
 	Else                               -> throw({error,{dec_smb,Else}})
     end.
 
@@ -1219,9 +1217,8 @@ bf_trans2_find_first2(InReq, Path) ->
 		    Path, null(InReq) % Search pattern
 		    ]).
 
-sizeof(B) when binary(B) -> size(B);
-sizeof(L) when list(L)   -> length(L).
-
+sizeof(B) when is_binary(B) -> size(B);
+sizeof(L) when is_list(L)   -> length(L).
 
 %%% ---
 
@@ -1269,10 +1266,10 @@ bf_tree_connect_andx(Neg, Path, Service) ->
 		    Service, 0]).         % service (never in Unicode !)
 
 
-null(Neg) when record(Neg,smb_negotiate_res),
+null(Neg) when is_record(Neg,smb_negotiate_res),
 	       ?USE_UNICODE(Neg) -> 
     [0,0];
-null(Pdu) when record(Pdu,smbpdu),
+null(Pdu) when is_record(Pdu,smbpdu),
 	       ?F2_USE_UNICODE(Pdu) -> 
     [0,0];
 null(_) -> 
@@ -1456,15 +1453,15 @@ nttest_response() ->
      16#aa,16#26,16#2e,16#d2,16#84,16#f4>>.
     
 
-lm_challenge_response(Passwd, Challenge) when binary(Passwd) -> 
+lm_challenge_response(Passwd, Challenge) when is_binary(Passwd) -> 
     ex(s21_lm_session_key(Passwd), Challenge);
-lm_challenge_response(Passwd, Challenge) when list(Passwd) -> 
+lm_challenge_response(Passwd, Challenge) when is_list(Passwd) -> 
     lm_challenge_response(list_to_binary(Passwd), Challenge).
 
 
-nt_challenge_response(Passwd, Challenge) when binary(Passwd) -> 
+nt_challenge_response(Passwd, Challenge) when is_binary(Passwd) -> 
     ex(s21_nt_session_key(Passwd), Challenge);
-nt_challenge_response(Passwd, Challenge) when list(Passwd) -> 
+nt_challenge_response(Passwd, Challenge) when is_list(Passwd) -> 
     nt_challenge_response(list_to_binary(Passwd), Challenge).
 
 
@@ -1543,9 +1540,9 @@ zerosN(N) when N>0 -> [0 | zerosN(N-1)].
 %%% Return a sequence of bytes where each byte
 %%% has reversed its bit pattern.
 %%%
-swab(B) when binary(B) -> 
+swab(B) when is_binary(B) -> 
     list_to_binary(swab(binary_to_list(B)));
-swab(L) when list(L)   -> 
+swab(L) when is_list(L)   -> 
     F = fun(X) -> bit_rev(X) end,
     lists:map(F, L).
 
@@ -1676,7 +1673,7 @@ nbss_session_request_pdu(Called, Calling) ->
     Length = size(CalledName) + size(CallingName),
     <<?SESSION_REQUEST, 0, Length:16, CalledName/binary, CallingName/binary>>.
 
-nbss_session_service_pdu(SMB_pdu) when binary(SMB_pdu) ->
+nbss_session_service_pdu(SMB_pdu) when is_binary(SMB_pdu) ->
     Length = size(SMB_pdu),
     <<?SESSION_SERVICE, 0, Length:16, SMB_pdu/binary>>.
 
@@ -1758,7 +1755,7 @@ x(15) -> $f.
 %%%
 
 is_ok(Pdu,_DefaultEmsg) when Pdu#smbpdu.eclass == ?SUCCESS -> ok;
-is_ok(Pdu, DefaultEmsg) when record(Pdu, smbpdu) ->
+is_ok(Pdu, DefaultEmsg) when is_record(Pdu, smbpdu) ->
     {error, emsg(Pdu#smbpdu.eclass, Pdu#smbpdu.ecode, DefaultEmsg)}.
 
 emsg(Eclass, Ecode, DefaultEmsg) ->
@@ -1780,7 +1777,7 @@ caller() ->
 
 called({A,B,C,D}) ->
     lists:flatten(io_lib:format("~w.~w.~w.~w", [A,B,C,D]));
-called(Host) when list(Host) ->
+called(Host) when is_list(Host) ->
     ucase(Host).
 
 exit_if_error(Pdu, _Dmsg) when Pdu#smbpdu.eclass == ?SUCCESS -> true;
@@ -1788,16 +1785,16 @@ exit_if_error(Pdu, Dmsg) ->
     Emsg = emsg(Pdu#smbpdu.eclass, Pdu#smbpdu.ecode, Dmsg),
     throw({error, Emsg}).
 
-l2b(L) when list(L)   -> list_to_binary(L);
-l2b(B) when binary(B) -> B.
+l2b(L) when is_list(L)   -> list_to_binary(L);
+l2b(B) when is_binary(B) -> B.
 
-b2l(B) when binary(B) -> binary_to_list(B);
-b2l(L) when list(L)   -> L.
+b2l(B) when is_binary(B) -> binary_to_list(B);
+b2l(L) when is_list(L)   -> L.
 
 
 ip2str({A,B,C,D}) -> 
     lists:flatten(io_lib:format("~w.~w.~w.~w",[A,B,C,D]));
-ip2str(L) when list(L) -> 
+ip2str(L) when is_list(L) -> 
     L.
 
 to_ucs2_and_null(UnicodeP, Str) ->
@@ -1817,7 +1814,7 @@ null2(UnicodeP) when UnicodeP == true -> <<0,0>>;
 null2(_)                              -> <<0>>.
 
 
-unicode_p(Neg) when record(Neg,smb_negotiate_res),?USE_UNICODE(Neg) -> true;
-unicode_p(Pdu) when record(Pdu,smbpdu),?F2_USE_UNICODE(Pdu)         -> true; 
-unicode_p(_)                                                        -> false.
+unicode_p(Neg) when is_record(Neg,smb_negotiate_res),?USE_UNICODE(Neg) -> true;
+unicode_p(Pdu) when is_record(Pdu,smbpdu),?F2_USE_UNICODE(Pdu)         -> true; 
+unicode_p(_)                                                           -> false.
 
