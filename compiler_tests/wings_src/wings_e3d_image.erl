@@ -8,7 +8,7 @@
 %%  See the file "license.terms" for information on usage and redistribution
 %%  of this file, and for a DISCLAIMER OF ALL WARRANTIES.
 %%
-%%     $Id: wings_e3d_image.erl,v 1.2 2007/08/28 09:25:26 kostis Exp $
+%%     $Id: wings_e3d_image.erl,v 1.3 2007/08/28 10:47:31 kostis Exp $
 %%
 
 -module(wings_e3d_image).
@@ -43,7 +43,7 @@
 %%       Options {type, Type} and/or {alignment, N} and/or {order, O} see e3d_image.hrl
 load(FileName) ->
     load(FileName, []).
-load(FileName, Opts) when list(FileName), list(Opts) ->
+load(FileName, Opts) when is_list(FileName), is_list(Opts) ->
     Extension = file_extension(FileName),
     Res = case ext_to_type(Extension) of
 	      tga -> e3d__tga:load(FileName, Opts);
@@ -96,10 +96,10 @@ format_error(Other) ->
 %% Func: convert(#e3d_image, NewType [,NewAlignment [,NewOrder ]])
 %% Rets: #e3d_image | {error, Reason}
 %% Desc: Converts an image to new type optionally NewAlignment and NewOrder
-convert(In, ToType) when atom(ToType) ->
+convert(In, ToType) when is_atom(ToType) ->
     convert(In, ToType, In#e3d_image.alignment, In#e3d_image.order).
 
-convert(In, ToType, NewAlignment) when atom(ToType) ->
+convert(In, ToType, NewAlignment) when is_atom(ToType) ->
     convert(In, ToType, NewAlignment, In#e3d_image.order).
 
 convert(#e3d_image{type=Type, alignment=Al,order=O}=In, Type, Al, O) -> In;

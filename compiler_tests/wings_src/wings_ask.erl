@@ -9,7 +9,7 @@
 %%  See the file "license.terms" for information on usage and redistribution
 %%  of this file, and for a DISCLAIMER OF ALL WARRANTIES.
 %%
-%%     $Id: wings_ask.erl,v 1.2 2006/04/21 19:44:16 kostis Exp $
+%%     $Id: wings_ask.erl,v 1.3 2007/08/28 10:47:31 kostis Exp $
 %%
 
 -module(wings_ask).
@@ -825,7 +825,7 @@ redraw(S=#s{ox=Ox,oy=Oy,focus=Index,fi=Fi0,store=Sto}) ->
 %% where integer(I), 1 =< I, I =< Size,
 %% where Size = size(Tuple).
 
-binsearch(Cmp, Tuple) when function(Cmp), tuple(Tuple), size(Tuple) > 0 ->
+binsearch(Cmp, Tuple) when is_function(Cmp), is_tuple(Tuple), size(Tuple) > 0 ->
     binsearch(Cmp, Tuple, 1, size(Tuple)).
 
 binsearch(Cmp, Tuple, L, U) when L =< U ->
@@ -901,7 +901,7 @@ collect_result_1(Fi=#fi{state=inert}, Sto, Path, R) ->
 collect_result_1(Fi=#fi{handler=Handler,key=Key}, Sto, Path, R0) ->
     R = case Handler(value, [Fi|Path], Sto) of
 	    none -> R0;
-	    {value,Res} when integer(Key) -> [Res|R0];
+	    {value,Res} when is_integer(Key) -> [Res|R0];
 	    {value,Res} -> [{Key,Res}|R0]
 	end,
     collect_result_2(Fi, Sto, Path, R).
@@ -1204,15 +1204,15 @@ mktree({text,Def}, Sto, I) ->
 mktree({text,Def,Flags}, Sto, I) ->
     mktree_text(Def, Sto, I, Flags);
 %%
-mktree({Prompt,Def}, Sto, I) when Def==false; Def == true ->
+mktree({Prompt,Def}, Sto, I) when Def == false; Def == true ->
     mktree_checkbox(Prompt, Def, Sto, I, []);
-mktree({Prompt,Def,Flags}, Sto, I) when Def==false; Def == true ->
+mktree({Prompt,Def,Flags}, Sto, I) when Def == false; Def == true ->
     mktree_checkbox(Prompt, Def, Sto, I, Flags).
 
 radio(FrameType, Qs0, Def, Flags) ->
     Qs = 
 	case proplists:get_value(key, Flags, 0) of
-	    I when integer(I) -> 
+	    I when is_integer(I) -> 
 		radio_alt(I, Qs0, Def, Flags);
 	    _ -> 
 		[{alt,Def,Prompt,Val,Flags} || {Prompt,Val} <- Qs0]
@@ -1230,7 +1230,7 @@ mktree_leaf(Handler, State, Minimized, W, H, I, Flags) ->
 	hook=proplists:get_value(hook, Flags),
 	stretch=case proplists:lookup(stretch, Flags) of
 		    none -> 0;
-		    {stretch,S} when integer(S), S >= 0 -> S
+		    {stretch,S} when is_integer(S), S >= 0 -> S
 		end,
 	flags=Flags,
 	extra=#leaf{w=W,h=H}}.
@@ -1270,7 +1270,7 @@ mktree_container_1([Q|Qs], Sto0, I0, R) ->
 		 w,h,				%header size
 		 titles}).			%tuple() of list()
 
-mktree_oframe(Qs, Def, Sto0, I0, Flags) when integer(Def), Def >= 1 ->
+mktree_oframe(Qs, Def, Sto0, I0, Flags) when is_integer(Def), Def >= 1 ->
     {Titles,Fields,Sto1,I} = mktree_oframe_1(Qs, Sto0, I0+1, [], []),
     FieldsTuple = list_to_tuple(Fields),
     if  Def =< size(FieldsTuple) ->
@@ -1311,7 +1311,7 @@ mktree_oframe(Qs, Def, Sto0, I0, Flags) when integer(Def), Def >= 1 ->
 
 mktree_oframe_1([], Sto, I, T, R) ->
     {reverse(T),reverse(R),Sto,I};
-mktree_oframe_1([{Title,Q}|Qs], Sto0, I0, T, R) when list(Title) ->
+mktree_oframe_1([{Title,Q}|Qs], Sto0, I0, T, R) when is_list(Title) ->
     {Fi,Sto,I} = mktree(Q, Sto0, I0),
     mktree_oframe_1(Qs, Sto, I, [Title|T], [Fi|R]).
 

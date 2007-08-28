@@ -8,7 +8,7 @@
 %%  See the file "license.terms" for information on usage and redistribution
 %%  of this file, and for a DISCLAIMER OF ALL WARRANTIES.
 %%
-%%     $Id: wings_e3d__tga.erl,v 1.1 2004/02/18 17:11:13 kostis Exp $
+%%     $Id: wings_e3d__tga.erl,v 1.2 2007/08/28 10:47:31 kostis Exp $
 %%
 
 -module(wings_e3d__tga).
@@ -56,7 +56,7 @@ load_mapped(Len,Bitpp,Comp,Skip,
     MapSz = (Len*Bpp),
     <<_:Skip/binary,MapBin0:MapSz/binary,Image0/binary>> = Raw,
     case to_8bitpp(MapBin0,Bitpp,Alpha) of
-	MapBin when binary(MapBin) ->
+	MapBin when is_binary(MapBin) ->
 	    Map = get_map(MapSz,Bpp,MapBin,[]),
 	    Image = case Comp of 
 			false -> 
@@ -84,7 +84,7 @@ load_uncomp(Skip,<<W:16/little,H:16/little,BitsPP:8,0:1,0:1,
     Size = BytesPerPixel * W * H,
     <<_:Skip/binary, RealImage:Size/binary, _Rest/binary>> = Image,
     case to_8bitpp(RealImage,BitsPP,Alpha) of
-	Bin when binary(Bin) ->
+	Bin when is_binary(Bin) ->
 	    #e3d_image{width = W, height = H, type = Type, 
 		       order = get_order(Order),
 		       bytes_pp = e3d_image:bytes_pp(Type), 
@@ -102,7 +102,7 @@ load_comp(Skip, Bin0) ->
     Size  = W * H,
     Image = load_comp(CImage, Size, BytesPerPixel, []),
     case to_8bitpp(Image,BitsPP,Alpha) of
-	Bin when binary(Bin) ->
+	Bin when is_binary(Bin) ->
 	    #e3d_image{width = W, height = H, type = Type, 
 		       order = get_order(Order),
 		       bytes_pp = e3d_image:bytes_pp(Type),
