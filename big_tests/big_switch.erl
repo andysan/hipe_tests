@@ -1,5 +1,9 @@
 -module(big_switch).
--export([long_option_2_p_0/1]).
+-export([test/0, compile/1]).
+
+test() ->
+  fail = long_option_2_p_0(foo),
+  ok.
 
 long_option_2_p_0(X) -> 
   case X of
@@ -1312,4 +1316,7 @@ long_option_2_p_0(X) ->
     _ ->
       fail 
   end.
+
+compile(Opts) ->
+  hipe:c(?MODULE, Opts).
 
