@@ -23,6 +23,8 @@ test() ->
   {ok,ok} = {match1(15),match1(31)},
   ok = horrid_match(),
   ok = test_bitstr(),
+  ok = test_is_bitstr(),
+  ok = test_is_binary(),
   ok = test_bitsize(),
   ok = unsymmetric_tests(),
   ok = big_unsymmetric_tests(),
@@ -39,6 +41,18 @@ match(N) ->
 match1(N) ->
   <<42:N/little>> = <<42:N/little>>,
   ok.
+
+test_is_bitstr() ->
+  true = erlang:is_bitstr(<<1:1>>),
+  true = erlang:is_bitstr(<<8>>),
+  ok = if is_bitstr(<<1:1>>) -> ok end,
+  ok = if is_bitstr(<<8>>) -> ok end.
+
+test_is_binary() ->
+  false = is_binary(<<1:1>>),
+  true = is_binary(<<8>>),
+  ok = if is_binary(<<1:1>>) -> not_ok; true -> ok end,
+  ok = if is_binary(<<8>>) -> ok end. 
 
 test_bitsize() ->
   101 = erlang:bitsize(<<1:101>>),
