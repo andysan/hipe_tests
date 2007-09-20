@@ -52,9 +52,9 @@ compare_sigs_1(M,
   case (F == module_info andalso A =< 1) of
     true -> ok;	%% no need to show the module_info/[0,1] type signatures
     false ->
-      TSTypeString = erl_types:t_to_string(TSType, Records),
-      DFTypeString = erl_types:t_to_string(DFType, Records),
-      TATypeString = erl_types:t_to_string(TAType, Records),
+      "fun" ++ TSTypeString = erl_types:t_to_string(TSType, Records),
+      "fun" ++ DFTypeString = erl_types:t_to_string(DFType, Records),
+      "fun" ++ TATypeString = erl_types:t_to_string(TAType, Records),
       case erl_types:t_is_subtype(TSType, DFType) 
 	andalso erl_types:t_is_subtype(DFType, TAType) of
         true ->

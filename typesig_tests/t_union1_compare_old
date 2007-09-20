@@ -3,9 +3,9 @@
  dataflow: ((_) -> 'a' | 'b')
    typean: ((_) -> 'a' | 'b')
 {t_union1,atom_or_binary,1} : OK
- typesig:  ((atom() | binary()) -> 'an_atom' | binary())
- dataflow: ((_) -> 'an_atom' | binary())
-   typean: ((_) -> 'an_atom' | binary())
+ typesig:  ((atom() | binary()) -> 'an_atom' | <<>>)
+ dataflow: ((_) -> 'an_atom' | <<>>)
+   typean: ((_) -> 'an_atom' | <<>>)
 {t_union1,mystery1,1} : OK
  typesig:  ((atom() | binary()) -> 'a')
  dataflow: ((_) -> 'a')

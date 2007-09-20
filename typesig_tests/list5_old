@@ -1,4 +1,4 @@
 
-list5:exported/1 :: ((possibly_improper_list()) -> [integer()])
-list5:internal/1 :: ((possibly_improper_list()) -> possibly_improper_list())
+list5:exported/1 :: ((pos_improper_list()) -> [integer()])
+list5:internal/1 :: ((pos_improper_list()) -> pos_improper_list())
 list5:is_even/1 :: ((integer()) -> bool())

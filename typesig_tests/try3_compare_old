@@ -15,7 +15,7 @@
  dataflow: ((atom() | port(),[any()]) -> [any()])
    typean: ((_,[any()]) -> [any()])
 {try3,deflate,3} : OK
- typesig:  ((atom() | port(),binary() | possibly_improper_list(binary() | possibly_improper_list(any(),binary() | []) | byte(),binary() | []),'none' | 'sync') -> [any()])
+ typesig:  ((atom() | port(),binary() | pos_improper_list(binary() | pos_improper_list(any(),binary() | []) | byte(),binary() | []),'none' | 'sync') -> [any()])
  dataflow: ((_,_,_) -> [any()])
    typean: ((_,_,_) -> any())
 {try3,flush,1} : OK
