@@ -29,7 +29,6 @@ doit([Module]) when is_list(Module) ->
   ok.
 
 
-
 pp_signatures([{{_, module_info, 0}, _}|Left], Records) -> 
   pp_signatures(Left, Records);
 pp_signatures([{{_, module_info, 1}, _}|Left], Records) -> 
@@ -38,13 +37,13 @@ pp_signatures([{{M, F, A}, Type}|Left], Records) ->
   TypeString =
     case cerl:is_literal(Type) of
       true -> io_lib:format("~w", [cerl:concrete(Type)]);
-      false -> erl_types:t_to_string(Type, Records)
+      false -> "fun" ++ String = erl_types:t_to_string(Type, Records),
+	       String
     end,
   io:format("~w:~w/~w :: ~s\n", [M, F, A, TypeString]),
   pp_signatures(Left, Records);
 pp_signatures([], _Records) ->
   ok.
-
 
 wait_init() ->
   case erlang:whereis(code_server) of

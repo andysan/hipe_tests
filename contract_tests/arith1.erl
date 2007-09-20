@@ -8,7 +8,9 @@
 -module(arith1).
 -export([add/1, sub/1]).
 
--spec(add/1::((1) -> integer())). 
+-include("types.hrl").
+
+-spec(add/1::((1) -> new2())). 
 -spec(sub/1::((integer()) -> 3)). 
 
 
