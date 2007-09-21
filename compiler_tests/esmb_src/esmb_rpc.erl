@@ -11,7 +11,7 @@
 %%% @reference "DCE/RPC over SMB", Luke Leighton, ISBN-1-57870-150-3 .
 %%% @end
 %%%
-%%% $Id: esmb_rpc.erl,v 1.2 2007/08/28 11:39:10 kostis Exp $
+%%% $Id: esmb_rpc.erl,v 1.3 2007/09/21 21:15:10 kostis Exp $
 %%% --------------------------------------------------------------------
 -module(esmb_rpc).
 -export([rpc_samr_connect/3, rpc_samr_close/3, rpc_samr_enum_doms/3,
@@ -1238,20 +1238,20 @@ d_rpc_bind_nack(B0) ->
 %%% char     10-15    The spatially unique node identifier. 
 %%%
 uuid() ->
-    TS = calendar:datetime_to_gregorian_seconds({date(),time()}) * 10000000,
-    Low = TS band 16#ffffffff,
-    Mid = (TS bsr 32) band 16#ffff,
-    HiV = ((TS bsr 48) band 16#fff) bor ?DCE_VERSION,
-    CHi = ((?CLK_SEQ bsr 8) band 16#3f) bor ?DCE_VARIANT,
-    CLo = ?CLK_SEQ band 16#ff,
-    NId = node_id(),
-    <<Low:32/little,
-     Mid:16/little,
-     HiV:16/little,
-     CHi,
-     CLo,
-     NId/binary>>,
-    %% hardcoded for now
+    %% TS = calendar:datetime_to_gregorian_seconds({date(),time()}) * 10000000,
+    %% Low = TS band 16#ffffffff,
+    %% Mid = (TS bsr 32) band 16#ffff,
+    %% HiV = ((TS bsr 48) band 16#fff) bor ?DCE_VERSION,
+    %% CHi = ((?CLK_SEQ bsr 8) band 16#3f) bor ?DCE_VARIANT,
+    %% CLo = ?CLK_SEQ band 16#ff,
+    %% NId = node_id(),
+    %% <<Low:32/little,
+    %%  Mid:16/little,
+    %%  HiV:16/little,
+    %%  CHi,
+    %%  CLo,
+    %%  NId/binary>>,
+    %% %% hardcoded for now
     <<16#c8, 16#4f, 16#32, 16#4b, 16#70, 16#16, 16#d3, 16#01,
       16#12, 16#78, 16#5a, 16#47, 16#bf, 16#6e, 16#e1, 16#88>>.
 
@@ -1264,14 +1264,14 @@ uuid(?ST_SAMR) ->
     <<16#78,16#57,16#34,16#12,16#34,16#12,16#cd,16#ab,16#ef,16#00,
      16#01,16#23,16#45,16#67,16#89,16#ac>>.
 
-node_id() ->
-    %% FIXME , kiwi's MAC address for now
-    <<16#00,
-     16#50,
-     16#BA,
-     16#1E,
-     16#47,
-     16#10>>.
+%% node_id() ->
+%%     %% FIXME , kiwi's MAC address for now
+%%     <<16#00,
+%%      16#50,
+%%      16#BA,
+%%      16#1E,
+%%      16#47,
+%%      16#10>>.
     
     
 %%%
