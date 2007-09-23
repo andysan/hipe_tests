@@ -16,8 +16,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2007/08/16 12:59:11 $
-%%    $Revision: 1.4 $
+%%    $Date: 2007/09/23 10:50:17 $
+%%    $Revision: 1.5 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -162,7 +162,9 @@ my_list_to_float(X) ->
 
 t_list_to_float_risky() ->
     Many_Ones = duplicate(25000, $1),
-    list_to_float("2."++Many_Ones),
+    ok = case list_to_float("2."++Many_Ones) of
+           F when is_float(F), 0.0 < F, F =< 3.14 -> ok
+	 end,
     {'EXIT', _} = (catch list_to_float("2"++Many_Ones)),
     ok.
 
@@ -182,8 +184,9 @@ t_list_to_integer() ->
     
     %% Bignums.
     123456932798748738738 = list_to_integer("123456932798748738738"),
-    list_to_integer(duplicate(2000, $1)),
-    ok.
+    case list_to_integer(duplicate(2000, $1)) of
+      I when is_integer(I), I > 123456932798748738738 -> ok
+    end.
 
 %% Tests round/1.
 
@@ -212,7 +215,6 @@ t_trunc() ->
     -10 = trunc(-10.978987),
     
     %% Bignums.
-    4294967305 , trunc(4294967305.7),
     4294967305 = trunc(4294967305.7),
     -4294967305 = trunc(-4294967305.7),
     ok.

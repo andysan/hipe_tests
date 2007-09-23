@@ -17,8 +17,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2004/12/09 16:47:37 $
-%%    $Revision: 1.6 $
+%%    $Date: 2007/09/23 10:50:17 $
+%%    $Revision: 1.7 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -33,7 +33,7 @@ test() ->
      build_and_match(), t_size(),
      t_list_to_tuple(), t_list_to_tuple(),
      t_element(), t_setelement(),
-     tuple_with_case(), tuple_in_guard(),
+     tuple_with_case(), tuple_in_guard({a, b}, {a, b, c}),
      true}.
 
 compile(Opts) ->
@@ -174,9 +174,9 @@ tuple_with_case2() ->
 foo() -> ignored.
 
 %% Test to build a tuple in a guard.
-tuple_in_guard() ->
-    Tuple1 = {a, b},
-    Tuple2 = {a, b, c},
+tuple_in_guard(Tuple1, Tuple2) ->
+    %% Tuple1 = {a, b},
+    %% Tuple2 = {a, b, c},
     if
 	Tuple1 == {element(1, Tuple2), element(2, Tuple2)} ->
 	    ok;

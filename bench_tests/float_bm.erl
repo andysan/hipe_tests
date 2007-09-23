@@ -1,8 +1,10 @@
-%%% $Id: float_bm.erl,v 1.4 2007/08/16 14:12:28 kostis Exp $
+%%% $Id: float_bm.erl,v 1.5 2007/09/23 10:50:17 kostis Exp $
 %%% from bjorn@erix.ericsson.se
 
 -module(float_bm).
 -export([test/0, compile/1]).
+
+-compile([no_copt]).	%% shut off warnings about unused term constructions
 
 test() ->
     statistics(runtime),

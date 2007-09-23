@@ -22,6 +22,8 @@
 -module(rath_R11compiler_bug).
 -export([test/0, compile/1, just_compile_me/0]).
 
+-compile([no_copt]).	%% shut off warnings about unused term constructions
+
 test() -> ok.
 
 just_compile_me() ->

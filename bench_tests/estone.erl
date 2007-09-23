@@ -20,6 +20,8 @@
 %% ranking, but exported nevertheless...
 -export([determine_loop_data/0, port_io/1, ppp/2]).
 
+-compile([no_copt]).	%% shut off warnings about unused term constructions
+
 -define(TOTAL, (3000 * 1000 * 100)).   %% 300 secs
 -define(BIGPROCS, 2).
 -define(BIGPROC_SIZE, 50).

@@ -10,8 +10,8 @@
 %%  History  :	* 2001-06-28 Erik Johansson (happi@csd.uu.se): Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2003/12/12 16:50:56 $
-%%              $Revision: 1.4 $
+%%              $Date: 2007/09/23 10:50:17 $
+%%              $Revision: 1.5 $
 %% ====================================================================
 %%  Exports  :  test/0
 %%              compile/1  
@@ -32,14 +32,13 @@ test()->
       Self = self(),
       F = fun() ->
 	    receive go -> ok end,
-	    binary_to_list(B),
-	    Self ! {self(),process_info(self(), binary)}
-	end,
+	    Self ! binary_to_list(B),
+	    Self ! {self(), process_info(self(), binary)}
+	  end,
       c3(F);
-    shared ->
-      {65,1};	% NOTE: HARD-CODED TEST RESULT IN THIS CASE -- CHEATING!
     hybrid ->
-      {65,1}	% NOTE: HARD-CODED TEST RESULT IN THIS CASE -- CHEATING!
+      %% NOTE: HARD-CODED TEST RESULT IN THIS CASE -- CHEATING!
+      {?heap_binary_size+1, 1}
   end.
 
 c3(F) ->
@@ -53,7 +52,7 @@ c(Pid) ->
   Pid ! go,
   Result =
     receive
-      {Pid,{binary,[{_,Size,Refs}]}} -> {Size,Refs}
+      {Pid, {binary,[{_,Size,Refs}]}} -> {Size,Refs}
     after 10000 -> exit(ooops)
     end,
   Result.

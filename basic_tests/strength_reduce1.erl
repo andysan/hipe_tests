@@ -3,6 +3,8 @@
 %% The following need to be exported so as to not remove them by inlining
 -export([crash_0/1, crash_1/1, crash_2/1, crash_3/1, bug_div_2N/1]).
 
+-compile([no_copt]).	%% shut off warnings about unused term constructions
+
 test() ->
   ok = crash_0(0),
   ok = crash_1(42),
