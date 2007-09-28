@@ -1,8 +1,8 @@
 {bin1,t,0} : OK
- typesig:  (() -> {byte(),binary()})
- dataflow: (() -> {byte(),binary()})
+ typesig:  (() -> {byte(),<<_:16>>})
+ dataflow: (() -> {byte(),<<_:16>>})
    typean: (() -> {byte(),binary()})
 {bin1,t,1} : OK
- typesig:  ((binary()) -> {byte(),binary()})
- dataflow: ((binary()) -> {byte(),binary()})
-   typean: ((binary()) -> {byte(),binary()})
+ typesig:  ((<<_:24>>) -> {byte(),<<_:16>>})
+ dataflow: ((<<_:24>>) -> {byte(),<<_:16>>})
+   typean: ((<<_:24>>) -> {byte(),binary()})

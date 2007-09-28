@@ -6,7 +6,7 @@
  typesig:  ((number()) -> number())
  dataflow: ((_) -> number())
    typean: ((_) -> number())
-{bin2,t,3} : OK
- typesig:  ((integer(),number(),number()) -> binary())
- dataflow: ((_,_,_) -> binary())
+{bin2,t,3} : differ!!!
+ typesig:  ((non_neg_integer(),number(),number()) -> <<_:8,_:_*1>>)
+ dataflow: ((_,_,_) -> <<_:8,_:_*1>>)
    typean: ((_,_,_) -> binary())

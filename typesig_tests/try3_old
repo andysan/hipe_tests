@@ -1,6 +1,6 @@
 
 try3:arg_flush/1 :: (('none' | 'sync') -> 0 | 1)
-try3:call/3 :: ((atom() | port(),7,binary()) -> atom() | non_neg_integer())
+try3:call/3 :: ((atom() | port(),7,<<_:32>>) -> atom() | non_neg_integer())
 try3:collect/1 :: ((atom() | port()) -> [any()])
 try3:collect/2 :: ((atom() | port(),[any()]) -> [any()])
 try3:deflate/3 :: ((atom() | port(),binary() | pos_improper_list(binary() | pos_improper_list(any(),binary() | []) | byte(),binary() | []),'none' | 'sync') -> [any()])

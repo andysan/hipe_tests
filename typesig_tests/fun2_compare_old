@@ -7,6 +7,6 @@
  dataflow: ((_,_) -> 'eof' | {'ok',_})
    typean: ((_,_) -> 'eof' | {'ok',_})
 {fun2,read_term,3} : OK
- typesig:  ((fun((_,_) -> any()),_,binary()) -> {'ok',_})
+ typesig:  ((fun((_,_) -> any()),_,<<_:40>>) -> {'ok',_})
  dataflow: ((fun((_,_) -> any()),_,binary()) -> {'ok',_})
    typean: ((_,_,binary()) -> {'ok',_})

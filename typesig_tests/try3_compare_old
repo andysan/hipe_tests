@@ -3,8 +3,8 @@
  dataflow: ((_) -> 0 | 1)
    typean: ((_) -> 0 | 1)
 {try3,call,3} : OK
- typesig:  ((atom() | port(),7,binary()) -> atom() | non_neg_integer())
- dataflow: ((atom() | port(),7,binary()) -> atom() | non_neg_integer())
+ typesig:  ((atom() | port(),7,<<_:32>>) -> atom() | non_neg_integer())
+ dataflow: ((atom() | port(),7,<<_:32>>) -> atom() | non_neg_integer())
    typean: ((_,7,binary()) -> any())
 {try3,collect,1} : OK
  typesig:  ((atom() | port()) -> [any()])
