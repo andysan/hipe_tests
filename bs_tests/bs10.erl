@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2007/04/13 14:58:59 $
-%%              $Revision: 1.7 $
+%%              $Date: 2007/10/10 14:56:12 $
+%%              $Revision: 1.8 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -103,7 +103,7 @@ dynamic(Bin, S1, S2, A, B) ->
     <<A:S1,B:S2>> ->
       %% io:format("~p ~p ~p ~p\n", [S1,S2,A,B]),
       ok;
-    <<A1:S1,B2:S2>>  -> erlang:fault(badmatch, [Bin,S1,S2,A,B,A1,B2])
+    <<A1:S1,B2:S2>>  -> erlang:error(badmatch, [Bin,S1,S2,A,B,A1,B2])
   end.
 
 

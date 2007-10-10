@@ -8,7 +8,7 @@
 %%  See the file "license.terms" for information on usage and redistribution
 %%  of this file, and for a DISCLAIMER OF ALL WARRANTIES.
 %%
-%%     $Id: wings.hrl,v 1.2 2004/11/28 10:35:57 kostis Exp $
+%%     $Id: wings.hrl,v 1.3 2007/10/10 14:56:32 kostis Exp $
 %%
 
 -ifdef(NEED_ESDL).
@@ -57,7 +57,7 @@
 -define(ASSERT(E), case E of
 		       true -> ok;
 		       _ ->
-			   erlang:fault({assertion_failed,?MODULE,?LINE})
+			   erlang:error({assertion_failed,?MODULE,?LINE})
 		   end).
 -define(VALIDATE_MODEL(St), wings_util:validate(?MODULE, ?LINE, St)).
 -define(CHECK_ERROR(), wings_util:check_error(?MODULE, ?LINE)).

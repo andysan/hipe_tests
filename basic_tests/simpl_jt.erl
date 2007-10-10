@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2004/01/15 16:51:24 $
-%%              $Revision: 1.3 $
+%%              $Date: 2007/10/10 14:56:01 $
+%%              $Revision: 1.4 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -212,7 +212,7 @@ opcode(bs_put_binary, 5) -> 90;
 opcode(bs_put_float, 5) -> 91;
 opcode(bs_put_string, 2) -> 92;
 opcode(bs_need_buf, 1) -> 93;
-opcode(Name, Arity) -> erlang:fault(badarg, [Name,Arity]).
+opcode(Name, Arity) -> erlang:error(badarg, [Name,Arity]).
 
 opname(1) -> {label,1};
 opname(2) -> {func_info,3};
@@ -307,6 +307,6 @@ opname(90) -> {bs_put_binary,5};
 opname(91) -> {bs_put_float,5};
 opname(92) -> {bs_put_string,2};
 opname(93) -> {bs_need_buf,1};
-opname(Number) -> erlang:fault(badarg, [Number]).
+opname(Number) -> erlang:error(badarg, [Number]).
 
 

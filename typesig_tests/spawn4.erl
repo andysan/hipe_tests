@@ -16,7 +16,7 @@ spawn(N,M,F,A) when is_atom(N), is_atom(M), is_atom(F), length(A) >= 0 ->
 	Error ->
 	    case erlang:remote_spawn_error(Error, {no_link, N, M, F, A, []}) of
 		{fault, Fault} ->
-		    erlang:fault(Fault, [N, M, F, A]);
+		    erlang:error(Fault, [N, M, F, A]);
 		Pid when is_pid(Pid) ->
 		    Pid
 	    end
