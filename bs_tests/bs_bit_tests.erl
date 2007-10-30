@@ -45,8 +45,8 @@ match1(N) ->
 test_is_bitstr(Bitstr, Binary) ->
   true = erlang:is_bitstring(Bitstr),
   true = erlang:is_bitstring(Binary),
-  ok = if is_bitstr(Bitstr) -> ok end,
-  ok = if is_bitstr(Binary) -> ok end.
+  ok = if is_bitstring(Bitstr) -> ok end,
+  ok = if is_bitstring(Binary) -> ok end.
 
 test_is_binary(Bitstr, Binary) ->
   false = is_binary(Bitstr),
