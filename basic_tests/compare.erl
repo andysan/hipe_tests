@@ -6,8 +6,8 @@
 %%
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2007/09/23 11:40:00 $
-%%    $Revision: 1.1 $
+%%    $Date: 2007/11/02 07:59:19 $
+%%    $Revision: 1.2 $
 %% ====================================================================
 
 -module(compare).
@@ -27,6 +27,8 @@ test() ->
   {false,false,false} = {is_foo_exact(bar), is_foo_term1(bar), is_foo_term2(bar)},
   {false,false,false} = {is_nonfoo_exact(foo), is_nonfoo_term1(foo), is_nonfoo_term2(foo)},
   { true, true, true} = {is_nonfoo_exact(bar), is_nonfoo_term1(bar), is_nonfoo_term2(bar)},
+  Tup = {a,{42},[c]},
+  { true, true, true} = {is_tuple_skel(Tup), is_tuple_exact(Tup), is_tuple_term(Tup)},
   B42 = <<42>>,
   B42 = <<42>>,
   { true, true, true} = {is_bin_exact(B42), is_bin_term1(B42), is_bin_term2(B42)},
@@ -82,6 +84,17 @@ is_nonfoo_term1(_) -> false.
 
 is_nonfoo_term2(A) when foo /= A -> true;
 is_nonfoo_term2(_) -> false.
+
+%%---------------------------------------------------------------------
+
+is_tuple_skel({A,{B},[C]}) when is_atom(A), is_integer(B), is_atom(C) -> true;
+is_tuple_skel(T) when is_tuple(T) -> false.
+
+is_tuple_exact(T) when T =:= {a,{42},[c]} -> true;
+is_tuple_exact(T) when is_tuple(T) -> false.
+
+is_tuple_term(T) when T == {a,{42.0},[c]} -> true;
+is_tuple_term(T) when is_tuple(T) -> false.
 
 %%---------------------------------------------------------------------
 %% But for binaries the treatment has to be different, due to the need
