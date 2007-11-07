@@ -69,12 +69,12 @@ test_bitsize() ->
   ok.
 
 horrid_match() ->
-  <<1:4,B:24/bitstr>> = <<1:4,42:24/little>>,
+  <<1:4,B:24/bitstring>> = <<1:4,42:24/little>>,
   <<42:24/little>> = B, 
   ok.
 			 
 test_bitstr() ->
-  <<1:7,B/bitstr>> = <<1:7,<<1:1,6>>/bitstr>>,
+  <<1:7,B/bitstring>> = <<1:7,<<1:1,6>>/bitstring>>,
   <<1:1,6>> = B,
   B = <<1:1,6>>,
   ok.
@@ -82,10 +82,10 @@ test_bitstr() ->
 unsymmetric_tests() ->
   <<1:12>> = <<0,1:4>>,
   <<0,1:4>> = <<1:12>>,
-  <<1:1,X/bitstr>> = <<128,255,0,0:2>>,
+  <<1:1,X/bitstring>> = <<128,255,0,0:2>>,
   <<1,254,0,0:1>> = X,
   X = <<1,254,0,0:1>>,
-  <<1:1,X1:25/bitstr>> = <<128,255,0,0:2>>,
+  <<1:1,X1:25/bitstring>> = <<128,255,0,0:2>>,
   <<1,254,0,0:1>> = X1,
   X1 = <<1,254,0,0:1>>,
   ok.
@@ -93,10 +93,10 @@ unsymmetric_tests() ->
 big_unsymmetric_tests() ->
   <<1:875,1:12>> = <<1:875,0,1:4>>,
   <<1:875,0,1:4>> = <<1:875,1:12>>,
-  <<1:1,X/bitstr>> = <<128,255,0,0:2,1:875>>,
+  <<1:1,X/bitstring>> = <<128,255,0,0:2,1:875>>,
   <<1,254,0,0:1,1:875>> = X,
   X = <<1,254,0,0:1,1:875>>,
-  <<1:1,X1:900/bitstr>> = <<128,255,0,0:2,1:875>>,
+  <<1:1,X1:900/bitstring>> = <<128,255,0,0:2,1:875>>,
   <<1,254,0,0:1,1:875>> = X1,
   X1 = <<1,254,0,0:1,1:875>>,
   ok.
@@ -118,7 +118,7 @@ big_bitstr_to_and_from_list() ->
 send_and_receive() -> 
   Bin = <<1,2:7>>,
   Pid = spawn(fun() -> receiver(Bin) end),
-  Pid ! {self(),<<1:7,8:5,Bin/bitstr>>},
+  Pid ! {self(),<<1:7,8:5,Bin/bitstring>>},
   receive
     ok ->
       ok
@@ -126,7 +126,7 @@ send_and_receive() ->
 
 receiver(Bin) ->	 
   receive
-    {Pid,<<1:7,8:5,Bin/bitstr>>} ->
+    {Pid,<<1:7,8:5,Bin/bitstring>>} ->
       Pid ! ok
   end.
 	    
@@ -136,7 +136,7 @@ send_and_receive_alot() ->
   send_alot(100,Bin,Pid).
 
 send_alot(N,Bin,Pid) when N > 0 ->
-  Pid ! {self(),<<1:7,8:5,Bin/bitstr>>},
+  Pid ! {self(),<<1:7,8:5,Bin/bitstring>>},
   receive
     ok ->
       ok
@@ -148,7 +148,7 @@ send_alot(0,_Bin,Pid) ->
 
 receiver_alot(Bin) ->	 
   receive
-    {Pid,<<1:7,8:5,Bin/bitstr>>} ->
+    {Pid,<<1:7,8:5,Bin/bitstring>>} ->
       Pid ! ok;
     no_more -> ok
   end,
