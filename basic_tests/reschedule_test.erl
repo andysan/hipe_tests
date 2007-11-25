@@ -1,4 +1,4 @@
-%%% $Id: reschedule_test.erl,v 1.1 2003/12/21 23:17:51 mikpe Exp $
+%%% $Id: reschedule_test.erl,v 1.2 2007/11/25 18:15:32 mikpe Exp $
 %%% Check that RESCHEDULE returns from BIFs work.
 
 -module(reschedule_test).
@@ -8,6 +8,7 @@ compile(Flags) ->
     hipe:c(?MODULE, Flags).
 
 test() ->
+    erts_debug:set_internal_state(available_internal_state, true),
     First = self(),
     Second = spawn(fun() -> doit(First) end),
     receive
@@ -18,9 +19,9 @@ test() ->
     after 1000 ->
 	    []
     end,
-    erlang:resume_process(Second),
+    erts_debug:set_internal_state(hipe_test_reschedule_resume, Second),
     ok.
 
 doit(First) ->
     First ! self(),
-    hipe_bifs:test_reschedule(1).
+    erts_debug:set_internal_state(hipe_test_reschedule_suspend, 1).
