@@ -1,7 +1,7 @@
 %%%-------------------------------------------------------------------
 %% File: catch_merge.erl
 %%
-%% $Id: catch_merge.erl,v 1.1 2004/10/29 20:35:41 richardc Exp $ 
+%% $Id: catch_merge.erl,v 1.2 2007/12/20 10:06:51 dalu7049 Exp $ 
 %%
 %% @author Richard Carlsson <richardc@it.uu.se>
 %% @doc Test case that shows how Beam can merge catch-end blocks that
@@ -26,4 +26,4 @@ f(_) -> ok.
 g(_) -> ok.
 
 compile(Flags) ->
-    hipe:c(?MODULE,[Flags]).
+    hipe:c(?MODULE,Flags).
