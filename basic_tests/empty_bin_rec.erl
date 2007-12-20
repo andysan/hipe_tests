@@ -1,6 +1,6 @@
 %% Program that crashed the R12B-0 BEAM compiler: internal error in v3_codegen
-%% Fixed pretty much immediately and released as a patch to the public
-%% but it was not applied to our repository for about two weeks or so.
+%% Fixed pretty much immediately and released as a patch to the public, but
+%% the patch was not applied to our repository for about two weeks or so.
 
 -module(empty_bin_rec).
 -export([test/0, compile/1]).
