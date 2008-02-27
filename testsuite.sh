@@ -3,7 +3,7 @@
 ## File:      testsuite.sh
 ## Author(s): Kostis Sagonas
 ## 
-## $Id: testsuite.sh,v 1.60 2007/06/16 17:35:24 mikpe Exp $
+## $Id: testsuite.sh,v 1.61 2008/02/27 18:28:46 dalu7049 Exp $
 ##
 ## Run with option --help for usage information.
 
@@ -274,7 +274,7 @@ fi
 echo "The log will be left in $LOG_FILE"
 
 echo "Log for  : $OTP_DIR $rts_options" > $LOG_FILE
-echo "Date-Time: `date +"%y%m%d-%H%M"`" >> $LOG_FILE
+echo "Date-Time: `date +"%y%m%d-%H%M"`" >> $LOG_FILE # ` stupid emacs
 echo "Testing $OTP_DIR $rts_options" > $LOG_FILE
 echo "ERL_COMPILER_OPTIONS=$ERL_COMPILER_OPTIONS"
 

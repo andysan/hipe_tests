@@ -33,21 +33,22 @@ if [ ! -d $contracts_dir ]; then
     usage; exit 1
 fi
 erl="$otp_dir/bin/erl"
-
-for dir in *_tests;
+erlc="$otp_dir/bin/erlc"
+ERLC_FLAGS="-W +debug_info"
+for dir in checker_tests;
 do
     echo "Entering $dir"
     cd ${dir}
-    erl -make
-    for file in *.beam; do
+    for file in *.erl; do
+	$erlc $ERLC_FLAGS $file
 	if [[ $file == "test.beam" ]]; then
 	    echo "Ignoring test.beam"
 	else
 	    echo -n "$dir/$file: "
-	    module=$(echo $file | sed 's/.beam//')
+	    module=$(echo $file | sed 's/.erl//')
 	    $erl -pa ./ -pa ${contracts_dir}/lib/*/ebin -noshell \
-		-run checker run ${module} test []. -s init stop \
-		> /dev/null 2> /dev/null
+		-run checker run ${module} test []. -s init stop #\
+	    #> /dev/null 2> /dev/null
 	    echo "done"
 	fi
     done
