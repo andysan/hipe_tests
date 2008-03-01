@@ -20,7 +20,8 @@ test() ->
   Binary = list_to_binary(String),
   StringToMatch = "200x/" ++ String ++ " ",
   BinaryToMatch = list_to_binary(StringToMatch),
-  {ok, Binary} = match(BinaryToMatch).
+  {ok, Binary} = match(BinaryToMatch),
+  ok.
 
 match(<<>>) ->
   nomatch;
