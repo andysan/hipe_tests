@@ -46,7 +46,8 @@ do
 	else
 	    echo -n "$dir/$file: "
 	    module=$(echo $file | sed 's/.erl//')
-	    $erl -pa ./ -pa ${contracts_dir}/lib/*/ebin -noshell \
+	    $erl -kernel error_logger '{file,"'$module'.log"}' \
+		-pa ./ -pa ${contracts_dir}/lib/*/ebin -noshell \
 		-run checker run ${module} test []. -s init stop #\
 	    #> /dev/null 2> /dev/null
 	    echo "done"
