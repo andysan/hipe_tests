@@ -9,7 +9,7 @@
 -module(fail_01).
 -export([test/0]).
 
--spec(test/0 :: () -> ok).
+-spec(test/0 :: () -> 'ok').
 test() ->
   two(3),
   takes_atom(5),

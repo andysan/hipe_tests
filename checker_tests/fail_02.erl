@@ -9,6 +9,6 @@
 -module(fail_02).
 -export([test/0]).
 
--spec(test/0 :: () -> ok).
+-spec(test/0 :: () -> 'ok').
 test() ->
   fail_01:test().
