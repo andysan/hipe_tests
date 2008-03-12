@@ -41,8 +41,8 @@ do
     cd ${dir}
     for file in *.erl; do
 	$erlc $ERLC_FLAGS $file
-	if [[ $file == "test.beam" ]]; then
-	    echo "Ignoring test.beam"
+	if [[ $file == "test.erl" ]]; then
+	    echo "Ignoring test.erl"
 	else
 	    echo -n "$dir/$file: "
 	    module=$(echo $file | sed 's/.erl//')
