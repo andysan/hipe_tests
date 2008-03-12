@@ -6,8 +6,12 @@
 %% @doc 
 %% 
 
--module(code_server_bug_01).
+-module(different_types_sizes_bug_01).
 -export([test/0]).
 
 test() ->
-  catch code_server:a().
+  case {atom, atom} of
+    {atom, atom} -> ok
+  end.
+
+%%  catch code_server:a().
