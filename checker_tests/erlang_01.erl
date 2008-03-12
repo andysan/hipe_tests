@@ -10,4 +10,5 @@
 -export([test/0]).
 
 test() ->
-  erlang:fun_info(fun test/0).
+  [_|_] = erlang:fun_info(fun test/0),
+  ok.
