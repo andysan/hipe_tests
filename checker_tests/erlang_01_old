@@ -1,0 +1,11 @@
+[{pid,<0.30.0>},
+ {module,contract_checker_random_prefix_erlang_01},
+ {new_index,0},
+ {new_uniq,<<223,192,164,48,38,153,46,8,150,213,87,135,7,
+             16,16,77>>},
+ {index,0},
+ {uniq,74715638},
+ {name,'-test/0-fun-0-'},
+ {arity,0},
+ {env,[]},
+ {type,local}]

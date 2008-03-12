@@ -48,9 +48,11 @@ do
 	    module=$(echo $file | sed 's/.erl//')
 	    $erl -kernel error_logger '{file,"'$module'.log"}' \
 		-pa ./ -pa ${contracts_dir}/lib/*/ebin -noshell \
-		-run checker run ${module} test []. -s init stop #\
-	    #> /dev/null 2> /dev/null
+		-run checker run ${module} test []. -s init stop \
+		> ${module}_run \
+		#2> /dev/null
 	    echo "done"
+	    diff ${module}_old ${module}_run
 	fi
     done
     cd ..
