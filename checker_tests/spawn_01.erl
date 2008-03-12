@@ -12,7 +12,9 @@
 test() ->
   spawn(fun() -> ok(not_ok) end),
   proc_lib:spawn(fun() -> ok(not_ok) end),
-  spawn(fail_01, test, []).
+  spawn(fail_01, test, []),
+  spawn_link(fun() -> fail_02:test() end),
+  ok.
 
 -spec(ok/1 :: (ok) -> ok).
 ok(ok) -> ok.
