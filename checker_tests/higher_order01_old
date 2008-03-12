@@ -1,14 +1,1 @@
-
-=INFO REPORT==== 12-Mar-2008::17:26:04 ===
-WARNING: {contract_checker_random_prefix_higher_order01,mk_fun,0}: Result mismatch!
-#Fun<contract_checker_random_prefix_higher_order01.0.41083965>
-does not match
-["fun(() -> 'ok')"]
-Stacktrace: [{contract_checker_random_prefix_higher_order01,test,0},
-             {checker,with_error_handler,4}]
-=INFO REPORT==== 12-Mar-2008::17:26:04 ===
-WARNING: {contract_checker_random_prefix_higher_order01,test,0}: Result mismatch!
 gazonk
-does not match
-["'ok'"]
-Stacktrace: [{checker,with_error_handler,4}]
