@@ -11,4 +11,5 @@
 
 -spec(test/0 :: () -> 'ok').
 test() ->
+  io:format(atom_to_list(?MODULE) ++ " running~n"),
   fail_01:test().
