@@ -1,6 +1,11 @@
 -module(higher_order01).
 -export([test/0]).
 
--spec(test/0 :: () -> fun(() -> 'ok')).
+-spec(test/0 :: () -> 'ok').
 test() ->
-   fun () -> 'ok' end.
+   F = mk_fun(),
+   F().
+
+-spec(mk_fun/0 :: () -> fun(() -> 'ok')).
+mk_fun() ->
+   fun() -> gazonk end.
