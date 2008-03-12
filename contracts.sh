@@ -49,10 +49,10 @@ do
 	    $erl -kernel error_logger '{file,"'$module'.log"}' \
 		-pa ./ -pa ${contracts_dir}/lib/*/ebin -noshell \
 		-run checker run ${module} test []. -s init stop \
-		> ${module}_run \
+		> ${module}_new \
 		#2> /dev/null
 	    echo "done"
-	    diff ${module}_old ${module}_run
+	    diff ${module}_old ${module}_new
 	fi
     done
     cd ..
