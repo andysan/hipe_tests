@@ -11,7 +11,7 @@
 
 -spec(test/0 :: () -> 'ok').
 test() ->
-  io:format(atom_to_list(?MODULE) ++ " running~n"),
+  %% io:format(atom_to_list(?MODULE) ++ " running~n"),
   two(3),
   takes_atom(5),
   ko.
