@@ -2,5 +2,6 @@
 -module(hipe_01).
 -export([test/0]).
 
+-spec(test/0 :: () -> {'ok',atom()}).
 test() ->
-  catch hipe:c(?MODULE, [{gazonk,42,bar}]).
+  hipe:c(?MODULE, [o3]).
