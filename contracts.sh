@@ -11,12 +11,11 @@ usage()
     echo "      have to use the flags."
 }
 
-while getopts "hs:o:" Option
+while getopts "ho:c:" Option
 do
   case $Option in
       o     ) otp_dir=${OPTARG};;
       c     ) contracts_dir=${OPTARG};;
-      s     ) host=${OPTARG};;
       h     ) usage; exit;;
   esac
 done
