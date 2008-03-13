@@ -17,4 +17,4 @@ test(A, B, C) ->
   A andalso B orelse C.
 
 compile(Flags) ->
-  hipe:c(?MODULE,Flags++[type_warnings]).
+  hipe:c(?MODULE, Flags).
