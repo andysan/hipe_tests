@@ -61,7 +61,11 @@ do
 		> ${module}_new \
 		#2> /dev/null
 	    echo "done"
+	    [ -f ${module}_old ] || touch ${module}_old
 	    diff ${module}_old ${module}_new
+	    [ -f ${module}.log.old ] || touch ${module}.log.old
+	    diff -I "=.*==== .*-.*-.*::.*===" \
+		${module}.log.old ${module}.log
 	fi
     done
     cd ..
