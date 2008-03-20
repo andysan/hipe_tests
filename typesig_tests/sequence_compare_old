@@ -1,5 +1,5 @@
 {sequence,add,3} : OK
- typesig:  ((byte(),5 | 10,5 | 10) -> 'ok')
+ typesig:  ((byte(),5 | 7 | 10,5 | 7 | 10) -> 'ok')
  dataflow: ((atom() | byte(),5 | 7 | 10,5 | 7 | 10) -> 'ok')
    typean: ((atom() | integer(),5 | 7 | 10,5 | 7 | 10) -> 'ok')
 {sequence,bad_add,2} : OK

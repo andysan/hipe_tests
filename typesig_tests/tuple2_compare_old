@@ -7,6 +7,6 @@
  dataflow: ((_) -> 'bar' | 'foo')
    typean: ((_) -> 'bar' | 'foo')
 {tuple2,t2,1} : OK
- typesig:  ((1 | 2) -> {'bar' | 'foo',{'bar' | 'foo','a' | 'b'}})
- dataflow: ((_) -> {'bar' | 'foo',{'bar' | 'foo','a' | 'b'}})
-   typean: ((_) -> {'bar' | 'foo',{'bar' | 'foo','a' | 'b'}})
+ typesig:  ((1 | 2) -> {'bar',{'bar','a' | 'b'} | {'foo','a' | 'b'}} | {'foo',{'bar','a' | 'b'} | {'foo','a' | 'b'}})
+ dataflow: ((_) -> {'bar',{'bar','a' | 'b'} | {'foo','a' | 'b'}} | {'foo',{'bar','a' | 'b'} | {'foo','a' | 'b'}})
+   typean: ((_) -> {'bar',{'bar','a' | 'b'} | {'foo','a' | 'b'}} | {'foo',{'bar','a' | 'b'} | {'foo','a' | 'b'}})

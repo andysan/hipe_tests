@@ -5,4 +5,4 @@
 {record3,m,1} : OK
  typesig:  ((#dict{segs=tuple()}) -> #dict{segs=tuple()})
  dataflow: ((_) -> #dict{segs=tuple()})
-   typean: ((_) -> tuple())
+   typean: ((_) -> #dict{n=any(),segs=tuple()})

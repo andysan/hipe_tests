@@ -3,8 +3,8 @@
  dataflow: ((_,_,_) -> {[] | #clause_tree{instr={_,_},success={_,_,_,_},fail=[]},_})
    typean: ((_,_,_) -> {[] | #clause_tree{instr={_,_},success={_,_,_,_},fail=[]},_})
 {inf_loop1,adapt0,3} : OK
- typesig:  ((#b_clause{segments=[{_,_,_}],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}},#hash_cons{tree={pos_integer(),'nil' | {_,_,_,_}},number=number()},_) -> {#clause_tree{instr={_,_,_},success=[] | {_,_,_,_},fail=[] | {_,_,_,_}},_})
- dataflow: ((_,#hash_cons{tree={pos_integer(),'nil' | {_,_,_,_}},number=number()},_) -> {#clause_tree{instr={_,_,_},success=[] | {_,_,_,_},fail=[] | {_,_,_,_}},_})
+ typesig:  ((#b_clause{segments=[{_,_,_}],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}},#hash_cons{tree={integer(),'nil' | {_,_,_} | {_,_,_,_}},number=number()},_) -> {#clause_tree{instr={_,_,_},success=[] | {_,_,_,_},fail=[] | {_,_,_,_}},_})
+ dataflow: ((_,#hash_cons{tree={integer(),'nil' | {_,_,_} | {_,_,_,_}},number=number()},_) -> {#clause_tree{instr={_,_,_},success=[] | {_,_,_,_},fail=[] | {_,_,_,_}},_})
    typean: ((_,#hash_cons{number=number()},_) -> {#clause_tree{success=[] | {_,_,_,_},fail=[] | {_,_,_,_}},_})
 {inf_loop1,b_clause_segments,1} : OK
  typesig:  ((#b_clause{segments=[{_,_,_}],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}}) -> [{_,_,_}])
@@ -23,8 +23,8 @@
  dataflow: ((_,_,[#match{}]) -> [#match{}])
    typean: ((_,_,[any()]) -> [any()])
 {inf_loop1,get_largest_count,3} : OK
- typesig:  (([#match{}],{non_neg_integer(),'nil' | {_,_,_,_}},{'none' | #match{},_}) -> 'none' | #match{})
- dataflow: ((_,{non_neg_integer(),'nil' | {_,_,_,_}},{'none' | #match{},_}) -> 'none' | #match{})
+ typesig:  (([#match{}],{_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}},{'none' | #match{},_}) -> 'none' | #match{})
+ dataflow: ((_,{_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}},{'none' | #match{},_}) -> 'none' | #match{})
    typean: ((_,_,{_,_}) -> any())
 {inf_loop1,get_match,3} : OK
  typesig:  ((_,[any()],[#match{}]) -> [#match{}])
@@ -47,7 +47,7 @@
  dataflow: ((_,_) -> {_,_})
    typean: ((_,_) -> {_,_})
 {inf_loop1,match,3} : OK
- typesig:  ((#match{},pos_improper_list(),_) -> bool())
+ typesig:  ((#match{},maybe_improper_list(),_) -> bool())
  dataflow: ((#match{},_,_) -> bool())
    typean: ((_,_,_) -> bool())
 {inf_loop1,match_tag,1} : OK
@@ -59,30 +59,30 @@
  dataflow: ((#match{}) -> any())
    typean: ((_) -> any())
 {inf_loop1,mismatch,3} : OK
- typesig:  ((#match{},pos_improper_list(),_) -> 'true' | [any()])
+ typesig:  ((#match{},maybe_improper_list(),_) -> 'true' | [any()])
  dataflow: ((#match{},_,_) -> 'true' | [any()])
    typean: ((_,_,_) -> 'true' | [any()])
 {inf_loop1,mismatch,4} : OK
- typesig:  ((#match{},pos_improper_list(),[any()],_) -> 'true' | [any()])
+ typesig:  ((#match{},maybe_improper_list(),[any()],_) -> 'true' | [any()])
  dataflow: ((#match{},_,[any()],_) -> 'true' | [any()])
    typean: ((_,_,[any()],_) -> 'true' | [any()])
 {inf_loop1,remove_fail_match,3} : OK
- typesig:  ((#match{},[] | #b_clause{segments=pos_improper_list(),next_clause=[] | #b_clause{segments=pos_improper_list(),next_clause=[] | #b_clause{segments=pos_improper_list(),next_clause=[] | {_,_,_,_,_,_}}}},_) -> [] | #b_clause{segments=pos_improper_list(),next_clause=[] | #b_clause{segments=pos_improper_list(),next_clause=[] | {_,_,_,_,_,_}}})
+ typesig:  ((#match{},[] | #b_clause{segments=maybe_improper_list(),next_clause=[] | #b_clause{segments=maybe_improper_list(),next_clause=[] | #b_clause{segments=maybe_improper_list(),next_clause=[] | {_,_,_,_,_,_}}}},_) -> [] | #b_clause{segments=maybe_improper_list(),next_clause=[] | #b_clause{segments=maybe_improper_list(),next_clause=[] | {_,_,_,_,_,_}}})
  dataflow: ((#match{},_,_) -> [] | #b_clause{next_clause=[] | #b_clause{next_clause=[] | {_,_,_,_,_,_}}})
    typean: ((_,_,_) -> [] | #b_clause{next_clause=[] | #b_clause{next_clause=[] | {_,_,_,_,_,_}}})
 {inf_loop1,remove_succ_match,3} : OK
- typesig:  ((#match{},[] | #b_clause{segments=pos_improper_list(),next_clause=[] | #b_clause{segments=pos_improper_list(),next_clause=[] | #b_clause{segments=pos_improper_list(),next_clause=[] | {_,_,_,_,_,_}}}},_) -> [] | #b_clause{segments=[any()],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}})
+ typesig:  ((#match{},[] | #b_clause{segments=maybe_improper_list(),next_clause=[] | #b_clause{segments=maybe_improper_list(),next_clause=[] | #b_clause{segments=maybe_improper_list(),next_clause=[] | {_,_,_,_,_,_}}}},_) -> [] | #b_clause{segments=[any()],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}})
  dataflow: ((#match{},_,_) -> [] | #b_clause{segments=[any()],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}})
    typean: ((_,_,_) -> [] | #b_clause{segments='true' | [any()],next_clause=[] | #b_clause{segments='true' | [any()],next_clause=[] | {_,_,_,_,_,_}}})
 {inf_loop1,simpl_count,1} : OK
- typesig:  ((#b_clause{segments=[#match{}],next_clause=[] | #b_clause{segments=[{_,_,_}],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}}}) -> {non_neg_integer(),'nil' | {_,_,_,_}})
- dataflow: ((_) -> {non_neg_integer(),'nil' | {_,_,_,_}})
+ typesig:  (([] | #b_clause{segments=[#match{}],next_clause=[] | #b_clause{segments=[{_,_,_}],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}}}) -> {_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}})
+ dataflow: ((_) -> {_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}})
    typean: ((_) -> any())
 {inf_loop1,simpl_count,2} : OK
- typesig:  (([] | #b_clause{segments=[#match{}],next_clause=[] | #b_clause{segments=[{_,_,_}],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}}},{non_neg_integer(),'nil' | {_,_,_,_}}) -> {non_neg_integer(),'nil' | {_,_,_,_}})
- dataflow: ((_,{non_neg_integer(),'nil' | {_,_,_,_}}) -> {non_neg_integer(),'nil' | {_,_,_,_}})
+ typesig:  (([] | #b_clause{segments=[#match{}],next_clause=[] | #b_clause{segments=[{_,_,_}],next_clause=[] | #b_clause{segments=[any()],next_clause=[] | {_,_,_,_,_,_}}}},{_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}}) -> {_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}})
+ dataflow: ((_,{_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}}) -> {_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}})
    typean: ((_,_) -> any())
 {inf_loop1,simpl_count_segs,2} : OK
- typesig:  (([#match{}],{non_neg_integer(),'nil' | {_,_,_,_}}) -> {non_neg_integer(),'nil' | {_,_,_,_}})
- dataflow: ((_,{non_neg_integer(),'nil' | {_,_,_,_}}) -> {non_neg_integer(),'nil' | {_,_,_,_}})
+ typesig:  (([#match{}],{_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}}) -> {_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}})
+ dataflow: ((_,{_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}}) -> {_,'nil' | {{_,_,_,_},pos_integer(),pos_integer()} | {_,_,_,_}})
    typean: ((_,_) -> any())

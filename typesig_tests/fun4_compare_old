@@ -1,10 +1,10 @@
 {fun4,init,1} : OK
- typesig:  ((pid()) -> unit())
- dataflow: ((pid()) -> unit())
+ typesig:  ((pid()) -> no_return())
+ dataflow: ((pid()) -> no_return())
    typean: ((pid()) -> none())
 {fun4,loop,1} : OK
- typesig:  ((_) -> unit())
- dataflow: ((_) -> unit())
+ typesig:  ((_) -> no_return())
+ dataflow: ((_) -> no_return())
    typean: ((_) -> none())
 {fun4,reply,2} : OK
  typesig:  ((atom() | pid() | port() | {atom(),atom()},_) -> {'fun4',_})

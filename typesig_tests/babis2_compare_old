@@ -19,7 +19,7 @@
  dataflow: ((atom(),_) -> 1..255)
    typean: ((atom(),_) -> 1..255)
 {babis2,yeccpars1,5} : OK
- typesig:  ((pos_improper_list(),'false' | {atom() | tuple(),atom(),[any()]},byte(),[any()],[[[any(),...] | tuple(),...] | tuple()]) -> any())
+ typesig:  ((maybe_improper_list(),'false' | {atom() | tuple(),atom(),[any()]},byte(),[any()],[[[any(),...] | tuple(),...] | tuple()]) -> any())
  dataflow: ((_,'false' | {atom() | tuple(),atom(),[any()]},byte(),[any()],[[[any(),...] | tuple(),...] | tuple()]) -> any())
    typean: ((_,'false' | {_,_,_},byte(),[any()],[any()]) -> any())
 {babis2,yeccpars2,7} : OK
