@@ -1,5 +1,5 @@
 %% 
-%%     $Id: undef_func.erl,v 1.41 2006/08/22 15:42:56 kostis Exp $
+%%     $Id: undef_func.erl,v 1.42 2008/03/25 10:10:54 kostis Exp $
 %%
 
 -module(undef_func).
@@ -147,7 +147,6 @@ hipe_exports_used_as_remote_apply_calls() ->
      {hipe_sparc_specific,labels,1},
      {hipe_sparc_specific,livein,2},
      {hipe_sparc_specific,liveout,2},
-     {hipe_sparc_specific,succ_map,1},
      {hipe_sparc_specific,uses,1},
      {hipe_sparc_specific,defines,1},
      {hipe_sparc_specific,def_use,1},
@@ -177,7 +176,6 @@ hipe_exports_used_as_remote_apply_calls() ->
      {hipe_sparc_specific_fp,labels,1},
      {hipe_sparc_specific_fp,livein,2},
      {hipe_sparc_specific_fp,liveout,2},
-     {hipe_sparc_specific_fp,succ_map,1},
      {hipe_sparc_specific_fp,uses,1},
      {hipe_sparc_specific_fp,defines,1},
      {hipe_sparc_specific_fp,is_arg,1},
@@ -214,7 +212,6 @@ hipe_exports_used_as_remote_apply_calls() ->
      {hipe_ppc_specific,physical_name,1},
      {hipe_ppc_specific,reg_nr,1},
      {hipe_ppc_specific,reverse_postorder,1},
-     {hipe_ppc_specific,succ_map,1},
      {hipe_ppc_specific,uses,1},
      {hipe_ppc_specific,var_range,1},
 
@@ -237,7 +234,6 @@ hipe_exports_used_as_remote_apply_calls() ->
      {hipe_ppc_specific_fp,physical_name,1},
      {hipe_ppc_specific_fp,reg_nr,1},
      {hipe_ppc_specific_fp,reverse_postorder,1},
-     {hipe_ppc_specific_fp,succ_map,1},
      {hipe_ppc_specific_fp,uses,1},
      {hipe_ppc_specific_fp,var_range,1},
 
@@ -271,7 +267,6 @@ hipe_exports_used_as_remote_apply_calls() ->
      {hipe_arm_specific,physical_name,1},
      {hipe_arm_specific,reg_nr,1},
      {hipe_arm_specific,reverse_postorder,1},
-     {hipe_arm_specific,succ_map,1},
      {hipe_arm_specific,uses,1},
      {hipe_arm_specific,var_range,1},
 
@@ -283,7 +278,6 @@ hipe_exports_used_as_remote_apply_calls() ->
      {hipe_x86_specific,labels,1},
      {hipe_x86_specific,livein,2},
      {hipe_x86_specific,liveout,2},
-     {hipe_x86_specific,succ_map,1},
      {hipe_x86_specific,uses,1},
      {hipe_x86_specific,defines,1},
      {hipe_x86_specific,def_use,1},
@@ -320,7 +314,6 @@ hipe_exports_used_as_remote_apply_calls() ->
      {hipe_x86_specific_fp,postorder,1},
      {hipe_x86_specific_fp,reg_nr,1},
      {hipe_x86_specific_fp,reverse_postorder,1},
-     {hipe_x86_specific_fp,succ_map,1},
      {hipe_x86_specific_fp,uses,1},
 
      {hipe_amd64_specific,analyze,1},
@@ -329,7 +322,6 @@ hipe_exports_used_as_remote_apply_calls() ->
      {hipe_amd64_specific,labels,1},
      {hipe_amd64_specific,livein,2},
      {hipe_amd64_specific,liveout,2},
-     {hipe_amd64_specific,succ_map,1},
      {hipe_amd64_specific,uses,1},
      {hipe_amd64_specific,defines,1},
      {hipe_amd64_specific,def_use,1},
@@ -357,7 +349,6 @@ hipe_exports_used_as_remote_apply_calls() ->
      {hipe_amd64_specific_sse2,labels,1},
      {hipe_amd64_specific_sse2,livein,2},
      {hipe_amd64_specific_sse2,liveout,2},
-     {hipe_amd64_specific_sse2,succ_map,1},
      {hipe_amd64_specific_sse2,uses,1},
      {hipe_amd64_specific_sse2,defines,1},
      {hipe_amd64_specific_sse2,def_use,1},
@@ -391,7 +382,6 @@ hipe_exports_used_as_remote_apply_calls() ->
      {hipe_amd64_specific_x87,livein,2},
      {hipe_amd64_specific_x87,liveout,2},
      {hipe_amd64_specific_x87,new_spill_index,1},
-     {hipe_amd64_specific_x87,succ_map,1},
      {hipe_amd64_specific_x87,uses,1},
      % {hipe_amd64_specific_x87,def_use,1},
      % {hipe_amd64_specific_x87,is_arg,1},
