@@ -13,13 +13,14 @@ usage()
     echo "      have to use the flags."
 }
 
-while getopts "ho:c:f:d:" Option
+while getopts "ho:c:f:d:p:" Option
 do
   case $Option in
       o     ) otp_dir=${OPTARG};;
       c     ) contracts_dir=${OPTARG};;
       f     ) files=${OPTARG};;
       d     ) DIR=${OPTARG};;
+      p     ) PA=${OPTARG};;
       h     ) usage; exit;;
   esac
 done
@@ -56,6 +57,7 @@ do
 	    echo -n "$dir/$file: "
 	    module=$(echo $file | sed 's/.erl//')
 	    $erl -kernel error_logger '{file,"'$module'.log"}' \
+		-pa ${PA} \
 		-pa ./ -pa ${contracts_dir}/lib/*/ebin -noshell \
 		-run checker run ${module} test []. -s init stop \
 		> ${module}_new \
