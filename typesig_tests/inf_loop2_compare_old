@@ -83,8 +83,8 @@
  dataflow: ((string(),'false' | 58) -> string())
    typean: ((string(),'false' | 58) -> string())
 {inf_loop2,source_by_rules,3} : OK
- typesig:  ((nonempty_string(),[integer()],maybe_improper_list()) -> {'error','source_file_not_found'} | {'ok',[integer()]})
- dataflow: ((nonempty_string(),[integer()],_) -> {'error','source_file_not_found'} | {'ok',[integer()]})
+ typesig:  ((nonempty_string(),[non_neg_integer()],maybe_improper_list()) -> {'error','source_file_not_found'} | {'ok',[integer()]})
+ dataflow: ((nonempty_string(),[non_neg_integer()],_) -> {'error','source_file_not_found'} | {'ok',[integer()]})
    typean: (([any()],_,_) -> {'error','source_file_not_found'} | {'ok',_})
 {inf_loop2,try_file,3} : OK
  typesig:  (('undefined' | string(),atom(),_) -> {'error' | string(),'source_file_not_found' | ['binary' | 'export_all' | 'fast' | 'trace' | tuple()] | {'cover_compiled',atom()} | {'non_existing',atom()} | {'preloaded',atom()}})
@@ -95,8 +95,8 @@
  dataflow: ((_,[integer()],atom(),_) -> {'error' | [integer()],'source_file_not_found' | ['binary' | 'export_all' | 'fast' | 'trace' | tuple()]})
    typean: ((_,[number()],atom(),_) -> {'error' | 'ok' | [number()],_})
 {inf_loop2,try_rule,4} : OK
- typesig:  ((nonempty_string(),[integer()],[any()],_) -> 'error' | {'ok',[integer()]})
- dataflow: ((nonempty_string(),[integer()],_,_) -> 'error' | {'ok',[integer()]})
+ typesig:  ((nonempty_string(),[non_neg_integer()],[any()],_) -> 'error' | {'ok',[integer()]})
+ dataflow: ((nonempty_string(),[non_neg_integer()],_,_) -> 'error' | {'ok',[integer()]})
    typean: (([any()],_,_,_) -> 'error' | {'ok',[number()]})
 {inf_loop2,unix_pathtype,1} : OK
  typesig:  ((_) -> 'absolute' | 'relative')

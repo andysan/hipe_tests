@@ -23,10 +23,10 @@
  dataflow: ((_) -> {'bar',_,_,_,_})
    typean: ((_) -> any())
 {is_record1,t7,1} : OK
- typesig:  (('true') -> #foo{bar='bar'})
- dataflow: ((_) -> #foo{bar='bar'})
-   typean: ((_) -> {'bar','foo'} | #foo{bar='bar'})
+ typesig:  (('true') -> #foo{bar::'bar'})
+ dataflow: ((_) -> #foo{bar::'bar'})
+   typean: ((_) -> {'bar','foo'} | #foo{bar::'bar'})
 {is_record1,t8,1} : OK
- typesig:  ((#foo{bar='bar'}) -> #foo{bar='bar'})
- dataflow: (({'bar','foo'} | #foo{bar='bar'}) -> #foo{bar='bar'})
-   typean: (({'bar','foo'} | #foo{bar='bar'}) -> {'bar','foo'} | #foo{bar='bar'})
+ typesig:  ((#foo{bar::'bar'}) -> #foo{bar::'bar'})
+ dataflow: (({'bar','foo'} | #foo{bar::'bar'}) -> #foo{bar::'bar'})
+   typean: (({'bar','foo'} | #foo{bar::'bar'}) -> {'bar','foo'} | #foo{bar::'bar'})

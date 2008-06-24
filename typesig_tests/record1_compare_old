@@ -3,11 +3,11 @@
  dataflow: ((_) -> #foo{})
    typean: ((_) -> any())
 {record1,t2,1} : OK
- typesig:  ((#foo{bar=1}) -> #foo{bar=1})
- dataflow: ((_) -> #foo{bar=1})
-   typean: ((_) -> #foo{bar=1})
+ typesig:  ((#foo{bar::1}) -> #foo{bar::1})
+ dataflow: ((_) -> #foo{bar::1})
+   typean: ((_) -> #foo{bar::1})
 {record1,t3,1} : OK
- typesig:  ((#foo{bar=1 | 3,baz=2 | 3}) -> #foo{bar=1 | 3,baz=2 | 3})
+ typesig:  ((#foo{bar::1 | 3,baz::2 | 3}) -> #foo{bar::1 | 3,baz::2 | 3})
  dataflow: ((_) -> #foo{})
    typean: ((_) -> any())
 {record1,t4,0} : OK

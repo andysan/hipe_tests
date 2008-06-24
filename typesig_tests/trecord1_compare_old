@@ -7,7 +7,7 @@
  dataflow: ((_) -> integer())
    typean: ((_) -> any())
 {trecord1,t3,1} : OK
- typesig:  ((#rec2{bar=1}) -> 'ok')
+ typesig:  ((#rec2{bar::1}) -> 'ok')
  dataflow: ((_) -> 'ok')
    typean: ((_) -> 'error' | 'ok')
 {trecord1,t4,1} : OK
