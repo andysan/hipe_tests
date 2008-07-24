@@ -39,7 +39,7 @@ if [ ! -d $contracts_dir ]; then
     usage; exit 1
 fi
 if [[ -n $DIR && ! -d $DIR ]]; then
-    echo "Nu such directory $dirs. Remove -d flag or try again."
+    echo "Nu such directory $DIR. Remove -d flag or try again."
     usage; exit 1
 fi
 erl="$otp_dir/bin/erl"
