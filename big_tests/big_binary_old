@@ -1,1 +1,1 @@
-{{{emu_result,{{<<0,0,0,0,0,0,0,0,0,0,0,0,0,0,0>>,300000000,299999985},{<<0,0,0,0,0,0,0,0,0,0,0,0,0,0,0>>,600000000,63129073}}},{native_result,{{<<0,0,0,0,0,0,0,0,0,0,0,0,0,0,0>>,300000000,299999985},{<<0,0,0,0,0,0,0,0,0,0,0,0,0,0,0>>,600000000,63129073}}}},{{emu_compile,{ok,big_binary}},{native_compile,{ok,big_binary}}}}
+{{{emu_result,ok},{native_result,ok}},{{emu_compile,{ok,big_binary}},{native_compile,{ok,big_binary}}}}
