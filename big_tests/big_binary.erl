@@ -4,7 +4,7 @@
 compile(O) ->
   hipe:c(?MODULE,O).
 
-test()->
+test() ->
   case erlang:system_info(hipe_architecture) of
     amd64 ->
       Bin = <<0:80000000>>,
