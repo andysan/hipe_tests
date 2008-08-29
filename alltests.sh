@@ -3,11 +3,11 @@
 ## File:      alltests.sh
 ## Author(s): Kostis Sagonas
 ##
-## $Id: alltests.sh,v 1.22 2007/09/23 21:00:05 mikpe Exp $
+## $Id: alltests.sh,v 1.23 2008/08/29 13:25:13 kostis Exp $
 ##
 ## Run with no options for usage/help.
 
-default_testlist="trivial_tests basic_tests native_tests core_tests process_tests distr_tests bs_tests bench_tests loader_tests"
+default_testlist="trivial_tests basic_tests bench_tests big_tests bs_tests core_tests distr_tests loader_tests native_tests process_tests"
 
 ## memory_tests disabled pending resurrection of hybrid heap
 #default_testlist="$default_testlist memory_tests"
