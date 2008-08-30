@@ -9,7 +9,7 @@ HIPE=$1
 COMP_FLAGS=$2
 ERL_FLAGS=$3
 
-testfiles=load_bug?.erl
+testfiles="load_bug?.erl load_sticky_compressed.erl"
 
 testdir="loader_tests"
 
