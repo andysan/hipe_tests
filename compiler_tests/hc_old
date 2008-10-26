@@ -19,6 +19,7 @@
           {ok,"docbuilder"},
           {ok,"edoc"},
           {ok,"et"},
+          {ok,"eunit"},
           {ok,"gs"},
           {ok,"ic"},
           {ok,"inets"},

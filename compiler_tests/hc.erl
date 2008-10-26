@@ -7,8 +7,8 @@
 %%		loading many files from the "otp/lib" directory.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2007/10/25 21:46:12 $
-%%    $Revision: 1.20 $
+%%    $Date: 2008/10/26 22:06:47 $
+%%    $Revision: 1.21 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -49,6 +49,7 @@ test() ->
        test("docbuilder"),
        test("edoc"),
        test("et"),
+       test("eunit"),
        test("gs"),
        test("ic"),
        test("inets"),
