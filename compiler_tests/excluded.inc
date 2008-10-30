@@ -1,12 +1,8 @@
 %% This is an -*- erlang -*- file.
 
-excluded("stdlib") ->
-    [erl_parse];     % COMPILATION TAKES LONG TIME
 excluded("kernel") ->
-    [erl_prim_loader, erlang, error_handler, group,
-     init, otp_ring0, prim_file, prim_inet, hipe_sparc_loader];
-excluded("ic") ->
-    [icparse];       % COMPILATION TAKES LONG TIME
+    [erl_prim_loader, erlang, init, otp_ring0,
+     prim_file, prim_inet, prim_zip, zlib];
 excluded("megaco") ->
     [megaco_text_parser_v1,
      megaco_text_parser_v2,
