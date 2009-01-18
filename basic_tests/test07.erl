@@ -13,7 +13,7 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2003/12/17 13:20:21 $
+%%    $Date: 2009/01/18 19:03:11 $
 %%    $ $
 %% ====================================================================
 %% Exported functions (short description):
@@ -26,9 +26,9 @@
 
 test() ->
     0.0 = math:log(1.0),
-    {'EXIT', _} = (catch math:log(-1.0)),
+    {'EXIT', _} = (catch math:log(minus_one_float())),
     0.0 = math:log(1.0),
-    {'EXIT', _} = (catch math:log(0.0)),
+    {'EXIT', _} = (catch math:log(zero_float())),
     0.0 = math:log(1.0),
     {'EXIT',_} = (catch r_mult(3.23e133,3.57e257)),
     0.0 = math:log(1.0),
@@ -41,6 +41,11 @@ r_mult(X,Y) ->
 
 r_div(X,Y) ->
     X / Y.
+
+%% The following two functions appear just to shut off 'expression will
+%% fail with a badarg' warnings from the BEAM compiler
+zero_float() -> 0.0.
+minus_one_float() -> -1.0.
 
 compile(Flags) ->
     hipe:c(?MODULE,Flags).
