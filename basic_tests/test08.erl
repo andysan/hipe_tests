@@ -10,8 +10,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2001/02/13 16:49:25 $
-%%    $Revision: 1.2 $
+%%    $Date: 2009/03/10 17:47:29 $
+%%    $Revision: 1.3 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -71,7 +71,7 @@ bad_tuple1(T) when element(3, T) == y ->
 bad_tuple1(_) ->
     error.
 
-strange_guard() when tuple({1,2,length([1,2,3,5]),self()}) ->
+strange_guard() when is_tuple({1,2,length([1,2,3,5]),self()}) ->
     true;
 strange_guard() ->
     false.
