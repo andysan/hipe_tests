@@ -10,8 +10,8 @@
 %%               Created.
 %%  CVS      :
 %%              $Author: kostis $
-%%              $Date: 2007/10/10 14:56:12 $
-%%              $Revision: 1.8 $
+%%              $Date: 2009/03/10 17:57:24 $
+%%              $Revision: 1.9 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -203,7 +203,7 @@ bits_to_list([H|_]=List, Mask) ->
 bits_to_list([], _) -> [].
 
 fun_clause({'EXIT',{function_clause,_}}) -> ok.
-mkbin(L) when list(L) -> list_to_binary(L).
+mkbin(L) when is_list(L) -> list_to_binary(L).
 
 mml() -> 
   single_byte_binary = mml_choose(<<42>>),
