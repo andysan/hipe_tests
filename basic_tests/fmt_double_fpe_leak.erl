@@ -8,18 +8,20 @@
 -export([test/0, test/2, compile/1]).
 
 test() ->
-  test(a(), b()).
+  test(a(), b()),
+  ok.
+
+%% We need the specific sequence of display/1 on a float that triggers
+%% faulting ops in fmt_double() followed by a simple FP BIF.
+%% We also need to repeat this at least 3 times.
 
 test(X, Y) ->
-  %% We need the specific sequence of display/1 on a float
-  %% that triggers faulting ops in fmt_double() followed by
-  %% a simple FP BIF. We also need to repeat this at least
-  %% 3 times.
   erlang:display(X), _ = math:log10(Y),
   erlang:display(X), _ = math:log10(Y),
   erlang:display(X), _ = math:log10(Y),
   erlang:display(X), _ = math:log10(Y),
-  ok.
+  erlang:display(X),
+  math:log10(Y).
 
 a() ->
   0.0.
