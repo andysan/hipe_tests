@@ -8,9 +8,9 @@
 %%  History  :	* 2003-03-24 Jesper Wilhelmsson (jesperw@csd.uu.se):
 %%		  Created.
 %%  CVS      :
-%%              $Author: richardc $
-%%              $Date: 2004/08/20 15:01:23 $
-%%              $Revision: 1.10 $
+%%              $Author: kostis $
+%%              $Date: 2009/03/17 08:54:48 $
+%%              $Revision: 1.11 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -36,8 +36,8 @@ test() ->
   S = os:cmd(ERL ++ " -sname " ++ NODE_B ++ " -noshell -noinput -s "
 	     ++ MODULE ++ " start " ++ NODE_A),
   %% io:format("Output from node B: ~s\n",[S]),
-  {match,Pos,Len} = regexp:match(S, "TestResult:"),
-  R = string:sub_string(S, Pos+Len+1),
+  {match,[{Pos,Len}]} = re:run(S, "TestResult:"),
+  R = string:sub_string(S, Pos+1+Len+1),
   list_to_atom(R).
 
 compile(Opts) ->
