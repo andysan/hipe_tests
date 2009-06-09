@@ -9,9 +9,9 @@
 %%		* 2003-03-12 Kostis Sagonas (kostis@csd.uu.se): 
 %%		  Modified to be run without a shell script.
 %%  CVS      :
-%%              $Author: mikpe $
-%%              $Date: 2004/04/07 08:11:11 $
-%%              $Revision: 1.5 $
+%%              $Author: kostis $
+%%              $Date: 2009/06/09 13:27:05 $
+%%              $Revision: 1.6 $
 %% ====================================================================
 %%  Exports  :
 %%
@@ -44,8 +44,11 @@ b([Node]) ->
   spawn(fun() -> client(Node) end).
 
 server(Msgs) ->
-  receive 
-    quit -> io:format("~w~n",[Msgs]), halt();
+  receive
+    {P, quit} ->
+      P ! ack,
+      io:format("~w~n",[Msgs]),
+      halt();
     P when is_pid(P) ->
       server([pid|Msgs]);
     P ->
@@ -56,8 +59,10 @@ client(Node) ->
   connect(Node),
   wait_server(),
   global:send(t_serv, self()),
-  global:send(t_serv, quit),
-  halt().
+  global:send(t_serv, {self(), quit}),
+  receive
+    ack -> halt()
+  end.
 
 connect(Node) ->
   case net_adm:ping(Node) of
