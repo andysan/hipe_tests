@@ -21,7 +21,7 @@ test() ->
 	    timer:sleep(500);
 	_ -> ok
     end,
-    some_msg = (?MODULE ! some_msg),
+    doit = (?MODULE ! doit),
     ok.
 
 handler(Req) ->
