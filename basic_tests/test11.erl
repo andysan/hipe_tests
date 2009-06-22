@@ -17,8 +17,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2007/09/23 10:50:17 $
-%%    $Revision: 1.7 $
+%%    $Date: 2009/06/22 06:46:03 $
+%%    $Revision: 1.8 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -32,7 +32,7 @@ test() ->
     {t_tuple_to_list(),
      build_and_match(), t_size(),
      t_list_to_tuple(), t_list_to_tuple(),
-     t_element(), t_setelement(),
+     t_element(), t_setelement(3),
      tuple_with_case(), tuple_in_guard({a, b}, {a, b, c}),
      true}.
 
@@ -88,7 +88,7 @@ get_elements([], _Tuple, _Pos) ->
     ok.
     
 %% Tests set_element/3.
-t_setelement() ->
+t_setelement(Three) ->
     {x} = setelement(1, {1}, x),
     {x, 2} = setelement(1, {1, 2}, x),
     {1, x} = setelement(2, {1, 2}, x),
@@ -96,13 +96,14 @@ t_setelement() ->
     Tuple = list_to_tuple(lists:duplicate(2048, x)),
     NewTuple = set_all_elements(Tuple, 1),
     NewTuple = list_to_tuple(lists:seq(1+7, 2048+7)),
-    
-    {'EXIT', _} = (catch setelement(0, {a, b}, x)),
-    {'EXIT', _} = (catch setelement(3, {a, b}, x)),
-    {'EXIT', _} = (catch setelement(1, {}, x)),
-    {'EXIT', _} = (catch setelement(1, [a, b], x)),
-    {'EXIT', _} = (catch setelement(1.5, {a, b}, x)),
-    
+ 
+    %% the following cases were rewritten to use the Three
+    %% variable in this weird way so as to silence the compiler
+    {'EXIT', _} = (catch setelement(Three - Three, {a, b}, x)),
+    {'EXIT', _} = (catch setelement(Three, {a, b}, x)),
+    {'EXIT', _} = (catch setelement(Three div Three, {}, x)),
+    {'EXIT', _} = (catch setelement(Three div Three, [a, b], x)),
+    {'EXIT', _} = (catch setelement(Three / 2, {a, b}, x)),
     ok.
 
 set_all_elements(Tuple, Pos) when Pos =< size(Tuple) ->
