@@ -1,18 +1,18 @@
 -module(random_test).
 
--export([test/0,compile/1,random/1]).
+-export([test/0, compile/1, random/1]).
 
 test() ->
-    {ok,random(1000)}.
+    {ok, random(1000)}.
 
 compile(Flags) ->
-    hipe:c(?MODULE,Flags).
+    hipe:c(?MODULE, Flags).
 
 random(N) ->
     random(N, 1).
 
 random(N, Iter) ->
-    random:seed(1,2,3),
+    random:seed(1, 2, 3),
     t(ranlist(N, [], N*100), Iter).
 
 ranlist(0, L, _N) -> L;
@@ -22,7 +22,7 @@ t(L, _Iter) ->
     %% io:format("Sort starting~n"),
     sort(L),
     foo.
-    
+
 sort([X, Y | L]) when X =< Y ->
     split_1(X, Y, L, [], []);
 sort([X, Y | L]) ->
@@ -105,7 +105,6 @@ rmergel([L], Acc) ->
 rmergel([], Acc) ->
     mergel(Acc, []).
 
-
 %% Take L1 apart.
 merge3_1([H1 | T1], M, H2, T2, H3, T3) when H1 =< H2 ->
     merge3_12(T1, H1, H2, T2, H3, T3, M);
@@ -126,13 +125,13 @@ merge3_2(T1, H1, M, _nil, H3, T3) when H1 =< H3 ->
 merge3_2(T1, H1, M, _nil, H3, T3) ->
     merge2_1(T3, H1, T1, [H3 | M]).
 
-% H1 <= H2. Inlined.
+%% H1 <= H2. Inlined.
 merge3_12(T1, H1, H2, T2, H3, T3, M) when H3 < H1 ->
     merge3_12_3(T1, H1, H2, T2, [H3 | M], T3);
 merge3_12(T1, H1, H2, T2, H3, T3, M) ->
     merge3_1(T1, [H1 | M], H2, T2, H3, T3).
 
-% H1 <= H2, take L3 apart.
+%% H1 <= H2, take L3 apart.
 merge3_12_3(T1, H1, H2, T2, M, [H3 | T3]) when H3 < H1 ->
     merge3_12_3(T1, H1, H2, T2, [H3 | M], T3);
 merge3_12_3(T1, H1, H2, T2, M, [H3 | T3]) ->
@@ -140,13 +139,13 @@ merge3_12_3(T1, H1, H2, T2, M, [H3 | T3]) ->
 merge3_12_3(T1, H1, H2, T2, M, _nil) ->
     merge2_1(T1, H2, T2, [H1 | M]).
 
-% H1 > H2. Inlined.
+%% H1 > H2. Inlined.
 merge3_21(T1, H1, H2, T2, H3, T3, M) when H3 < H2 ->
     merge3_21_3(T1, H1, H2, T2, [H3 | M], T3);
 merge3_21(T1, H1, H2, T2, H3, T3, M) ->
     merge3_2(T1, H1, [H2 | M], T2, H3, T3).
 
-% H1 > H2, take L3 apart.
+%% H1 > H2, take L3 apart.
 merge3_21_3(T1, H1, H2, T2, M, [H3 | T3]) when H3 < H2 ->
     merge3_21_3(T1, H1, H2, T2, [H3 | M], T3);
 merge3_21_3(T1, H1, H2, T2, M, [H3 | T3]) ->
@@ -174,13 +173,13 @@ rmerge3_2(T1, H1, M, _nil, H3, T3) when H1 > H3 ->
 rmerge3_2(T1, H1, M, _nil, H3, T3) ->
     rmerge2_1(T3, H1, T1, [H3 | M]).
 
-% H1 > H2. Inlined.
+%% H1 > H2. Inlined.
 rmerge3_12(T1, H1, H2, T2, H3, T3, M) when H3 >= H1 ->
     rmerge3_12_3(T1, H1, H2, T2, [H3 | M], T3);
 rmerge3_12(T1, H1, H2, T2, H3, T3, M) ->
     rmerge3_1(T1, [H1 | M], H2, T2, H3, T3).
 
-% H1 > H2, take L3 apart.
+%% H1 > H2, take L3 apart.
 rmerge3_12_3(T1, H1, H2, T2, M, [H3 | T3]) when H3 >= H1 ->
     rmerge3_12_3(T1, H1, H2, T2, [H3 | M], T3);
 rmerge3_12_3(T1, H1, H2, T2, M, [H3 | T3]) ->
@@ -188,13 +187,13 @@ rmerge3_12_3(T1, H1, H2, T2, M, [H3 | T3]) ->
 rmerge3_12_3(T1, H1, H2, T2, M, _nil) ->
     rmerge2_1(T1, H2, T2, [H1 | M]).
 
-% H1 =< H2. Inlined.
+%% H1 =< H2. Inlined.
 rmerge3_21(T1, H1, H2, T2, H3, T3, M) when H3 >= H2 ->
     rmerge3_21_3(T1, H1, H2, T2, [H3 | M], T3);
 rmerge3_21(T1, H1, H2, T2, H3, T3, M) ->
     rmerge3_2(T1, H1, [H2 | M], T2, H3, T3).
 
-% H1 =< H2, take L3 apart.
+%% H1 =< H2, take L3 apart.
 rmerge3_21_3(T1, H1, H2, T2, M, [H3 | T3]) when H3 >= H2 ->
     rmerge3_21_3(T1, H1, H2, T2, [H3 | M], T3);
 rmerge3_21_3(T1, H1, H2, T2, M, [H3 | T3]) ->
