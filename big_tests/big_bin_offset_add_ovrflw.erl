@@ -1,18 +1,21 @@
 %%======================================================================
 %% From: Per Gustafsson
-%% Date: 2 Jun 23, 2009
+%% Date: Jun 23, 2009
 %%
 %% Bug in HiPE big binary matching, offset additions are not handled
 %% correctly.
 %% 
 %%======================================================================
 
--module(big_bin_offset_add_overflow).
+%% testsuite.sh scans for the string 'overflow' :-(
+-module(big_bin_offset_add_ovrflw).
 
 -export([test/0, compile/1]).
 
 test() ->
-  bug(1, <<0:1200>>).
+  case catch bug(1, <<0:1200>>) of
+    {'EXIT',{{badmatch,_Bin},[{?MODULE,bug,2}|_]}} -> ok
+  end.
 
 compile(Opts) -> hipe:c(?MODULE, Opts).
 
