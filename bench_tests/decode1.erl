@@ -27,25 +27,25 @@ test() ->
   %% FrameList = [89,128,0,8,132,0,26,133,133,0,38,148,94,
   %% 	       128,0,2,129,128,92,128,0,2,0,0,112,128,0,
   %% 	       10,194,69,0,0,0,0,0,18,52,95],
-  Frame = concat_binary([list_to_binary([89]),list_to_binary([128]),
-			 list_to_binary([0]),list_to_binary([8]),
-			 list_to_binary([132]),list_to_binary([0]),
-			 list_to_binary([26]),list_to_binary([133]),
-			 list_to_binary([133]),list_to_binary([0]),
-			 list_to_binary([38]),list_to_binary([148]),
-			 list_to_binary([94]),list_to_binary([128]),
-			 list_to_binary([0]),list_to_binary([2]),
-			 list_to_binary([129]),list_to_binary([128]),
-			 list_to_binary([92]),list_to_binary([128]),
-			 list_to_binary([0]),list_to_binary([2]),
-			 list_to_binary([0]),list_to_binary([0]),
-			 list_to_binary([112]),list_to_binary([128]),
-			 list_to_binary([0]),list_to_binary([10]),
-			 list_to_binary([194]),list_to_binary([69]),
-			 list_to_binary([0]),list_to_binary([0]),
-			 list_to_binary([0]),list_to_binary([0]),
-			 list_to_binary([0]),list_to_binary([18]),
-			 list_to_binary([52]),list_to_binary([95])]),
+  Frame = list_to_binary([list_to_binary([89]),list_to_binary([128]),
+			  list_to_binary([0]),list_to_binary([8]),
+			  list_to_binary([132]),list_to_binary([0]),
+			  list_to_binary([26]),list_to_binary([133]),
+			  list_to_binary([133]),list_to_binary([0]),
+			  list_to_binary([38]),list_to_binary([148]),
+			  list_to_binary([94]),list_to_binary([128]),
+			  list_to_binary([0]),list_to_binary([2]),
+			  list_to_binary([129]),list_to_binary([128]),
+			  list_to_binary([92]),list_to_binary([128]),
+			  list_to_binary([0]),list_to_binary([2]),
+			  list_to_binary([0]),list_to_binary([0]),
+			  list_to_binary([112]),list_to_binary([128]),
+			  list_to_binary([0]),list_to_binary([10]),
+			  list_to_binary([194]),list_to_binary([69]),
+			  list_to_binary([0]),list_to_binary([0]),
+			  list_to_binary([0]),list_to_binary([0]),
+			  list_to_binary([0]),list_to_binary([18]),
+			  list_to_binary([52]),list_to_binary([95])]),
   
     statistics(runtime),
     R = loop(2,0,Frame),
@@ -78,14 +78,14 @@ run_orig(N,Frame) ->
 % Macros
 %    
 
--define(VALID_ACTION(Flag), if ((Flag) band 16#10) == 16#10 -> true;
+-define(VALID_ACTION(Flag), if ((Flag) band 16#10) =:= 16#10 -> true;
 			       true -> false
 			    end).
 -define(GET_ACTION(Flag),   ((Flag) band 16#03)).
 
 -define(getint16(X1,X0),    (16#100*X1 + X0)).
 
--define(IS_EXTENDED(X),     (if ((X) band 16#80) == 16#80 -> false;
+-define(IS_EXTENDED(X),     (if ((X) band 16#80) =:= 16#80 -> false;
 				true -> true
 			     end)).
 
@@ -139,38 +139,37 @@ run_orig(N,Frame) ->
                                % where each element is a record of scct_geidt{}
 
 
--define(IE_BB_BEARER_CAPABILITY, 		16#5e).
+-define(IE_BB_BEARER_CAPABILITY, 	 16#5e).
 -define(SCCT_PUB_NETW_SERV_LOCAL_USR,        2).
--define(SCCT_ERR_INVALID_IE_CONT,		 	100).
--define(DECRES_THROW_RELCOMP,  		error_throw_relcomp).
+-define(SCCT_ERR_INVALID_IE_CONT,	   100).
+-define(DECRES_THROW_RELCOMP, error_throw_relcomp).
 
 -define(SCCT_P_TO_P,                         0).
 -define(SCCT_P_TO_MP,                        1).
 
--define(IE_ENDPT_REF,   			16#54).
--define(IE_BB_REPEAT_INDICATOR, 		16#63).
+-define(IE_ENDPT_REF,   		 16#54).
+-define(IE_BB_REPEAT_INDICATOR, 	 16#63).
 
--define(SCCT_ERR_MAND_IE_MISSING,			96).
+-define(SCCT_ERR_MAND_IE_MISSING,	    96).
 
--define(A_CLEAR_CALL,            			0).
--define(A_DISCARD_PROCEED,       			1).
--define(A_DISCARD_PROCEED_STATUS,			2).
+-define(A_CLEAR_CALL,            	     0).
+-define(A_DISCARD_PROCEED,       	     1).
+-define(A_DISCARD_PROCEED_STATUS,	     2).
 
 -define(SCCT_BCOB_A,                         1).
 -define(SCCT_BCOB_C,                         3).
--define(SCCT_BCOB_X,                         16).
--define(SCCT_TRANSP_VP_SERV,                 24).
+-define(SCCT_BCOB_X,                        16).
+-define(SCCT_TRANSP_VP_SERV,                24).
 
 -define(SCCT_CBR,                            5).
 -define(SCCT_CBR_WITH_CLR_CLP_0_1,           7).
 -define(SCCT_RT_VBR,                         9).
--define(SCCT_RT_VBR_WITH_CLR_CLP_0_1,        19).
--define(SCCT_NON_RT_VBR,                     10).
--define(SCCT_NON_RT_VBR_WITH_CLR_CLP_0_1,    11).
--define(SCCT_ABR,                            12).
+-define(SCCT_RT_VBR_WITH_CLR_CLP_0_1,       19).
+-define(SCCT_NON_RT_VBR,                    10).
+-define(SCCT_NON_RT_VBR_WITH_CLR_CLP_0_1,   11).
+-define(SCCT_ABR,                           12).
 -define(SCCT_NOT_SUSCEPT_TO_CLIPPING,        0).
 -define(SCCT_SUSCEPT_TO_CLIPPING,            1).
-
 
 
 %%% ----------------------------------------------------------

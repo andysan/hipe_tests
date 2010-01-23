@@ -10,8 +10,8 @@
 %%  History  :	* 1999-12-05 Erik Johansson (happi@csd.uu.se): Created.
 %% CVS:
 %%    $Author: kostis $
-%%    $Date: 2002/05/07 13:06:34 $
-%%    $Revision: 1.4 $
+%%    $Date: 2010/01/23 11:49:02 $
+%%    $Revision: 1.5 $
 %% ====================================================================
 %% Exported functions (short description):
 %%  test()         - execute the test.
@@ -171,7 +171,7 @@ test_concat([List|Rest], Size, Combined, Binaries) ->
     test_concat(Rest, Size+length(List), Combined++List, [Bin|Binaries]);
 test_concat([], Size, Combined, Binaries0) ->
     Binaries = lists:reverse(Binaries0),
-    Bin = concat_binary(Binaries),
+    Bin = list_to_binary(Binaries),
     Size = size(Bin),
     Combined = binary_to_list(Bin).
 
