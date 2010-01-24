@@ -4,7 +4,7 @@
 %%% Created : 10 Dec 2003 by Torbjorn Tornkvist <tobbe@bluetail.com>
 %%% Purpose : Implementation of the NetBIOS/SMB protocol.
 %%%
-%%% $Id: esmb.erl,v 1.2 2007/08/28 11:39:09 kostis Exp $
+%%% $Id: esmb.erl,v 1.3 2010/01/24 13:12:09 kostis Exp $
 %%% --------------------------------------------------------------------
 -export([called_name/1, calling_name/1, ucase/1, lcase/1, check_dir/3,
 	 connect/1, connect/2, connect/3, close/1, user_logon/3, emsg/3,
@@ -375,10 +375,10 @@ read_file(S, InReq, Finfo) ->
 -define(MORE_TO_READ(F), (F#file_info.size > F#file_info.data_len)).
 
 read_file(_S, _InReq, Finfo, ?STREAM_READ, Acc) when ?READ_ENOUGH(Finfo) ->
-    {ok, trim_binary(concat_binary(lists:reverse(Acc)), 
+    {ok, trim_binary(list_to_binary(lists:reverse(Acc)), 
 		     Finfo#file_info.data_len - Finfo#file_info.size)};
 read_file(_S, _InReq, Finfo, ?READ_ALL, Acc) when ?READ_ENOUGH(Finfo) ->
-    {ok, trim_binary(concat_binary(lists:reverse(Acc)), 
+    {ok, trim_binary(list_to_binary(lists:reverse(Acc)), 
 		     Finfo#file_info.size)};
 read_file(S, InReq, Finfo, Rtype, Acc) when ?MORE_TO_READ(Finfo) ->
     {Req, Pdu} = smb_read_andx_pdu(InReq, Finfo),
@@ -1465,13 +1465,10 @@ nt_challenge_response(Passwd, Challenge) when is_list(Passwd) ->
     nt_challenge_response(list_to_binary(Passwd), Challenge).
 
 
-ex(<<K0:7/binary,K1:7/binary>>, Data) when size(Data) == 8 ->
-    concat_binary([e(K0, Data),
-		   e(K1, Data)]);
-ex(<<K0:7/binary,K1:7/binary,K2:7/binary>>, Data) when size(Data) == 8 ->
-    concat_binary([e(K0, Data),
-		   e(K1, Data),
-		   e(K2, Data)]);
+ex(<<K0:7/binary,K1:7/binary>>, Data) when size(Data) =:= 8 ->
+    list_to_binary([e(K0, Data), e(K1, Data)]);
+ex(<<K0:7/binary,K1:7/binary,K2:7/binary>>, Data) when size(Data) =:= 8 ->
+    list_to_binary([e(K0, Data), e(K1, Data), e(K2, Data)]);
 ex(K, D)  ->
     io:format("<FATAL ERROR>: K=~p~nD=~p~n",[K,D]),
     exit("fatal_error").
@@ -1517,8 +1514,7 @@ s2k(<<S0,S1,S2,S3,S4,S5,S6>>) ->
     K7 = S6 band 16#7F,
     list_to_binary([X bsl 1 || X <- [K0,K1,K2,K3,K4,K5,K6,K7]]);
 s2k(<<B0:7/binary,B1:7/binary>>) ->
-    concat_binary([s2k(B0),s2k(B1)]).
-    
+    list_to_binary([s2k(B0),s2k(B1)]).
 
 s16x(Passwd) -> 
     ex(p14(Passwd), n8()).
@@ -1657,7 +1653,7 @@ get_more(Expected, Got, Bins) when Got < Expected ->
 	    get_more(Expected, Got + size(Bin), [Bin | Bins])
     end;
 get_more(_, _, Bins) ->
-    concat_binary(lists:reverse(Bins)).
+    list_to_binary(lists:reverse(Bins)).
 
 neg_sess_resp(16#80) -> "Not listening on called name";
 neg_sess_resp(16#81) -> "Not listening for calling name";
