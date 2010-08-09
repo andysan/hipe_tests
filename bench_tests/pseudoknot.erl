@@ -3243,19 +3243,19 @@ distance(X,Y,Z) when is_float(X), is_float(Y), is_float(Z) ->
     math:sqrt(X * X + Y * Y + Z * Z).
 
 sol_most_distant_atom(S) ->
-    maximum(map(var_most_distant_atom,S)).
+    maximum(map(var_most_distant_atom, S)).
 
 most_distant_atom(Sols) ->
     maximum(map(sol_most_distant_atom, Sols)).
 
 maximum([H|T]) ->
-    max(T,H).
+    max2(T,H).
 
-max([H|T],M) when is_float(H), is_float(M), H > M ->
-    max(T,H);
-max([_|T],M) ->
-    max(T,M);
-max([],M) -> M.
+max2([H|T],M) when is_float(H), is_float(M), H > M ->
+    max2(T,H);
+max2([_|T],M) ->
+    max2(T,M);
+max2([],M) -> M.
 
 map(_,[]) -> [];
 map(Func,[H|T]) -> 

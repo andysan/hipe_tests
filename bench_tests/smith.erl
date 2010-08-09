@@ -3,12 +3,6 @@
 -module(smith).
 -export([test/0,compile/1]).
 
-max(A,B) when is_integer(A), is_integer(B) ->
-  if
-    A > B -> A;
-    true  -> B
-  end.
-
 alpha_beta_penalty(A,B) when is_integer(A), is_integer(B) -> max(A-4,B-1).
 
 generate_sequence(Length,R) when is_integer(Length) ->
