@@ -9,7 +9,7 @@
 %%  See the file "license.terms" for information on usage and redistribution
 %%  of this file, and for a DISCLAIMER OF ALL WARRANTIES.
 %%
-%%     $Id: wings_ask.erl,v 1.3 2007/08/28 10:47:31 kostis Exp $
+%%     $Id: wings_ask.erl,v 1.4 2010/08/09 11:54:01 kostis Exp $
 %%
 
 -module(wings_ask).
@@ -29,7 +29,6 @@
 -define(BUTTON_MASK,
 	(?SDL_BUTTON_LMASK bor ?SDL_BUTTON_MMASK bor ?SDL_BUTTON_RMASK)).
 
--import(wings_util, [min/2,max/2]).
 -import(lists, [reverse/1,reverse/2,duplicate/2,keysearch/3,member/2,map/2]).
 
 
