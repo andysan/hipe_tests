@@ -224,7 +224,11 @@ apply_micro(M) ->
     {GC1, Words1, _} = statistics(garbage_collection),
     {_, Reds} = statistics(reductions),
     Elapsed = subtr(Before, After),
-    MilliSecs = (Elapsed - Compensate) div 1000,
+    MilliSecs =
+	case (Elapsed - Compensate) div 1000 of
+	    Ms when Ms > 0 -> Ms;
+	    _ -> 1	% avoid divide by zero below
+	end,
     [{title, M#micro.str},
      {tt1, M#micro.tt1},
      {function, M#micro.function},
