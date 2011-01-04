@@ -1,6 +1,6 @@
 %%--------------------------------------------------------------------
-%% Checks that the HiPE compiler dors not go into an infinite loop
-%% ehen compiling strange functions like the auth/4 one bwloe.
+%% Checks that the HiPE compiler does not go into an infinite loop
+%% when compiling strange functions like the auth/4 one bwloe.
 %%
 %% This is taken from a file sent to us by Martin Bjorklund @ Nottel
 %% on 14th November 2004.  The problem is in the SSA unconver pass.
