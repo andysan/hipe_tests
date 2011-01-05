@@ -1,9 +1,9 @@
 %%%-------------------------------------------------------------------
 %%% File    : bs_gc_bug.erl
-%%% Author  : Per Gustafsson <pergu@dhcp-12-245.it.uu.se>
+%%% Author  : Per Gustafsson <pergu@it.uu.se>
 %%% Description : 
 %%%
-%%% Created : 29 Sep 2006 by Per Gustafsson <pergu@dhcp-12-245.it.uu.se>
+%%% Created : 29 Sep 2006 by Per Gustafsson <pergu@it.uu.se>
 %%%-------------------------------------------------------------------
 -module(bs_gc_bug).
 
